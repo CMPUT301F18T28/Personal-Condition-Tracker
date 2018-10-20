@@ -205,3 +205,126 @@ Trigger: A condition is selected.
 Precondition: There is an existing condition that can be modified.
 Postcondition: The selected condition is modified.
 
+
+Use Case 5
+Use Case Name: View list of records for a condition
+Participating Actors: Patient, Care provider
+Goal: See all of the records for a condition for a given patient.
+Trigger: A) A patient and one of their conditions are selected by a care provider
+	  B) The patient selects one of their conditions.
+Precondition: The patient has a list of conditions and a list of records for those conditions that have been stored and the user is logged on and has a profile.
+Postcondition: The system displays  the list of records.
+
+Basic Flow:
+The system retrieves and displays the list of records for the condition.
+
+Exceptions:
+1.1: A condition has no existing records.
+1.2: The systems displays a message saying “This condition has no existing records”
+
+Use Case 6.1 
+Use Case Name: Edit record as a patient
+Participating Actors: Patient
+Goal: Edit the details of a selected record.
+Trigger: A record is selected.
+Precondition: There is an existing record that can be modified.
+Postcondition: The selected record is modified.
+
+
+Basic Flow:
+The system displays the entirety of the record. All of the fields are selectable except any ‘comments’ made by care provider(s).
+The patient selects and edits one or more fields.
+The user submits the changes (taps the “Submit” button.)
+The system updates selected record.
+The system displays the list of records.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Any restrictions on character length will be accounted for automatically by the system.
+
+Use Case 6.2
+Use Case Name: Edit record as a care provider
+Participating Actors: Care provider
+Goal: Edit a comment section of a selected record.
+Trigger: A record is selected.
+Precondition: There is an existing record that can be modified.
+Postcondition: The selected record is modified.
+
+Basic Flow:
+The system displays the entirety of the record. The only field that  is modifiable is the ‘comments’ section.
+The care provider selects the comment section.
+The care provider adds a comment to the comment section.
+The care provider presses “Submit”
+The systems stores the new comment and displays the record.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Any restrictions on character length will be accounted for automatically by the system.
+Use Case 7
+Use Case Name: Make a user profile
+Participating Actors: Patient, Care provider
+Goal: Create a user profile
+Trigger: The “Create Account” button is pressed.
+Precondition: The user does not have an existing account.
+Postcondition: A user account is generated.
+
+Basic Flow:
+The system displays the create account page.
+The user fills in all fields.
+The user presses “Submit”.
+The system stores the user profile.
+The system displays the appropriate screen depending on the selected user type. 
+
+Exceptions:
+3.1: Not all the fields are filled in or character-length criteria not met when the user presses “Submit”.
+3.2: The system displays an error message prompting the user to fill in all the fields.
+3.3: Return to 1.
+
+Use Case 8
+Use Case Name: View list of patients
+Participating Actors: Care provider
+Goal: See all of the patients that are assigned to a care provider.
+Trigger: The care provider is logged in
+Precondition: The care provider has an existing account.
+Postcondition: The system displays  the list of patients.
+
+Basic Flow:
+The system retrieves and displays the list of patients assigned to the care provider.
+
+
+Exceptions:
+There are no significant exceptions for this use case.
+
+
+
+
+
+Use Case 9
+Use Case Name: Add a patient 
+Participating Actors: Care provider
+Goal: Add a new patient to the list of assigned patients.
+Trigger: The “Add a new patient” button is pressed.
+Precondition: The care provider is logged in and has an account.
+Postcondition: A patient is added to the list of assigned patients.
+
+Basic Flow:
+The system displays the “Add a new patient page”. 
+The user enters the patient ID into the textbox.
+The user hits “Submit”
+The system stores the patient ID into the list of assigned patients.
+The system displays the list of assigned patients.
+
+Exceptions:
+3.1.1: The patient ID is already in the list of assigned patients.
+3.1.2: The system displays a message saying “A record of the patient already exists”. 
+3.1.3: Return to 1.
+
+3.2.1: The patient ID does not correspond to a valid patient.
+3.2.2: The system displays a message saying “This patient does not exist”.
+3.2.3: Return to 1.
