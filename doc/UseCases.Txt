@@ -1,3 +1,161 @@
-Our use cases for this project are:
+Use Case 1
+Use Case Name: Add a condition
+Participating Actors: Patient
+Goal: Add a condition with a title, date, and description.
+Trigger: The patient presses the ‘Track New Condition’ button
+Precondition: The patient has to be logged in with an established user profile, and the patient has to have a condition.
+Postcondition: A condition has been created and stored in the app.
+
+Basic Flow:
+System generates a new condition with the current date.
+System prompts the patient for a title and description.
+The patient enters the title and the description into the appropriate fields.
+The patient hits “Submit”.
+The system records the inputted title and description.
+The system displays the list of problems.
+
+Exceptions:
+4.1: The user enters a title greater than 30 characters or 0 characters, or a description with greater than 300 characters or 0 characters.
+4.2: The system displays an error message
+4.3: Loop back to step 2.
+
+Use Case 2
+Use Case Name: Add a record
+Participating Actors: Patient
+Goal: Add a record for a condition.
+Trigger: The patient presses the “Add New Record” button
+Precondition: A condition has been logged in the system, and the patient is logged onto the system.
+Postcondition: A record is archived within the condition history.
+
+Basic Flow:
+System generates a new record for the condition with the current date.
+System displays the entry fields for title and comment, and buttons for geo-location, body-location, and photograph uploading. 
+The patient can enter the title and the description into the appropriate fields, or press the buttons to upload a geo-location, body-location, and photograph. 
+The patient hits “Submit”
+The system logs the new record.
+The system displays the list of records.
+
+
+Exceptions:
+Covered under the specific use cases that follow.
+
+
+
+Use Case 2.1
+Use Case Name: Add a geo-location to a record
+Participating Actors: Patient
+Goal: Add a geo-location to a record.
+Trigger: The patient presses the “Specify geo-location” button
+Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
+Postcondition: The geo-location is appended to the record.
+
+Basic Flow:
+The system displays a map centered around the patient’s current location.
+The patient is prompted to accept the location or edit the location by dropping a pin elsewhere on the map.
+The new geo-location is appended to the record of the condition.
+The system displays the newly modified record.
+
+Exceptions:
+1.1: The system is unable to determine the patient’s current location.
+1.2: The system would inform the patient that it cannot find the patient’s current location, and prompt the patient to specify a location in the known current city.
+1.3: The patient specifies a location by dropping a pin on the map of the current city.
+1.4: Return to 4.
+
+Use Case 2.2
+Use Case Name: Add a body-location to a record
+Participating Actors: Patient
+Goal: Add a body-location to a record.
+Trigger: The patient presses the “Specify body-location” button
+Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
+Postcondition: The body-location is appended to the record.
+
+Basic Flow:
+The system first displays a map of the front profile of the human body followed by a map of the back profile of the human body, according to the gender specified by the user profile.
+The patient is prompted to select the appropriate location on the map.
+The system records the location and appends it to the record.
+The system displays the newly modified record.
+
+Exceptions:
+There should not be any notable exceptions for this use case.
+
+Use Case 2.3
+Use Case Name: Add a photo to a record
+Participating Actors: Patient
+Goal: Add a photo to a record.
+Trigger: The patient presses the “Add a photo” button
+Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
+Postcondition: The photo is appended to the record.
+
+Basic Flow:
+The system displays a pop-up with two options: A) “Take a photo”, or B) “Upload an Existing” photo.
+The user selects an option.
+The photo is appended to the record.
+The systems displays the newly modified record.
+
+Exceptions:
+3.1: The photo size is greater than 65536 bytes.
+3.2: The system displays an error message telling the user that the photo is too big.
+3.3: Return to 1.  
+
+1.1: There are already 10 photos for the record.
+1.2: The system displays an error message telling the user that no more more photos can be appended. (Potentially the option of deleting a photo is provided.)
+1.3: The returns to the record.
+
+
+
+
+
+
+
+
+
+Use Case 2.3.1
+Use Case Name: Take a photo
+Participating Actors: Patient
+Goal: Take a photo with the phone’s camera.
+Trigger: The patient selects the “Take a photo” option
+Precondition: A record has been logged for a condition, the patient wants to take a photo, and the patient is logged onto the system. 
+Postcondition: The photo is captured by the system. 
+
+Basic Flow:
+The system opens the phone’s camera and notifies the user to take a photo.
+The user takes a photo.
+The system prompts the user to confirm the photo is acceptable.
+The user presses “Yes”.
+The system stores the photo.
+The system displays a pop-up window with two options: “Take another photo” or “Finished”.
+The user presses “Finished”.
+The system displays the newly modified record.
+
+Exceptions:
+4.1: The user presses “No”
+4.2: Return to 1.
+
+7.1: The user presses “Take another photo”
+7.2: Return to 1.
+
+Use Case 2.3.2 
+Use Case Name: Upload a photo
+Participating Actors: Patient
+Goal: Add a photo to a record.
+Trigger: The patient presses the “Upload a photo” button
+Precondition: A record has been logged for a condition, the patient has a pre-existing photo, and the patient is logged onto the system. 
+Postcondition: The photo is appended to the record.
+
+
+
+
+
+Basic Flow:
+The system opens the phone’s photo gallery.
+The user selects a photo from the gallery
+The system prompts the user to confirm the selection.
+The user presses “Confirm”.
+The system displays the newly modified record.
+
+Exceptions:
+Particular exceptions are addressed in the following use cases.
+
+
 
 
