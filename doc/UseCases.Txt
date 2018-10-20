@@ -6,21 +6,18 @@ Trigger: The patient presses the ‘Track New Condition’ button
 Precondition: The patient has to be logged in with an established user profile, and the patient has to have a condition.
 Postcondition: A condition has been created and stored in the app.
 
-
 Basic Flow:
-1. System generates a new condition with the current date.
-2. System prompts the patient for a title and description.
-3. The patient enters the title and the description into the appropriate fields.
-4. The patient hits “Submit”.
-5. The system records the inputted title and description.
-6. The system displays the list of problems.
-
+System generates a new condition with the current date.
+System prompts the patient for a title and description.
+The patient enters the title and the description into the appropriate fields.
+The patient hits “Submit”.
+The system records the inputted title and description.
+The system displays the list of problems.
 
 Exceptions:
 4.1: The user enters a title greater than 30 characters or 0 characters, or a description with greater than 300 characters or 0 characters.
 4.2: The system displays an error message
 4.3: Loop back to step 2.
-
 
 Use Case 2
 Use Case Name: Add a record
@@ -30,48 +27,37 @@ Trigger: The patient presses the “Add New Record” button
 Precondition: A condition has been logged in the system, and the patient is logged onto the system.
 Postcondition: A record is archived within the condition history.
 
-
 Basic Flow:
-1. System generates a new record for the condition with the current date.
-2. System displays the entry fields for title and comment, and buttons for geo-location, body-location, and photograph uploading. 
-3. The patient can enter the title and the description into the appropriate fields, or press the buttons to upload a geo-location, body-location, and photograph. 
-4. The patient hits “Submit”
-5. The system logs the new record.
-6. The system displays the list of records.
-
-
-
+System generates a new record for the condition with the current date.
+System displays the entry fields for title and comment, and buttons for geo-location, body-location, and photograph uploading. 
+The patient can enter the title and the description into the appropriate fields, or press the buttons to upload a geo-location, body-location, and photograph. 
+The patient hits “Submit”
+The system logs the new record.
+The system displays the list of records.
 
 Exceptions:
 Covered under the specific use cases that follow.
-
-
-
-
 
 
 Use Case 2.1
 Use Case Name: Add a geo-location to a record
 Participating Actors: Patient
 Goal: Add a geo-location to a record.
-Trigger: The patient presses the “Specify geo-location” button
+Trigger: The patient presses the “Specific geo-location” button
 Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
 Postcondition: The geo-location is appended to the record.
 
-
 Basic Flow:
-1. The system displays a map centered around the patient’s current location.
-2. The patient is prompted to accept the location or edit the location by dropping a pin elsewhere on the map.
-3. The new geo-location is appended to the record of the condition.
-4. The system displays the newly modified record.
-
+The system displays a map centered around the patient’s current location.
+The patient is prompted to accept the location or edit the location by dropping a pin elsewhere on the map.
+The new geo-location is appended to the record of the condition.
+The system displays the newly modified record.
 
 Exceptions:
 1.1: The system is unable to determine the patient’s current location.
 1.2: The system would inform the patient that it cannot find the patient’s current location, and prompt the patient to specify a location in the known current city.
 1.3: The patient specifies a location by dropping a pin on the map of the current city.
 1.4: Return to 4.
-
 
 Use Case 2.2
 Use Case Name: Add a body-location to a record
@@ -81,17 +67,14 @@ Trigger: The patient presses the “Specify body-location” button
 Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
 Postcondition: The body-location is appended to the record.
 
-
 Basic Flow:
-1. The system first displays a map of the front profile of the human body followed by a map of the back profile of the human body, according to the gender specified by the user profile.
-2. The patient is prompted to select the appropriate location on the map.
-3. The system records the location and appends it to the record.
-4. The system displays the newly modified record.
-
+The system first displays a map of the front profile of the human body followed by a map of the back profile of the human body, according to the gender specified by the user profile.
+The patient is prompted to select the appropriate location on the map.
+The system records the location and appends it to the record.
+The system displays the newly modified record.
 
 Exceptions:
 There should not be any notable exceptions for this use case.
-
 
 Use Case 2.3
 Use Case Name: Add a photo to a record
@@ -101,23 +84,21 @@ Trigger: The patient presses the “Add a photo” button
 Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
 Postcondition: The photo is appended to the record.
 
-
 Basic Flow:
-1. The system displays a pop-up with two options: A) “Take a photo”, or B) “Upload an Existing” photo.
-2. The user selects an option.
-3. The photo is appended to the record.
-4. The systems displays the newly modified record.
-
+The system displays a pop-up with two options: A) “Take a photo”, or B) “Upload an Existing” photo.
+The user selects an option.
+The photo is appended to the record.
+The systems displays the newly modified record.
 
 Exceptions:
 3.1: The photo size is greater than 65536 bytes.
 3.2: The system displays an error message telling the user that the photo is too big.
 3.3: Return to 1.  
 
-
 1.1: There are already 10 photos for the record.
 1.2: The system displays an error message telling the user that no more more photos can be appended. (Potentially the option of deleting a photo is provided.)
 1.3: The returns to the record.
+
 
 
 Use Case 2.3.1
@@ -128,26 +109,23 @@ Trigger: The patient selects the “Take a photo” option
 Precondition: A record has been logged for a condition, the patient wants to take a photo, and the patient is logged onto the system. 
 Postcondition: The photo is captured by the system. 
 
-
 Basic Flow:
-1. The system opens the phone’s camera and notifies the user to take a photo.
-2. The user takes a photo.
-3. The system prompts the user to confirm the photo is acceptable.
-4. The user presses “Yes”.
-5. The system stores the photo.
-6. The system displays a pop-up window with two options: “Take another photo” or “Finished”.
-7. The user presses “Finished”.
-8. The system displays the newly modified record.
-
+The system opens the phone’s camera and notifies the user to take a photo. 
+The system displays the most recent photo (if extant) with a grid overlaid on top of it, so that it may be referenced by the patient to line up the existing photo.
+The user takes a photo.
+The system prompts the user to confirm the photo is acceptable.
+The user presses “Yes”.
+The system stores the photo.
+The system displays a pop-up window with two options: “Take another photo” or “Finished”.
+The user presses “Finished”.
+The system displays the newly modified record.
 
 Exceptions:
-4.1: The user presses “No”
-4.2: Return to 1.
+5.1: The user presses “No”
+5.2: Return to 1.
 
-
-7.1: The user presses “Take another photo”
-7.2: Return to 1.
-
+8.1: The user presses “Take another photo”
+8.2: Return to 1.
 
 Use Case 2.3.2 
 Use Case Name: Upload a photo
@@ -158,44 +136,31 @@ Precondition: A record has been logged for a condition, the patient has a pre-ex
 Postcondition: The photo is appended to the record.
 
 
-
-
-
-
-
-
-
-
 Basic Flow:
-1. The system opens the phone’s photo gallery.
-2. The user selects a photo from the gallery
-3. The system prompts the user to confirm the selection.
-4. The user presses “Confirm”.
-5. The system displays the newly modified record.
-
+The system opens the phone’s photo gallery.
+The user selects a photo from the gallery
+The system prompts the user to confirm the selection.
+The user presses “Confirm”.
+The system displays the newly modified record.
 
 Exceptions:
 Particular exceptions are addressed in the following use cases.
-
 
 Use Case 3
 Use Case Name: View list of conditions
 Participating Actors: Patient, Care provider
 Goal: See all of the conditions for a given patient.
 Trigger: A) A patient is selected by a care provider
-          B) The patient logs in.
+	  B) The patient logs in.
 Precondition: The patient has a list of conditions that been stored and the user is logged on and has a profile.
 Postcondition: The system displays  the list of conditions.
 
-
 Basic Flow:
-1. The system retrieves and displays the list of conditions for the patient.
-
+The system retrieves and displays the list of conditions for the patient.
 
 Exceptions:
 1.1: A patient has no existing conditions.
 1.2: The systems displays a message saying “The patient has no existing conditions”
-
 
 Use Case 4
 Use Case Name: Edit Condition
@@ -205,6 +170,23 @@ Trigger: A condition is selected.
 Precondition: There is an existing condition that can be modified.
 Postcondition: The selected condition is modified.
 
+
+
+
+
+Basic Flow:
+The system displays the title, date, and description for the selected condition. All of the fields are selectable by long click and are thus editable.
+The user selects and edits one or more fields. 
+The user submits the changes (taps the “Submit” button.)
+The system updates selected condition.
+The system displays the list of conditions.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Exceptions with respect to the number of characters in each respective field will be automatically handled by limiting the number of characters that can be entered.
 
 Use Case 5
 Use Case Name: View list of records for a condition
@@ -242,7 +224,6 @@ Exceptions:
 4.1: The system is offline
 4.2: The changes are stored locally.
 4.3: Updating the system will occur when connectivity resumes.
-
 Note: Any restrictions on character length will be accounted for automatically by the system.
 
 Use Case 6.2
@@ -328,3 +309,75 @@ Exceptions:
 3.2.1: The patient ID does not correspond to a valid patient.
 3.2.2: The system displays a message saying “This patient does not exist”.
 3.2.3: Return to 1.
+
+
+Use Case 10
+Use Case Name: View patient’s conditions as a care provider
+Participating Actors: Care provider
+Goal: View a list of a patient’s conditions
+Trigger: A patient is selected.
+Precondition: The care provider is logged in and has an account.
+Postcondition: The list of conditions for a patient is displayed.
+
+Basic Flow:
+The system retrieves and displays the list of conditions for the selected patient.
+
+Exceptions:
+1.1: A patient has no existing conditions.
+1.2: The systems displays a message saying “This selected patient has no current conditions”.
+
+Use Case 11
+Use Case Name: Append comment to an existing condition of a patient as a care provider
+Participating Actors: Care provider
+Goal: Edit the comment section of a selected condition for a selected patient.
+Trigger: A condition for a patient is selected.
+Precondition: There is an existing condition for the patient.
+Postcondition: The comment is appended to the condition.
+
+Basic Flow:
+The systems displays a page which includes the list of records along with a button to add a comment.
+The care provider presses the “Add a Comment” button.
+The system displays a editable textbox for the comment.
+The care provider inserts the comment.
+The care provider hits the “Submit” button.
+The system logs the comment for that condition.
+The system displays the list of conditions for the patient.
+
+Exceptions:
+There are no major exceptions for this use case.
+
+Note: Any restrictions on character length will be accounted for automatically by the system.
+
+Use Case 12
+Use Case Name: Search for conditions, records or  patients 
+Participating Actors: Patient, Care provider
+Goal: Return a list of conditions
+Trigger: The user  presses the “Search conditions/records” button.
+Precondition: There must be patients with conditions stored in the system.
+Postcondition: The list of conditions which match the search parameter is displayed.
+
+Basic Flow:
+The user enters the search parameters.
+The user presses “Search conditions/records ”.
+The system queries the existing database and populates a list therefrom.
+The system displays the above mentioned list.
+The user can select an item an item from the list (via long click)
+The system displays the relevant information pertaining thereto. 
+
+
+Exceptions:
+3.1 No search results are returned by the system.
+3.2 The system displays an error message stating: “No matching results”
+3.3 Return to 1.
+
+
+
+
+
+
+
+
+
+
+
+
