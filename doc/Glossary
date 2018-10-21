@@ -1,0 +1,18 @@
+Here is a list of termrs used in our use cases:
+
+Condition: A condition is an illness, injury, or related effect that the user has someone on their body, and will record on the app.
+
+User: The use is the person/patient who is logged onto the app so that they can keep track of their problems. 
+
+Record: A record is an addition to a conditon for the patient to add details about it.
+
+Logged: This is when the condition or update from the patient is recorded into the system for them or their care provider to view.
+
+Comment: These are additions that the patient can add to any condition, to describe them or add any needed info.
+
+Profile: This is all of the info that the user inputs into the app to be stored and used in the future.
+
+System: The system is the complete list of patients that are using the app and recording their conditions.
+
+Patient ID: This is a unique number given to each person using the app so that they can be looked up.
+
