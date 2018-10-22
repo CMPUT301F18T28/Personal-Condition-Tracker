@@ -1,3 +1,5 @@
+USE CASES
+
 Use Case 1
 Use Case Name: Add a condition
 Participating Actors: Patient
@@ -68,7 +70,7 @@ Precondition: A record has been logged for a condition, and the patient is logge
 Postcondition: The body-location is appended to the record.
 
 Basic Flow:
-The system first displays a map of the front profile of the human body followed by a map of the back profile of the human body, according to the gender specified by the user profile.
+The system first displays a map of the front profile of the human body followed by a map of the back profile of the human body, according to the sex specified by the user profile.
 The patient is prompted to select the appropriate location on the map.
 The system records the location and appends it to the record.
 The system displays the newly modified record.
@@ -212,7 +214,6 @@ Trigger: A record is selected.
 Precondition: There is an existing record that can be modified.
 Postcondition: The selected record is modified.
 
-
 Basic Flow:
 The system displays the entirety of the record. All of the fields are selectable except any ‘comments’ made by care provider(s).
 The patient selects and edits one or more fields.
@@ -247,6 +248,7 @@ Exceptions:
 4.3: Updating the system will occur when connectivity resumes.
 
 Note: Any restrictions on character length will be accounted for automatically by the system.
+
 Use Case 7
 Use Case Name: Make a user profile
 Participating Actors: Patient, Care provider
@@ -370,7 +372,200 @@ Exceptions:
 3.2 The system displays an error message stating: “No matching results”
 3.3 Return to 1.
 
+Use Case 13
+Use Case Name: Delete Condition
+Participating Actors: Patient
+Goal: Delete a selected condition.
+Trigger: A condition is selected.
+Precondition: There is an existing condition that can be deleted.
+Postcondition: The selected condition is removed from the patient’s list of conditions.
 
+Basic Flow:
+The system prompts the patient to confirm that the selected condition should be deleted.
+The patient presses “Yes”
+The system removes the condition from the patient’s list of conditions.
+The system displays the patient’s newly modified list of conditions.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Exceptions with respect to the number of characters in each respective field will be automatically handled by limiting the number of characters that can be entered.
+
+Use Case 14
+Use Case Name: View user profile
+Participating Actors: Patient, Care provider
+Goal: See a user’s profile and associated contact information.
+Trigger: A) The “User ID” button is pressed (for patients)
+	  B) The “Patient ID” button is pressed for a selected patient on the screen displaying their list of conditions (for care providers)
+Precondition: The user has a preexisting account and is logged in.
+Postcondition: The selected user’s profile is displayed.
+
+Basic Flow:
+The system displays the selected user’s profile, which includes their profile type, user ID, email address, phone number, and sex.
+
+Exceptions:
+There are no major exceptions for this use case.
+
+Use Case 15
+Use Case Name: Edit contact information
+Participating Actors: Patient
+Goal: Change the patient’s contact information
+Trigger: The “Edit Contact Information” button is pressed.
+Precondition: The patient has a preexisting account and is logged in.
+Postcondition: The patient’s contact information is changed
+
+Basic Flow:
+The system displays the patient’s current contact information.
+The user selects the field they wish to change and inputs the new information.
+The user presses “Submit”.
+The system updates the patient’s contact information with the new data.
+The system displays the patient’s user profile.
+
+Exceptions:
+3.1: Not all the fields are filled in or character-length criteria not met when the user presses “Submit”.
+3.2: The system displays an error message prompting the user to fill in all the fields.
+3.3: Return to 1.
+
+Use Case 16
+Use Case Name: View records by location
+Participating Actors: Patient, Care provider
+Goal: See each record for a patient on a  map
+Trigger: The “View map of records” button is pressed.
+Precondition: The user is currently viewing the list of conditions for a patient and there are records which have locations.
+Postcondition: The user sees all the records with locations displayed on a map
+
+Basic Flow:
+The system displays a map with each record with a location displayed as a pin over its appropriate location.
+
+Exceptions:
+There are no major exceptions for this use case.
+
+MAP OF USER STORIES TO USE CASES:
+
+US 01.01.01 - covered in Use Case 1
+As a patient I want to record my problems, each denoted with a title, date started, and a brief description.
+
+US 01.01.02 (added 2018-02-14) - covered in Use Cases 1 and 4
+As a patient, I want the maximum length of the task title to be at least 30 characters.
+
+US 01.01.03 (added 2018-02-14) - covered in Use Cases 1 and 4
+As a patient, I want the maximum length of the task description to be at least 300 characters.
+
+US 01.02.01 - covered in Use Case 3
+As a patient, I want to view a list of my problems, with their titles, dates, and number of records.
+
+US 01.03.01 (revised 2018-02-16) - covered in Use Case 4
+As a patient, I want to edit the details for any one of my problems.
+
+US 01.04.01  - covered in Use Case 13
+As a patient, I want to delete a problem of mine.
+
+US 01.05.01 - covered in Use Case 2
+As a patient I want to add records (photos, locations, comments) to problems.
+
+US 02.01.01 - covered in Use Case 5
+As a patient or care provider, I want to view all the records for a given problem, including its title, description, photo, etc.
+
+US 02.02.01 - covered in Use Case 2
+As a patient, I want to add records to problems.
+
+US 02.03.01 - covered in Use Case 2
+As a patient, records can have a geo-location.
+
+US 02.04.01 - covered in Use Case 2
+As a patient, records can have a body location.
+
+US 02.05.01 - covered in Use Case 2
+As a patient, records can have a title and comment.
+
+US 02.06.01 - covered in Use Case 2
+As a patient, records can have a photo.
+
+US 02.07.01 - covered in Use Case 11
+As care provider, I want to add new comment records to a problem for my patients.
+
+US 02.08.01 - covered in Use Case 2
+As a patient, records have a timestamp.
+
+US 02.09.01 - covered in Use Case 2.3.1
+As a patient, I want some method of helping me take consistent photos, so that when I show the doctor any progression such as the growth of a mole is evident.
+
+US 02.10.01 - covered in Use Case 6.1
+As a patient, I need to have a slideshow mode whereby photo records of a problem can be browsed by clicking. So I could "animate” changes to a doctor.
+
+US 03.01.01 - covered in Use Case 7
+As a patient, I want a profile with a unique user id and my contact information.
+
+US 03.01.02 - covered in Use Case 7
+As a patient, I want the minimum userid to be at least 8 characters.
+
+US 03.01.03 - covered in Use Case 7
+As a patient, I want the contact information to include an email address and a phone number.
+
+US 03.02.01 - covered in Use Case 15
+As a patient, I want to edit the contact information in my profile.
+
+US 03.03.01 - covered in Use Case 14
+As a patient or care provider, I want to, whenever a username is shown, be able to retrieve and see its corresponding contact information.
+
+US 04.01.01 - covered in Use Case 12
+As a patient or care provider, I want to specify a set of keywords, and search for all problems or records that contains all the keywords.
+
+US 04.02.01 - covered in Use Case 12
+As a patient or care provider, I want to specify a set of keywords, and search for all problems or records that are near a particular Geo-location.
+
+US 04.03.01 - covered in Use Case 12
+As a patient or care provider, I want to specify a set of keywords, and search for all problems or records that are near a particular body-location.
+
+US 06.01.01 - covered in Use Case 8
+As a care provider, I want to view a list of patients I am assigned to.
+
+US 07.01.01 - covered in Use Case 9
+As a care provider, I want to add patients that I am assigned to.
+
+US 07.01.02 - covered in Use Case 10
+As a care provider, I want to want to browse my patients problems.
+
+US 07.01.03 - covered in Use Case 11
+As a care provider, I want to add comment records to my patients' problems
+
+US 08.01.01 - covered in Use Cases 1, 2, 4, and 6.1
+As a patient, I want to add or edit problems and records while off the network, and have these changes synchronized once I regain connectivity.
+
+US 09.01.01 - covered in Use Case 2.3
+As a patient, I want to optionally attach one or more photographs as further viewable details to a record of mine.
+
+US 09.01.02 (added 2018-04-06) - covered in Use Case 2.3
+As a patient, I want the maximum number of photographs that can be attached to a record to be at least 10.
+
+US 09.02.01 - covered in Use Cases 6.1 and 6.2
+As a patient or care provider, I want to view any attached photograph for a record.
+
+US 09.03.01 - covered in Use Case 2.3
+As a sys. admin, I want each photograph to be under 65536 bytes in size.
+
+US 10.01.01 - covered in Use Case 2.1
+As a patient, I want to specify a geo location on a map of a record.
+
+US 10.02.01 - covered in Use Cases 6.1 and 2.1
+As a patient or provider, I want to view any geo location for a record, on a map.
+
+US 10.03.01 - covered in Use Case 16
+As a patient or care provider, I want to see a map of all records for a patient (that have locations).
+
+US 11.01.01 - covered in Use Case 2.2
+As a patient, I want to upload at least front and back body-location photos so I may indicate where photo records were taken on my body.
+
+US 11.02.01 - covered in Use Case 2.2
+As a patient, body locations are effectively a reference to a body-location photo and a point location on the photo.
+
+US 11.03.01 - covered in Use Case 2.2
+As a patient, I should be able to have at least 2 body location pictures.
+
+US 11.04.01 - covered in Use Case 2.2 and 6.1
+As a patient, when I view a body location it should be a clear indicator of a point on a body-location picture.
 
 
 
