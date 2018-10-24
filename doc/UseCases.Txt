@@ -1,0 +1,578 @@
+USE CASES
+
+Use Case 1
+Use Case Name: Add a condition
+Participating Actors: Patient
+Goal: Add a condition with a title, date, and description.
+Trigger: The patient presses the ‘Track New Condition’ button
+Precondition: The patient has to be logged in with an established user profile, and the patient has to have a condition.
+Postcondition: A condition has been created and stored in the app.
+
+Basic Flow:
+System generates a new condition with the current date.
+System prompts the patient for a title and description.
+The patient enters the title and the description into the appropriate fields.
+The patient hits “Submit”.
+The system records the inputted title and description.
+The system displays the list of problems.
+
+Exceptions:
+4.1: The user enters a title greater than 30 characters or 0 characters, or a description with greater than 300 characters or 0 characters.
+4.2: The system displays an error message
+4.3: Loop back to step 2.
+
+Use Case 2
+Use Case Name: Add a record
+Participating Actors: Patient
+Goal: Add a record for a condition.
+Trigger: The patient presses the “Add New Record” button
+Precondition: A condition has been logged in the system, and the patient is logged onto the system.
+Postcondition: A record is archived within the condition history.
+
+Basic Flow:
+System generates a new record for the condition with the current date.
+System displays the entry fields for title and comment, and buttons for geo-location, body-location, and photograph uploading. 
+The patient can enter the title and the description into the appropriate fields, or press the buttons to upload a geo-location, body-location, and photograph. 
+The patient hits “Submit”
+The system logs the new record.
+The system displays the list of records.
+
+Exceptions:
+Covered under the specific use cases that follow.
+
+
+Use Case 2.1
+Use Case Name: Add a geo-location to a record
+Participating Actors: Patient
+Goal: Add a geo-location to a record.
+Trigger: The patient presses the “Specific geo-location” button
+Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
+Postcondition: The geo-location is appended to the record.
+
+Basic Flow:
+The system displays a map centered around the patient’s current location.
+The patient is prompted to accept the location or edit the location by dropping a pin elsewhere on the map.
+The new geo-location is appended to the record of the condition.
+The system displays the newly modified record.
+
+Exceptions:
+1.1: The system is unable to determine the patient’s current location.
+1.2: The system would inform the patient that it cannot find the patient’s current location, and prompt the patient to specify a location in the known current city.
+1.3: The patient specifies a location by dropping a pin on the map of the current city.
+1.4: Return to 4.
+
+Use Case 2.2
+Use Case Name: Add a body-location to a record
+Participating Actors: Patient
+Goal: Add a body-location to a record.
+Trigger: The patient presses the “Specify body-location” button
+Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
+Postcondition: The body-location is appended to the record.
+
+Basic Flow:
+The system first displays a map of the front profile of the human body followed by a map of the back profile of the human body, according to the sex specified by the user profile.
+The patient is prompted to select the appropriate location on the map.
+The system records the location and appends it to the record.
+The system displays the newly modified record.
+
+Exceptions:
+There should not be any notable exceptions for this use case.
+
+Use Case 2.3
+Use Case Name: Add a photo to a record
+Participating Actors: Patient
+Goal: Add a photo to a record.
+Trigger: The patient presses the “Add a photo” button
+Precondition: A record has been logged for a condition, and the patient is logged onto the system. 
+Postcondition: The photo is appended to the record.
+
+Basic Flow:
+The system displays a pop-up with two options: A) “Take a photo”, or B) “Upload an Existing” photo.
+The user selects an option.
+The photo is appended to the record.
+The systems displays the newly modified record.
+
+Exceptions:
+3.1: The photo size is greater than 65536 bytes.
+3.2: The system displays an error message telling the user that the photo is too big.
+3.3: Return to 1.  
+
+1.1: There are already 10 photos for the record.
+1.2: The system displays an error message telling the user that no more more photos can be appended. (Potentially the option of deleting a photo is provided.)
+1.3: The returns to the record.
+
+
+
+Use Case 2.3.1
+Use Case Name: Take a photo
+Participating Actors: Patient
+Goal: Take a photo with the phone’s camera.
+Trigger: The patient selects the “Take a photo” option
+Precondition: A record has been logged for a condition, the patient wants to take a photo, and the patient is logged onto the system. 
+Postcondition: The photo is captured by the system. 
+
+Basic Flow:
+The system opens the phone’s camera and notifies the user to take a photo. 
+The system displays the most recent photo (if extant) with a grid overlaid on top of it, so that it may be referenced by the patient to line up the existing photo.
+The user takes a photo.
+The system prompts the user to confirm the photo is acceptable.
+The user presses “Yes”.
+The system stores the photo.
+The system displays a pop-up window with two options: “Take another photo” or “Finished”.
+The user presses “Finished”.
+The system displays the newly modified record.
+
+Exceptions:
+5.1: The user presses “No”
+5.2: Return to 1.
+
+8.1: The user presses “Take another photo”
+8.2: Return to 1.
+
+Use Case 2.3.2 
+Use Case Name: Upload a photo
+Participating Actors: Patient
+Goal: Add a photo to a record.
+Trigger: The patient presses the “Upload a photo” button
+Precondition: A record has been logged for a condition, the patient has a pre-existing photo, and the patient is logged onto the system. 
+Postcondition: The photo is appended to the record.
+
+
+Basic Flow:
+The system opens the phone’s photo gallery.
+The user selects a photo from the gallery
+The system prompts the user to confirm the selection.
+The user presses “Confirm”.
+The system displays the newly modified record.
+
+Exceptions:
+Particular exceptions are addressed in the following use cases.
+
+Use Case 3
+Use Case Name: View list of conditions
+Participating Actors: Patient, Care provider
+Goal: See all of the conditions for a given patient.
+Trigger: A) A patient is selected by a care provider
+	  B) The patient logs in.
+Precondition: The patient has a list of conditions that been stored and the user is logged on and has a profile.
+Postcondition: The system displays  the list of conditions.
+
+Basic Flow:
+The system retrieves and displays the list of conditions for the patient.
+
+Exceptions:
+1.1: A patient has no existing conditions.
+1.2: The systems displays a message saying “The patient has no existing conditions”
+
+Use Case 4
+Use Case Name: Edit Condition
+Participating Actors: Patient
+Goal: Edit the details of a selected condition.
+Trigger: A condition is selected.
+Precondition: There is an existing condition that can be modified.
+Postcondition: The selected condition is modified.
+
+
+
+
+
+Basic Flow:
+The system displays the title, date, and description for the selected condition. All of the fields are selectable by long click and are thus editable.
+The user selects and edits one or more fields. 
+The user submits the changes (taps the “Submit” button.)
+The system updates selected condition.
+The system displays the list of conditions.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Exceptions with respect to the number of characters in each respective field will be automatically handled by limiting the number of characters that can be entered.
+
+Use Case 5
+Use Case Name: View list of records for a condition
+Participating Actors: Patient, Care provider
+Goal: See all of the records for a condition for a given patient.
+Trigger: A) A patient and one of their conditions are selected by a care provider
+	  B) The patient selects one of their conditions.
+Precondition: The patient has a list of conditions and a list of records for those conditions that have been stored and the user is logged on and has a profile.
+Postcondition: The system displays  the list of records.
+
+Basic Flow:
+The system retrieves and displays the list of records for the condition.
+
+Exceptions:
+1.1: A condition has no existing records.
+1.2: The systems displays a message saying “This condition has no existing records”
+
+Use Case 6.1 
+Use Case Name: Edit record as a patient
+Participating Actors: Patient
+Goal: Edit the details of a selected record.
+Trigger: A record is selected.
+Precondition: There is an existing record that can be modified.
+Postcondition: The selected record is modified.
+
+Basic Flow:
+The system displays the entirety of the record. All of the fields are selectable except any ‘comments’ made by care provider(s).
+The patient selects and edits one or more fields.
+The user submits the changes (taps the “Submit” button.)
+The system updates selected record.
+The system displays the list of records.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+Note: Any restrictions on character length will be accounted for automatically by the system.
+
+Use Case 6.2
+Use Case Name: Edit record as a care provider
+Participating Actors: Care provider
+Goal: Edit a comment section of a selected record.
+Trigger: A record is selected.
+Precondition: There is an existing record that can be modified.
+Postcondition: The selected record is modified.
+
+Basic Flow:
+The system displays the entirety of the record. The only field that  is modifiable is the ‘comments’ section.
+The care provider selects the comment section.
+The care provider adds a comment to the comment section.
+The care provider presses “Submit”
+The systems stores the new comment and displays the record.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Any restrictions on character length will be accounted for automatically by the system.
+
+Use Case 7
+Use Case Name: Make a user profile
+Participating Actors: Patient, Care provider
+Goal: Create a user profile
+Trigger: The “Create Account” button is pressed.
+Precondition: The user does not have an existing account.
+Postcondition: A user account is generated.
+
+Basic Flow:
+The system displays the create account page.
+The user fills in all fields.
+The user presses “Submit”.
+The system stores the user profile.
+The system displays the appropriate screen depending on the selected user type. 
+
+Exceptions:
+3.1: Not all the fields are filled in or character-length criteria not met when the user presses “Submit”.
+3.2: The system displays an error message prompting the user to fill in all the fields.
+3.3: Return to 1.
+
+Use Case 8
+Use Case Name: View list of patients
+Participating Actors: Care provider
+Goal: See all of the patients that are assigned to a care provider.
+Trigger: The care provider is logged in
+Precondition: The care provider has an existing account.
+Postcondition: The system displays  the list of patients.
+
+Basic Flow:
+The system retrieves and displays the list of patients assigned to the care provider.
+
+
+Exceptions:
+There are no significant exceptions for this use case.
+
+
+
+
+
+Use Case 9
+Use Case Name: Add a patient 
+Participating Actors: Care provider
+Goal: Add a new patient to the list of assigned patients.
+Trigger: The “Add a new patient” button is pressed.
+Precondition: The care provider is logged in and has an account.
+Postcondition: A patient is added to the list of assigned patients.
+
+Basic Flow:
+The system displays the “Add a new patient page”. 
+The user enters the patient ID into the textbox.
+The user hits “Submit”
+The system stores the patient ID into the list of assigned patients.
+The system displays the list of assigned patients.
+
+Exceptions:
+3.1.1: The patient ID is already in the list of assigned patients.
+3.1.2: The system displays a message saying “A record of the patient already exists”. 
+3.1.3: Return to 1.
+
+3.2.1: The patient ID does not correspond to a valid patient.
+3.2.2: The system displays a message saying “This patient does not exist”.
+3.2.3: Return to 1.
+
+
+Use Case 10
+Use Case Name: View patient’s conditions as a care provider
+Participating Actors: Care provider
+Goal: View a list of a patient’s conditions
+Trigger: A patient is selected.
+Precondition: The care provider is logged in and has an account.
+Postcondition: The list of conditions for a patient is displayed.
+
+Basic Flow:
+The system retrieves and displays the list of conditions for the selected patient.
+
+Exceptions:
+1.1: A patient has no existing conditions.
+1.2: The systems displays a message saying “This selected patient has no current conditions”.
+
+Use Case 11
+Use Case Name: Append comment to an existing condition of a patient as a care provider
+Participating Actors: Care provider
+Goal: Edit the comment section of a selected condition for a selected patient.
+Trigger: A condition for a patient is selected.
+Precondition: There is an existing condition for the patient.
+Postcondition: The comment is appended to the condition.
+
+Basic Flow:
+The systems displays a page which includes the list of records along with a button to add a comment.
+The care provider presses the “Add a Comment” button.
+The system displays a editable textbox for the comment.
+The care provider inserts the comment.
+The care provider hits the “Submit” button.
+The system logs the comment for that condition.
+The system displays the list of conditions for the patient.
+
+Exceptions:
+There are no major exceptions for this use case.
+
+Note: Any restrictions on character length will be accounted for automatically by the system.
+
+Use Case 12
+Use Case Name: Search for conditions, records or  patients 
+Participating Actors: Patient, Care provider
+Goal: Return a list of conditions
+Trigger: The user  presses the “Search conditions/records” button.
+Precondition: There must be patients with conditions stored in the system.
+Postcondition: The list of conditions which match the search parameter is displayed.
+
+Basic Flow:
+The user enters the search parameters.
+The user presses “Search conditions/records ”.
+The system queries the existing database and populates a list therefrom.
+The system displays the above mentioned list.
+The user can select an item an item from the list (via long click)
+The system displays the relevant information pertaining thereto. 
+
+
+Exceptions:
+3.1 No search results are returned by the system.
+3.2 The system displays an error message stating: “No matching results”
+3.3 Return to 1.
+
+Use Case 13
+Use Case Name: Delete Condition
+Participating Actors: Patient
+Goal: Delete a selected condition.
+Trigger: A condition is selected.
+Precondition: There is an existing condition that can be deleted.
+Postcondition: The selected condition is removed from the patient’s list of conditions.
+
+Basic Flow:
+The system prompts the patient to confirm that the selected condition should be deleted.
+The patient presses “Yes”
+The system removes the condition from the patient’s list of conditions.
+The system displays the patient’s newly modified list of conditions.
+
+Exceptions:
+4.1: The system is offline
+4.2: The changes are stored locally.
+4.3: Updating the system will occur when connectivity resumes.
+
+Note: Exceptions with respect to the number of characters in each respective field will be automatically handled by limiting the number of characters that can be entered.
+
+Use Case 14
+Use Case Name: View user profile
+Participating Actors: Patient, Care provider
+Goal: See a user’s profile and associated contact information.
+Trigger: A) The “User ID” button is pressed (for patients)
+	  B) The “Patient ID” button is pressed for a selected patient on the screen displaying their list of conditions (for care providers)
+Precondition: The user has a preexisting account and is logged in.
+Postcondition: The selected user’s profile is displayed.
+
+Basic Flow:
+The system displays the selected user’s profile, which includes their profile type, user ID, email address, phone number, and sex.
+
+Exceptions:
+There are no major exceptions for this use case.
+
+Use Case 15
+Use Case Name: Edit contact information
+Participating Actors: Patient
+Goal: Change the patient’s contact information
+Trigger: The “Edit Contact Information” button is pressed.
+Precondition: The patient has a preexisting account and is logged in.
+Postcondition: The patient’s contact information is changed
+
+Basic Flow:
+The system displays the patient’s current contact information.
+The user selects the field they wish to change and inputs the new information.
+The user presses “Submit”.
+The system updates the patient’s contact information with the new data.
+The system displays the patient’s user profile.
+
+Exceptions:
+3.1: Not all the fields are filled in or character-length criteria not met when the user presses “Submit”.
+3.2: The system displays an error message prompting the user to fill in all the fields.
+3.3: Return to 1.
+
+Use Case 16
+Use Case Name: View records by location
+Participating Actors: Patient, Care provider
+Goal: See each record for a patient on a  map
+Trigger: The “View map of records” button is pressed.
+Precondition: The user is currently viewing the list of conditions for a patient and there are records which have locations.
+Postcondition: The user sees all the records with locations displayed on a map
+
+Basic Flow:
+The system displays a map with each record with a location displayed as a pin over its appropriate location.
+
+Exceptions:
+There are no major exceptions for this use case.
+
+MAP OF USER STORIES TO USE CASES:
+
+US 01.01.01 - covered in Use Case 1
+As a patient I want to record my problems, each denoted with a title, date started, and a brief description.
+
+US 01.01.02 (added 2018-02-14) - covered in Use Cases 1 and 4
+As a patient, I want the maximum length of the task title to be at least 30 characters.
+
+US 01.01.03 (added 2018-02-14) - covered in Use Cases 1 and 4
+As a patient, I want the maximum length of the task description to be at least 300 characters.
+
+US 01.02.01 - covered in Use Case 3
+As a patient, I want to view a list of my problems, with their titles, dates, and number of records.
+
+US 01.03.01 (revised 2018-02-16) - covered in Use Case 4
+As a patient, I want to edit the details for any one of my problems.
+
+US 01.04.01  - covered in Use Case 13
+As a patient, I want to delete a problem of mine.
+
+US 01.05.01 - covered in Use Case 2
+As a patient I want to add records (photos, locations, comments) to problems.
+
+US 02.01.01 - covered in Use Case 5
+As a patient or care provider, I want to view all the records for a given problem, including its title, description, photo, etc.
+
+US 02.02.01 - covered in Use Case 2
+As a patient, I want to add records to problems.
+
+US 02.03.01 - covered in Use Case 2
+As a patient, records can have a geo-location.
+
+US 02.04.01 - covered in Use Case 2
+As a patient, records can have a body location.
+
+US 02.05.01 - covered in Use Case 2
+As a patient, records can have a title and comment.
+
+US 02.06.01 - covered in Use Case 2
+As a patient, records can have a photo.
+
+US 02.07.01 - covered in Use Case 11
+As care provider, I want to add new comment records to a problem for my patients.
+
+US 02.08.01 - covered in Use Case 2
+As a patient, records have a timestamp.
+
+US 02.09.01 - covered in Use Case 2.3.1
+As a patient, I want some method of helping me take consistent photos, so that when I show the doctor any progression such as the growth of a mole is evident.
+
+US 02.10.01 - covered in Use Case 6.1
+As a patient, I need to have a slideshow mode whereby photo records of a problem can be browsed by clicking. So I could "animate” changes to a doctor.
+
+US 03.01.01 - covered in Use Case 7
+As a patient, I want a profile with a unique user id and my contact information.
+
+US 03.01.02 - covered in Use Case 7
+As a patient, I want the minimum userid to be at least 8 characters.
+
+US 03.01.03 - covered in Use Case 7
+As a patient, I want the contact information to include an email address and a phone number.
+
+US 03.02.01 - covered in Use Case 15
+As a patient, I want to edit the contact information in my profile.
+
+US 03.03.01 - covered in Use Case 14
+As a patient or care provider, I want to, whenever a username is shown, be able to retrieve and see its corresponding contact information.
+
+US 04.01.01 - covered in Use Case 12
+As a patient or care provider, I want to specify a set of keywords, and search for all problems or records that contains all the keywords.
+
+US 04.02.01 - covered in Use Case 12
+As a patient or care provider, I want to specify a set of keywords, and search for all problems or records that are near a particular Geo-location.
+
+US 04.03.01 - covered in Use Case 12
+As a patient or care provider, I want to specify a set of keywords, and search for all problems or records that are near a particular body-location.
+
+US 06.01.01 - covered in Use Case 8
+As a care provider, I want to view a list of patients I am assigned to.
+
+US 07.01.01 - covered in Use Case 9
+As a care provider, I want to add patients that I am assigned to.
+
+US 07.01.02 - covered in Use Case 10
+As a care provider, I want to want to browse my patients problems.
+
+US 07.01.03 - covered in Use Case 11
+As a care provider, I want to add comment records to my patients' problems
+
+US 08.01.01 - covered in Use Cases 1, 2, 4, and 6.1
+As a patient, I want to add or edit problems and records while off the network, and have these changes synchronized once I regain connectivity.
+
+US 09.01.01 - covered in Use Case 2.3
+As a patient, I want to optionally attach one or more photographs as further viewable details to a record of mine.
+
+US 09.01.02 (added 2018-04-06) - covered in Use Case 2.3
+As a patient, I want the maximum number of photographs that can be attached to a record to be at least 10.
+
+US 09.02.01 - covered in Use Cases 6.1 and 6.2
+As a patient or care provider, I want to view any attached photograph for a record.
+
+US 09.03.01 - covered in Use Case 2.3
+As a sys. admin, I want each photograph to be under 65536 bytes in size.
+
+US 10.01.01 - covered in Use Case 2.1
+As a patient, I want to specify a geo location on a map of a record.
+
+US 10.02.01 - covered in Use Cases 6.1 and 2.1
+As a patient or provider, I want to view any geo location for a record, on a map.
+
+US 10.03.01 - covered in Use Case 16
+As a patient or care provider, I want to see a map of all records for a patient (that have locations).
+
+US 11.01.01 - covered in Use Case 2.2
+As a patient, I want to upload at least front and back body-location photos so I may indicate where photo records were taken on my body.
+
+US 11.02.01 - covered in Use Case 2.2
+As a patient, body locations are effectively a reference to a body-location photo and a point location on the photo.
+
+US 11.03.01 - covered in Use Case 2.2
+As a patient, I should be able to have at least 2 body location pictures.
+
+US 11.04.01 - covered in Use Case 2.2 and 6.1
+As a patient, when I view a body location it should be a clear indicator of a point on a body-location picture.
+
+
+
+
+
+
+
+
+
+
