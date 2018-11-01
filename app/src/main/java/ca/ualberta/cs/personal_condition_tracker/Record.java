@@ -1,5 +1,7 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,7 +9,9 @@ public class Record {
     private String title;
     private Date date;
     private String description;
-    private String geo_location;
+
+
+    private LatLng geo_location;
     private String body_location;
     private ArrayList<Photographs> photos;
     private static final Integer MAX_CHARACTERS = 100;
@@ -42,11 +46,11 @@ public class Record {
         this.description = description;
     }
 
-    public String getGeo_location() {
+    public LatLng getGeo_location() {
         return geo_location;
     }
 
-    public void setGeo_location(String geo_location) {
+    public void setGeo_location(LatLng geo_location) {
         this.geo_location = geo_location;
     }
 
