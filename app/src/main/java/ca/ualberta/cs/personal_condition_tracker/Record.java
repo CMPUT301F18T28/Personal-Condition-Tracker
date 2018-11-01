@@ -18,6 +18,53 @@ public class Record {
         this.description = new_description;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGeo_location() {
+        return geo_location;
+    }
+
+    public void setGeo_location(String geo_location) {
+        this.geo_location = geo_location;
+    }
+
+    public String getBody_location() {
+        return body_location;
+    }
+
+    public void setBody_location(String body_location) {
+        this.body_location = body_location;
+    }
+
+    public ArrayList<Photographs> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(ArrayList<Photographs> photos) {
+        this.photos = photos;
+    }
 
 
 }
