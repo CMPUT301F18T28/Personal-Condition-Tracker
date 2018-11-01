@@ -21,6 +21,9 @@ public class RecordTest extends TestCase {
         Record new_record = new Record("Title", new_date, "I am a record.");
         assertTrue(new_record.getDate().equals(new_date));
     }
+    public void testSetDate() {
+
+    }
     public void testGetDescription() {
         Record new_record = new Record("Title", new Date(), "I am a record.");
         assertTrue(new_record.getDescription().equals("I am a record."));
@@ -34,5 +37,6 @@ public class RecordTest extends TestCase {
     public void testAddPhotograph() {
 
     }
+
 
 }
