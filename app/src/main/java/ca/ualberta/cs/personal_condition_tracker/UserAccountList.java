@@ -9,4 +9,8 @@ public class UserAccountList {
         this.user_accounts.add(account_to_add);
     }
 
+    public void deleteUserAccount(UserAccount account_to_delete) {
+        this.user_accounts.remove(account_to_delete);
+    }
+
 }
