@@ -50,7 +50,7 @@ public class UserAccount {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // Checks userID only
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserAccount that = (UserAccount) o;
