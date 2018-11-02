@@ -1,5 +1,7 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
+import java.util.Objects;
+
 public class UserAccount {
     private String name;
     private String userID;
@@ -54,5 +56,24 @@ public class UserAccount {
         else {
             return false;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserAccount that = (UserAccount) o;
+        if (userID.equals(that.userID)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(userID);
     }
 }
