@@ -1,5 +1,7 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 public class RecordList {
@@ -25,8 +27,16 @@ public class RecordList {
     public void editRecord(int index, Record new_record) {
         this.record_list.set(index, new_record);
     }
+    public ArrayList<Record> sortByDate() {
+        return new ArrayList<Record>();
+    }
     public ArrayList<Record> queryByKeyword(String keyword) {
         return new ArrayList<Record>();
     }
-
+    public ArrayList<Record> queryByGeoLocation(LatLng location) {
+        return new ArrayList<Record>();
+    }
+    public ArrayList<Record> queryByBodyLocation(String keyword) {
+        return new ArrayList<Record>();
+    }
 }
