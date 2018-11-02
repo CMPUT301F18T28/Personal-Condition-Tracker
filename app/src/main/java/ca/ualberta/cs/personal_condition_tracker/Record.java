@@ -12,7 +12,7 @@ public class Record {
     private LatLng geo_location;
     private String body_location;
     private PhotographList photos;
-    private static final Integer MAX_CHARACTERS = 100;
+
 
     Record() {
         this.title = "Title";
@@ -79,4 +79,11 @@ public class Record {
         this.body_location = body_location;
     }
 
+    public PhotographList getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(PhotographList photos) {
+        this.photos = photos;
+    }
 }

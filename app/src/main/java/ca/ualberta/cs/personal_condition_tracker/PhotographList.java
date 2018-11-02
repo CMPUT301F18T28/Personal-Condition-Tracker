@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class PhotographList {
 
     private ArrayList<Photograph> photos;
+
+    PhotographList() {
+        this.photos = new ArrayList<Photograph>();
+    }
+
     public boolean hasPhotograph(Photograph new_photo) {
         return this.photos.contains(new_photo);
     }

@@ -31,14 +31,4 @@ public class Photograph {
         this.thumbnail = thumbnail;
     }
 
-    public void attachPhoto() {
-        // will be completed in Part 4
-    }
-    public void readFromDisk() {
-        // will be completed in Part 4
-    }
-    public void saveToDisk() {
-        // will be completed in Part 4
-    }
-
 }
