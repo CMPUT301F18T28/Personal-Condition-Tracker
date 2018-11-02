@@ -41,7 +41,7 @@ public class UserAccount {
     }
 
     public boolean authenticate(String userID, String password) {
-        if (this.userID.equals(userID) && this.userID.equals(password)) {
+        if (this.userID.equals(userID) && this.password.equals(password)) {
             return true;
         }
         else {
