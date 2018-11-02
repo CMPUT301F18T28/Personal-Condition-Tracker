@@ -1,18 +1,23 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
+
 import java.util.Base64;
 
 public class Photograph {
     private String filename;
-    private Base64 thumbnail;
+    private byte[] thumbnail;
 
     Photograph() {
         this.filename = "";
         this.thumbnail = null;
     }
-    Photograph(String new_filename) {
-        this.filename = new_filename;
+    Photograph(String filename) {
+        this.filename = filename;
         this.thumbnail = null;
+    }
+    Photograph(String filename, byte[] thumbnail) {
+        this.filename = filename;
+        this.thumbnail = thumbnail;
     }
 
     public String getFilename() {
@@ -23,11 +28,11 @@ public class Photograph {
         this.filename = filename;
     }
 
-    public Base64 getThumbnail() {
+    public byte[] getThumbnail() {
         return this.thumbnail;
     }
 
-    public void setThumbnail(Base64 thumbnail) {
+    public void setThumbnail(byte[] thumbnail) {
         this.thumbnail = thumbnail;
     }
 
