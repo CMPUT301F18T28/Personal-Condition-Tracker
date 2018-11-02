@@ -7,7 +7,6 @@ public class UserAccount {
     private String userID;
     private String email_address;
     private String password;
-    private String gender;
 
     public String getName() {
         return name;
@@ -39,14 +38,6 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public boolean authenticate(String userID, String password) {
