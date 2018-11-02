@@ -2,8 +2,12 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Collections;
+import java.util.Comparator;
 
-public class Condition {
+
+
+public class Condition implements Comparator<Condition>, Comparable<Condition> {
 
     private String title;
     private Date date;
@@ -12,9 +16,45 @@ public class Condition {
     private ArrayList<String> commentList;
     private static final Integer MAX_CHARACTERS = 100;
 
-    Condition(String title, String description) {
-        
+
+
+    //Start of new code....
+
+
+    // I needed to explicitly state the default constructor for use elsewhere, and I thought that
+    // we should have a constructor that just takes in title, date and description.  I also wanted it
+    // for doing some testing in the conditionList class.
+
+   // -DD
+
+    Condition() {}
+
+    Condition(String title, Date date, String description){
+        this.title = title;
+        this.date = date;
+        this.description = description;
     }
+
+    public int compareTo(Condition condition){
+        return this.getDate().compareTo(condition.getDate());
+    }
+
+
+    public int compare(Condition conditionOne, Condition conditionTwo){
+        return conditionOne.getDate().compareTo(conditionTwo.getDate());
+    }
+
+
+    //End of new code
+
+
+
+
+    Condition(String title, String description) {
+
+    }
+
+
     Condition(String title, Date date, String description, RecordList recordList, ArrayList<String> commentList) {
         this.title = title;
         this.date = date;
@@ -27,9 +67,7 @@ public class Condition {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public void setTitle(String title) {this.title = title; }
 
     public Date getDate() {
         return date;
