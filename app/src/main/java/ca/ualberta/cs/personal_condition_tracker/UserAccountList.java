@@ -13,4 +13,10 @@ public class UserAccountList {
         this.user_accounts.remove(account_to_delete);
     }
 
+    public void changeUserAccount(UserAccount account_to_change) {
+        if (this.user_accounts.contains(account_to_change)) {
+            this.user_accounts.remove(account_to_change);
+        }
+        this.user_accounts.add(account_to_change);
+    }
 }
