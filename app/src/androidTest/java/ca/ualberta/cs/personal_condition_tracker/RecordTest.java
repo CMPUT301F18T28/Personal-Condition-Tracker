@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class RecordTest extends TestCase {
 
-    public void testGetTitle() {
+    public void testGetSetTitle() {
         Record new_record = new Record("Title", "I am a record.");
         assertTrue(new_record.getTitle().equals("Title"));
     }
