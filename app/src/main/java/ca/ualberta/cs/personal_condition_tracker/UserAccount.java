@@ -46,4 +46,13 @@ public class UserAccount {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public boolean authenticate(String userID, String password) {
+        if (this.userID.equals(userID) && this.userID.equals(password)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
