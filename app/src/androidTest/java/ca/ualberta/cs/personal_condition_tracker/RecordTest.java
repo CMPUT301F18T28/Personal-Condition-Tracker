@@ -42,28 +42,41 @@ public class RecordTest extends TestCase {
         new_record.setDescription("I am still a record.");
         assertTrue(new_record.getDescription().equals("I am still a record."));
     }
-    public void testGeoLocation() {
+    public void testGetGeoLocation() {
         Record new_record = new Record("Title",  "I am a record.");
         new_record.setGeo_location(new LatLng(53.5444, 113.4909));
         assertEquals(new_record.getGeo_location(), new LatLng(53.5444, 113.4909));
     }
-    public void testBodyLocation() {
+    public void testSetGeoLocation() {
+        Record new_record = new Record("Title",  "I am a record.");
+        new_record.setGeo_location(new LatLng(53.5444, 113.4909));
+        assertEquals(new_record.getGeo_location(), new LatLng(53.5444, 113.4909));
+    }
+    public void testGetBodyLocation() {
         Record new_record = new Record("Title",  "I am a record.");
         new_record.setBody_location("Right Hand");
         assertEquals(new_record.getBody_location(), "Right Hand");
     }
-    public void testHasPhotograph(){
-
-        RecordList new_record_list = new RecordList();
+    public void testSetBodyLocation() {
         Record new_record = new Record("Title",  "I am a record.");
-        new_record_list.addRecord(new_record);
-        assertTrue(new_record_list.hasRecord(new_record));
+        new_record.setBody_location("Right Hand");
+        assertEquals(new_record.getBody_location(), "Right Hand");
+    }
+    public void testGetPhotographs(){
+        Record new_record = new Record("Title",  "I am a record.");
+        PhotographList photo_list = new PhotographList();
+        photo_list.addPhotograph(new Photograph("I am a photograph"));
+        new_record.setPhotos(photo_list);
+        assertTrue(new_record.getPhotos().equals(photo_list));
+    }
+    public void testSetPhotographs(){
+        Record new_record = new Record("Title",  "I am a record.");
+        PhotographList photo_list = new PhotographList();
+        photo_list.addPhotograph(new Photograph("I am a photograph"));
+        new_record.setPhotos(photo_list);
+        assertTrue(new_record.getPhotos().equals(photo_list));
     }
 
-    public void testAddPhotograph() {
-        Record new_record = new Record("Title", "I am a record.");
-
-    }
 
 
 }
