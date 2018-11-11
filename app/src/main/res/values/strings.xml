@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Personal-Condition-Tracker</string>
+    <string name="loginTitle">Login/Sign up</string>
+    <string name="userIDTitle">User ID:</string>
+    <string name="userIDText">Enter your user ID</string>
+    <string name="passwordTitle">Password:</string>
+    <string name="passwordText">Enter your password</string>
+    <string name="signInButtonText">Sign In</string>
+    <string name="signUpButtonText">Sign Up</string>
 </resources>
