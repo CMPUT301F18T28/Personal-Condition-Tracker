@@ -2,6 +2,8 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -9,5 +11,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    /**
+     * This method handles the onClick of the "Sign In" button.
+     *
+     * @param view the view of the button pressed
+     */
+    public void handleSignIn(View view) {
+
+        findViewById(R.id.userIDEntry);
+    }
+
+    /**
+     * This method handles the onClick of the "Sign Up" button.
+     *
+     * @param view the view of the button pressed
+     */
+    public void handleSignUp(View view) {
+
     }
 }
