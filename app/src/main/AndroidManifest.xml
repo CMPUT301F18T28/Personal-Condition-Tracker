@@ -16,6 +16,50 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ModifyRecordActivity"
+            android:label="@string/title_activity_view_record"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewRecordListActivity"
+            android:label="@string/title_activity_view_record_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewConditionListActivity"
+            android:label="@string/title_activity_view_condition_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SelectGeoLocationActivity"
+            android:label="@string/title_activity_select_geo_location"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SelectBodyLocationActivity"
+            android:label="@string/title_activity_select_body_location"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewMapOfRecordsActivity"
+            android:label="@string/title_activity_view_map_of_records"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewCommentsActivity"
+            android:label="@string/title_activity_view_comments"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ModifyConditionActivity"
+            android:label="@string/title_activity_modify_condition"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewPatientListActivity"
+            android:label="@string/title_activity_view_patient_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddPatientActivity"
+            android:label="@string/title_activity_add_patient"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ModifyCommentActivity"
+            android:label="@string/title_activity_add_comment"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

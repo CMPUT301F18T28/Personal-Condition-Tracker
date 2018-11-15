@@ -7,4 +7,43 @@
     <string name="passwordText">Enter your password</string>
     <string name="signInButtonText">Sign In</string>
     <string name="signUpButtonText">Sign Up</string>
+    <string name="title_activity_view_record">ViewRecordActivity</string>
+    <string name="confirmButtonText">Confirm</string>
+    <string name="cancelButtonText">Cancel</string>
+
+    <string name="recordTitleText">Title</string>
+    <string name="recordDateText">Date</string>
+    <string name="recordDescriptionText">Description</string>
+    <string name="viewGeoLocationsButtonText">View Geo-Locations</string>
+    <string name="viewBodyLocationsButtonText">View Body-Locations</string>
+    <string name="recordPhotoText">Photos</string>
+    <string name="title_activity_view_record_list">ViewRecordListActivity</string>
+    <string name="viewRecordsForConditionText">Records</string>
+    <string name="viewConditionsText">Conditions</string>
+    <string name="addARecordButtonText">Add a Record</string>
+    <string name="addAConditionButtonText">Add a Condition</string>
+    <string name="viewMapOfRecordsButtonText">View map of records</string>
+    <string name="searchConditionsButtonText">Search conditions or records</string>
+    <string name="viewCommentsButtonText">View Comments</string>
+    <string name="showSlideShowButtonText">Show Slideshow</string>
+    <string name="frontOfBodyButtonText">Front</string>
+    <string name="backOfBodyButtonText">Back</string>
+    <string name="addAPatientText">Add a patient by UserID</string>
+    <string name="assignedPatientsText">Assigned Patients</string>
+    <string name="addAPatientButtonText">Add a New Patient</string>
+    <string name="viewCommentsText">Comments</string>
+    <string name="addACommentButtonText">Add a Comment</string>
+    <string name="commentText">Comment</string>
+
+    <string name="title_activity_view_condition_list">ViewConditionListActivity</string>
+    <string name="title_activity_select_geo_location">SelectGeoLocationActivity</string>
+    <string name="title_activity_select_body_location">SelectBodyLocationActivity</string>
+    <string name="title_activity_view_map_of_records">ViewMapOfRecordsActivity</string>
+    <string name="title_activity_view_comments">ViewCommentsActivity</string>
+    <string name="title_activity_modify_condition">ModifyConditionActivity</string>
+    <string name="title_activity_view_patient_list">ViewPatientListActivity</string>
+    <string name="title_activity_add_patient">AddPatientActivity</string>
+    <string name="title_activity_add_comment">AddCommentActivity</string>
+
+
 </resources>
