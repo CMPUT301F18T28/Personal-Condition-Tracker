@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button temp2 = (Button) findViewById(R.id.signUpButton);
-        temp2.setOnClickListener(new View.OnClickListener() {
+        Button sign_up_button = (Button) findViewById(R.id.signUpButton);
+        sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 setResult(RESULT_OK);
-                Intent intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
+                Intent intent = new Intent(MainActivity.this, ModifyUserAccountActivity.class);
                 startActivity(intent);
             }
         });

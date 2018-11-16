@@ -5,6 +5,13 @@ import java.util.ArrayList;
 public class UserAccountList {
     private ArrayList<UserAccount> user_accounts;
 
+    public void setUserAccounts(ArrayList<UserAccount> user_accounts) {
+        this.user_accounts = user_accounts;
+    }
+    public ArrayList<UserAccount> getUserAccounts() {
+        return this.user_accounts;
+    }
+
     public void addUserAccount(UserAccount account_to_add) {
         this.user_accounts.add(account_to_add);
     }
@@ -18,5 +25,8 @@ public class UserAccountList {
             this.user_accounts.remove(account_to_change);
         }
         this.user_accounts.add(account_to_change);
+    }
+    public int getNumberOfUsers() {
+        return user_accounts.size();
     }
 }
