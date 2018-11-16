@@ -33,7 +33,7 @@ public class UserAccountListController {
             verifySettings();
 
             for (UserAccount userAccount : userAccounts) {
-                Index index = new Index.Builder(userAccount).index("testing").build();
+                Index index = new Index.Builder(userAccount).index("cmput301f18t28test").type("userAccount").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -64,7 +64,8 @@ public class UserAccountListController {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("testing")
+                    .addIndex("cmput301f18t28test")
+                    .addType("userAccount")
                     .build();
 
             try {
@@ -90,7 +91,7 @@ public class UserAccountListController {
 
     public static void verifySettings() {
         if (client == null) {
-            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080/cmput301f18t28test");
+            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080/");
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();

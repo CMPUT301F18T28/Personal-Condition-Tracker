@@ -73,15 +73,15 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 setResult(RESULT_CANCELED);
-//                UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-//                new UserAccountListController.GetUserAccountsTask();
-//                getUserAccountsTask.execute("");
-//                try {
-//                    UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
-//                    Toast.makeText(ModifyUserAccountActivity.this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
-//                } catch (Exception e) {
-//                Log.e("Error", "Failed to get the tweets out of the async object.");
-//                }
+                UserAccountListController.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListController.GetUserAccountsTask();
+                getUserAccountsTask.execute("");
+                try {
+                    UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
+                    Toast.makeText(ModifyUserAccountActivity.this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                Log.e("Error", "Failed to get the tweets out of the async object.");
+                }
             }
         });
 
