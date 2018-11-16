@@ -30,16 +30,22 @@ public class MainActivity extends AppCompatActivity {
                         new UserAccountListController.GetUserAccountsTask();
                 String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
                 getUserAccountsTask.execute(query);
-                ArrayList<UserAccount> stored_users = new ArrayList<UserAccount>();
+                ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
                 try {
                     stored_users = getUserAccountsTask.get();
-                    Toast.makeText(MainActivity.this, Integer.toString(stored_users.size()), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     Log.e("Error", "Failed to get the tweets out of the async object.");
                 }
                 if (stored_users.size() == 1) {
-                    Intent intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, stored_users.get(0).getClass().toString(), Toast.LENGTH_SHORT).show();
+                    if (stored_users.get(0) instanceof Patient) {
+                        Intent intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
+                        startActivity(intent);
+                    }
+                    else if (stored_users.get(0) instanceof CareProvider) {
+                        Intent intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
+                        startActivity(intent);
+                    }
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Unknown UserID", Toast.LENGTH_SHORT).show();
@@ -79,19 +85,6 @@ public class MainActivity extends AppCompatActivity {
 //    public void handleSignUp(View view) {
 //
 //    }
-
-//    protected void onStart() {
-//        // TODO Auto-generated method stub
-//        super.onStart();
-//        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-//                new UserAccountListController.GetUserAccountsTask();
-//        getUserAccountsTask.execute("");
-//        try {
-//            UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
-//            Toast.makeText(this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            Log.e("Error", "Failed to get the tweets out of the async object.");
-//        }
 //
 //    }
 }
