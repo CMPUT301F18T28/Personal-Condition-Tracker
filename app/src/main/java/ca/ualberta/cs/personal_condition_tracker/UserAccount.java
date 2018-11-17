@@ -14,7 +14,7 @@ public class UserAccount {
         this.accountType = "";
         this.userID = "";
         this.email_address = "";
-        this.password = "";
+        this.password = "password";
     }
 
     UserAccount(String accountType, String userID, String email_address, String password) {

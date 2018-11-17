@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private UserAccountListController userAccountListController;
+    private UserAccountListController userAccountListController = new UserAccountListController();
 
 
     @Override
@@ -33,12 +33,39 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{displayError()}
          */
+        //Get Sign in form data
+        EditText userIdEntry = findViewById(R.id.userIDEntry);
+        EditText passwordEntry = findViewById(R.id.passwordEntry);
+
+        String userId = userIdEntry.getText().toString();
+        String password = passwordEntry.getText().toString();
+
+        ArrayList<UserAccount> userAccountList = UserAccountListController.getUserAccountList().getUserAccounts();
+        //TODO Adjust for real ID/PW. maybe use size of UAL?
+        for(UserAccount userAccount : userAccountList){
+            System.out.println(userAccount.getId() + " " + userAccount.getPassword());
+            if(userAccount.authenticate(userId, password)){
+                Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();
+
+                //Check account type, direct to proper activity.
+                if(userAccount.getAccountType().equals("Patient")){
+                    Intent intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
+                    startActivity(intent);
+                }
+
+                else if(userAccount.getAccountType().equals("Care Provider")){
+                    Intent intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }
+        Toast.makeText(this,"Incorrect login information", Toast.LENGTH_SHORT).show();
     }
 
      /**
      * This method handles the onClick of the "Sign Up" button.
      *
-     * @param view the view of the button pressed
+     * @param  v the view of the button pressed
      */
     public void signUp(View v){
         Toast.makeText(this,"Signing up", Toast.LENGTH_SHORT).show();

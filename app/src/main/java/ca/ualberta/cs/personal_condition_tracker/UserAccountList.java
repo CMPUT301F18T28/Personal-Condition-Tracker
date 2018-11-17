@@ -9,7 +9,7 @@ public class UserAccountList<T extends UserAccount> {
         this.user_accounts = user_accounts;
     }
     public ArrayList<T> getUserAccounts() {
-        return this.user_accounts = user_accounts;
+        return this.user_accounts;
     }
 
     public void addUserAccount(T account_to_add) {
