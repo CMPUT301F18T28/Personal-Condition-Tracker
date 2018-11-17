@@ -9,15 +9,15 @@ public class UserAccountTest {
     @Test
     public void getName() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
-        assertEquals(testUserAccount.getName(),"Yang");
+        testUserAccount.setAccountType("Yang");
+        assertEquals(testUserAccount.getAccountType(),"Yang");
     }
 
     @Test
     public void setName() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
-        assertEquals(testUserAccount.getName(),"Yang");
+        testUserAccount.setAccountType("Yang");
+        assertEquals(testUserAccount.getAccountType(),"Yang");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UserAccountTest {
     public void authenticate() {
 
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
+        testUserAccount.setAccountType("Yang");
         testUserAccount.setUserID("Yang");
         testUserAccount.setEmail_address("Yang@gmail.com");
         testUserAccount.setPassword("Yang'sPassword");
