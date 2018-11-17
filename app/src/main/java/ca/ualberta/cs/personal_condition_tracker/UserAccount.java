@@ -23,6 +23,7 @@ public class UserAccount {
         this.email_address = email_address;
         this.password = password;
     }
+
     public String getId() {
         return id;
     }

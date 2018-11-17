@@ -146,8 +146,9 @@
                             android:id="@+id/signInButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="false"
                             android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="false"
+                            android:onClick="signIn"
                             android:text="@string/signInButtonText" />
                     </RelativeLayout>
 
@@ -160,9 +161,9 @@
                             android:id="@+id/signUpButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="false"
                             android:layout_centerHorizontal="true"
-                            android:onClick="handleSignUp"
+                            android:layout_centerInParent="false"
+                            android:onClick="signUp"
                             android:text="@string/signUpButtonText" />
                     </RelativeLayout>
                 </LinearLayout>

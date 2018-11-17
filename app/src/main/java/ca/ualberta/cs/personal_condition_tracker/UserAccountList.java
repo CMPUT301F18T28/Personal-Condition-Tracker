@@ -3,7 +3,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 import java.util.ArrayList;
 
 public class UserAccountList<T extends UserAccount> {
-    private ArrayList<T> user_accounts;
+    private ArrayList<T> user_accounts = new ArrayList<>();
 
     public void setUserAccounts(ArrayList<T> user_accounts) {
         this.user_accounts = user_accounts;
