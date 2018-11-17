@@ -4,7 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class ViewConditionListActivity extends AppCompatActivity {
 
@@ -13,35 +19,28 @@ public class ViewConditionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list);
 
-        Button add_a_condition = (Button) findViewById(R.id.addAConditionButton);
-        add_a_condition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(ViewConditionListActivity.this, ModifyConditionActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Patient accountOfInterest = (Patient) UserAccountListController.getAccountofInterest();
+//
+//        ListView listView = findViewById(R.id.conditionListView);
+//        Collection<Condition> conditionCollection = accountOfInterest.getConditionList();
+//       final ArrayList<Record> records = new ArrayList<Record>(recordCollection);
+//        final ArrayAdapter<Record> recordArrayAdapter = new ArrayAdapter<Record>(this, android.R.layout.simple_list_item_1, records);
+//        listView.setAdapter(recordArrayAdapter);
 
-        Button view_map_of_records = (Button) findViewById(R.id.viewMapOfRecordsButton);
-        view_map_of_records.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(ViewConditionListActivity.this, ViewMapOfRecordsActivity.class);
-                startActivity(intent);
-            }
-        });
+    }
 
-        Button search_button = (Button) findViewById(R.id.searchButton);
-        search_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(ViewConditionListActivity.this, ViewRecordListActivity.class);
-                startActivity(intent);
-            }
-        });
+    public void addACondition(View v){
+        Toast.makeText(this,"Adding a condition", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ViewConditionListActivity.this, ModifyConditionActivity.class);
+        startActivity(intent);
+
+    }
+    public void viewMapOfRecords(View v){
+        Toast.makeText(this,"Viewing map of records", Toast.LENGTH_SHORT).show();
+
+    }
+    public void searchConditionsOrRecords(View v){
+        Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
 
     }
 

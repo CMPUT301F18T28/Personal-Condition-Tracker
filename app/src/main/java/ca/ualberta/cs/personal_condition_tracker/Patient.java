@@ -18,8 +18,16 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 public class Patient extends UserAccount{
-    private ConditionList condition_list;
+    private ConditionList conditionList;
     Patient() {
         super();
+    }
+
+    public ConditionList getConditionList() {
+        return conditionList;
+    }
+
+    public void setConditionList(ConditionList conditionList) {
+        this.conditionList = conditionList;
     }
 }

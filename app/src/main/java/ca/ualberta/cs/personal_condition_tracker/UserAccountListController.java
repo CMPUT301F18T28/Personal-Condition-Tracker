@@ -18,6 +18,8 @@ import io.searchbox.core.SearchResult;
 public class UserAccountListController {
     //private static JestDroidClient client;
     private static UserAccountList userAccountList = null;
+    private static UserAccount activeAccount = null;
+    private static Patient accountOfInterest = null;
     // TODO we need a function which adds tweets to elastic search
     static public UserAccountList getUserAccountList() {
         if ((userAccountList) == null) {
@@ -104,5 +106,9 @@ public class UserAccountListController {
 //    }
 
     public void addUserAccount(UserAccount userAccount){ getUserAccountList().addUserAccount(userAccount);}
+    public void setActiveAccount(UserAccount userAccount){this.activeAccount = userAccount;}
+    public UserAccount getActiveAccount(){return this.activeAccount;}
+    public void setAccountOfInterest(Patient patient){this.accountOfInterest = patient;}
+    public UserAccount getAccountofInterest(){return this.accountOfInterest;}
 
 }
