@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userAccountListController.getUserAccountList();
     }
+
     /**
      * This method handles the onClick of the "Sign In" button.
      *
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(userAccount.getId() + " " + userAccount.getPassword());
             if(userAccount.authenticate(userId, password)){
                 Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();
-                userAccountListController.setActiveAccount(userAccount);
+                userAccountListController.getUserAccountList().setActiveAccount(userAccount);
 
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().equals("Patient")){
