@@ -87,6 +87,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
+                            android:onClick="clearText"
                             android:text="@string/userIDText" />
                     </RelativeLayout>
 
@@ -126,6 +127,7 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
+                            android:onClick="clearText"
                             android:text="@string/passwordText" />
                     </RelativeLayout>
 
