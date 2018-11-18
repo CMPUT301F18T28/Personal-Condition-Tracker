@@ -21,9 +21,11 @@ public class RecordList {
 
     public void addRecord(Record new_record) {
         this.record_list.add(new_record);
+        notifyListeners();
     }
     public void deleteRecord(Record new_record) {
         this.record_list.remove(new_record);
+        notifyListeners();
     }
     public void editRecord(int index, Record new_record) {
         this.record_list.set(index, new_record);
@@ -46,13 +48,11 @@ public class RecordList {
     }
 
     public void addListener(Listener listener){
-        getListenerList().add(listener);
-        notifyListeners();
+        getListenerList().add(listener);;
     }
 
     public void removeListener(Listener listener) {
         getListenerList().remove(listener);
-        notifyListeners();
     }
 
     private ArrayList<Listener> getListenerList(){

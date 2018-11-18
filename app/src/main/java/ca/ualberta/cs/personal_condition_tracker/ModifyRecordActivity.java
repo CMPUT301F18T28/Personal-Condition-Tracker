@@ -27,7 +27,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         //Get information from the intent
         intent = getIntent();
         String recordTitle = intent.getStringExtra("recordTitle");
-        String recordDate = intent.getStringExtra("recordDate").toString();
+        String recordDate = intent.getStringExtra("recordDate");
         String recordDescription = intent.getStringExtra("recordDescription");
 
 

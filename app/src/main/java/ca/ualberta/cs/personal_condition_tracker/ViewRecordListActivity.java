@@ -26,10 +26,6 @@ public class ViewRecordListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_record_list);
-        Intent intent = getIntent();
-        final int conditionIndex = intent.getIntExtra("Condition", 0);
-
-        final Condition selectedCondition = accountOfInterest.getConditionList().getByIndex(conditionIndex);
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.recordListView);
@@ -39,11 +35,11 @@ public class ViewRecordListActivity extends AppCompatActivity {
         listView.setAdapter(recordArrayAdapter);
 
         // Added a change observer
-        UserAccountListController.getUserAccountList().getAccountofInterest().getConditionList().addListener(new Listener() {
+        conditionOfInterest.getRecordList().addListener(new Listener() {
             @Override
             public void update() {
                 records.clear();
-                Collection<Record> recordCollection = selectedCondition.getRecordList().getRecords();
+                Collection<Record> recordCollection = conditionOfInterest.getRecordList().getRecords();
                 records.addAll(recordCollection);
                 recordArrayAdapter.notifyDataSetChanged();
             }

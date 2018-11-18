@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         String userId = userIdEntry.getText().toString();
         String password = passwordEntry.getText().toString();
-
+        Intent intent = null;
         ArrayList<UserAccount> userAccountList = UserAccountListController.getUserAccountList().getUserAccounts();
         //TODO Adjust for real ID/PW. maybe use size of UAL?
         for(UserAccount userAccount : userAccountList){
@@ -49,19 +49,21 @@ public class MainActivity extends AppCompatActivity {
                 userAccountListController.getUserAccountList().setActiveAccount(userAccount);
 
                 //Check account type, direct to proper activity.
-                if(userAccount.getAccountType().equals("Patient")){
+                if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
                     userAccountListController.getUserAccountList().setAccountOfInterest((Patient) userAccount);
-                    Intent intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
+                    intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
                     startActivity(intent);
                 }
 
-                else if(userAccount.getAccountType().equals("Care Provider")){
-                    Intent intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
+                else if(userAccount.getAccountType().toLowerCase().trim().equals("care provider")){
+                    intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
                     startActivity(intent);
                 }
             }
         }
-        Toast.makeText(this,"Incorrect login information", Toast.LENGTH_SHORT).show();
+        if(intent == null) {
+            Toast.makeText(this, "Incorrect login information", Toast.LENGTH_SHORT).show();
+        }
     }
 
      /**
