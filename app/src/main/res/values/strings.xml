@@ -49,6 +49,11 @@
     <string name="title_activity_add_comment">AddCommentActivity</string>
     <string name="title_activity_modify_user_account">ModifyUserAccount</string>
     <string name="title_activity_maps">Map</string>
+    <string name="date">Date</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="submit">Submit</string>
+    <string name="textview">TextView</string>
 
 
 </resources>
