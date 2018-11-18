@@ -77,4 +77,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // This is a generic method to clear the displayed text in the TextEdit box
+
+    public void clearText(View v) {
+
+        EditText displayedText = (EditText) findViewById(v.getId());
+        displayedText.getText().clear();
+
+    }
+
 }
