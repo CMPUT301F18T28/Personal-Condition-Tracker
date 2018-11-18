@@ -37,11 +37,13 @@ public class ConditionList{
 
     public void addCondition(Condition condition){
         condition_list.add(condition);
+        notifyListeners();
     }
 
 
     public boolean deleteCondition(Condition condition) {
         boolean boolResult = condition_list.remove(condition);
+        notifyListeners();
         if (!boolResult) {
             Log.i("Error","The condition cannot be found.");
         }
@@ -126,11 +128,19 @@ public class ConditionList{
             Log.d("Date: ", condition.getDate().toString());
     }
 
-    public Condition getByIndex(int index){
+    public int getIndex(Condition condition){
+        int index = -1;
+        if(condition_list.contains(condition)) {
+            index = condition_list.indexOf(condition);
+        }
+        return index;
+    }
 
+    public Condition getByIndex(int index){
         Condition condition = condition_list.get(index);
         return condition;
     }
+
     public ArrayList<Condition> getConditions(){
         return condition_list;
     }

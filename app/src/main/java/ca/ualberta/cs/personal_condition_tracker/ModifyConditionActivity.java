@@ -16,8 +16,10 @@ import java.util.Date;
 
 public class ModifyConditionActivity extends AppCompatActivity {
     public static Intent resultIntent;
+    private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountofInterest();
+    private Condition selectedCondition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
         resultIntent = new Intent();
 
         //Get information from the intent
-        Intent intent = getIntent();
+        intent = getIntent();
         String conditionTitle = intent.getStringExtra("conditionTitle");
         String conditionDate = intent.getStringExtra("conditionDate");
         String conditionDescription = intent.getStringExtra("conditionDescription");
@@ -53,9 +55,19 @@ public class ModifyConditionActivity extends AppCompatActivity {
         Date conditionDate = new Date();
         String conditionDescription = conditionDescriptionView.getText().toString();
 
-        Condition newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
+        Condition newCondition;
 
-        accountOfInterest.getConditionList().addCondition(newCondition);
+
+        if (intent.getIntExtra("index", -1) == -1){
+            newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
+            accountOfInterest.getConditionList().addCondition(newCondition);
+        }
+        else{
+            int index = intent.getIntExtra("index", 0);
+            newCondition = accountOfInterest.getConditionList().getByIndex(index);
+            accountOfInterest.getConditionList().editCondition(newCondition, conditionTitle,
+                    conditionDate, conditionTitle);
+        }
         setResult(Activity.RESULT_OK);
         this.finish();
     }

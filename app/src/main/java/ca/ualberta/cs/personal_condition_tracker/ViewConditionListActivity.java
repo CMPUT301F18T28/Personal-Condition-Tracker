@@ -1,10 +1,13 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,6 +21,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
 
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountofInterest();
+    private Condition selectedCondition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +48,55 @@ public class ViewConditionListActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(ViewConditionListActivity.this);
+                adb.setMessage("Would you like to edit or delete " + conditions.get(position).toString() + " condition?");
+                adb.setCancelable(true);
+                final int finalPosition = position;
+
+                adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedCondition= conditions.get(finalPosition);
+                        accountOfInterest.getConditionList().deleteCondition(selectedCondition);
+                    }
+                });
+
+                adb.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedCondition = conditions.get(finalPosition);
+                        Intent intent = new Intent(ViewConditionListActivity.this,
+                                ModifyConditionActivity.class);
+                        intent.putExtra("index",
+                                accountOfInterest.getConditionList().getIndex(selectedCondition));
+                        intent.putExtra("conditionTitle", selectedCondition.getTitle());
+                        intent.putExtra("conditionDate", selectedCondition.getDate().toString());
+                        intent.putExtra("conditionDescription", selectedCondition.getDescription());
+                        startActivityForResult(intent,1);
+                    }
+                });
+
+                adb.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Do nothing, simply allow the dialog to close
+                    }
+                });
+
+                adb.show();
+                return false;
+            }
+        });
+
     }
 
     public void addACondition(View v){
         Toast.makeText(this,"Adding a condition", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewConditionListActivity.this, ModifyConditionActivity.class);
+        intent.putExtra("index", -1);
         startActivityForResult(intent,1);
     }
     public void viewMapOfRecords(View v){
@@ -58,6 +106,8 @@ public class ViewConditionListActivity extends AppCompatActivity {
         Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
     }
 
+    // A result coe of 1 here simply means that we did actually make a change, and that
+    // the listView should be updated
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == 1){
