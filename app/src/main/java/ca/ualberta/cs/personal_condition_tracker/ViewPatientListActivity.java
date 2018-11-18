@@ -15,16 +15,12 @@ public class ViewPatientListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_patient_list);
+    }
 
-        Button add_patient = (Button) findViewById(R.id.addPatientButton);
-        add_patient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(ViewPatientListActivity.this, AddPatientActivity.class);
-                startActivity(intent);
-            }
-        });
+    public void addPatient(View v){
+        Intent intent = new Intent(ViewPatientListActivity.this, AddPatientActivity.class);
+        startActivity(intent);
+
     }
 
 }

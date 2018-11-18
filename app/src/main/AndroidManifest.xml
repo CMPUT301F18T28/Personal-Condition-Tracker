@@ -89,9 +89,6 @@
         <activity
             android:name=".ViewRecordActivity"
             android:label="@string/title_activity_view_record" />
-        <activity
-            android:name=".AddCommentActivity"
-            android:label="@string/title_activity_add_comment"></activity>
     </application>
 
 </manifest>
