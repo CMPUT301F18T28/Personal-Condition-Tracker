@@ -48,6 +48,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
             }
         });
 
+        //Ugly code of OnItemLongClickListener
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -91,6 +92,21 @@ public class ViewConditionListActivity extends AppCompatActivity {
             }
         });
 
+        //Ugly code of OnItemClickListener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int finalPosition = position;
+                selectedCondition = conditions.get(finalPosition);
+                accountOfInterest.getConditionList().setConditionOfInterest(selectedCondition);
+                Intent intent = new Intent(ViewConditionListActivity.this,
+                        ViewRecordListActivity.class);
+
+                intent.putExtra("conditionIndex",
+                        accountOfInterest.getConditionList().getIndex(selectedCondition));
+                startActivity(intent);
+            }
+        });
     }
 
     public void addACondition(View v){
@@ -106,7 +122,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
         Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
     }
 
-    // A result coe of 1 here simply means that we did actually make a change, and that
+    // A result code of 1 here simply means that we did actually make a change, and that
     // the listView should be updated
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){

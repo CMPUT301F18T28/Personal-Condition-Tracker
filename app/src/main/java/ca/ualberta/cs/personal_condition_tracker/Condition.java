@@ -12,7 +12,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private String title;
     private Date date;
     private String description;
-    private RecordList recordList;
+    private RecordList recordList = new RecordList();
     private ArrayList<String> commentList;
     private static final Integer MAX_CHARACTERS = 100;
 

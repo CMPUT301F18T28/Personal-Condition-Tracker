@@ -29,9 +29,9 @@ public class ConditionList{
 
     private ArrayList<Condition> condition_list;
     private transient ArrayList<Listener> listenerList = null;
+    private Condition conditionOfInterest = null;
 
     ConditionList(){
-
         this.condition_list = new ArrayList<Condition>();
     }
 
@@ -166,5 +166,12 @@ public class ConditionList{
         }
     }
 
+    public Condition getConditionOfInterest() {
+        return conditionOfInterest;
+    }
+
+    public void setConditionOfInterest(Condition conditionOfInterest) {
+        this.conditionOfInterest = conditionOfInterest;
+    }
 }
 

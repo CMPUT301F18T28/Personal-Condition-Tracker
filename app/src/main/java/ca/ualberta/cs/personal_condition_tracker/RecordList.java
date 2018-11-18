@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class RecordList {
     private ArrayList<Record> record_list;
+    private transient ArrayList<Listener> listenerList = null;
 
     RecordList() {
         this.record_list = new ArrayList<Record>();
@@ -38,5 +39,40 @@ public class RecordList {
     }
     public ArrayList<Record> queryByBodyLocation(String keyword) {
         return new ArrayList<Record>();
+    }
+
+    public ArrayList<Record> getRecords() {
+        return record_list;
+    }
+
+    public void addListener(Listener listener){
+        getListenerList().add(listener);
+        notifyListeners();
+    }
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+        notifyListeners();
+    }
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
+    }
+
+    public int getRecordIndex(Record record) {
+        int index = -1;
+        if(record_list.contains(record)) {
+            index = record_list.indexOf(record);
+        }
+        return index;
     }
 }
