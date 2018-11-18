@@ -94,4 +94,8 @@ public class Record {
         this.setGeo_location(latLng);
         this.setBody_location(body_location);
     }
+    @Override
+    public String toString(){
+        return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
+    }
 }

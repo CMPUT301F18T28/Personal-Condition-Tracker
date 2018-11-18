@@ -100,4 +100,8 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     public void setCommentList(ArrayList<String> commentList) {
         this.commentList = commentList;
     }
+    @Override
+    public String toString(){
+        return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
+    }
 }
