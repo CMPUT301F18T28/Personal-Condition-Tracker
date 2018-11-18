@@ -22,7 +22,6 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:inputType="textAutoComplete"
-        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addPatientHeaderText" />
 
