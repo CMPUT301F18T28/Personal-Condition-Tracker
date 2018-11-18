@@ -7,7 +7,7 @@ public class PatientList {
     private transient ArrayList<Listener> listenerList = null;
 
     PatientList(){
-        patientIDs = new ArrayList<>();
+        this.patientIDs = new ArrayList<>();
     }
 
     public String getPatientByIndex(int index) {
@@ -32,8 +32,8 @@ public class PatientList {
     public void deletePatient(String patientID) {
         patientIDs.remove(patientID);
         notifyListeners();
-
     }
+
     public void addListener(Listener listener){
         getListenerList().add(listener);;
     }
