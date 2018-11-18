@@ -86,9 +86,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="textPersonName"
-                            android:onClick="clearText"
-                            android:text="@string/userIDText" />
+                            android:hint="@string/userIDText"
+                            android:inputType="textPersonName" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -126,9 +125,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:inputType="textPersonName"
-                            android:onClick="clearText"
-                            android:text="@string/passwordText" />
+                            android:hint="@string/passwordText"
+                            android:inputType="textPersonName" />
                     </RelativeLayout>
 
                 </LinearLayout>

@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(userAccount.getId() + " " + userAccount.getPassword());
             if(userAccount.authenticate(userId, password)){
                 Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();
-                userAccountListController.getUserAccountList().setActiveAccount(userAccount);
-
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
                     userAccountListController.getUserAccountList().setAccountOfInterest((Patient) userAccount);
@@ -56,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 else if(userAccount.getAccountType().toLowerCase().trim().equals("care provider")){
+                    userAccountListController.getUserAccountList().setActiveCareProvider((CareProvider) userAccount);
                     intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
                     startActivity(intent);
                 }
@@ -76,14 +75,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ModifyUserAccountActivity.class);
         startActivity(intent);
     }
-
-    // This is a generic method to clear the displayed text in the TextEdit box
-
-    public void clearText(View v) {
-
-        EditText displayedText = (EditText) findViewById(v.getId());
-        displayedText.getText().clear();
-
-    }
-
 }

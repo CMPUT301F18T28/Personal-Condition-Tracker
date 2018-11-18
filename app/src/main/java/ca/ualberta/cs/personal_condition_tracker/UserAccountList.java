@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserAccountList<T extends UserAccount> {
     private ArrayList<T> user_accounts = new ArrayList<>();
-    private UserAccount activeAccount = null;
+    private CareProvider activeCareProvider = null;
     private Patient accountOfInterest = null;
 
     public void setUserAccounts(ArrayList<T> user_accounts) {
@@ -31,8 +31,8 @@ public class UserAccountList<T extends UserAccount> {
     public int getNumberOfUsers() {
         return user_accounts.size();
     }
-    public void setActiveAccount(UserAccount userAccount){this.activeAccount = userAccount;}
-    public UserAccount getActiveAccount(){return this.activeAccount;}
+    public void setActiveCareProvider(CareProvider careProvider){this.activeCareProvider = careProvider;}
+    public CareProvider getActiveCareProvider(){return this.activeCareProvider;}
     public void setAccountOfInterest(Patient patient){this.accountOfInterest = patient;}
     public Patient getAccountofInterest(){return this.accountOfInterest;}
 }

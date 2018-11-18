@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class PatientList {
     private ArrayList<String> patientIDs;
+    private transient ArrayList<Listener> listenerList = null;
 
     PatientList(){
         patientIDs = new ArrayList<>();
@@ -17,16 +18,40 @@ public class PatientList {
         return null;
     }
 
+    public ArrayList<String> getPatientIDs(){return patientIDs;}
+
     public boolean hasPatient(String patientID) {
         return patientIDs.contains(patientID);
     }
 
     public void addPatient(String patientID) {
         patientIDs.add(patientID);
+        notifyListeners();
     }
 
     public void deletePatient(String patientID) {
         patientIDs.remove(patientID);
+        notifyListeners();
 
+    }
+    public void addListener(Listener listener){
+        getListenerList().add(listener);;
+    }
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
     }
 }
