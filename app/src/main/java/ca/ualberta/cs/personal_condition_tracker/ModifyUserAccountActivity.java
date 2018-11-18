@@ -59,14 +59,14 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
 
-        String accountType = accountTypeDropdown.getText().toString();
+        String accountType = accountTypeDropdown.getText().toString().toLowerCase().trim();
         String userID = userIDText.getText().toString();
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
 
 
         //TODO fix this. maybe w/ dropdown
-        if(accountType.equals("Patient")){
+        if(accountType.equals("patient")){
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
             Patient newUserAccount = new Patient(accountType, userID, emailAddress, "password");
             newUserAccount.setPhone_number(phoneNumber);
@@ -75,7 +75,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             this.finish();
         }
 
-        else if (accountType.equals("Care Provider")){
+        else if (accountType.equals("care provider")){
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
             CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, "password");
             newUserAccount.setPhone_number(phoneNumber);
