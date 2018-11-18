@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method handles the onClick of the "Sign In" button.
      *
-     * @paramview the view of the button pressed
+     * @param v the view of the button pressed
      */
     public void signIn(View v){
         Toast.makeText(this,"Signing in", Toast.LENGTH_SHORT).show();
@@ -51,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().equals("Patient")){
+                    userAccountListController.getUserAccountList().setAccountOfInterest((Patient) userAccount);
                     Intent intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
                     startActivity(intent);
                 }

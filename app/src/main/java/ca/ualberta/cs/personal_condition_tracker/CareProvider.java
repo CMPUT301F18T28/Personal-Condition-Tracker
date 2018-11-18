@@ -5,4 +5,8 @@ public class CareProvider extends UserAccount{
     CareProvider() {
         super();
     }
+
+    public CareProvider(String accountType, String userID, String emailAddress, String password) {
+        super(accountType,userID,emailAddress,password);
+    }
 }

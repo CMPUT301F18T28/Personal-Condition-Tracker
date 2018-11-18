@@ -28,6 +28,7 @@ import java.util.Date;
 public class ConditionList{
 
     private ArrayList<Condition> condition_list;
+    private transient ArrayList<Listener> listenerList = null;
 
     ConditionList(){
 
@@ -129,6 +130,30 @@ public class ConditionList{
 
         Condition condition = condition_list.get(index);
         return condition;
+    }
+    public ArrayList<Condition> getConditions(){
+        return condition_list;
+    }
+
+    public void addListener(Listener listener){
+        getListenerList().add(listener);
+    }
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
     }
 
 }

@@ -34,5 +34,5 @@ public class UserAccountList<T extends UserAccount> {
     public void setActiveAccount(UserAccount userAccount){this.activeAccount = userAccount;}
     public UserAccount getActiveAccount(){return this.activeAccount;}
     public void setAccountOfInterest(Patient patient){this.accountOfInterest = patient;}
-    public UserAccount getAccountofInterest(){return this.accountOfInterest;}
+    public Patient getAccountofInterest(){return this.accountOfInterest;}
 }

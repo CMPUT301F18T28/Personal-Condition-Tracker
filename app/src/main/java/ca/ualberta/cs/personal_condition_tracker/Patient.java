@@ -18,9 +18,13 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 public class Patient extends UserAccount{
-    private ConditionList conditionList;
+    private ConditionList conditionList = new ConditionList();
     Patient() {
         super();
+    }
+
+    public Patient(String accountType, String userID, String emailAddress, String password) {
+        super(accountType,userID,emailAddress,password);
     }
 
     public ConditionList getConditionList() {

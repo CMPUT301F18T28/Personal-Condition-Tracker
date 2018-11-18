@@ -64,11 +64,29 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
 
-        UserAccount newUserAccount = new UserAccount(accountType, userID, emailAddress, "password");
-        newUserAccount.setPhone_number(phoneNumber);
 
-        userAccountListController.addUserAccount(newUserAccount);
-        this.finish();
+        //TODO fix this. maybe w/ dropdown
+        if(accountType.equals("Patient")){
+            Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
+            Patient newUserAccount = new Patient(accountType, userID, emailAddress, "password");
+            newUserAccount.setPhone_number(phoneNumber);
+            System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
+            userAccountListController.addUserAccount(newUserAccount);
+            this.finish();
+        }
+
+        else if (accountType.equals("Care Provider")){
+            Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
+            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, "password");
+            newUserAccount.setPhone_number(phoneNumber);
+            System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
+            userAccountListController.addUserAccount(newUserAccount);
+            this.finish();
+        }
+
+        else {
+            Toast.makeText(this, "Invalid account type", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void cancelAccountEdit(View v){
