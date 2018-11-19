@@ -122,7 +122,7 @@ public class UserAccountList<T extends UserAccount> {
     /**
      * Returns the patient account of interest.
      * <P>
-     * @return Patient Return the patient account of interest.
+     * @return Patient Returns the patient account of interest.
      */
 
     public Patient getAccountofInterest(){return this.accountOfInterest;}
