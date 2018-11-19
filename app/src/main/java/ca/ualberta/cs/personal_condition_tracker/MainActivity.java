@@ -49,10 +49,21 @@ public class MainActivity extends AppCompatActivity {
         String userId = userIdEntry.getText().toString();
         String password = passwordEntry.getText().toString();
         Intent intent = null;
-        ArrayList<UserAccount> userAccountList = UserAccountListController.getUserAccountList().getUserAccounts();
+//        ArrayList<UserAccount> userAccountList = UserAccountListController.getUserAccountList().getUserAccounts();
+        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListController.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userId +"\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<UserAccount> userAccountList = new ArrayList<UserAccount>();
+        try {
+            userAccountList = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
         //TODO Adjust for real ID/PW. maybe use size of UAL?
         for(UserAccount userAccount : userAccountList){
-            System.out.println(userAccount.getId() + " " + userAccount.getPassword());
+//            System.out.println(userAccount.getId() + " " + userAccount.getPassword());
+            Toast.makeText(this,Integer.toString(userAccountList.size()), Toast.LENGTH_SHORT).show();
 
             if(userAccount.authenticate(userId, password)){
                 Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();

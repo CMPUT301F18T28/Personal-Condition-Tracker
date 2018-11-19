@@ -71,6 +71,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             Patient newUserAccount = new Patient(accountType, userID, emailAddress, "password");
             newUserAccount.setPhone_number(phoneNumber);
             System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
+            createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
         }
@@ -80,6 +81,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, "password");
             newUserAccount.setPhone_number(phoneNumber);
             System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
+            createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
         }
@@ -94,6 +96,61 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED, resultIntent);
         this.finish();
     }
+
+    public void createPatient(Patient newPatient, String userID) {
+        // Check if the user has already signed up
+        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListController.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+        try {
+            stored_users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+        // Add the user to the database.
+        if (stored_users.size() == 0) {
+            UserAccountListController.AddUserAccountsTask addUserAccountsTask
+                    = new UserAccountListController.AddUserAccountsTask();
+            addUserAccountsTask.execute(newPatient);
+            Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            ModifyUserAccountActivity.this.finish();
+        }
+        else {
+            Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void createCareProvider(CareProvider newCareProvider, String userID) {
+        // Check if the user has already signed up
+        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListController.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+        try {
+            stored_users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+        // Add the user to the database.
+        if (stored_users.size() == 0) {
+            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
+            UserAccountListController.AddUserAccountsTask addUserAccountsTask
+                    = new UserAccountListController.AddUserAccountsTask();
+            addUserAccountsTask.execute(newCareProvider);
+            Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            ModifyUserAccountActivity.this.finish();
+        }
+        else {
+            Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 // This all belongs right below where all the files are "set", inside the onCreate
 
 //        Button confirm_button = (Button) findViewById(R.id.modifyUserAccountConfirmButton);
