@@ -18,7 +18,7 @@ import java.util.Collection;
 
 public class ViewRecordListActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
-    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountofInterest();
+    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private Record selectedRecord;
 

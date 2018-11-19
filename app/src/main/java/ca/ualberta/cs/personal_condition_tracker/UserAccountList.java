@@ -34,5 +34,13 @@ public class UserAccountList<T extends UserAccount> {
     public void setActiveCareProvider(CareProvider careProvider){this.activeCareProvider = careProvider;}
     public CareProvider getActiveCareProvider(){return this.activeCareProvider;}
     public void setAccountOfInterest(Patient patient){this.accountOfInterest = patient;}
-    public Patient getAccountofInterest(){return this.accountOfInterest;}
+    public Patient getAccountOfInterest(){return this.accountOfInterest;}
+    public Patient getPatientAccountByID(String patientID){
+        for(UserAccount userAccount : user_accounts){
+            if(userAccount.getUserID().equals(patientID)){
+                return (Patient) userAccount;
+            }
+        }
+        return null;
+    }
 }

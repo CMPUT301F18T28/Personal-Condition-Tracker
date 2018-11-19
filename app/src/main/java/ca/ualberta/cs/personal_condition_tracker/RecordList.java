@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class RecordList {
     private ArrayList<Record> record_list;
     private transient ArrayList<Listener> listenerList = null;
+    private Record recordOfInterest = null;
 
     RecordList() {
         this.record_list = new ArrayList<Record>();
@@ -74,5 +75,13 @@ public class RecordList {
             index = record_list.indexOf(record);
         }
         return index;
+    }
+
+    public Record getRecordOfInterest() {
+        return recordOfInterest;
+    }
+
+    public void setRecordOfInterest(Record recordOfInterest) {
+        this.recordOfInterest = recordOfInterest;
     }
 }

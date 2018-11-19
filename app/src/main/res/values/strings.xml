@@ -53,7 +53,8 @@
     <string name="description">Description</string>
     <string name="title">Title</string>
     <string name="submit">Submit</string>
-    <string name="textview">TextView</string>
+    <string name="title_activity_view_condition_list_as_care_provider" />
+    <string name="title_activity_view_record_list_as_care_provider">ViewRecordListAsCareProviderActivity</string>
 
 
 </resources>

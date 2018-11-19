@@ -9,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userAccountListController.getUserAccountList();
+        initializeTestAccounts();
     }
     @Override
     public void onResume(){
@@ -67,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
         if(intent == null) {
             Toast.makeText(this, "Incorrect login information", Toast.LENGTH_SHORT).show();
         }
@@ -88,5 +93,20 @@ public class MainActivity extends AppCompatActivity {
         EditText passwordEntry = findViewById(R.id.passwordEntry);
         userIdEntry.getText().clear();
         passwordEntry.getText().clear();
+    }
+
+    public void initializeTestAccounts(){
+        CareProvider testProvider = new CareProvider("Care Provider", "testCP","","password");
+        Patient testPatient = new Patient("Patient", "TestP","","password");
+        Condition testCondition = new Condition("ConditionTitle", new Date(), "ConditionDescription", new RecordList(), null);
+        Record testRecord = new Record("recordTitle", new Date(), "recordDescription", null, null);
+        testCondition.getRecordList().addRecord(testRecord);
+        testPatient.getConditionList().addCondition(testCondition);
+        testProvider.getPatientList().addPatient(testPatient.getUserID());
+
+        userAccountListController.getUserAccountList().addUserAccount(testProvider);
+        userAccountListController.getUserAccountList().addUserAccount(testPatient);
+        userAccountListController.getUserAccountList().setAccountOfInterest(testPatient);
+        userAccountListController.getUserAccountList().setActiveCareProvider(testProvider);
     }
 }

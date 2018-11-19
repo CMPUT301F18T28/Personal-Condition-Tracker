@@ -35,9 +35,18 @@
             android:label="@string/title_activity_view_record_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ViewRecordListAsCareProviderActivity"
+            android:label="@string/title_activity_view_record_list_as_care_provider"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".ViewConditionListActivity"
             android:label="@string/title_activity_view_condition_list"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewConditionListAsCareProviderActivity"
+            android:label="@string/title_activity_view_condition_list_as_care_provider"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".SelectGeoLocationActivity"
             android:label="@string/title_activity_select_geo_location"

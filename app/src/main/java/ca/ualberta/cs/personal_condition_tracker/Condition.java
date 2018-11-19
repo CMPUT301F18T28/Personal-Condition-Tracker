@@ -47,13 +47,10 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
 
     //End of new code
 
-
-
-
     Condition(String title, String description) {
-
+        this.title = title;
+        this.description = description;
     }
-
 
     Condition(String title, Date date, String description, RecordList recordList, ArrayList<String> commentList) {
         this.title = title;

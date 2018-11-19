@@ -21,6 +21,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private CareProvider activeCareProvider = userAccountListController.getUserAccountList().getActiveCareProvider();
     private String selectedPatientID;
+    private Patient accountOfInterest;
 
 
     @Override
@@ -72,6 +73,22 @@ public class ViewPatientListActivity extends AppCompatActivity {
 
                 adb.show();
                 return false;
+            }
+        });
+
+        //Ugly code of OnItemClickListener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int finalPosition = position;
+                selectedPatientID = patientIDs.get(finalPosition);
+                accountOfInterest =
+                        userAccountListController.getUserAccountList().getPatientAccountByID(selectedPatientID);
+                userAccountListController.getUserAccountList().setAccountOfInterest(accountOfInterest);
+
+                Intent intent = new Intent(ViewPatientListActivity.this,
+                        ViewConditionListAsCareProviderActivity.class);
+                startActivity(intent);
             }
         });
     }

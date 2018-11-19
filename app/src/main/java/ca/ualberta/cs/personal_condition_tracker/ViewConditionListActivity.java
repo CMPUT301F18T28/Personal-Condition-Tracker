@@ -20,7 +20,7 @@ import java.util.Collection;
 public class ViewConditionListActivity extends AppCompatActivity {
 
     private UserAccountListController userAccountListController = new UserAccountListController();
-    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountofInterest();
+    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
 
     @Override
@@ -28,7 +28,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list);
 
-        final Patient accountOfInterest = UserAccountListController.getUserAccountList().getAccountofInterest();
+        final Patient accountOfInterest = UserAccountListController.getUserAccountList().getAccountOfInterest();
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.conditionListView);
@@ -38,7 +38,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
         listView.setAdapter(conditionArrayAdapter);
 
         // Added a change observer
-        UserAccountListController.getUserAccountList().getAccountofInterest().getConditionList().addListener(new Listener() {
+        UserAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().addListener(new Listener() {
             @Override
             public void update() {
                 conditions.clear();

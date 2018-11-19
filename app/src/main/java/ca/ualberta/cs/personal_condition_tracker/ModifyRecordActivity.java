@@ -15,7 +15,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
-    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountofInterest();
+    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
 
     @Override
