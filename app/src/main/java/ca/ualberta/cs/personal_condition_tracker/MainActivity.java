@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initializeTestAccounts(){
         CareProvider testProvider = new CareProvider("Care Provider", "testCP","","password");
-        Patient testPatient = new Patient("Patient", "TestP","","password");
+        Patient testPatient = new Patient("Patient", "testP","","password");
         Condition testCondition = new Condition("ConditionTitle", new Date(), "ConditionDescription", new RecordList(), null);
         Record testRecord = new Record("recordTitle", new Date(), "recordDescription", null, null);
         testCondition.getRecordList().addRecord(testRecord);
