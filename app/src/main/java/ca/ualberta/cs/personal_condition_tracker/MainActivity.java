@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userAccountListController.getUserAccountList();
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        clearText();
+    }
 
     /**
      * This method handles the onClick of the "Sign In" button.
@@ -44,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
         //TODO Adjust for real ID/PW. maybe use size of UAL?
         for(UserAccount userAccount : userAccountList){
             System.out.println(userAccount.getId() + " " + userAccount.getPassword());
+
             if(userAccount.authenticate(userId, password)){
                 Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();
+
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
                     userAccountListController.getUserAccountList().setAccountOfInterest((Patient) userAccount);
@@ -74,5 +81,12 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this,"Signing up", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, ModifyUserAccountActivity.class);
         startActivity(intent);
+    }
+
+    public void clearText(){
+        EditText userIdEntry = findViewById(R.id.userIDEntry);
+        EditText passwordEntry = findViewById(R.id.passwordEntry);
+        userIdEntry.getText().clear();
+        passwordEntry.getText().clear();
     }
 }

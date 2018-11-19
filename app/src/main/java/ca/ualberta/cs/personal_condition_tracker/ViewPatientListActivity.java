@@ -63,7 +63,6 @@ public class ViewPatientListActivity extends AppCompatActivity {
                     }
                 });
 
-
                 adb.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
