@@ -2,7 +2,11 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 /**
  * The Photograph class is used to store the thumbnail for the image that is taken by the user.
- * @author      ?
+ * @author   R. Voon; rcvoon@ualberta.ca
+ *           D. Buksa; draydon@ualberta.ca
+ *           W. Nichols; wnichols@ualberta.ca
+ *           D. Douziech; douziech@ualberta.ca
+ *           C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
