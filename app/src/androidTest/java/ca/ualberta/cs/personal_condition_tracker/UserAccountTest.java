@@ -7,14 +7,14 @@ import static org.junit.Assert.*;
 public class UserAccountTest {
 
     @Test
-    public void getName() {
+    public void getAccountType() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setAccountType("Yang");
-        assertEquals(testUserAccount.getAccountType(),"Yang");
+        testUserAccount.setAccountType("Care");
+        assertEquals(testUserAccount.getAccountType(),"Care");
     }
 
     @Test
-    public void setName() {
+    public void setAccountType() {
         UserAccount testUserAccount = new UserAccount();
         testUserAccount.setAccountType("Yang");
         assertEquals(testUserAccount.getAccountType(),"Yang");
