@@ -17,15 +17,15 @@ package ca.ualberta.cs.personal_condition_tracker;
  * MainActivity is responsible for allowing a user to choose between logging into the app and signing up.
  * This activity performs verification to ensure that the user who is logging in exists in the database,
  * and that their inputted user ID and password are verifiable.
- *
- * @author       R. Voon; rcvoon@ualberta.ca
- *               D. Buksa; draydon@ualberta.ca
- *               W. Nichols; wnichols@ualberta.ca
- *               D. Douziech; douziech@ualberta.ca
- *               C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author  R. Voon; rcvoon@ualberta.ca
+ * @author  D. Buksa; draydon@ualberta.ca
+ * @author  W. Nichols; wnichols@ualberta.ca
+ * @author  D. Douziech; douziech@ualberta.ca
+ * @author  C. Neureuter; neureute@ualberta.ca
+ * @version 1.1, 11-18-18
+ * @since   1.0
  */
+
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

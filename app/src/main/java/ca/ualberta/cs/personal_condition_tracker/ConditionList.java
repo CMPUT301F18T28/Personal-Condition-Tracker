@@ -23,13 +23,13 @@ import java.util.Date;
  * getting and modification to the former and monitoring via the latter. In the case of a Care Provider, a conditionOfInterest attribute
  * provides for user selection from the respective list.
  *
- * @author       R. Voon; rcvoon@ualberta.ca
- *               D. Buksa; draydon@ualberta.ca
- *               W. Nichols; wnichols@ualberta.ca
- *               D. Douziech; douziech@ualberta.ca
- *               C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author  R. Voon; rcvoon@ualberta.ca
+ * @author  D. Buksa; draydon@ualberta.ca
+ * @author  W. Nichols; wnichols@ualberta.ca
+ * @author  D. Douziech; douziech@ualberta.ca
+ * @author  C. Neureuter; neureute@ualberta.ca
+ * @version 1.1, 11-18-18
+ * @since   1.0
  */
 
 

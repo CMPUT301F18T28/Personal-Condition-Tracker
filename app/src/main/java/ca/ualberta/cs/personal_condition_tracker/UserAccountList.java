@@ -46,6 +46,8 @@ POSSIBILITY OF SUCH DAMAGE.
 package ca.ualberta.cs.personal_condition_tracker;
 
 import java.util.ArrayList;
+
+
 /**
  * UserAccountList serves to contain an arrayList of objects, inheriting from UserAccount, that represents
  * the entire set of users for the application.
@@ -53,14 +55,17 @@ import java.util.ArrayList;
  * Note that there are two subsets of users, Patients and Care Providers.
  * Care Providers have a list of patients, so this class provides a means of setting a patient account to gain access thereto.
  *</P>
- * @author      W. Nichols * @author     R. Voon; rcvoon@ualberta.ca
- *             D. Buksa; draydon@ualberta.ca
- *             W. Nichols; wnichols@ualberta.ca
- *             D. Douziech; douziech@ualberta.ca
- *             C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author     W. Nichols
+ * @author     R. Voon; rcvoon@ualberta.ca
+ * @author     D. Buksa; draydon@ualberta.ca
+ * @author     W. Nichols; wnichols@ualberta.ca
+ * @author     D. Douziech; douziech@ualberta.ca
+ * @author     C. Neureuter; neureute@ualberta.ca
+ * @version    1.1, 11-18-18
+ * @since      1.0
  */
+
+
 public class UserAccountList {
     private ArrayList<UserAccount> user_accounts = new ArrayList<>();
     private CareProvider activeCareProvider = null;
