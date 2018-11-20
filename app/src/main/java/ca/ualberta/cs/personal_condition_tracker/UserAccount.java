@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class UserAccount {
     private String accountType;
-    private String id;
     private String userID;
     private String email_address;
     private String phone_number;
     private String password;
+    private String id;
 
     UserAccount() {
         this.accountType = "";
@@ -22,14 +22,6 @@ public class UserAccount {
         this.userID = userID;
         this.email_address = email_address;
         this.password = password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getAccountType() {
@@ -70,6 +62,14 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean authenticate(String userID, String password) {
