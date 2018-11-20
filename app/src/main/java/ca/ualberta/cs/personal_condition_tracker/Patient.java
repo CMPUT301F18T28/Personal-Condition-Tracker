@@ -22,7 +22,11 @@ package ca.ualberta.cs.personal_condition_tracker;
  * <p>
  * One of two account types that inherit directly from the UserAccount class.
  * </p>
- * @author      D. Douziech
+ * @author     R. Voon; rcvoon@ualberta.ca
+ *             D. Buksa; draydon@ualberta.ca
+ *             W. Nichols; wnichols@ualberta.ca
+ *             D. Douziech; douziech@ualberta.ca
+ *             C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
