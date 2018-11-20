@@ -1,8 +1,12 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 /**
- * PhotographList sotes the photos and allows the user to add, delete and edit them.
- * @author      ?
+ * PhotographList sorts the photos and allows the user to add, delete and edit them.
+ * @author  R. Voon; rcvoon@ualberta.ca
+            D. Buksa; draydon@ualberta.ca
+            W. Nichols; wnichols@ualberta.ca
+            D. Douziech; douziech@ualberta.ca
+            C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
