@@ -22,7 +22,9 @@ import java.util.Date;
  * Serves to store both an ArrayList of Condition objects and an ArrayList of Listeners, thus providing access, setting,
  * getting and modification to the former and monitoring via the latter. In the case of a Care Provider, a conditionOfInterest attribute
  * provides for user selection from the respective list.
- *
+ * <p>
+ * Note: Employs the Observer pattern through its inclusion of Listeners.
+ * </p>
  * @author  R. Voon; rcvoon@ualberta.ca
  * @author  D. Buksa; draydon@ualberta.ca
  * @author  W. Nichols; wnichols@ualberta.ca

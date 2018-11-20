@@ -38,6 +38,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 /**
  * ViewPatientListActivity is responsible for allowing a care provider to see all their assigned patients.
+ * Note: Utilizes Listeners and therefore the Observer pattern.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @author    W. Nichols; wnichols@ualberta.ca

@@ -54,6 +54,7 @@ import java.util.ArrayList;
  * RecordList stores, provides editing capability and monitoring via Listeners, for all of the Records
  * pertaining to a particular Condition.
  * <p>
+ * Note: Use of this class employs the Observer pattern through its inclusion of Listener objects.
  * @see ca.ualberta.cs.personal_condition_tracker.Record
  * @see ca.ualberta.cs.personal_condition_tracker.Condition
  * </p>

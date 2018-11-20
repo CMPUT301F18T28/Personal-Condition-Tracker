@@ -39,6 +39,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * ViewConditionListAsCareProviderActivity is responsible for allowing a care provider to view
  * all the conditions of a patient from their patient list.
+ * Note:Empoys Listeners and therefore utilizes the Observer pattern.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @author    W. Nichols; wnichols@ualberta.ca

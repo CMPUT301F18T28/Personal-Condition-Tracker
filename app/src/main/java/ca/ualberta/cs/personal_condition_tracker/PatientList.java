@@ -51,7 +51,10 @@ import java.util.ArrayList;
 /**
  * The PatientList class represents a list of patients assigned to a Care Provider.
  * <p>
- * Note that a patient can exist in the system without having been assigned to a Care Provider.
+ * Notes:
+ * (1) A patient can exist in the system without having been assigned to a Care Provider.
+ * (2) Use of this class employs the Observer pattern through its inclusion of Listener objects.
+
  * </p>
  * @author  R. Voon; rcvoon@ualberta.ca
  * @author  D. Buksa; draydon@ualberta.ca

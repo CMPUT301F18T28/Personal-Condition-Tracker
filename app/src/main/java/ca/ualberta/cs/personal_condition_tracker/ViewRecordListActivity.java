@@ -39,6 +39,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * ViewRecordListActivity is responsible for allowing a patient to view all the records corresponding to
  * a given condition.
+ * Note: Utilizes Listeners and therefore the Observer pattern.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @author    W. Nichols; wnichols@ualberta.ca
