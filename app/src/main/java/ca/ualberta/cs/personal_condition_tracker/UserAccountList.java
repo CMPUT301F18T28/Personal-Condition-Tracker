@@ -10,7 +10,11 @@ import java.util.ArrayList;
  * Note that there are two subsets of users, Patients and Care Providers.
  * Care Providers have a list of patients, so this class provides a means of setting a patient account to gain access thereto.
  *</P>
- * @author      W. Nichols
+ * @author      W. Nichols * @author     R. Voon; rcvoon@ualberta.ca
+ *             D. Buksa; draydon@ualberta.ca
+ *             W. Nichols; wnichols@ualberta.ca
+ *             D. Douziech; douziech@ualberta.ca
+ *             C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
