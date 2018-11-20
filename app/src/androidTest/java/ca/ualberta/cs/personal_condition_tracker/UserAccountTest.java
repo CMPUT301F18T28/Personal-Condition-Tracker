@@ -7,17 +7,17 @@ import static org.junit.Assert.*;
 public class UserAccountTest {
 
     @Test
-    public void getName() {
+    public void getAccountType() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
-        assertEquals(testUserAccount.getName(),"Yang");
+        testUserAccount.setAccountType("Care");
+        assertEquals(testUserAccount.getAccountType(),"Care");
     }
 
     @Test
-    public void setName() {
+    public void setAccountType() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
-        assertEquals(testUserAccount.getName(),"Yang");
+        testUserAccount.setAccountType("Yang");
+        assertEquals(testUserAccount.getAccountType(),"Yang");
     }
 
     @Test
@@ -64,10 +64,24 @@ public class UserAccountTest {
     }
 
     @Test
+    public void getId() {
+        UserAccount testUserAccount = new UserAccount();
+        testUserAccount.setId("qe2fs");
+        assertEquals(testUserAccount.getId(),"qe2fs");
+    }
+
+    @Test
+    public void setId() {
+        UserAccount testUserAccount = new UserAccount();
+        testUserAccount.setId("qe2fs");
+        assertEquals(testUserAccount.getId(),"qe2fs");
+    }
+
+    @Test
     public void authenticate() {
 
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
+        testUserAccount.setAccountType("Yang");
         testUserAccount.setUserID("Yang");
         testUserAccount.setEmail_address("Yang@gmail.com");
         testUserAccount.setPassword("Yang'sPassword");

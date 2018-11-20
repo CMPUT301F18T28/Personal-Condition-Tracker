@@ -12,8 +12,8 @@ public class CareProviderTest extends TestCase {
     public void testHasPatient() {
         PatientList new_patient_list = new PatientList();
         Patient new_patient = new Patient();
-        new_patient_list.addPatient(new_patient);
-        assertTrue(new_patient_list.hasPatient(new_patient));
+        new_patient_list.addPatient(new_patient.getUserID());
+        assertTrue(new_patient_list.hasPatient(new_patient.getUserID()));
     }
   
 }

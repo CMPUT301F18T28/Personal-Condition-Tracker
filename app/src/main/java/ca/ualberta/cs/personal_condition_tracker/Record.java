@@ -86,4 +86,16 @@ public class Record {
     public void setPhotos(PhotographList photos) {
         this.photos = photos;
     }
+
+    public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, String body_location) {
+        this.setTitle(recordTitle);
+        this.setDate(recordDate);
+        this.setDescription(recordDescription);
+        this.setGeo_location(latLng);
+        this.setBody_location(body_location);
+    }
+    @Override
+    public String toString(){
+        return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
+    }
 }

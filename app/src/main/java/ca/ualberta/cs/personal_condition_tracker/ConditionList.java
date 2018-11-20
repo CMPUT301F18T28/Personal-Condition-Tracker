@@ -28,19 +28,22 @@ import java.util.Date;
 public class ConditionList{
 
     private ArrayList<Condition> condition_list;
+    private transient ArrayList<Listener> listenerList = null;
+    private Condition conditionOfInterest = null;
 
     ConditionList(){
-
         this.condition_list = new ArrayList<Condition>();
     }
 
     public void addCondition(Condition condition){
         condition_list.add(condition);
+        notifyListeners();
     }
 
 
     public boolean deleteCondition(Condition condition) {
         boolean boolResult = condition_list.remove(condition);
+        notifyListeners();
         if (!boolResult) {
             Log.i("Error","The condition cannot be found.");
         }
@@ -125,11 +128,50 @@ public class ConditionList{
             Log.d("Date: ", condition.getDate().toString());
     }
 
-    public Condition getByIndex(int index){
+    public int getIndex(Condition condition){
+        int index = -1;
+        if(condition_list.contains(condition)) {
+            index = condition_list.indexOf(condition);
+        }
+        return index;
+    }
 
+    public Condition getByIndex(int index){
         Condition condition = condition_list.get(index);
         return condition;
     }
 
+    public ArrayList<Condition> getConditions(){
+        return condition_list;
+    }
+
+    public void addListener(Listener listener){
+        getListenerList().add(listener);
+    }
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
+    }
+
+    public Condition getConditionOfInterest() {
+        return conditionOfInterest;
+    }
+
+    public void setConditionOfInterest(Condition conditionOfInterest) {
+        this.conditionOfInterest = conditionOfInterest;
+    }
 }
 

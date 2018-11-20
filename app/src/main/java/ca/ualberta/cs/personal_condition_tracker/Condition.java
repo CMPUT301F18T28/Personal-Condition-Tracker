@@ -12,7 +12,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private String title;
     private Date date;
     private String description;
-    private RecordList recordList;
+    private RecordList recordList = new RecordList();
     private ArrayList<String> commentList;
     private static final Integer MAX_CHARACTERS = 100;
 
@@ -47,13 +47,10 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
 
     //End of new code
 
-
-
-
     Condition(String title, String description) {
-
+        this.title = title;
+        this.description = description;
     }
-
 
     Condition(String title, Date date, String description, RecordList recordList, ArrayList<String> commentList) {
         this.title = title;
@@ -99,5 +96,9 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
 
     public void setCommentList(ArrayList<String> commentList) {
         this.commentList = commentList;
+    }
+    @Override
+    public String toString(){
+        return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
     }
 }

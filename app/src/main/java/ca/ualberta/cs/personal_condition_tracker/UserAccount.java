@@ -3,17 +3,33 @@ package ca.ualberta.cs.personal_condition_tracker;
 import java.util.Objects;
 
 public class UserAccount {
-    private String name;
+    private String accountType;
     private String userID;
     private String email_address;
+    private String phone_number;
     private String password;
+    private String id;
 
-    public String getName() {
-        return name;
+    UserAccount() {
+        this.accountType = "";
+        this.userID = "";
+        this.email_address = "";
+        this.password = "password";
     }
 
-    public void setName(String name) {
-        this.name = name;
+    UserAccount(String accountType, String userID, String email_address, String password) {
+        this.accountType = accountType;
+        this.userID = userID;
+        this.email_address = email_address;
+        this.password = password;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 
     public String getUserID() {
@@ -22,6 +38,14 @@ public class UserAccount {
 
     public void setUserID(String userID) {
         this.userID = userID;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
     }
 
     public String getEmail_address() {
@@ -38,6 +62,14 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean authenticate(String userID, String password) {

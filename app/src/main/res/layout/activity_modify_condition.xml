@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ModifyConditionActivity">
+
+    <TextView
+        android:id="@+id/patientNameTextView"
+        android:layout_width="82dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/recordTitleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/conditionTitleView"
+        android:layout_width="335dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:inputType="textAutoCorrect|textAutoComplete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patientNameTextView" />
+
+    <TextView
+        android:id="@+id/conditionDateTextView"
+        android:layout_width="79dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/recordDateText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionTitleView" />
+
+    <EditText
+        android:id="@+id/conditionDateView"
+        android:layout_width="338dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:inputType="datetime|date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionDateTextView" />
+
+    <TextView
+        android:id="@+id/conditionDescriptionTextView"
+        android:layout_width="78dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/recordDescriptionText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionDateView" />
+
+    <EditText
+        android:id="@+id/conditionDescriptionView"
+        android:layout_width="340dp"
+        android:layout_height="134dp"
+        android:layout_marginStart="16dp"
+        android:inputType="textAutoCorrect|textAutoComplete"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionDescriptionTextView" />
+
+    <Button
+        android:id="@+id/modifyConditionConfirmButton"
+        android:layout_width="167dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:onClick="modifyConditionConfirm"
+        android:text="@string/confirmButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conditionDescriptionView" />
+
+    <Button
+        android:id="@+id/modifyConditionCancelButton"
+        android:layout_width="167dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="48dp"
+        android:onClick="modifyConditionCancel"
+        android:text="@string/cancelButtonText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/modifyConditionConfirmButton"
+        app:layout_constraintTop_toBottomOf="@+id/conditionDescriptionView" />
+
+</android.support.constraint.ConstraintLayout>
