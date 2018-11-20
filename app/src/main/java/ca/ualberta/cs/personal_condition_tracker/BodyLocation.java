@@ -53,8 +53,8 @@ package ca.ualberta.cs.personal_condition_tracker;
  *            W. Nichols; wnichols@ualberta.ca
  *            D. Douziech; douziech@ualberta.ca
  *            C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @version   1.1, 11-18-18
+ * @since     1.0
  */
 
 public class BodyLocation {
