@@ -58,17 +58,18 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         EditText userIDText = findViewById(R.id.userIDText);
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
+        EditText passwordText = findViewById(R.id.passwordText);
 
         String accountType = accountTypeDropdown.getText().toString().toLowerCase().trim();
         String userID = userIDText.getText().toString();
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
-
+        String password = passwordText.getText().toString();
 
         //TODO fix this. maybe w/ dropdown
         if(accountType.equals("patient")){
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
-            Patient newUserAccount = new Patient(accountType, userID, emailAddress, "password");
+            Patient newUserAccount = new Patient(accountType, userID, emailAddress, password);
             newUserAccount.setPhone_number(phoneNumber);
             System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
             createPatient(newUserAccount, userID);
@@ -78,7 +79,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
 
         else if (accountType.equals("care provider")){
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
-            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, "password");
+            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, password);
             newUserAccount.setPhone_number(phoneNumber);
             System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
             createCareProvider(newUserAccount, userID);
@@ -99,8 +100,8 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
 
     public void createPatient(Patient newPatient, String userID) {
         // Check if the user has already signed up
-        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListController.GetUserAccountsTask();
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
         getUserAccountsTask.execute(query);
         ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
@@ -112,8 +113,8 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
 
         // Add the user to the database.
         if (stored_users.size() == 0) {
-            UserAccountListController.AddUserAccountsTask addUserAccountsTask
-                    = new UserAccountListController.AddUserAccountsTask();
+            UserAccountListManager.AddUserAccountsTask addUserAccountsTask
+                    = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newPatient);
             Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
             ModifyUserAccountActivity.this.finish();
@@ -125,8 +126,8 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
 
     public void createCareProvider(CareProvider newCareProvider, String userID) {
         // Check if the user has already signed up
-        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListController.GetUserAccountsTask();
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
         getUserAccountsTask.execute(query);
         ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
@@ -138,9 +139,9 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
 
         // Add the user to the database.
         if (stored_users.size() == 0) {
-            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
-            UserAccountListController.AddUserAccountsTask addUserAccountsTask
-                    = new UserAccountListController.AddUserAccountsTask();
+//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
+            UserAccountListManager.AddUserAccountsTask addUserAccountsTask
+                    = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
             Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
             ModifyUserAccountActivity.this.finish();
@@ -209,19 +210,19 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
 //            }
 //        });
 
-//    @Override
-//    protected void onStart() {
-//        // TODO Auto-generated method stub
-//        super.onStart();
-//        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-//                new UserAccountListController.GetUserAccountsTask();
-//        getUserAccountsTask.execute("");
-//        try {
-//            UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
-//            Toast.makeText(this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            Log.e("Error", "Failed to get the tweets out of the async object.");
-//        }
-//
-//    }
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        getUserAccountsTask.execute("");
+        try {
+            UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
+            Toast.makeText(this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+    }
 }

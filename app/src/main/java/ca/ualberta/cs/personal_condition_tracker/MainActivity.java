@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userAccountListController.getUserAccountList();
-        initializeTestAccounts();
+//        initializeTestAccounts();
     }
     @Override
     public void onResume(){
@@ -50,33 +50,35 @@ public class MainActivity extends AppCompatActivity {
         String password = passwordEntry.getText().toString();
         Intent intent = null;
 //        ArrayList<UserAccount> userAccountList = UserAccountListController.getUserAccountList().getUserAccounts();
-        UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListController.GetUserAccountsTask();
-        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userId +"\" } } }";
-        getUserAccountsTask.execute(query);
-        ArrayList<UserAccount> userAccountList = new ArrayList<UserAccount>();
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        getUserAccountsTask.execute("");
+        ArrayList<UserAccount> userAccountList = new ArrayList<>();
         try {
             userAccountList = getUserAccountsTask.get();
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
+        userAccountListController.getUserAccountList().setUserAccounts(userAccountList);
+        Toast.makeText(this,Integer.toString(userAccountListController.getUserAccountList().getNumberOfUsers()), Toast.LENGTH_SHORT).show();
         //TODO Adjust for real ID/PW. maybe use size of UAL?
         for(UserAccount userAccount : userAccountList){
-//            System.out.println(userAccount.getId() + " " + userAccount.getPassword());
-            Toast.makeText(this,Integer.toString(userAccountList.size()), Toast.LENGTH_SHORT).show();
+            System.out.println(userAccount.getId() + " " + userAccount.getPassword());
 
             if(userAccount.authenticate(userId, password)){
                 Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();
 
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
-                    userAccountListController.getUserAccountList().setAccountOfInterest((Patient) userAccount);
+                    Patient newPatient = new Patient(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address(), userAccount.getPassword());
+                    userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
                     intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
                     startActivity(intent);
                 }
 
                 else if(userAccount.getAccountType().toLowerCase().trim().equals("care provider")){
-                    userAccountListController.getUserAccountList().setActiveCareProvider((CareProvider) userAccount);
+                    CareProvider newCareProvider = new CareProvider(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address(), userAccount.getPassword());
+                    userAccountListController.getUserAccountList().setActiveCareProvider(newCareProvider);
                     intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
                     startActivity(intent);
                 }
@@ -106,18 +108,18 @@ public class MainActivity extends AppCompatActivity {
         passwordEntry.getText().clear();
     }
 
-    public void initializeTestAccounts(){
-        CareProvider testProvider = new CareProvider("Care Provider", "testCP","","password");
-        Patient testPatient = new Patient("Patient", "testP","","password");
-        Condition testCondition = new Condition("ConditionTitle", new Date(), "ConditionDescription", new RecordList(), null);
-        Record testRecord = new Record("recordTitle", new Date(), "recordDescription", null, null);
-        testCondition.getRecordList().addRecord(testRecord);
-        testPatient.getConditionList().addCondition(testCondition);
-        testProvider.getPatientList().addPatient(testPatient.getUserID());
-
-        userAccountListController.getUserAccountList().addUserAccount(testProvider);
-        userAccountListController.getUserAccountList().addUserAccount(testPatient);
-        userAccountListController.getUserAccountList().setAccountOfInterest(testPatient);
-        userAccountListController.getUserAccountList().setActiveCareProvider(testProvider);
-    }
+//    public void initializeTestAccounts(){
+//        CareProvider testProvider = new CareProvider("Care Provider", "testCP","","password");
+//        Patient testPatient = new Patient("Patient", "testP","","password");
+//        Condition testCondition = new Condition("ConditionTitle", new Date(), "ConditionDescription", new RecordList(), null);
+//        Record testRecord = new Record("recordTitle", new Date(), "recordDescription", null, null);
+//        testCondition.getRecordList().addRecord(testRecord);
+//        testPatient.getConditionList().addCondition(testCondition);
+//        testProvider.getPatientList().addPatient(testPatient.getUserID());
+//
+//        userAccountListController.getUserAccountList().addUserAccount(testProvider);
+//        userAccountListController.getUserAccountList().addUserAccount(testPatient);
+//        userAccountListController.getUserAccountList().setAccountOfInterest(testPatient);
+//        userAccountListController.getUserAccountList().setActiveCareProvider(testProvider);
+//    }
 }
