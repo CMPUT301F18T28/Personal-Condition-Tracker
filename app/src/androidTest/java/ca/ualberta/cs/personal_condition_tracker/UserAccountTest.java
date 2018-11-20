@@ -64,6 +64,20 @@ public class UserAccountTest {
     }
 
     @Test
+    public void getId() {
+        UserAccount testUserAccount = new UserAccount();
+        testUserAccount.setId("qe2fs");
+        assertEquals(testUserAccount.getId(),"qe2fs");
+    }
+
+    @Test
+    public void setId() {
+        UserAccount testUserAccount = new UserAccount();
+        testUserAccount.setId("qe2fs");
+        assertEquals(testUserAccount.getId(),"qe2fs");
+    }
+
+    @Test
     public void authenticate() {
 
         UserAccount testUserAccount = new UserAccount();
