@@ -9,7 +9,11 @@ import java.util.Objects;
  * <p>
  * Both Patient and CareProvider classes extend from UserAccount.
  *</p>
- * @author      W. Nichols
+ * @author     R. Voon; rcvoon@ualberta.ca
+ *             D. Buksa; draydon@ualberta.ca
+ *             W. Nichols; wnichols@ualberta.ca
+ *             D. Douziech; douziech@ualberta.ca
+ *             C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
