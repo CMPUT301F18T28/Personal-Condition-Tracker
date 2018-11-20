@@ -3,6 +3,9 @@ import junit.framework.TestCase;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+
+
 public class PatientListTest extends TestCase {
  
   public void testHasPatient() {

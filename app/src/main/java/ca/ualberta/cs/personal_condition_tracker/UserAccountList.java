@@ -25,7 +25,7 @@ public class UserAccountList<T extends UserAccount> {
     /**
      * Registers the arrayList of UserAccount objects.
      * @param user_accounts an arrayList of objects inheriting from UserAccount
-     * @see ca.ualberta.cs.personal_condition_tracker.UserAccount
+     * @see UserAccount
      */
 
     public void setUserAccounts(ArrayList<T> user_accounts) {

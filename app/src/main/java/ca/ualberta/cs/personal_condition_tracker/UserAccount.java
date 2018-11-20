@@ -12,7 +12,6 @@ import java.util.Objects;
  * @author      W. Nichols
  * @version     1.1, 11-18-18
  * @since       1.0
- *
  */
 
 public class UserAccount {
