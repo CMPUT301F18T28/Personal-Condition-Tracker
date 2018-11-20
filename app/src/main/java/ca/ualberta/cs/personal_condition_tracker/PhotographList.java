@@ -1,5 +1,12 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
+/**
+ * PhotographList sotes the photos and allows the user to add, delete and edit them.
+ * @author      ?
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
+
 import java.util.ArrayList;
 
 public class PhotographList {
