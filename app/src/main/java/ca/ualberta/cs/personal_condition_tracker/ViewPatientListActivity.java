@@ -8,11 +8,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +23,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private CareProvider activeCareProvider = userAccountListController.getUserAccountList().getActiveCareProvider();
     private String selectedPatientID;
-    private Patient accountOfInterest;
+    private UserAccount accountOfInterest;
 
 
     @Override
@@ -35,6 +37,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
         final ArrayList<String> patientIDs = new ArrayList<> (patientIDCollection);
         final ArrayAdapter<String> patientIDArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, patientIDs);
         listView.setAdapter(patientIDArrayAdapter);
+
 
         // Added a change observer
         UserAccountListController.getUserAccountList().getActiveCareProvider().getPatientList().addListener(new Listener() {
@@ -82,9 +85,12 @@ public class ViewPatientListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final int finalPosition = position;
                 selectedPatientID = patientIDs.get(finalPosition);
+                Toast.makeText(ViewPatientListActivity.this,selectedPatientID, Toast.LENGTH_SHORT).show();
+                userAccountListController.getUserAccountList().setUserAccounts(getUserAccounts());
                 accountOfInterest =
                         userAccountListController.getUserAccountList().getPatientAccountByID(selectedPatientID);
-                userAccountListController.getUserAccountList().setAccountOfInterest(accountOfInterest);
+                Patient newPatient = new Patient(accountOfInterest.getAccountType(), accountOfInterest.getUserID(), accountOfInterest.getEmail_address(), accountOfInterest.getPassword());
+                userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
 
                 Intent intent = new Intent(ViewPatientListActivity.this,
                         ViewConditionListAsCareProviderActivity.class);
@@ -96,6 +102,19 @@ public class ViewPatientListActivity extends AppCompatActivity {
     public void addPatient(View v){
         Intent intent = new Intent(ViewPatientListActivity.this, AddPatientActivity.class);
         startActivity(intent);
+    }
+
+    public ArrayList<UserAccount> getUserAccounts() {
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        getUserAccountsTask.execute("");
+        ArrayList<UserAccount> stored_users = new ArrayList<>();
+        try {
+            stored_users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        return stored_users;
     }
 
 }
