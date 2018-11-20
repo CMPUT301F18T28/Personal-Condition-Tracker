@@ -1,7 +1,7 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 /**
- * Record stores all of the information associated with a conditon added by the user.
+ * Record stores all of the information associated with a condition added by a user/Patient.
  * @author     R. Voon; rcvoon@ualberta.ca
  * @author     D. Buksa; draydon@ualberta.ca
  * @author     W. Nichols; wnichols@ualberta.ca
@@ -24,6 +24,7 @@ public class Record {
     private String body_location;
     private PhotographList photos;
 
+    //Constructors:
 
     Record() {
         this.title = "Title";
@@ -33,6 +34,7 @@ public class Record {
         this.body_location = "";
         this.photos = new PhotographList();
     }
+
     Record(String new_title, String new_description) {
         this.title = new_title;
         this.date = new Date();
@@ -50,53 +52,146 @@ public class Record {
         this.photos = new PhotographList();
     }
 
+    /**
+     * Provides the title of the Record
+     * @return String Title of this Record object
+     */
+
     public String getTitle() {
         return title;
     }
+
+    /**
+     * Registers the title for a Record
+     * @return Nothing
+     */
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Provides the date assigned to a record; generally corresponds to the creation of a Record
+     * @return Date Date assigned to a record
+     * @see Date
+     */
+
     public Date getDate() {
         return date;
     }
+
+    /**
+     * Registers the date for a Record
+     * @param date Specifies the date for a record; generally the date of its creation
+     * @return Nothing
+     * @see Date
+     */
 
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Retrieves the description of a condition contained within a Record thereof.
+     * @return String Description of the condition
+     * @see Condition
+     *
+     */
+
     public String getDescription() {
         return description;
     }
+
+    /**
+     * Registers a description of a condition
+     * @return Nothing
+     * @see Condition
+     */
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Provides the geo-locational data of a Record; generally the location where the corresponding Condition arose.
+     * @return LatLng The latitude and longitude of the location within the Record of a Condition
+     * @see LatLng
+     * @see Condition
+     */
+
     public LatLng getGeo_location() {
         return geo_location;
     }
+
+    /**
+     * Registers the geo-locational data of a Record; generally the location where the corresponding Condition arose.
+     * @param geo_location The latitude and longitude of the location (specific to a Condition)
+     * @see LatLng
+     * @see Condition
+     */
 
     public void setGeo_location(LatLng geo_location) {
         this.geo_location = geo_location;
     }
 
+    /**
+     * Provides the geo-locational data of a Record; generally the location where the corresponding Condition arose.
+     * @return LatLng The latitude and longitude of the location within the Record of a Condition
+     * @see LatLng
+     * @see Condition
+     */
+
     public String getBody_location() {
         return body_location;
     }
+
+    /**
+     * Registers the location on the body where the Condition resides.
+     * @param body_location Description of a location on the human body
+     * @return Nothing
+     * @see Condition
+     */
 
     public void setBody_location(String body_location) {
         this.body_location = body_location;
     }
 
+    /**
+     * Provides the list of Photograph objects corresponding to the Record of a Condition.
+     * @return PhotographList List of Photographs
+     * @see Photograph
+     * @see PhotographList
+     * @see Condition
+     */
+
     public PhotographList getPhotos() {
         return photos;
     }
 
+    /**
+     * Registers the list of Photograph objects on a Record of a Condition.
+     * @param photos List of Photograph Objects; a PhotographList object
+     * @return Nothing
+     * @see Photograph
+     * @see PhotographList
+     */
+
     public void setPhotos(PhotographList photos) {
         this.photos = photos;
     }
+
+    /**
+     * Provides editing capability for the various attributes of a Record object.
+     * @param recordTitle Title for the Record
+     * @param recordDate  Date of the Record
+     * @param recordDescription Description of the Condition
+     * @param latLng Geo-locational data specifying the latitude and longitude
+     * @param body_location A description of the body location specific to the Condition
+     * @return LatLng The latitude and longitude of the location within the Record of a Condition
+     * @see Condition
+     * @see LatLng
+     * @see Date
+     */
 
     public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, String body_location) {
         this.setTitle(recordTitle);
@@ -105,6 +200,13 @@ public class Record {
         this.setGeo_location(latLng);
         this.setBody_location(body_location);
     }
+
+    /**
+     * Serves to concatenate the title, date and description of a particular Record.
+     * @return String A concatenation of the title, date and description of this Record
+     * @see Class
+     */
+
     @Override
     public String toString(){
         return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
