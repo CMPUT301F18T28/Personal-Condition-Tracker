@@ -98,10 +98,10 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
         this.commentList = commentList;
     }
 
-    //Unused
-//    Condition(String title, String description) {
-//
-//    }
+    Condition(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 
     /**
      * Compares the dates of this condition object against another one supplied, to determine the relative chronological ordering.

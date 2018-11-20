@@ -64,6 +64,8 @@ public class BodyLocation {
     private double body_x_coordinate;
     private double body_y_coordinate;
 
+    //Constructor
+
     BodyLocation() {
         this.body_part = "";
         this.photo_x_coordinate = 0;
@@ -72,42 +74,78 @@ public class BodyLocation {
         this.body_y_coordinate = 0;
     }
 
+    /**
+     * Getter method for the name of the body part.
+     * @return body_part String
+     */
+
     public String getBody_part() {
         return body_part;
     }
+
+    /**
+     * Setter method for the name of the body part.
+     * @params body_part String
+     */
 
     public void setBody_part(String body_part) {
         this.body_part = body_part;
     }
 
+    /**
+     * Get the x coordinate of the photo.
+     * @return photo_x_coordinate double
+     */
+
     public double getPhoto_x_coordinate() {
         return photo_x_coordinate;
     }
-
+    /**
+     * Set the x coordinate of the photo.
+     * @params photo_x_coordinate double
+     */
     public void setPhoto_x_coordinate(double photo_x_coordinate) {
         this.photo_x_coordinate = photo_x_coordinate;
     }
-
+    /**
+     * Get the y coordinate of the photo.
+     * @return photo_y_coordinate double
+     */
     public double getPhoto_y_coordinate() {
         return photo_y_coordinate;
     }
-
+    /**
+     * Set the y coordinate of the photo.
+     * @params photo_y_coordinate double
+     */
     public void setPhoto_y_coordinate(double photo_y_coordinate) {
         this.photo_y_coordinate = photo_y_coordinate;
     }
-
+    /**
+     * Get the selected x coordinate on the displayed body image.
+     * @return body_x_coordinate double
+     */
     public double getBody_x_coordinate() {
         return body_x_coordinate;
     }
-
+    /**
+     * Set the selected x coordinate on the displayed body image.
+     * @params body_x_coordinate double
+     */
     public void setBody_x_coordinate(double body_x_coordinate) {
         this.body_x_coordinate = body_x_coordinate;
     }
-
+    /**
+     * Get the selected y coordinate on the displayed body image.
+     * @return body_y_coordinate double
+     */
     public double getBody_y_coordinate() {
         return body_y_coordinate;
     }
-
+    /**
+     * Set the selected y coordinate on the displayed body image.
+     * @params body_y_coordinate double
+     */
     public void setBody_y_coordinate(double body_y_coordinate) {
         this.body_y_coordinate = body_y_coordinate;
     }

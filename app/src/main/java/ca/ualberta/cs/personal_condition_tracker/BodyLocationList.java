@@ -46,29 +46,61 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker;
 
+/**
+ * BodyLocationList is responsible for performing functions on a list of BodyLocation objects.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ *            D. Buksa; draydon@ualberta.ca
+ *            W. Nichols; wnichols@ualberta.ca
+ *            D. Douziech; douziech@ualberta.ca
+ *            C. Neureuter; neureute@ualberta.ca
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
 
 import java.util.ArrayList;
 
 public class BodyLocationList {
     private ArrayList<BodyLocation> body_locations;
 
+    // Constructor
     BodyLocationList() {
         this.body_locations = new ArrayList<BodyLocation>();
     }
 
+    /**
+     * Check if a body location is present in the list.
+     * @params new_body_location BodyLocation
+     * @return boolean
+     */
     public boolean hasBodyLocation(BodyLocation new_body_location) {
         return this.body_locations.contains(new_body_location);
     }
+    /**
+     * Get the body location at a specified index of the list.
+     * @params index int
+     * @return BodyLocation
+     */
     public BodyLocation getBodyLocation(int index){
         return this.body_locations.get(index);
     }
-
+    /**
+     * Add a body location to the list.
+     * @params new_body_location BodyLocation
+     */
     public void addBodyLocation(BodyLocation new_body_location) {
         this.body_locations.add(new_body_location);
     }
+    /**
+     * Remove a body location from the list.
+     * @params new_body_location BodyLocation
+     */
     public void deleteBodyLocation(BodyLocation new_body_location) {
         this.body_locations.remove(new_body_location);
     }
+    /**
+     * Edit a body location at a specified index in the list.
+     * @params index int, new_body_location BodyLocation
+     */
     public void editBodyLocation(int index, BodyLocation new_body_location) {
         this.body_locations.set(index, new_body_location);
     }
