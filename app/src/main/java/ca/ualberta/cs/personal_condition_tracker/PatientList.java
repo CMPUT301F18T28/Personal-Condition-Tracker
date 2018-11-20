@@ -7,7 +7,11 @@ import java.util.ArrayList;
  * <p>
  * Note that a patient can exist in the system without having been assigned to a Care Provider.
  * </p>
- * @author      C. Neureuter
+ * @author  R. Voon; rcvoon@ualberta.ca
+ *          D. Buksa; draydon@ualberta.ca
+ *          W. Nichols; wnichols@ualberta.ca
+ *          D. Douziech; douziech@ualberta.ca
+ *          C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
