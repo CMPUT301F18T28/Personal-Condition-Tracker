@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(intent == null) {
-            Toast.makeText(this, "Incorrect login information", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
         }
     }
 

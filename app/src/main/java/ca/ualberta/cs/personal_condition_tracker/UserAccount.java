@@ -65,11 +65,11 @@ import java.util.Objects;
 
 public class UserAccount {
     private String accountType;
-    private String id;
     private String userID;
     private String email_address;
     private String phone_number;
     private String password;
+    private String id;
 
     /**
      * Constructor serving to initialize the following attributes to empty Strings: accountType, userID, email_address and password.
@@ -96,6 +96,7 @@ public class UserAccount {
         this.email_address = email_address;
         this.password = password;
     }
+
     /**
      * Provides the classification for the account, that is, the type of account: Patient or CareProvider
      * @return String
@@ -175,20 +176,6 @@ public class UserAccount {
     public void setPassword(String password) {
         this.password = password;
     }
-    /**
-     * Serves to verify the account holder by way of a username (userID) and a password.
-     * @param userID Username of the account holder
-     * @param password Password of the account holder
-     * @return boolean True if both the user ID and the password match those stored for the account, false otherwise.
-     */
-    public boolean authenticate(String userID, String password) {
-        if (this.userID.equals(userID) && this.password.equals(password)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
     /**
      * Provides the JEST identification attribute used to distinguish a particular account.
@@ -200,11 +187,25 @@ public class UserAccount {
     }
     /**
      * Sets the id attribute for an account.
-     * @param id String used to identify the particular account.
-     * @return Nothing
-     */
+     * @param id String used to identify the particular account.     */
     public void setId(String id) {
         this.id = id;
+    }
+
+      /**
+     * Serves to verify the account holder by way of a username (userID) and a password.
+     * @param userID Username of the account holder
+     * @param password Password of the account holder
+     * @return boolean True if both the user ID and the password match those stored for the account, false otherwise.
+     */
+  
+    public boolean authenticate(String userID, String password) {
+        if (this.userID.equals(userID) && this.password.equals(password)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**
