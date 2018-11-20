@@ -14,7 +14,6 @@ public class UserAccountListTest {
 
         /** Creates a User Account to add to the UserAccountList */
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
         testUserAccount.setUserID("Yang");
         testUserAccount.setEmail_address("Yang@gmail.com");
         testUserAccount.setPassword("Yang'sPassword");
@@ -51,7 +50,6 @@ public class UserAccountListTest {
 
         /** Creates a User Account to add to the UserAccountList */
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
         testUserAccount.setUserID("Yang");
         testUserAccount.setEmail_address("Yang@gmail.com");
         testUserAccount.setPassword("Yang'sPassword");
@@ -88,7 +86,6 @@ public class UserAccountListTest {
 
         /** Creates a User Account to add to the UserAccountList */
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setName("Yang");
         testUserAccount.setUserID("Yang");
         testUserAccount.setEmail_address("Yang@gmail.com");
         testUserAccount.setPassword("Yang'sPassword");

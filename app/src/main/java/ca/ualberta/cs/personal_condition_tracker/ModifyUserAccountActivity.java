@@ -117,7 +117,6 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newPatient);
             Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
-            ModifyUserAccountActivity.this.finish();
         }
         else {
             Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
@@ -144,71 +143,11 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
             Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
-            ModifyUserAccountActivity.this.finish();
         }
         else {
             Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-// This all belongs right below where all the files are "set", inside the onCreate
-
-//        Button confirm_button = (Button) findViewById(R.id.modifyUserAccountConfirmButton);
-//
-//        confirm_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                setResult(RESULT_OK);
-//                // Get data from EditText fields
-//                EditText userIDText = (EditText) findViewById(R.id.userIDText);
-//                String userID = userIDText.getText().toString();
-//                EditText emailAddressText = (EditText) findViewById(R.id.emailAddressText);
-//                String emailAddress = emailAddressText.getText().toString();
-//                EditText phoneNumberText = (EditText) findViewById(R.id.phoneNumberText);
-//                String phoneNumber = phoneNumberText.getText().toString();
-//                // Create a new user with inputted data
-//                Patient newUser = new Patient();
-//                newUser.setAccountType("Patient");
-//                newUser.setUserID(userID);
-//                newUser.setEmail_address(emailAddress);
-//                newUser.setPhone_number(phoneNumber);
-//
-//                // Check if the user has already signed up
-//                UserAccountListController.GetUserAccountsTask getUserAccountsTask =
-//                        new UserAccountListController.GetUserAccountsTask();
-//                String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
-//                getUserAccountsTask.execute(query);
-//                ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
-//                try {
-//                    stored_users = getUserAccountsTask.get();
-//                } catch (Exception e) {
-//                    Log.e("Error", "Failed to get the tweets out of the async object.");
-//                }
-//
-//                // Add the user to the database.
-//                if (stored_users.size() == 0) {
-//                    UserAccountListController.getUserAccountList().addUserAccount(newUser);
-//                    UserAccountListController.AddUserAccountsTask addUserAccountsTask
-//                            = new UserAccountListController.AddUserAccountsTask();
-//                    addUserAccountsTask.execute(newUser);
-//                    Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
-//                    ModifyUserAccountActivity.this.finish();
-//                }
-//                else {
-//                    Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//        Button cancel_button = (Button) findViewById(R.id.modifyUserAccountCancelButton);
-//        cancel_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                setResult(RESULT_CANCELED);
-//                ModifyUserAccountActivity.this.finish();
-//            }
-//        });
 
     @Override
     protected void onStart() {
