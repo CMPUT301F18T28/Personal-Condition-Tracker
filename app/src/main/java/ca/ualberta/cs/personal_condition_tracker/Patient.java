@@ -2,34 +2,75 @@
  document, track and review the progression of a personal health issue (a 'condition'), thus serving to facilitate
  enhanced clarity of communicating between patient and care provider, early detection and accurate prognosis with the
  aim of obtaining medical treatment as soon as possible.
-
  Document the facts - get the treatment you deserve!
-
  Copyright (C) 2018
-
  R. Voon; rcvoon@ualberta.ca
  D. Buksa; draydon@ualberta.ca
  W. Nichols; wnichols@ualberta.ca
  D. Douziech; douziech@ualberta.ca
  C. Neureuter; neureute@ualberta.ca
-
 */
 
 package ca.ualberta.cs.personal_condition_tracker;
 
+/**
+ * The Patient class represents those accounts held by patients.
+ * <p>
+ * One of two account types that inherit directly from the UserAccount class.
+ * </p>
+ * @author     R. Voon; rcvoon@ualberta.ca
+ *             D. Buksa; draydon@ualberta.ca
+ *             W. Nichols; wnichols@ualberta.ca
+ *             D. Douziech; douziech@ualberta.ca
+ *             C. Neureuter; neureute@ualberta.ca
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
+
 public class Patient extends UserAccount{
+
     private ConditionList conditionList = new ConditionList();
+
+    /**
+     * Constructor
+     * @see UserAccount
+     */
+
     Patient() {
         super();
     }
+
+    /**
+     * Constructor with specified attributes: accountType, userID, emailAddress and password.
+     * @param accountType String representing the type of user account, Care Provider or Patient.
+     * @param userID String representing the name of the account holder; a username.
+     * @param emailAddress Email address of the account holder.
+     * @param password   Password for the account
+     * @see UserAccount
+     */
 
     public Patient(String accountType, String userID, String emailAddress, String password) {
         super(accountType,userID,emailAddress,password);
     }
 
+    /**
+     * Provides the list of patient conditions.
+     * @return ConditionList An ArrayList of Condition objects
+     * @see ConditionList
+     * @see Condition
+     */
+
     public ConditionList getConditionList() {
         return conditionList;
     }
+
+    /**
+     * Registers a list of conditions for a particular patient.
+     * @param conditionList An ArrayList of Condition Objects; that is, a list of conditions specific to a patient.
+     * @return Nothing
+     * @see ConditionList
+     * @see Condition
+     */
 
     public void setConditionList(ConditionList conditionList) {
         this.conditionList = conditionList;
