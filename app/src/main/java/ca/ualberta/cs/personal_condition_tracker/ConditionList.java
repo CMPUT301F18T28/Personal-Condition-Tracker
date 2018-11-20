@@ -46,8 +46,7 @@ public class ConditionList{
     }
 
     /**
-     *Simply appends a Condition object to the existing  list of conditions.
-     *
+     *Simply appends a Condition object to the existing list of conditions.
      * <P>
      * @param condition A Condition object to be added to the list.
      * @return Nothing

@@ -5,6 +5,15 @@ import java.util.Date;
 import java.util.Collections;
 import java.util.Comparator;
 
+/**
+ *
+ *
+ * @author      D. Buska
+ * @author      D. Douziech
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
+
 
 
 public class Condition implements Comparator<Condition>, Comparable<Condition> {
@@ -16,16 +25,6 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private ArrayList<String> commentList;
     private static final Integer MAX_CHARACTERS = 100;
 
-
-
-    //Start of new code....
-
-
-    // I needed to explicitly state the default constructor for use elsewhere, and I thought that
-    // we should have a constructor that just takes in title, date and description.  I also wanted it
-    // for doing some testing in the conditionList class.
-
-   // -DD
 
     Condition() {}
 

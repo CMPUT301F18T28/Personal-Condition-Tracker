@@ -2,6 +2,19 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import java.util.Objects;
 
+
+/**
+ * UserAccount is the base class for the entire model hierarchy and defines the general attributes and
+ * functionality for an account.
+ * <p>
+ * Both Patient and CareProvider classes extend from UserAccount.
+ *</p>
+ * @author      W. Nichols
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ *
+ */
+
 public class UserAccount {
     private String accountType;
     private String id;
@@ -10,12 +23,26 @@ public class UserAccount {
     private String phone_number;
     private String password;
 
+    /**
+     * Constructor serving to initialize the following attributes to empty Strings: accountType, userID, email_address and password.
+     * @return  Nothing
+     */
+
     UserAccount() {
         this.accountType = "";
         this.userID = "";
         this.email_address = "";
         this.password = "password";
     }
+
+    /**
+     * Constructor serving to set the following attributes: accountType, userID, email_address and password.
+     * @param accountType String representing the type of user account, Care Provider or Patient.
+     * @param userID String representing the name of the account holder; a username.
+     * @param email_address Email address of the account holder.
+     * @param password   Password for the account
+     * @return Nothing
+     */
 
     UserAccount(String accountType, String userID, String email_address, String password) {
         this.accountType = accountType;
@@ -24,53 +51,132 @@ public class UserAccount {
         this.password = password;
     }
 
+    /**
+     * Provides the identification attribute used to distinguish a particular account.
+     * @return String
+     */
+
     public String getId() {
         return id;
     }
+
+    /**
+     * Sets the id attribute for an account.
+     * @param id String used to identify the particular account.
+     * @return Nothing
+     */
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getAccountType() {
-        return accountType;
+    /**
+     * Provides the classification for the account, that is, the type of account: Patient or CareProvider
+     * @return String
+     * @see Patient
+     * @see CareProvider
+     */
+
+    public String getAccountType(){ return accountType; }
+
+    /**
+     * Serves to set the type of user account; valid entries are restricted to one of 'Patient
+     * or 'Care Provider'.
+     * @param accountType 'Patient' or 'Care Provider'; all other entries will result in an exception.
+     * @return Nothing
+     * @throws invalidAccountTypeException
+     * @see Patient
+     * @see CareProvider
+     */
+
+    public void setAccountType(String accountType) throws invalidAccountTypeException {
+        if (accountType.equals("Patient") || accountType.equals("Care Provider")) {
+            this.accountType = accountType;
+        } else{
+            throw new invalidAccountTypeException();
+        }
     }
 
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
+    /**
+     * Provides the ID of the user (userID); a username.
+     * @return String
+     */
 
     public String getUserID() {
         return userID;
     }
 
+    /**
+     * Set the username (userID) of the account holder.
+     * @return Nothing
+     */
+
     public void setUserID(String userID) {
         this.userID = userID;
     }
+
+    /**
+     * Provides the phone number of the account holder.
+     * @return String
+     */
 
     public String getPhone_number() {
         return phone_number;
     }
 
+    /**
+     * Sets the phone number of the account holder.
+     * @return Nothing
+     */
+
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
+
+    /**
+     * Provides the email address of the account holder.
+     * @return String
+     */
 
     public String getEmail_address() {
         return email_address;
     }
 
+
+    /**
+     * Sets the email address of the account holder.
+     * @return Nothing
+     */
+
     public void setEmail_address(String email_address) {
         this.email_address = email_address;
     }
+
+    /**
+     * Provides the password of the account holder.
+     * @return String
+     */
 
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Sets the password of the account holder.
+     * @return Nothing
+     */
+
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+    /**
+     * Serves to verify the account holder by way of a username (userID) and a password.
+     * @param userID Username of the account holder
+     * @param password Password of the account holder
+     * @return boolean True if both the user ID and the password match those stored for the account, false otherwise.
+     */
 
     public boolean authenticate(String userID, String password) {
         if (this.userID.equals(userID) && this.password.equals(password)) {
@@ -80,6 +186,12 @@ public class UserAccount {
             return false;
         }
     }
+
+    /**
+     * Exhaustive equivalence test to confirm that the supplied username is the same as the one on file.
+     * @param o Username of the account holder
+     * @return boolean True if the supplied username is equivalent, false otherwise.
+     */
 
     @Override
     public boolean equals(Object o) { // Checks userID only
@@ -94,9 +206,13 @@ public class UserAccount {
         }
     }
 
+    /**
+     * Maps the username of the account holder to an integer.
+     * @return int Hash value corresponding to the username of the account holder.
+     */
+
     @Override
     public int hashCode() {
-
         return Objects.hash(userID);
     }
 }

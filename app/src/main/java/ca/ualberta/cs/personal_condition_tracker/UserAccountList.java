@@ -1,3 +1,4 @@
+package ca.ualberta.cs.personal_condition_tracker;
 
 import java.util.ArrayList;
 
@@ -12,11 +13,6 @@ import java.util.ArrayList;
  * @since       1.0
 
 */
-
-package ca.ualberta.cs.personal_condition_tracker;
-
-import ca.ualberta.cs.personal_condition_tracker.Patient;
-import ca.ualberta.cs.personal_condition_tracker.UserAccount;
 
 
 public class UserAccountList<T extends UserAccount> {

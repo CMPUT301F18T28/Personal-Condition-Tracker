@@ -17,6 +17,14 @@
 
 package ca.ualberta.cs.personal_condition_tracker;
 
+/**
+ *
+ *
+ * @author      D. Douziech
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
+
 public class Patient extends UserAccount{
     private ConditionList conditionList = new ConditionList();
     Patient() {
