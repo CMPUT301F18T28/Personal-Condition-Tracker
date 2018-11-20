@@ -27,13 +27,13 @@ import java.util.Date;
  * getting and modification to the former and monitoring via the latter. In the case of a Care Provider, a conditionOfInterest attribute
  * provides for user selection from the respective list.
  *
- * @author       R. Voon; rcvoon@ualberta.ca
- *               D. Buksa; draydon@ualberta.ca
- *               W. Nichols; wnichols@ualberta.ca
- *               D. Douziech; douziech@ualberta.ca
- *               C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author  R. Voon; rcvoon@ualberta.ca
+ * @author  D. Buksa; draydon@ualberta.ca
+ * @author  W. Nichols; wnichols@ualberta.ca
+ * @author  D. Douziech; douziech@ualberta.ca
+ * @author  C. Neureuter; neureute@ualberta.ca
+ * @version 1.1, 11-18-18
+ * @since   1.0
  */
 
 
@@ -50,7 +50,6 @@ public class ConditionList{
 
     /**
      *Simply appends a Condition object to the existing list of conditions.
-     * <P>
      * @param condition A Condition object to be added to the list.
      * @return Nothing
      * @see Condition
@@ -64,8 +63,6 @@ public class ConditionList{
 
     /**
      * Removes a specified condition from the list thereof.
-     *
-     * <P>
      * @param condition A Condition object to be removed from the list.
      * @return boolean True if the condition has been removed or false otherwise.  An error message
      * logged if the specified condition does not exist.
@@ -87,8 +84,6 @@ public class ConditionList{
 
     /**
      * Provides the ability to edit three of the attributes of a Condition object: title, date and description .
-     *
-     * <P>
      * @param condition Condition object to be modified
      * @param title title given to a condition
      * @param date Date object specifying the date a condition was logged
@@ -118,7 +113,6 @@ public class ConditionList{
 
     /**
      * Provides the ability to edit all of the attributes of a Condition object except for the constant that is used to restrict the input length of String parameters.
-     * <P>
      * @param condition Condition object to be modified
      * @param title title given to a condition
      * @param date Date object specifying the date a condition was logged
@@ -153,7 +147,6 @@ public class ConditionList{
 
     /**
      * Verifies the existence of a supplied condition for a particular patient.
-     * <P>
      * @param condition Condition object to requiring verification
      * @return Condition The same object supplied for testing otherwise an error message is simply logged.
      */
@@ -181,7 +174,6 @@ public class ConditionList{
 
     /**
      * Provides the number of conditions currently recorded for a specific patient.
-     * <P>
      * @return int size of the list of conditions.
      */
 
@@ -193,7 +185,6 @@ public class ConditionList{
 
     /**
      * Sorts the list of conditions chronologically by date.
-     * <P>
      * @return Nothing
      * @see java.util.Date
      */
@@ -207,7 +198,6 @@ public class ConditionList{
 
     /**
      * Prints, in the form of a log entry, the list of conditions chronologically, by date.
-     * <P>
      * @return Nothing
      */
 
@@ -220,7 +210,6 @@ public class ConditionList{
 
     /**
      * Sorts the list of conditions chronologically by date.
-     * <P>
      * @return Nothing
      */
 
@@ -236,7 +225,6 @@ public class ConditionList{
 
     /**
      * Obtains the condition from the list of conditions according to a supplied index.
-     * <P>
      * @return Condition
      * @throws IndexOutOfBoundsException when the index < 0 || index >= condition_list.size()
      * @see IndexOutOfBoundsException
@@ -249,7 +237,6 @@ public class ConditionList{
 
     /**
      * Provides the list of conditions, that is, the condition_list attribute.
-     * <P>
      * @return ArrayList<Condition>
      */
 
@@ -260,7 +247,6 @@ public class ConditionList{
 
     /**
      * Appends a Listener object to the list thereof.
-     * <P>
      * @param listener Listener object
      * @return Nothing
      * @see Listener
@@ -273,7 +259,6 @@ public class ConditionList{
 
     /**
      * Removes a given Listener object from the list thereof.
-     * <P>
      * @param listener Listener object
      * @return Nothing
      * @see Listener
@@ -287,7 +272,6 @@ public class ConditionList{
     /**
      * Obtains the list of Listeners, that is, the listenerList attribute. If called for the first time
      * this method serves to initialize the list.
-     * <P>
      * @return ArrayList<Listener>
      */
 
@@ -300,7 +284,6 @@ public class ConditionList{
 
     /**
      * Serves to update all Listener objects contained in the list thereof.
-     * <P>
      * @return Nothing
      * @see Listener
      */
@@ -313,7 +296,6 @@ public class ConditionList{
 
     /**
      * Provides the conditionOfInterest attribute; a particular patient condition that has been selected.
-     * <P>
      * @return Condition
      * @see Condition
      */
@@ -325,7 +307,6 @@ public class ConditionList{
 
     /**
      * Registers a particular patient condition as selected by the user.
-     * <P>
      * @param conditionOfInterest Condition object
      * @return Nothing
      */

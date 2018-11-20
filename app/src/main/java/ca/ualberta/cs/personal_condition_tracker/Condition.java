@@ -6,10 +6,16 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
+ * The Condition class is used to model/record the ailments of a patient.
+ * <p>
  *
+ * </p>
  *
- * @author      D. Buska
- * @author      D. Douziech
+ * @author      D. Buska; draydon@ualberta.ca
+ * @author      D. Douziech; douziech@ualberta.ca
+ * @author      R. Voon; rcvoon@ualberta.ca
+ * @author      W. Nichols; wnichols@ualberta.ca
+ * @author      C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
@@ -44,14 +50,9 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     }
 
 
-    //End of new code
-
-
-
-
-    Condition(String title, String description) {
-
-    }
+//    Condition(String title, String description) {
+//
+//    }
 
 
     Condition(String title, Date date, String description, RecordList recordList, ArrayList<String> commentList) {

@@ -3,12 +3,12 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * Record stores all of the information associated with a conditon added by the user.
  * @author     R. Voon; rcvoon@ualberta.ca
- *             D. Buksa; draydon@ualberta.ca
- *             W. Nichols; wnichols@ualberta.ca
- *             D. Douziech; douziech@ualberta.ca
- *             C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author     D. Buksa; draydon@ualberta.ca
+ * @author     W. Nichols; wnichols@ualberta.ca
+ * @author     D. Douziech; douziech@ualberta.ca
+ * @author     C. Neureuter; neureute@ualberta.ca
+ * @version    1.1, 11-18-18
+ * @since      1.0
  */
 
 import com.google.android.gms.maps.model.LatLng;
