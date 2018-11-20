@@ -63,8 +63,10 @@ import io.searchbox.core.SearchResult;
  * UserAccountList serves to contain an arrayList of objects, inheriting from UserAccount, that represents
  * the entire set of users for the application.
  * <P>
- * Note that there are two subsets of users, Patients and Care Providers.
- * Care Providers have a list of patients, so this class provides a means of setting a patient account to gain access thereto.
+ * Notes:
+ * (1) There are two subsets of users, Patients and Care Providers. Care Providers have a list of
+ * patients, so this class provides a means of setting a patient account to gain access thereto.
+ * (2) This class employs a Lazy Singleton design pattern for the UserAccountList.
  *</P>
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
