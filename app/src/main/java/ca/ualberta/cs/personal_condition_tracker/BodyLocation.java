@@ -46,6 +46,17 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker;
 
+/**
+ * BodyLocation is responsible for dealing with all the functions that the user needs to mark their issue on a virtual person.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ *            D. Buksa; draydon@ualberta.ca
+ *            W. Nichols; wnichols@ualberta.ca
+ *            D. Douziech; douziech@ualberta.ca
+ *            C. Neureuter; neureute@ualberta.ca
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
+
 public class BodyLocation {
     private String body_part;
     private double photo_x_coordinate;
