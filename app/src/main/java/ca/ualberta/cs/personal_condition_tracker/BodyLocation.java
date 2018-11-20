@@ -47,7 +47,8 @@ POSSIBILITY OF SUCH DAMAGE.
 package ca.ualberta.cs.personal_condition_tracker;
 
 /**
- * BodyLocation is responsible for dealing with all the functions that the user needs to mark their issue on a virtual person.
+ * BodyLocation class provides functionality for the user to indicate the location of a particular condition within both a map of
+ * human body and a photograph.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @author    W. Nichols; wnichols@ualberta.ca

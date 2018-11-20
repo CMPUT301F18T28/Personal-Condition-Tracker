@@ -1,5 +1,7 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
+import android.support.annotation.StringDef;
+
 /**
  * The Photograph class is used to store the thumbnail for the image that is taken by the user.
  * @author   R. Voon; rcvoon@ualberta.ca
@@ -12,6 +14,7 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 //import java.util.Base64;
+
 
 public class Photograph {
     private String filename;

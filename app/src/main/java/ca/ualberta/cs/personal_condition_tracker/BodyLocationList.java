@@ -47,12 +47,15 @@ POSSIBILITY OF SUCH DAMAGE.
 package ca.ualberta.cs.personal_condition_tracker;
 
 /**
- * BodyLocationList stores all of the objects in the bodyLocation class.
+ * BodyLocationList stores an array of objects from the BodyLocation class.
+ * <p>
+ * @see ca.ualberta.cs.personal_condition_tracker.BodyLocation
+ * </p>
  * @author      R. Voon; rcvoon@ualberta.ca
- *              D. Buksa; draydon@ualberta.ca
- *              W. Nichols; wnichols@ualberta.ca
- *              D. Douziech; douziech@ualberta.ca
- *              C. Neureuter; neureute@ualberta.ca
+ * @author      D. Buksa; draydon@ualberta.ca
+ * @author      W. Nichols; wnichols@ualberta.ca
+ * @author      D. Douziech; douziech@ualberta.ca
+ * @author      C. Neureuter; neureute@ualberta.ca
  * @version     1.1, 11-18-18
  * @since       1.0
  */
@@ -60,25 +63,70 @@ package ca.ualberta.cs.personal_condition_tracker;
 import java.util.ArrayList;
 
 public class BodyLocationList {
+
     private ArrayList<BodyLocation> body_locations;
 
     BodyLocationList() {
         this.body_locations = new ArrayList<BodyLocation>();
     }
 
+    /**
+     * Serves to confirm that a particular BodyLocation object is extant within the list thereof
+     * @param new_body_location BodyLocation object to check
+     * @return Boolean True if it exists within the list, false otherwise
+     * @see BodyLocation
+     */
+
     public boolean hasBodyLocation(BodyLocation new_body_location) {
         return this.body_locations.contains(new_body_location);
     }
+
+    /**
+     * Retrieves a particular BodyLocation objects based on its index
+     * @param index Index location of the BodyLocation object within the body_locations ArrayList
+     * @return BodyLocation An object representing the location of a condition on a patient's body
+     * @see Patient
+     * @see Condition
+     */
+
     public BodyLocation getBodyLocation(int index){
         return this.body_locations.get(index);
     }
 
+    /**
+     * Appends a BodyLocation object to the list thereof.
+     * @param new_body_location An object representing the location of a condition on a patient's body
+     * @return Nothing
+     * @see Patient
+     * @see Condition
+     */
+
     public void addBodyLocation(BodyLocation new_body_location) {
         this.body_locations.add(new_body_location);
     }
+
+    /**
+     * Removes a BodyLocation object from the list thereof.
+     * @param new_body_location An object representing the location of a condition on a patient's body
+     * @return Nothing
+     * @see Patient
+     * @see Condition
+     */
+
+
     public void deleteBodyLocation(BodyLocation new_body_location) {
         this.body_locations.remove(new_body_location);
     }
+
+    /**
+     * Serves to replace an existing BodyLocation object with another
+     * @param index Index location of the BodyLocation object to be replaced
+     * @param new_body_location An object representing the location of a condition on a patient's body
+     * @return Nothing
+     * @see Patient
+     * @see Condition
+     */
+
     public void editBodyLocation(int index, BodyLocation new_body_location) {
         this.body_locations.set(index, new_body_location);
     }
