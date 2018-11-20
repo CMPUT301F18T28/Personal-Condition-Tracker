@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 
 /**
- * UserAcountList serves to contain an arrayList of objects, inheriting from UserAccount, that represents
- * the entire set of users for the application.  Note that there are two subsets of users, Patients and Care Providers.
+ * UserAccountList serves to contain an arrayList of objects, inheriting from UserAccount, that represents
+ * the entire set of users for the application.
+ * <P>
+ * Note that there are two subsets of users, Patients and Care Providers.
  * Care Providers have a list of patients, so this class provides a means of setting a patient account to gain access thereto.
- *
+ *</P>
  * @author      W. Nichols
  * @version     1.1, 11-18-18
  * @since       1.0
-
-*/
+ */
 
 
 public class UserAccountList<T extends UserAccount> {
@@ -23,7 +24,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Registers the arrayList of UserAccount objects.
-     * <P>
      * @param user_accounts an arrayList of objects inheriting from UserAccount
      * @see ca.ualberta.cs.personal_condition_tracker.UserAccount
      */
@@ -34,7 +34,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Sets the arrayList of UserAccount objects.
-     * <P>
      * @return Nothing
      */
 
@@ -44,7 +43,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Appends a user account to the existing arrayList
-     * <P>
      * @param account_to_add element to be appended to the list of user accounts
      * @return Nothing
      */
@@ -55,7 +53,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Eliminates a provided user account object.
-     * <P>
      * @param account_to_delete specifies the account to be removed from the list of accounts.
      * @return Nothing
      */
@@ -66,7 +63,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      *
-     * <P>
      *@return Nothing
      */
 
@@ -79,7 +75,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Provides the number of users by returning the length of the user_account ArrayList.
-     * <P>
      * @return int Returns the number of objects in the list.
      */
 
@@ -90,7 +85,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Sets the current account in question.
-     * <P>
      * @return Nothing
      */
 
@@ -99,7 +93,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Supplies the activeAccount.
-     * <P>
      * @return UserAccount Returns the activeAccount.
      */
 
@@ -108,7 +101,6 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Sets the current account of interest.
-     * <P>
      * @return Nothing
      */
 
@@ -117,9 +109,8 @@ public class UserAccountList<T extends UserAccount> {
 
     /**
      * Returns the patient account of interest.
-     * <P>
      * @return Patient Returns the patient account of interest.
      */
 
-    public Patient getAccountofInterest(){return this.accountOfInterest;}
-}
+    public Patient getAccountOfInterest(){return this.accountOfInterest;}
+    }
