@@ -1,4 +1,31 @@
+/* Personal Condition Tracker : A simple and attractive Android application that allows an individual to
+ document, track and review the progression of a personal health issue (a 'condition'), thus serving to facilitate
+ enhanced clarity of communicating between patient and care provider, early detection and accurate prognosis with the
+ aim of obtaining medical treatment as soon as possible.
+ Document the facts - get the treatment you deserve!
+ Copyright (C) 2018
+ R. Voon; rcvoon@ualberta.ca
+ D. Buksa; draydon@ualberta.ca
+ W. Nichols; wnichols@ualberta.ca
+ D. Douziech; douziech@ualberta.ca
+ C. Neureuter; neureute@ualberta.ca
+*/
+
 package ca.ualberta.cs.personal_condition_tracker;
+
+/**
+ * MainActivity is responsible for allowing a user to choose between logging into the app and signing up.
+ * This activity performs verification to ensure that the user who is logging in exists in the database,
+ * and that their inputted user ID and password are verifiable.
+ *
+ * @author       R. Voon; rcvoon@ualberta.ca
+ *               D. Buksa; draydon@ualberta.ca
+ *               W. Nichols; wnichols@ualberta.ca
+ *               D. Douziech; douziech@ualberta.ca
+ *               C. Neureuter; neureute@ualberta.ca
+ * @version     1.1, 11-18-18
+ * @since       1.0
+ */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userAccountListController.getUserAccountList();
-//        initializeTestAccounts();
     }
     @Override
     public void onResume(){
@@ -36,12 +62,7 @@ public class MainActivity extends AppCompatActivity {
      * @param v the view of the button pressed
      */
     public void signIn(View v){
-        Toast.makeText(this,"Signing in", Toast.LENGTH_SHORT).show();
-        /* if (authenticate()){
-                Check user type, send them to correct activity.
-                }
-                else{displayError()}
-         */
+
         //Get Sign in form data
         EditText userIdEntry = findViewById(R.id.userIDEntry);
         EditText passwordEntry = findViewById(R.id.passwordEntry);
@@ -49,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         String userId = userIdEntry.getText().toString();
         String password = passwordEntry.getText().toString();
         Intent intent = null;
-//        ArrayList<UserAccount> userAccountList = UserAccountListController.getUserAccountList().getUserAccounts();
+
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
                 new UserAccountListManager.GetUserAccountsTask();
         getUserAccountsTask.execute("");
@@ -60,13 +81,11 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
         userAccountListController.getUserAccountList().setUserAccounts(userAccountList);
-        Toast.makeText(this,Integer.toString(userAccountListController.getUserAccountList().getNumberOfUsers()), Toast.LENGTH_SHORT).show();
         //TODO Adjust for real ID/PW. maybe use size of UAL?
         for(UserAccount userAccount : userAccountList){
             System.out.println(userAccount.getId() + " " + userAccount.getPassword());
 
             if(userAccount.authenticate(userId, password)){
-                Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show();
 
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
@@ -84,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
         if(intent == null) {
             Toast.makeText(this, "Incorrect login information", Toast.LENGTH_SHORT).show();
         }
@@ -108,18 +126,4 @@ public class MainActivity extends AppCompatActivity {
         passwordEntry.getText().clear();
     }
 
-//    public void initializeTestAccounts(){
-//        CareProvider testProvider = new CareProvider("Care Provider", "testCP","","password");
-//        Patient testPatient = new Patient("Patient", "testP","","password");
-//        Condition testCondition = new Condition("ConditionTitle", new Date(), "ConditionDescription", new RecordList(), null);
-//        Record testRecord = new Record("recordTitle", new Date(), "recordDescription", null, null);
-//        testCondition.getRecordList().addRecord(testRecord);
-//        testPatient.getConditionList().addCondition(testCondition);
-//        testProvider.getPatientList().addPatient(testPatient.getUserID());
-//
-//        userAccountListController.getUserAccountList().addUserAccount(testProvider);
-//        userAccountListController.getUserAccountList().addUserAccount(testPatient);
-//        userAccountListController.getUserAccountList().setAccountOfInterest(testPatient);
-//        userAccountListController.getUserAccountList().setActiveCareProvider(testProvider);
-//    }
 }
