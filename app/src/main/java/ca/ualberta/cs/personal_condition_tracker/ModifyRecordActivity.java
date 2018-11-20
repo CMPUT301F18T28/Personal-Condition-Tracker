@@ -94,7 +94,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK);
         this.finish();
     }
-
+    // Cancel adding or editting a record.
     public void modifyRecordCancel(View v){
         Toast.makeText(this,"Cancelling record edit...", Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_CANCELED);

@@ -65,7 +65,7 @@ public class AddPatientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_patient);
     }
-
+    // Add a patient to a care provider's patient list.
     public void addPatientConfirm(View v){
         EditText patientIDText = findViewById(R.id.addPatientText);
         String newPatientID = patientIDText.getText().toString();
@@ -78,12 +78,12 @@ public class AddPatientActivity extends AppCompatActivity {
             Toast.makeText(this,"Unknown patient ID", Toast.LENGTH_SHORT).show();
         }
     }
-
+    // Cancel adding a patient
     public void addPatientCancel(View v){
         Toast.makeText(this,"Cancelling patient add", Toast.LENGTH_SHORT).show();
         this.finish();
     }
-
+    // Check if a patient exists in the server
     public boolean checkIfPatientExists(String patientID) {
         boolean doesExist = false;
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =

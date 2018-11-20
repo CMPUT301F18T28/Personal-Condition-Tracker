@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ModifyUserAccountActivity.class);
         startActivity(intent);
     }
-
+    // Clear the text from the username and password fields.
     public void clearText(){
         EditText userIdEntry = findViewById(R.id.userIDEntry);
         EditText passwordEntry = findViewById(R.id.passwordEntry);

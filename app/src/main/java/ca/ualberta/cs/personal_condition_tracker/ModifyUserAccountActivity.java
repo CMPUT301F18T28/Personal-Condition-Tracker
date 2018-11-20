@@ -141,7 +141,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED, resultIntent);
         this.finish();
     }
-
+    // Add a patient to the server.
     public void createPatient(Patient newPatient, String userID) {
         // Check if the user has already signed up
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
@@ -166,7 +166,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
-
+    // Add a care provider to the server.
     public void createCareProvider(CareProvider newCareProvider, String userID) {
         // Check if the user has already signed up
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =

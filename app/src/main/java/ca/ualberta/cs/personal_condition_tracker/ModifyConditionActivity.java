@@ -97,7 +97,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK);
         this.finish();
     }
-
+    // Cancel adding or editing a condition.
     public void modifyConditionCancel(View v){
         Toast.makeText(this,"Cancelling condition edit...", Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_CANCELED);
