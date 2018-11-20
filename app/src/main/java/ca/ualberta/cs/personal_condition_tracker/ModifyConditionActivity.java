@@ -16,15 +16,15 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * ModifyConditionActivity allows a patient to specify the fields for a condition when
  * a condition is to be added or editted.
- *
- * @author       R. Voon; rcvoon@ualberta.ca
- *               D. Buksa; draydon@ualberta.ca
- *               W. Nichols; wnichols@ualberta.ca
- *               D. Douziech; douziech@ualberta.ca
- *               C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
  */
+
 
 import android.app.Activity;
 import android.content.Intent;

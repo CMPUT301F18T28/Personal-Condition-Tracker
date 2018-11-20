@@ -39,13 +39,13 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * SelectGeoLocationActivity allows a user to select the location where a record occurred using the
  * Google Maps API.
- * @author       R. Voon; rcvoon@ualberta.ca
- *               D. Buksa; draydon@ualberta.ca
- *               W. Nichols; wnichols@ualberta.ca
- *               D. Douziech; douziech@ualberta.ca
- *               C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
  */
 
 import android.os.Bundle;

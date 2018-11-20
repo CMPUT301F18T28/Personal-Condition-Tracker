@@ -39,14 +39,10 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * ModifyUserAccountActivity allows a user to fill in contact information and account details when
  * they are signing up for the app, or when they wish to change the contact information of their account.
- *
- * @author       R. Voon; rcvoon@ualberta.ca
- *               D. Buksa; draydon@ualberta.ca
- *               W. Nichols; wnichols@ualberta.ca
- *               D. Douziech; douziech@ualberta.ca
- *               C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
  */
 
 import android.app.Activity;

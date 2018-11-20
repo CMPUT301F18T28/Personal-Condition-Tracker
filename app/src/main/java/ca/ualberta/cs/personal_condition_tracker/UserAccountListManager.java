@@ -62,13 +62,10 @@ import io.searchbox.core.SearchResult;
 
 /**
  * UserAccountListManager uses elasticsearch to grab user accounts from the server.
- * @author      W. Nichols * @author     R. Voon; rcvoon@ualberta.ca
- *             D. Buksa; draydon@ualberta.ca
- *             W. Nichols; wnichols@ualberta.ca
- *             D. Douziech; douziech@ualberta.ca
- *             C. Neureuter; neureute@ualberta.ca
- * @version     1.1, 11-18-18
- * @since       1.0
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
  */
 
 public class UserAccountListManager {
