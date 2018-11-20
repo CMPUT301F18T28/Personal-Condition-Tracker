@@ -7,14 +7,14 @@ import static org.junit.Assert.*;
 public class UserAccountTest {
 
     @Test
-    public void getName() {
+    public void getAccountType() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setAccountType("Yang");
-        assertEquals(testUserAccount.getAccountType(),"Yang");
+        testUserAccount.setAccountType("Care");
+        assertEquals(testUserAccount.getAccountType(),"Care");
     }
 
     @Test
-    public void setName() {
+    public void setAccountType() {
         UserAccount testUserAccount = new UserAccount();
         testUserAccount.setAccountType("Yang");
         assertEquals(testUserAccount.getAccountType(),"Yang");
@@ -61,6 +61,20 @@ public class UserAccountTest {
         UserAccount testUserAccount = new UserAccount();
         testUserAccount.setPassword("Yang'sPassword");
         assertEquals(testUserAccount.getPassword(),"Yang'sPassword");
+    }
+
+    @Test
+    public void getId() {
+        UserAccount testUserAccount = new UserAccount();
+        testUserAccount.setId("qe2fs");
+        assertEquals(testUserAccount.getId(),"qe2fs");
+    }
+
+    @Test
+    public void setId() {
+        UserAccount testUserAccount = new UserAccount();
+        testUserAccount.setId("qe2fs");
+        assertEquals(testUserAccount.getId(),"qe2fs");
     }
 
     @Test

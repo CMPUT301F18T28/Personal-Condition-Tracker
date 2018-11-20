@@ -47,7 +47,6 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import java.util.ArrayList;
 
-
 /**
  * UserAccountList serves to contain an arrayList of objects, inheriting from UserAccount, that represents
  * the entire set of users for the application.
@@ -65,11 +64,11 @@ import java.util.ArrayList;
  * @since      1.0
  */
 
-
 public class UserAccountList {
     private ArrayList<UserAccount> user_accounts = new ArrayList<>();
     private CareProvider activeCareProvider = null;
     private Patient accountOfInterest = null;
+
     /**
      * Registers the arrayList of UserAccount objects.
      * @param user_accounts an arrayList of objects inheriting from UserAccount
@@ -82,6 +81,7 @@ public class UserAccountList {
      * Sets the arrayList of UserAccount objects.
      * @return Nothing
      */
+
     public ArrayList<UserAccount> getUserAccounts() {
         return this.user_accounts;
     }
@@ -94,6 +94,7 @@ public class UserAccountList {
     public void addUserAccount(UserAccount account_to_add) {
         this.user_accounts.add(account_to_add);
     }
+
     /**
      * Eliminates a provided user account object.
      * @param account_to_delete specifies the account to be removed from the list of accounts.
@@ -106,6 +107,7 @@ public class UserAccountList {
      *
      *@return Nothing
      */
+
     public void changeUserAccount(UserAccount account_to_change) {
         if (this.user_accounts.contains(account_to_change)) {
             this.user_accounts.remove(account_to_change);

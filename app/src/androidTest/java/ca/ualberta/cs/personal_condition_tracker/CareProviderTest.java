@@ -11,9 +11,10 @@ public class CareProviderTest extends TestCase {
     @Test
     public void testHasPatient() {
         PatientList new_patient_list = new PatientList();
-        String new_patient = "testPatient";
-        new_patient_list.addPatient(new_patient);
-        assertTrue(new_patient_list.hasPatient(new_patient));
+        Patient new_patient = new Patient();
+        new_patient_list.addPatient(new_patient.getUserID());
+        assertTrue(new_patient_list.hasPatient(new_patient.getUserID()));
+
     }
 
     @Test
