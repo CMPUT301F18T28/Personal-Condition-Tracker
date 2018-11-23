@@ -51,6 +51,8 @@ import java.util.Date;
 import java.util.Collections;
 import java.util.Comparator;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * The Condition class is used to model/document the ailments of a patient.
  * <p>
@@ -77,7 +79,10 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private String description;
     private RecordList recordList = new RecordList();
     private ArrayList<String> commentList;
+    private String associatedUserID;
     private static final Integer MAX_CHARACTERS = 100;
+    @JestId
+    private String id;
 
     //Constructors
 
@@ -185,6 +190,22 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
         this.description = description;
     }
 
+    public String getAssociatedUserID() {
+        return associatedUserID;
+    }
+
+    public void setAssociatedUserID(String associatedUserID) {
+        this.associatedUserID = associatedUserID;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     /**
      * Provides the list of all recorded entries specific to a condition.
@@ -192,6 +213,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
      * @see Record
      * @see RecordList
      */
+
 
     public RecordList getRecordList() {
         return recordList;

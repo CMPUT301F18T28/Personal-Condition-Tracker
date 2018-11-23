@@ -169,7 +169,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
                 new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
         getUserAccountsTask.execute(query);
-        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+        ArrayList<? extends UserAccount> stored_users = new ArrayList<>();
         try {
             stored_users = getUserAccountsTask.get();
         } catch (Exception e) {
@@ -197,7 +197,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
                 new UserAccountListManager.GetUserAccountsTask();
         getUserAccountsTask.execute("");
         try {
-            UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
+            userAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
             Toast.makeText(this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");

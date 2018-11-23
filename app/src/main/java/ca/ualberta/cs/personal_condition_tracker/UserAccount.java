@@ -48,6 +48,8 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import java.util.Objects;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * UserAccount is the base class for the entire model hierarchy and defines the general attributes and
  * functionality for an account.
@@ -69,6 +71,7 @@ public class UserAccount {
     private String email_address;
     private String phone_number;
     private String password;
+    @JestId
     private String id;
 
     /**

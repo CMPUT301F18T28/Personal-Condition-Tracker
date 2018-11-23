@@ -63,6 +63,8 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.searchbox.annotations.JestId;
+
 public class Record {
     private String title;
     private Date date;
@@ -70,6 +72,9 @@ public class Record {
     private LatLng geo_location;
     private String body_location;
     private PhotographList photos;
+    private String associatedConditionID;
+    @JestId
+    private String id;
 
     //Constructors:
 
@@ -239,6 +244,24 @@ public class Record {
      * @see LatLng
      * @see Date
      */
+
+
+    public String getAssociatedConditionID() {
+        return associatedConditionID;
+    }
+
+    public void setAssociatedConditionID(String associatedConditionID) {
+        this.associatedConditionID = associatedConditionID;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 
     public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, String body_location) {
         this.setTitle(recordTitle);
