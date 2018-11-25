@@ -148,7 +148,7 @@ public class RecordListManager {
 
             Record record = records[0];
             String jestID = record.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("condition").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("record").build();
 
             try {
                 DocumentResult result = client.execute(delete);

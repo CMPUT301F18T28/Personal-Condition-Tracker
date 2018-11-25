@@ -26,11 +26,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ModifyRecordActivity extends AppCompatActivity {
@@ -79,12 +81,13 @@ public class ModifyRecordActivity extends AppCompatActivity {
         //TODO change these nulls
         if (intent.getIntExtra("recordIndex", -1) == -1){
             newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
+            newRecord.setAssociatedConditionID(conditionOfInterest.getId());
+            createRecord(newRecord);
             conditionOfInterest.getRecordList().addRecord(newRecord);
         }
         else{
             int recordIndex = intent.getIntExtra("recordIndex", 0);
             newRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
-
             newRecord.editRecord(recordTitle, recordDate, recordDescription, null, null);
         }
         setResult(Activity.RESULT_OK);
@@ -97,6 +100,31 @@ public class ModifyRecordActivity extends AppCompatActivity {
         this.finish();
     }
 
+    // Add a care provider to the server.
+    public void createRecord(Record newRecord) {
+        // Check if the user has already signed up
+        RecordListManager.GetRecordsTask getRecordsTask =
+                new RecordListManager.GetRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"id\" : \""+ newRecord.getId() +"\" } } }";
+        getRecordsTask.execute(query);
+        ArrayList<Record> records = new ArrayList<>();
+        try {
+            records = getRecordsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
 
+        // Add the user to the database.
+        if (records.size() == 0) {
+//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
+            RecordListManager.AddRecordsTask addRecordsTask
+                    = new RecordListManager.AddRecordsTask();
+            addRecordsTask.execute(newRecord);
+            Toast.makeText(ModifyRecordActivity.this,"Added record successfully!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(ModifyRecordActivity.this, "This record already exists!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
