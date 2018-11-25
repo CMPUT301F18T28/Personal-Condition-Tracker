@@ -82,7 +82,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private String associatedUserID;
     private static final Integer MAX_CHARACTERS = 100;
     @JestId
-    private String id;
+    private String id = null;
 
     //Constructors
 

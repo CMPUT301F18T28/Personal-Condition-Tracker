@@ -82,21 +82,20 @@ public class ModifyConditionActivity extends AppCompatActivity {
         String conditionTitle = conditionTitleView.getText().toString();
         Date conditionDate = new Date();
         String conditionDescription = conditionDescriptionView.getText().toString();
-
-        Condition newCondition;
-
+        Condition oldCondition;
+        Condition newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
+        newCondition.setAssociatedUserID(accountOfInterest.getUserID());
 
         if (intent.getIntExtra("index", -1) == -1){
-            newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
-            newCondition.setAssociatedUserID(accountOfInterest.getUserID());
             createCondition(newCondition);
             accountOfInterest.getConditionList().addCondition(newCondition);
         }
         else{
             int index = intent.getIntExtra("index", 0);
-            newCondition = accountOfInterest.getConditionList().getByIndex(index);
-            accountOfInterest.getConditionList().editCondition(newCondition, conditionTitle,
-                    conditionDate, conditionTitle);
+            oldCondition = accountOfInterest.getConditionList().getByIndex(index);
+            editCondition(oldCondition, newCondition);
+            accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
+                    conditionDate, conditionDescription);
         }
         setResult(Activity.RESULT_OK);
         this.finish();
@@ -133,6 +132,16 @@ public class ModifyConditionActivity extends AppCompatActivity {
         else {
             Toast.makeText(ModifyConditionActivity.this, "This condition already exists!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void editCondition(Condition oldCondition, Condition newCondition) {
+        newCondition.setId(oldCondition.getId());
+        ConditionListManager.DeleteConditionsTask deleteConditionsTask =
+                new ConditionListManager.DeleteConditionsTask();
+        deleteConditionsTask.execute(oldCondition);
+        ConditionListManager.AddConditionsTask addConditionsTask
+                = new ConditionListManager.AddConditionsTask();
+        addConditionsTask.execute(newCondition);
     }
 
 }

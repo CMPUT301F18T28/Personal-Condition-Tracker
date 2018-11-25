@@ -76,19 +76,19 @@ public class ModifyRecordActivity extends AppCompatActivity {
         Date recordDate = new Date();
         String recordDescription = recordDescriptionView.getText().toString();
 
-        Record newRecord;
-
+        Record oldRecord;
+        Record  newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
+        newRecord.setAssociatedConditionID(conditionOfInterest.getId());
         //TODO change these nulls
         if (intent.getIntExtra("recordIndex", -1) == -1){
-            newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
-            newRecord.setAssociatedConditionID(conditionOfInterest.getId());
             createRecord(newRecord);
             conditionOfInterest.getRecordList().addRecord(newRecord);
         }
         else{
             int recordIndex = intent.getIntExtra("recordIndex", 0);
-            newRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
-            newRecord.editRecord(recordTitle, recordDate, recordDescription, null, null);
+            oldRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
+            editRecord(oldRecord, newRecord);
+            oldRecord.editRecord(recordTitle, recordDate, recordDescription, null, null);
         }
         setResult(Activity.RESULT_OK);
         this.finish();
@@ -125,6 +125,16 @@ public class ModifyRecordActivity extends AppCompatActivity {
         else {
             Toast.makeText(ModifyRecordActivity.this, "This record already exists!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void editRecord(Record oldRecord, Record newRecord) {
+        newRecord.setId(oldRecord.getId());
+        RecordListManager.DeleteRecordsTask deleteRecordsTask =
+                new RecordListManager.DeleteRecordsTask();
+        deleteRecordsTask.execute(oldRecord);
+        RecordListManager.AddRecordsTask addRecordsTask
+                = new RecordListManager.AddRecordsTask();
+        addRecordsTask.execute(newRecord);
     }
 
 }

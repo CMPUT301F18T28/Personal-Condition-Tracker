@@ -74,7 +74,7 @@ public class Record {
     private PhotographList photos;
     private String associatedConditionID;
     @JestId
-    private String id;
+    private String id = null;
 
     //Constructors:
 

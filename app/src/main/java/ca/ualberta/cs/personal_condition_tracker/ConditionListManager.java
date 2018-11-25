@@ -87,7 +87,9 @@ public class ConditionListManager {
                 try {
                     DocumentResult result = client.execute(index);
                     if (result.isSucceeded()) {
-                        condition.setId(result.getId());
+                        if (condition.getId() == null) {
+                            condition.setId(result.getId());
+                        }
                         Log.e("Error", "Success.");
                     }
                     else {

@@ -72,7 +72,7 @@ public class UserAccount {
     private String phone_number;
     private String password;
     @JestId
-    private String id;
+    private String id = null;
 
     /**
      * Constructor serving to initialize the following attributes to empty Strings: accountType, userID, email_address and password.

@@ -88,7 +88,9 @@ public class RecordListManager {
                 try {
                     DocumentResult result = client.execute(index);
                     if (result.isSucceeded()) {
-                        record.setId(result.getId());
+                        if (record.getId() == null) {
+                            record.setId(result.getId());
+                        }
                         Log.e("Error", "Success.");
                     }
                     else {
