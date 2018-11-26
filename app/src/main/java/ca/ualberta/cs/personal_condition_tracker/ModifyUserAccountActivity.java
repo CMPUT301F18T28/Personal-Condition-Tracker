@@ -57,6 +57,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,12 +81,12 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         String phoneNumber = intent.getStringExtra("phoneNumber");
 
         //Set the information for this activity
-        EditText accountTypeDropdown = findViewById(R.id.accountTypeDropdown);
+        Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
         EditText userIDText = findViewById(R.id.userIDText);
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
 
-        accountTypeDropdown.setText(accountType);
+        //accountTypeSpinner.setText(accountType);
         userIDText.setText(userID);
         emailAddressText.setText(emailAddress);
         phoneNumberText.setText(phoneNumber);
@@ -93,13 +94,13 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
     public void confirmAccountEdit(View v){
         //Get information from user inputs
         Toast.makeText(this,"Confirming account edit", Toast.LENGTH_SHORT).show();
-        EditText accountTypeDropdown = findViewById(R.id.accountTypeDropdown);
+        Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
         EditText userIDText = findViewById(R.id.userIDText);
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
 
         // Convert user inputs to strings
-        String accountType = accountTypeDropdown.getText().toString().toLowerCase().trim();
+        String accountType = accountTypeSpinner.getSelectedItem().toString().toLowerCase().trim();
         String userID = userIDText.getText().toString();
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();

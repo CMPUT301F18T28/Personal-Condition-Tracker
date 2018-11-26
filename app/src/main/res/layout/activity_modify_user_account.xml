@@ -36,24 +36,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/accountTypeDropdown"
-        android:layout_width="335dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountTypeHeaderText" />
-
     <TextView
         android:id="@+id/userIDHeaderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/userIDTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountTypeDropdown" />
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeSpinner" />
 
     <EditText
         android:id="@+id/userIDText"
@@ -108,5 +99,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumberText" />
+
+    <Spinner
+        android:id="@+id/accountTypeSpinner"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/account_types_array"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeHeaderText" />
 
 </android.support.constraint.ConstraintLayout>
