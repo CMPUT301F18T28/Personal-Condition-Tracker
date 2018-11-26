@@ -140,7 +140,7 @@ public class ViewRecordListActivity extends AppCompatActivity {
                 });
 
                 adb.show();
-                return false;
+                return true;
             }
         });
     }

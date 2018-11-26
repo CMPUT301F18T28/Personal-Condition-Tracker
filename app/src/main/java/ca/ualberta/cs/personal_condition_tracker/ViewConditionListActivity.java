@@ -143,7 +143,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
                 });
 
                 adb.show();
-                return false;
+                return true;
             }
         });
 

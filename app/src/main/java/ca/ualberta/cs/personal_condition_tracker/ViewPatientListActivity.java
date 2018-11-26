@@ -124,7 +124,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
                 });
 
                 adb.show();
-                return false;
+                return true;
             }
         });
 
