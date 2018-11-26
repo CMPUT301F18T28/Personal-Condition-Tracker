@@ -97,21 +97,19 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         EditText userIDText = findViewById(R.id.userIDText);
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
-        EditText passwordText = findViewById(R.id.passwordText);
+
         // Convert user inputs to strings
         String accountType = accountTypeDropdown.getText().toString().toLowerCase().trim();
         String userID = userIDText.getText().toString();
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
-        String password = passwordText.getText().toString();
 
         //TODO fix this. maybe w/ dropdown
         if(accountType.equals("patient")){
             // Make a new patient account.
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
-            Patient newUserAccount = new Patient(accountType, userID, emailAddress, password);
+            Patient newUserAccount = new Patient(accountType, userID, emailAddress);
             newUserAccount.setPhone_number(phoneNumber);
-            System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
             createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
@@ -119,9 +117,8 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         else if (accountType.equals("care provider")){
             // Make a new care provider account.
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
-            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, password);
+            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress);
             newUserAccount.setPhone_number(phoneNumber);
-            System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
             createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
@@ -137,6 +134,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED, resultIntent);
         this.finish();
     }
+
     // Add a patient to the server.
     public void createPatient(Patient newPatient, String userID) {
         // Check if the user has already signed up

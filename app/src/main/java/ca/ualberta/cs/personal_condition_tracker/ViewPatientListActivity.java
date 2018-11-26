@@ -138,7 +138,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
                 userAccountListController.getUserAccountList().setUserAccounts(getUserAccounts());
                 accountOfInterest =
                         userAccountListController.getUserAccountList().getPatientAccountByID(selectedPatientID);
-                Patient newPatient = new Patient(accountOfInterest.getAccountType(), accountOfInterest.getUserID(), accountOfInterest.getEmail_address(), accountOfInterest.getPassword());
+                Patient newPatient = new Patient(accountOfInterest.getAccountType(), accountOfInterest.getUserID(), accountOfInterest.getEmail_address());
                 userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
 
                 Intent intent = new Intent(ViewPatientListActivity.this,

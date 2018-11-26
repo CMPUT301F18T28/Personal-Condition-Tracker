@@ -86,6 +86,21 @@ public class UserAccount {
         this.email_address = "";
         this.password = "password";
     }
+
+    /**
+     * Constructor serving to set the following attributes: accountType, userID, and email_address.
+     * @param accountType String representing the type of user account, Care Provider or Patient.
+     * @param userID String representing the name of the account holder; a username.
+     * @param email_address Email address of the account holder.
+     * @return Nothing
+     */
+
+    UserAccount(String accountType, String userID, String email_address) {
+        this.accountType = accountType;
+        this.userID = userID;
+        this.email_address = email_address;
+    }
+
     /**
      * Constructor serving to set the following attributes: accountType, userID, email_address and password.
      * @param accountType String representing the type of user account, Care Provider or Patient.
@@ -200,12 +215,10 @@ public class UserAccount {
       /**
      * Serves to verify the account holder by way of a username (userID) and a password.
      * @param userID Username of the account holder
-     * @param password Password of the account holder
      * @return boolean True if both the user ID and the password match those stored for the account, false otherwise.
      */
-  
-    public boolean authenticate(String userID, String password) {
-        if (this.userID.equals(userID) && this.password.equals(password)) {
+    public boolean authenticate(String userID) {
+        if (this.userID.equals(userID)) {
             return true;
         }
         else {
