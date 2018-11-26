@@ -46,6 +46,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import io.searchbox.annotations.JestId;
@@ -71,6 +72,7 @@ public class UserAccount {
     private String email_address;
     private String phone_number;
     private String password;
+    private String associatedId;
     @JestId
     private String id = null;
 
@@ -209,6 +211,14 @@ public class UserAccount {
         else {
             return false;
         }
+    }
+
+    public void setAssociatedId(String userID) {
+        this.associatedId = userID;
+    }
+
+    public String getAssociatedId() {
+        return this.associatedId;
     }
 
     /**

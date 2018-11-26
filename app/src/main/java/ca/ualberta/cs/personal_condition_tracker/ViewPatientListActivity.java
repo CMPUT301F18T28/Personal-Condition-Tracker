@@ -78,8 +78,9 @@ public class ViewPatientListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_patient_list);
-
+//        loadPatients();
         //Setup adapter for condition list, and display the list.
+        activeCareProvider.getPatientList().setPatientIDs(loadPatients());
         ListView listView = findViewById(R.id.patientListView);
         Collection<String> patientIDCollection = activeCareProvider.getPatientList().getPatientIDs();
         final ArrayList<String> patientIDs = new ArrayList<> (patientIDCollection);
@@ -163,6 +164,26 @@ public class ViewPatientListActivity extends AppCompatActivity {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
         return stored_users;
+    }
+
+    public ArrayList<String> loadPatients() {
+        UserAccountListManager.GetUserAccountsTask getPatientsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedId\" : \""+ activeCareProvider.getUserID() +"\" } } }";
+        getPatientsTask.execute(query);
+        ArrayList<UserAccount> patients = new ArrayList<>();
+        ArrayList<String> patientIDs = new ArrayList<>();
+        try {
+            patients = getPatientsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        for (UserAccount patient : patients) {
+            if (patient != null) {
+                patientIDs.add(patient.getUserID());
+            }
+        }
+        return patientIDs;
     }
 
 }

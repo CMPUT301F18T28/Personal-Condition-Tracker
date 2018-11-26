@@ -77,15 +77,8 @@ public class ViewConditionListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list);
-        ConditionListManager.GetConditionsTask getConditionsTask =
-                new ConditionListManager.GetConditionsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
-        getConditionsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
+
+        loadConditions();
 
         final Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
 
@@ -196,11 +189,17 @@ public class ViewConditionListActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    protected void onStart() {
-//        // TODO Auto-generated method stub
-//        super.onStart();
-//    }
+    public void loadConditions() {
+        ConditionListManager.GetConditionsTask getConditionsTask =
+                new ConditionListManager.GetConditionsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
+        getConditionsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+    }
 
 }
 

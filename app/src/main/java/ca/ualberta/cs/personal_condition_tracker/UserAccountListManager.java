@@ -55,6 +55,7 @@ import com.searchly.jestdroid.JestDroidClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.searchbox.core.Delete;
 import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
@@ -134,6 +135,33 @@ public class UserAccountListManager {
                 Log.e("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
             return userAccounts;
+        }
+    }
+    /**
+     * Delete user accounts from the server.
+     */
+    public static class DeleteUserAccountsTask extends AsyncTask<UserAccount, Void, Void> {
+        @Override
+        protected Void doInBackground(UserAccount... userAccounts) {
+            verifySettings();
+
+            UserAccount userAccount = userAccounts[0];
+            String jestID = userAccount.getId();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("userAccount").build();
+
+            try {
+                DocumentResult result = client.execute(delete);
+                if (result.isSucceeded()) {
+                    Log.e("Error", "Success.");
+                }
+                else {
+                    Log.e("Error", "The search query failed to find any conditions that matched.");
+                }
+            }
+            catch (Exception e) {
+                Log.e("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+            return null;
         }
     }
 
