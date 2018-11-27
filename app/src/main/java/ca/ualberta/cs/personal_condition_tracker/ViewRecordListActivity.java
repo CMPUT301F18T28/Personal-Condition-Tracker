@@ -61,6 +61,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -78,6 +79,9 @@ public class ViewRecordListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_record_list);
 
         loadRecords();
+
+        TextView conditionTitle = findViewById(R.id.conditionTextView);
+        conditionTitle.setText(conditionOfInterest.getTitle());
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.recordListView);

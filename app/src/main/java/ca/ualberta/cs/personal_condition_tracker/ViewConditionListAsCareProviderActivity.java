@@ -56,6 +56,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -74,6 +75,8 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
         loadConditions();
 
         final Patient accountOfInterest = UserAccountListController.getUserAccountList().getAccountOfInterest();
+        TextView patientName = findViewById(R.id.patientNameTextView);
+        patientName.setText(accountOfInterest.getUserID());
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.conditionListView);
