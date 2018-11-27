@@ -32,14 +32,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -112,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void signUp(View v){
         Toast.makeText(this,"Signing up", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, ModifyUserAccountActivity.class);
+        Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
 

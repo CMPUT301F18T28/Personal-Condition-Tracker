@@ -48,29 +48,23 @@ package ca.ualberta.cs.personal_condition_tracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ModifyUserAccountActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private UserAccountListController userAccountListController = new UserAccountListController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modify_user_account);
+        setContentView(R.layout.activity_sign_up);
         resultIntent = new Intent();
 
         //Get information from the intent
@@ -91,7 +85,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         emailAddressText.setText(emailAddress);
         phoneNumberText.setText(phoneNumber);
     }
-    public void confirmAccountEdit(View v){
+    public void confirmSignUp(View v){
         //Get information from user inputs
         Toast.makeText(this,"Confirming account edit", Toast.LENGTH_SHORT).show();
         Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
@@ -130,7 +124,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         }
     }
 
-    public void cancelAccountEdit(View v){
+    public void cancelSignUp(View v){
         Toast.makeText(this,"Cancelling edit...", Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_CANCELED, resultIntent);
         this.finish();
@@ -155,10 +149,10 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             UserAccountListManager.AddUserAccountsTask addUserAccountsTask
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newPatient);
-            Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
     // Add a care provider to the server.
@@ -181,10 +175,10 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             UserAccountListManager.AddUserAccountsTask addUserAccountsTask
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
-            Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
 

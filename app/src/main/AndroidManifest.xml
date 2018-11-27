@@ -80,7 +80,7 @@
             android:label="@string/title_activity_add_comment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModifyUserAccountActivity"
+            android:name=".SignUpActivity"
             android:label="@string/title_activity_modify_user_account"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--

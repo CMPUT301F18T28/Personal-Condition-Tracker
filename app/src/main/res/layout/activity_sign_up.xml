@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyUserAccountActivity">
+    tools:context=".SignUpActivity">
 
 
     <TextView
@@ -75,26 +75,26 @@
         app:layout_constraintTop_toBottomOf="@+id/emailAddressHeaderText" />
 
     <Button
-        android:id="@+id/modifyUserAccountConfirmButton"
+        android:id="@+id/signUpConfirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="205dp"
-        android:onClick="confirmAccountEdit"
+        android:layout_marginBottom="8dp"
+        android:onClick="confirmSignUp"
         android:text="@string/confirmButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumberText" />
 
     <Button
-        android:id="@+id/modifyUserAccountCancelButton"
+        android:id="@+id/signUpCancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="34dp"
         android:layout_marginTop="205dp"
-        android:onClick="cancelAccountEdit"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="cancelSignUp"
         android:text="@string/cancelButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
