@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         clearText();
+        clearAccounts();
     }
+
 
     /**
      * This method handles the onClick of the "Sign In" button.
@@ -116,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
     public void clearText(){
         EditText userIdEntry = findViewById(R.id.userIDEntry);
         userIdEntry.getText().clear();
+    }
+
+    private void clearAccounts() {
+        userAccountListController.getUserAccountList().setAccountOfInterest(null);
+        userAccountListController.getUserAccountList().setActiveCareProvider(null);
     }
 
 }

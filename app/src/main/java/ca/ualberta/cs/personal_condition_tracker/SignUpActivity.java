@@ -65,26 +65,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        resultIntent = new Intent();
-
-        //Get information from the intent
-        Intent intent = getIntent();
-        String accountType = intent.getStringExtra("accountType");
-        String userID = intent.getStringExtra("userID");
-        String emailAddress = intent.getStringExtra("emailAddress");
-        String phoneNumber = intent.getStringExtra("phoneNumber");
-
-        //Set the information for this activity
-        Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
-        EditText userIDText = findViewById(R.id.userIDText);
-        EditText emailAddressText = findViewById(R.id.emailAddressText);
-        EditText phoneNumberText = findViewById(R.id.phoneNumberText);
-
-        //accountTypeSpinner.setText(accountType);
-        userIDText.setText(userID);
-        emailAddressText.setText(emailAddress);
-        phoneNumberText.setText(phoneNumber);
     }
+
     public void confirmSignUp(View v){
         //Get information from user inputs
         Toast.makeText(this,"Confirming account edit", Toast.LENGTH_SHORT).show();
@@ -155,6 +137,7 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
+
     // Add a care provider to the server.
     public void createCareProvider(CareProvider newCareProvider, String userID) {
         // Check if the user has already signed up
@@ -195,6 +178,5 @@ public class SignUpActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
-
     }
 }

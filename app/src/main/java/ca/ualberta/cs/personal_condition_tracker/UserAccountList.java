@@ -77,20 +77,20 @@ public class UserAccountList {
     public void setUserAccounts(ArrayList<UserAccount> user_accounts) {
         this.user_accounts = user_accounts;
     }
+
     /**
      * Sets the arrayList of UserAccount objects.
      * @return Nothing
      */
-
     public ArrayList<UserAccount> getUserAccounts() {
         return this.user_accounts;
     }
+
     /**
      * Appends a user account to the existing arrayList
      * @param account_to_add element to be appended to the list of user accounts
      * @return Nothing
      */
-
     public void addUserAccount(UserAccount account_to_add) {
         this.user_accounts.add(account_to_add);
     }
@@ -103,21 +103,23 @@ public class UserAccountList {
     public void deleteUserAccount(UserAccount account_to_delete) {
         this.user_accounts.remove(account_to_delete);
     }
+
     /**
      *
      *@return Nothing
      */
-
     public void changeUserAccount(UserAccount account_to_change) {
         if (this.user_accounts.contains(account_to_change)) {
             this.user_accounts.remove(account_to_change);
         }
         this.user_accounts.add(account_to_change);
     }
+
     /**
      * Provides the number of users by returning the length of the user_account ArrayList.
      * @return int Returns the number of objects in the list.
      */
+
     public int getNumberOfUsers() {
         return user_accounts.size();
     }
@@ -126,12 +128,14 @@ public class UserAccountList {
      * @return Nothing
      */
     public void setActiveCareProvider(CareProvider careProvider){this.activeCareProvider = careProvider;}
+
     /**
      * Supplies the activeAccount.
      * @return UserAccount Returns the activeAccount.
      */
 
     public CareProvider getActiveCareProvider(){return this.activeCareProvider;}
+
     /**
      * Sets the current account of interest.
      * @return Nothing
@@ -142,6 +146,7 @@ public class UserAccountList {
      * @return Patient Returns the patient account of interest.
      */
     public Patient getAccountOfInterest(){return this.accountOfInterest;}
+
     /**
      * Returns a patient account given an ID.
      * @return UserAccount Returns the patient account of interest.
@@ -153,5 +158,13 @@ public class UserAccountList {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns if the current user is a Care Provider
+     * @return True if active user is a Care Provider, false if the active user is a Patient
+     */
+    public boolean activeUserIsCareProvider(){
+        return (activeCareProvider != null);
     }
 }
