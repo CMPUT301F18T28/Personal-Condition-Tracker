@@ -55,11 +55,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -75,6 +77,11 @@ public class ViewRecordListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_record_list);
+
+        loadRecords();
+
+        TextView conditionTitle = findViewById(R.id.conditionTextView);
+        conditionTitle.setText(conditionOfInterest.getTitle());
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.recordListView);
@@ -107,8 +114,10 @@ public class ViewRecordListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         selectedRecord = records.get(finalPosition);
+                        RecordListManager.DeleteRecordsTask deleteRecordsTask =
+                                new RecordListManager.DeleteRecordsTask();
+                        deleteRecordsTask.execute(selectedRecord);
                         conditionOfInterest.getRecordList().deleteRecord(selectedRecord);
-
                     }
                 });
 
@@ -135,7 +144,7 @@ public class ViewRecordListActivity extends AppCompatActivity {
                 });
 
                 adb.show();
-                return false;
+                return true;
             }
         });
     }
@@ -166,4 +175,15 @@ public class ViewRecordListActivity extends AppCompatActivity {
         }
     }
 
+    public void loadRecords() {
+        RecordListManager.GetRecordsTask getRecordsTask =
+                new RecordListManager.GetRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ conditionOfInterest.getId() +"\" } } }";
+        getRecordsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(getRecordsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+    }
 }

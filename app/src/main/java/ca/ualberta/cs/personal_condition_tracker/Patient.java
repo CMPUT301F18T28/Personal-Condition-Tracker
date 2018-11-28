@@ -42,16 +42,15 @@ public class Patient extends UserAccount{
     }
 
     /**
-     * Constructor with specified attributes: accountType, userID, emailAddress and password.
+     * Constructor with specified attributes: accountType, userID, and emailAddress.
      * @param accountType String representing the type of user account, Care Provider or Patient.
      * @param userID String representing the name of the account holder; a username.
      * @param emailAddress Email address of the account holder.
-     * @param password   Password for the account
      * @see UserAccount
      */
 
-    public Patient(String accountType, String userID, String emailAddress, String password) {
-        super(accountType,userID,emailAddress,password);
+    public Patient(String accountType, String userID, String emailAddress) {
+        super(accountType,userID,emailAddress);
     }
 
     /**

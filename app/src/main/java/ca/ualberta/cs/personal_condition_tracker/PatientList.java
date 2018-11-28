@@ -101,6 +101,9 @@ public class PatientList {
 
     public ArrayList<String> getPatientIDs(){return patientIDs;}
 
+    public void setPatientIDs(ArrayList<String> patientIDs) {this.patientIDs = patientIDs;}
+
+
     /**
      * Serves to confirm or refute the existence of a particular patient within a care providers list of patients.
      * @param patientID Username of the patient in question

@@ -1,26 +1,22 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 import android.content.Intent;
-import android.widget.EditText;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import androidx.test.espresso.intent.Intents;
-import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
-import ca.ualberta.cs.personal_condition_tracker.MainActivity;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
@@ -34,7 +30,6 @@ public class MainActivityTest {
         MainActivityRule.launchActivity(new Intent());
 
         onView(withId(R.id.userIDEntry)).perform(typeText("random")).perform(closeSoftKeyboard());
-        onView(withId(R.id.passwordEntry)).perform(typeText("nottherightpassword")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.signInButton)).perform(click());
 
@@ -49,7 +44,6 @@ public class MainActivityTest {
         MainActivityRule.launchActivity(new Intent());
 
         onView(withId(R.id.userIDEntry)).perform(typeText("testPatient")).perform(closeSoftKeyboard());
-        onView(withId(R.id.passwordEntry)).perform(typeText("password")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.signInButton)).perform(click());
 
@@ -63,7 +57,6 @@ public class MainActivityTest {
         Intents.init();
         MainActivityRule.launchActivity(new Intent());
         onView(withId(R.id.userIDEntry)).perform(typeText("testCareProvider")).perform(closeSoftKeyboard());
-        onView(withId(R.id.passwordEntry)).perform(typeText("password")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.signInButton)).perform(click());
 
@@ -77,7 +70,7 @@ public class MainActivityTest {
         Intents.init();
         MainActivityRule.launchActivity(new Intent());
         onView(withId(R.id.signUpButton)).perform(click());
-        intended(hasComponent(ModifyUserAccountActivity.class.getName()));
+        intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
 
     }

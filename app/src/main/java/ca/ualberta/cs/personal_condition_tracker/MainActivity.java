@@ -16,7 +16,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 /**
  * MainActivity is responsible for allowing a user to choose between logging into the app and signing up.
  * This activity performs verification to ensure that the user who is logging in exists in the database,
- * and that their inputted user ID and password are verifiable.
+ * and that their inputted user ID is verifiable.
  * @author  R. Voon; rcvoon@ualberta.ca
  * @author  D. Buksa; draydon@ualberta.ca
  * @author  W. Nichols; wnichols@ualberta.ca
@@ -32,14 +32,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -50,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         userAccountListController.getUserAccountList();
     }
+
     @Override
     public void onResume(){
         super.onResume();
@@ -65,10 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Get Sign in form data
         EditText userIdEntry = findViewById(R.id.userIDEntry);
-        EditText passwordEntry = findViewById(R.id.passwordEntry);
 
         String userId = userIdEntry.getText().toString();
-        String password = passwordEntry.getText().toString();
         Intent intent = null;
 
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
@@ -83,20 +78,18 @@ public class MainActivity extends AppCompatActivity {
         userAccountListController.getUserAccountList().setUserAccounts(userAccountList);
         //TODO Adjust for real ID/PW. maybe use size of UAL?
         for(UserAccount userAccount : userAccountList){
-            System.out.println(userAccount.getId() + " " + userAccount.getPassword());
-
-            if(userAccount.authenticate(userId, password)){
+            if(userAccount.authenticate(userId)){
 
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
-                    Patient newPatient = new Patient(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address(), userAccount.getPassword());
+                    Patient newPatient = new Patient(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address());
                     userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
                     intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
                     startActivity(intent);
                 }
 
                 else if(userAccount.getAccountType().toLowerCase().trim().equals("care provider")){
-                    CareProvider newCareProvider = new CareProvider(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address(), userAccount.getPassword());
+                    CareProvider newCareProvider = new CareProvider(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address());
                     userAccountListController.getUserAccountList().setActiveCareProvider(newCareProvider);
                     intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
                     startActivity(intent);
@@ -104,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         if(intent == null) {
-            Toast.makeText(this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Incorrect Username", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -115,15 +108,14 @@ public class MainActivity extends AppCompatActivity {
      */
     public void signUp(View v){
         Toast.makeText(this,"Signing up", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, ModifyUserAccountActivity.class);
+        Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
         startActivity(intent);
     }
-    // Clear the text from the username and password fields.
+
+    // Clear the text from the username field.
     public void clearText(){
         EditText userIdEntry = findViewById(R.id.userIDEntry);
-        EditText passwordEntry = findViewById(R.id.passwordEntry);
         userIdEntry.getText().clear();
-        passwordEntry.getText().clear();
     }
 
 }

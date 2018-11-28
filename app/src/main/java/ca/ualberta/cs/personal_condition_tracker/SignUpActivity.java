@@ -48,28 +48,23 @@ package ca.ualberta.cs.personal_condition_tracker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ModifyUserAccountActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private UserAccountListController userAccountListController = new UserAccountListController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modify_user_account);
+        setContentView(R.layout.activity_sign_up);
         resultIntent = new Intent();
 
         //Get information from the intent
@@ -80,38 +75,36 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         String phoneNumber = intent.getStringExtra("phoneNumber");
 
         //Set the information for this activity
-        EditText accountTypeDropdown = findViewById(R.id.accountTypeDropdown);
+        Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
         EditText userIDText = findViewById(R.id.userIDText);
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
 
-        accountTypeDropdown.setText(accountType);
+        //accountTypeSpinner.setText(accountType);
         userIDText.setText(userID);
         emailAddressText.setText(emailAddress);
         phoneNumberText.setText(phoneNumber);
     }
-    public void confirmAccountEdit(View v){
+    public void confirmSignUp(View v){
         //Get information from user inputs
         Toast.makeText(this,"Confirming account edit", Toast.LENGTH_SHORT).show();
-        EditText accountTypeDropdown = findViewById(R.id.accountTypeDropdown);
+        Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
         EditText userIDText = findViewById(R.id.userIDText);
         EditText emailAddressText = findViewById(R.id.emailAddressText);
         EditText phoneNumberText = findViewById(R.id.phoneNumberText);
-        EditText passwordText = findViewById(R.id.passwordText);
+
         // Convert user inputs to strings
-        String accountType = accountTypeDropdown.getText().toString().toLowerCase().trim();
+        String accountType = accountTypeSpinner.getSelectedItem().toString().toLowerCase().trim();
         String userID = userIDText.getText().toString();
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
-        String password = passwordText.getText().toString();
 
         //TODO fix this. maybe w/ dropdown
         if(accountType.equals("patient")){
             // Make a new patient account.
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
-            Patient newUserAccount = new Patient(accountType, userID, emailAddress, password);
+            Patient newUserAccount = new Patient(accountType, userID, emailAddress);
             newUserAccount.setPhone_number(phoneNumber);
-            System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
             createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
@@ -119,9 +112,8 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         else if (accountType.equals("care provider")){
             // Make a new care provider account.
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
-            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, password);
+            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress);
             newUserAccount.setPhone_number(phoneNumber);
-            System.out.println(newUserAccount.getId() + " " + newUserAccount.getPassword());
             createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
@@ -132,11 +124,12 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
         }
     }
 
-    public void cancelAccountEdit(View v){
+    public void cancelSignUp(View v){
         Toast.makeText(this,"Cancelling edit...", Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_CANCELED, resultIntent);
         this.finish();
     }
+
     // Add a patient to the server.
     public void createPatient(Patient newPatient, String userID) {
         // Check if the user has already signed up
@@ -156,10 +149,10 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             UserAccountListManager.AddUserAccountsTask addUserAccountsTask
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newPatient);
-            Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
     // Add a care provider to the server.
@@ -169,7 +162,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
                 new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
         getUserAccountsTask.execute(query);
-        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+        ArrayList<? extends UserAccount> stored_users = new ArrayList<>();
         try {
             stored_users = getUserAccountsTask.get();
         } catch (Exception e) {
@@ -182,10 +175,10 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
             UserAccountListManager.AddUserAccountsTask addUserAccountsTask
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
-            Toast.makeText(ModifyUserAccountActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(ModifyUserAccountActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -197,7 +190,7 @@ public class ModifyUserAccountActivity extends AppCompatActivity {
                 new UserAccountListManager.GetUserAccountsTask();
         getUserAccountsTask.execute("");
         try {
-            UserAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
+            userAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
             Toast.makeText(this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");

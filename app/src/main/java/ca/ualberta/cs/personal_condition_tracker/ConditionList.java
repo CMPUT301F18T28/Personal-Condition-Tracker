@@ -329,4 +329,9 @@ public class ConditionList{
     public void setConditionOfInterest(Condition conditionOfInterest) {
         this.conditionOfInterest = conditionOfInterest;
     }
+
+    public void setConditions(ArrayList<Condition> conditions) {
+        this.condition_list = conditions;
+    }
+
 }

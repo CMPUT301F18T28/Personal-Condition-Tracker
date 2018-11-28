@@ -51,10 +51,12 @@ package ca.ualberta.cs.personal_condition_tracker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -70,7 +72,11 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list_as_care_provider);
 
+        loadConditions();
+
         final Patient accountOfInterest = UserAccountListController.getUserAccountList().getAccountOfInterest();
+        TextView patientName = findViewById(R.id.patientNameTextView);
+        patientName.setText(accountOfInterest.getUserID());
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.conditionListView);
@@ -103,4 +109,17 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
     public void searchConditionsOrRecords(View v){
         Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
     }
+
+    public void loadConditions() {
+        ConditionListManager.GetConditionsTask getConditionsTask =
+                new ConditionListManager.GetConditionsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
+        getConditionsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+    }
+
 }

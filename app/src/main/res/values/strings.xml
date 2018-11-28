@@ -56,5 +56,10 @@
     <string name="title_activity_view_condition_list_as_care_provider" />
     <string name="title_activity_view_record_list_as_care_provider">ViewRecordListAsCareProviderActivity</string>
 
+    <string-array name="account_types_array">
+        <item>Patient</item>
+        <item>Care Provider</item>
+    </string-array>
+
 
 </resources>

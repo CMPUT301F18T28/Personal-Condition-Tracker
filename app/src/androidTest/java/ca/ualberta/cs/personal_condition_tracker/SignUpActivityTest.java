@@ -19,24 +19,23 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 @RunWith(AndroidJUnit4.class)
-public class ModifyUserAccountActivityTest {
+public class SignUpActivityTest {
     @Rule
-    public final ActivityTestRule<ModifyUserAccountActivity> ModifyUserAccountActivityRule = new ActivityTestRule<>(ModifyUserAccountActivity.class, true, false);
+    public final ActivityTestRule<SignUpActivity> SignUpActivityRule = new ActivityTestRule<>(SignUpActivity.class, true, false);
 
     // Try adding a new patient to the app.
     // NOTE: Since deleting patients has not been implemented, this will pass the first time the test case is run, then fail the next time.
     @Test
     public void testAddNewPatient() throws Exception {
         Intents.init();
-        ModifyUserAccountActivityRule.launchActivity(new Intent());
+        SignUpActivityRule.launchActivity(new Intent());
 
-        onView(withId(R.id.accountTypeDropdown)).perform(typeText("patient")).perform(closeSoftKeyboard());
+        onView(withId(R.id.accountTypeSpinner)).perform(typeText("patient")).perform(closeSoftKeyboard());
         onView(withId(R.id.userIDText)).perform(typeText("Newer Patient")).perform(closeSoftKeyboard());
-        onView(withId(R.id.passwordText)).perform(typeText("password")).perform(closeSoftKeyboard());
 
-        onView(withId(R.id.modifyUserAccountConfirmButton)).perform(click());
+        onView(withId(R.id.signUpConfirmButton)).perform(click());
 
-        intended(hasComponent(ModifyUserAccountActivity.class.getName()));
+        intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
 
     }
@@ -45,15 +44,14 @@ public class ModifyUserAccountActivityTest {
     @Test
     public void testAddNewCareProvider() throws Exception {
         Intents.init();
-        ModifyUserAccountActivityRule.launchActivity(new Intent());
+        SignUpActivityRule.launchActivity(new Intent());
 
-        onView(withId(R.id.accountTypeDropdown)).perform(typeText("care provider")).perform(closeSoftKeyboard());
+        onView(withId(R.id.accountTypeSpinner)).perform(typeText("care provider")).perform(closeSoftKeyboard());
         onView(withId(R.id.userIDText)).perform(typeText("Newer Care Provider")).perform(closeSoftKeyboard());
-        onView(withId(R.id.passwordText)).perform(typeText("password")).perform(closeSoftKeyboard());
 
-        onView(withId(R.id.modifyUserAccountConfirmButton)).perform(click());
+        onView(withId(R.id.signUpConfirmButton)).perform(click());
 
-        intended(hasComponent(ModifyUserAccountActivity.class.getName()));
+        intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
     }
 
@@ -61,14 +59,13 @@ public class ModifyUserAccountActivityTest {
     @Test
     public void testAddNoAccountType() throws Exception {
         Intents.init();
-        ModifyUserAccountActivityRule.launchActivity(new Intent());
+        SignUpActivityRule.launchActivity(new Intent());
 
         onView(withId(R.id.userIDText)).perform(typeText("New User")).perform(closeSoftKeyboard());
-        onView(withId(R.id.passwordText)).perform(typeText("password")).perform(closeSoftKeyboard());
 
-        onView(withId(R.id.modifyUserAccountConfirmButton)).perform(click());
+        onView(withId(R.id.signUpConfirmButton)).perform(click());
 
-        intended(hasComponent(ModifyUserAccountActivity.class.getName()));
+        intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
     }
 
@@ -76,11 +73,11 @@ public class ModifyUserAccountActivityTest {
     @Test
     public void testCancel() throws Exception {
         Intents.init();
-        ModifyUserAccountActivityRule.launchActivity(new Intent());
+        SignUpActivityRule.launchActivity(new Intent());
 
-        onView(withId(R.id.modifyUserAccountCancelButton)).perform(click());
+        onView(withId(R.id.signUpCancelButton)).perform(click());
 
-        intended(hasComponent(ModifyUserAccountActivity.class.getName()));
+        intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
     }
 

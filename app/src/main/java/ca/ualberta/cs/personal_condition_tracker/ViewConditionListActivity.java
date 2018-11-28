@@ -54,11 +54,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -68,6 +70,7 @@ import java.util.Collection;
 public class ViewConditionListActivity extends AppCompatActivity {
 
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private ConditionListController conditionListController = new ConditionListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
 
@@ -76,7 +79,12 @@ public class ViewConditionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list);
 
-        final Patient accountOfInterest = UserAccountListController.getUserAccountList().getAccountOfInterest();
+        loadConditions();
+
+        final Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
+
+        TextView patientName = findViewById(R.id.patientNameTextView);
+        patientName.setText(accountOfInterest.getUserID());
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.conditionListView);
@@ -108,7 +116,10 @@ public class ViewConditionListActivity extends AppCompatActivity {
                 adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        selectedCondition= conditions.get(finalPosition);
+                        selectedCondition = conditions.get(finalPosition);
+                        ConditionListManager.DeleteConditionsTask deleteConditionsTask =
+                                new ConditionListManager.DeleteConditionsTask();
+                        deleteConditionsTask.execute(selectedCondition);
                         accountOfInterest.getConditionList().deleteCondition(selectedCondition);
                     }
                 });
@@ -136,7 +147,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
                 });
 
                 adb.show();
-                return false;
+                return true;
             }
         });
 
@@ -177,7 +188,20 @@ public class ViewConditionListActivity extends AppCompatActivity {
         if (requestCode == 1){
             if(resultCode == Activity.RESULT_OK){
                 accountOfInterest.getConditionList().notifyListeners();
+                Toast.makeText(this,accountOfInterest.getUserID(), Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public void loadConditions() {
+        ConditionListManager.GetConditionsTask getConditionsTask =
+                new ConditionListManager.GetConditionsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
+        getConditionsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
         }
     }
 
