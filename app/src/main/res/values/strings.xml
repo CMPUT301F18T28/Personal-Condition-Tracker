@@ -37,6 +37,7 @@
     <string name="emailAddressText">Email Address</string>
     <string name="phoneNumberText">Phone Number</string>
     <string name="passwordHeaderText">Password</string>
+    <string name="selectGeoLocationText">Select a Geo-Location on the map:</string>
 
     <string name="title_activity_view_condition_list">ViewConditionListActivity</string>
     <string name="title_activity_select_geo_location">SelectGeoLocationActivity</string>
