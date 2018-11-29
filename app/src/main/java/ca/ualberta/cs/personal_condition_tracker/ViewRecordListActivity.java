@@ -147,6 +147,18 @@ public class ViewRecordListActivity extends AppCompatActivity {
                 return true;
             }
         });
+        //Ugly code of OnItemClickListener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int finalPosition = position;
+                selectedRecord = records.get(finalPosition);
+                conditionOfInterest.getRecordList().setRecordOfInterest(selectedRecord);
+                Intent intent = new Intent(ViewRecordListActivity.this,
+                        ViewRecordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void addARecord(View v){
