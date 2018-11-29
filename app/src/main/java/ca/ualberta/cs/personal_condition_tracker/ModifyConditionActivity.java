@@ -33,11 +33,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ModifyConditionActivity extends AppCompatActivity {
@@ -80,19 +82,20 @@ public class ModifyConditionActivity extends AppCompatActivity {
         String conditionTitle = conditionTitleView.getText().toString();
         Date conditionDate = new Date();
         String conditionDescription = conditionDescriptionView.getText().toString();
-
-        Condition newCondition;
-
+        Condition oldCondition;
+        Condition newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
+        newCondition.setAssociatedUserID(accountOfInterest.getUserID());
 
         if (intent.getIntExtra("index", -1) == -1){
-            newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
+            createCondition(newCondition);
             accountOfInterest.getConditionList().addCondition(newCondition);
         }
         else{
             int index = intent.getIntExtra("index", 0);
-            newCondition = accountOfInterest.getConditionList().getByIndex(index);
-            accountOfInterest.getConditionList().editCondition(newCondition, conditionTitle,
-                    conditionDate, conditionTitle);
+            oldCondition = accountOfInterest.getConditionList().getByIndex(index);
+            editCondition(oldCondition, newCondition);
+            accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
+                    conditionDate, conditionDescription);
         }
         setResult(Activity.RESULT_OK);
         this.finish();
@@ -103,4 +106,42 @@ public class ModifyConditionActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED);
         this.finish();
     }
+
+    // Add a care provider to the server.
+    public void createCondition(Condition newCondition) {
+        // Check if the user has already signed up
+        ConditionListManager.GetConditionsTask getConditionsTask =
+                new ConditionListManager.GetConditionsTask();
+        String query = "{ \"query\": {\"match\": { \"id\" : \""+ newCondition.getId() +"\" } } }";
+        getConditionsTask.execute(query);
+        ArrayList<Condition> conditions = new ArrayList<>();
+        try {
+            conditions = getConditionsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+        // Add the user to the database.
+        if (conditions.size() == 0) {
+//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
+            ConditionListManager.AddConditionsTask addConditionsTask
+                    = new ConditionListManager.AddConditionsTask();
+            addConditionsTask.execute(newCondition);
+            Toast.makeText(ModifyConditionActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(ModifyConditionActivity.this, "This condition already exists!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void editCondition(Condition oldCondition, Condition newCondition) {
+        newCondition.setId(oldCondition.getId());
+        ConditionListManager.DeleteConditionsTask deleteConditionsTask =
+                new ConditionListManager.DeleteConditionsTask();
+        deleteConditionsTask.execute(oldCondition);
+        ConditionListManager.AddConditionsTask addConditionsTask
+                = new ConditionListManager.AddConditionsTask();
+        addConditionsTask.execute(newCondition);
+    }
+
 }

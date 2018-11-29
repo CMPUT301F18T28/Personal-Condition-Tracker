@@ -53,10 +53,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -68,9 +70,16 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private Record selectedRecord;
 
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_record_list_as_care_provider);
+
+        loadRecords();
+
+        TextView conditionTitle = findViewById(R.id.conditionTextView);
+        conditionTitle.setText(conditionOfInterest.getTitle());
 
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.recordListView);
@@ -104,6 +113,18 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
 
     public void showSlideshow(View v){
         Toast.makeText(this,"Showing slideshow", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadRecords() {
+        RecordListManager.GetRecordsTask getRecordsTask =
+                new RecordListManager.GetRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ conditionOfInterest.getId() +"\" } } }";
+        getRecordsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(getRecordsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
     }
 
 }

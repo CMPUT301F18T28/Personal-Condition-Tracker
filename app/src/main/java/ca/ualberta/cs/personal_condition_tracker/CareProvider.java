@@ -66,8 +66,8 @@ public class CareProvider extends UserAccount{
         super();
     }
 
-    CareProvider(String accountType, String userID, String emailAddress, String password) {
-        super(accountType,userID,emailAddress,password);
+    CareProvider(String accountType, String userID, String emailAddress) {
+        super(accountType,userID,emailAddress);
     }
 
     /**

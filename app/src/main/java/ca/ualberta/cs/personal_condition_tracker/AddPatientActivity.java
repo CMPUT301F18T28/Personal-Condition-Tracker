@@ -71,6 +71,10 @@ public class AddPatientActivity extends AppCompatActivity {
         String newPatientID = patientIDText.getText().toString();
         if (checkIfPatientExists(newPatientID) == true) {
             Toast.makeText(this,"Adding new patient!", Toast.LENGTH_SHORT).show();
+            UserAccount oldUser = getPatient(newPatientID);
+            UserAccount newUser = new UserAccount(oldUser.getAccountType(), oldUser.getUserID(), oldUser.getEmail_address(), oldUser.getPassword());
+            newUser.setAssociatedId(activeCareProvider.getUserID());
+            editUserAccount(oldUser, newUser);
             activeCareProvider.getPatientList().addPatient(newPatientID);
             this.finish();
         }
@@ -101,5 +105,34 @@ public class AddPatientActivity extends AppCompatActivity {
         }
         return doesExist;
     }
+
+    // Check if a patient exists in the server
+    public UserAccount getPatient(String patientID) {
+        boolean doesExist = false;
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<UserAccount> stored_users = new ArrayList<UserAccount>();
+        try {
+            stored_users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        return stored_users.get(0);
+    }
+
+
+    public void editUserAccount(UserAccount oldUserAccount, UserAccount newUserAccount) {
+        newUserAccount.setId(oldUserAccount.getId());
+        UserAccountListManager.DeleteUserAccountsTask deleteUserAccountsTask =
+                new UserAccountListManager.DeleteUserAccountsTask();
+        deleteUserAccountsTask.execute(oldUserAccount);
+        UserAccountListManager.AddUserAccountsTask addUserAccountsTask
+                = new UserAccountListManager.AddUserAccountsTask();
+        addUserAccountsTask.execute(newUserAccount);
+    }
+
+
 
 }

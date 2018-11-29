@@ -37,6 +37,7 @@
     <string name="emailAddressText">Email Address</string>
     <string name="phoneNumberText">Phone Number</string>
     <string name="passwordHeaderText">Password</string>
+    <string name="addPhotoButtonText">Add Photo</string>
     <string name="selectGeoLocationText">Select a Geo-Location on the map:</string>
 
     <string name="title_activity_view_condition_list">ViewConditionListActivity</string>
@@ -56,6 +57,12 @@
     <string name="submit">Submit</string>
     <string name="title_activity_view_condition_list_as_care_provider" />
     <string name="title_activity_view_record_list_as_care_provider">ViewRecordListAsCareProviderActivity</string>
+
+    <string-array name="account_types_array">
+        <item>Patient</item>
+        <item>Care Provider</item>
+    </string-array>
+    <string name="title_activity_take_photo_with_camera">TakePhotoWithCameraActivity</string>
 
 
 </resources>

@@ -212,4 +212,7 @@ public class RecordList {
     public void setRecordOfInterest(Record recordOfInterest) {
         this.recordOfInterest = recordOfInterest;
     }
+    public void setRecords(ArrayList<Record> records) {
+        this.record_list = records;
+    }
 }

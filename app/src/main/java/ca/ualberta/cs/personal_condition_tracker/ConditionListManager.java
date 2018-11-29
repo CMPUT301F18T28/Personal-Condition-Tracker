@@ -69,33 +69,35 @@ import io.searchbox.core.SearchResult;
  * @since     1.0
  */
 
-public class UserAccountListManager {
+public class ConditionListManager {
     private static JestDroidClient client;
     /**
      * Add user accounts to the server
      * @param userAccounts the accounts to be added.
      */
-    public static class AddUserAccountsTask extends AsyncTask<UserAccount, Void, Void> {
+    public static class AddConditionsTask extends AsyncTask<Condition, Void, Void> {
 
         @Override
-        protected Void doInBackground(UserAccount... userAccounts) {
+        protected Void doInBackground(Condition... conditions) {
             verifySettings();
 
-            for (UserAccount userAccount : userAccounts) {
-                Index index = new Index.Builder(userAccount).index("cmput301f18t28test").type("userAccount").build();
+            for (Condition condition : conditions) {
+                Index index = new Index.Builder(condition).index("cmput301f18t28test").type("condition").build();
 
                 try {
                     DocumentResult result = client.execute(index);
                     if (result.isSucceeded()) {
-                        userAccount.setId(result.getId());
+                        if (condition.getId() == null) {
+                            condition.setId(result.getId());
+                        }
                         Log.e("Error", "Success.");
                     }
                     else {
-                        Log.e("Error", "Elastic search was not able to add the account.");
+                        Log.e("Error", "Elastic search was not able to add the condition.");
                     }
                 }
                 catch (Exception e) {
-                    Log.i("Error", "The application failed to build and send the user accounts.");
+                    Log.i("Error", "The application failed to build and send the conditions.");
                 }
 
             }
@@ -107,47 +109,47 @@ public class UserAccountListManager {
      * Get user accounts from the server.
      * @param search_parameters specifications for the accounts to be obtained.
      */
-    public static class GetUserAccountsTask extends AsyncTask<String, Void, ArrayList<UserAccount>> {
+    public static class GetConditionsTask extends AsyncTask<String, Void, ArrayList<Condition>> {
         @Override
-        protected ArrayList<UserAccount> doInBackground(String... search_parameters) {
+        protected ArrayList<Condition> doInBackground(String... search_parameters) {
             verifySettings();
 
-            ArrayList<UserAccount> userAccounts = new ArrayList<UserAccount>();
+            ArrayList<Condition> conditions = new ArrayList<>();
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
                     .addIndex("cmput301f18t28test")
-                    .addType("userAccount")
+                    .addType("condition")
                     .build();
 
             try {
                 SearchResult result = client.execute(search);
                 if (result.isSucceeded()) {
-                    List<UserAccount> foundAccounts = result.getSourceAsObjectList(UserAccount.class);
-                    userAccounts.addAll(foundAccounts);
+                    List<Condition> foundConditions = result.getSourceAsObjectList(Condition.class);
+                    conditions.addAll(foundConditions);
                     Log.e("Error", "Success.");
                 }
                 else {
-                    Log.e("Error", "The search query failed to find any user accounts that matched.");
+                    Log.e("Error", "The search query failed to find any conditions that matched.");
                 }
             }
             catch (Exception e) {
                 Log.e("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
-            return userAccounts;
+            return conditions;
         }
     }
     /**
-     * Delete user accounts from the server.
+     * Get user accounts from the server.
      */
-    public static class DeleteUserAccountsTask extends AsyncTask<UserAccount, Void, Void> {
+    public static class DeleteConditionsTask extends AsyncTask<Condition, Void, Void> {
         @Override
-        protected Void doInBackground(UserAccount... userAccounts) {
+        protected Void doInBackground(Condition... conditions) {
             verifySettings();
 
-            UserAccount userAccount = userAccounts[0];
-            String jestID = userAccount.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("userAccount").build();
+            Condition condition = conditions[0];
+            String jestID = condition.getId();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("condition").build();
 
             try {
                 DocumentResult result = client.execute(delete);
@@ -164,7 +166,6 @@ public class UserAccountListManager {
             return null;
         }
     }
-
 
 
     /**
