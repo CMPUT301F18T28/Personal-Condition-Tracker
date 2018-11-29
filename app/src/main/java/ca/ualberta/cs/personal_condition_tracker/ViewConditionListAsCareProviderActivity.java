@@ -121,5 +121,10 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
     }
+    public void showAccountInformation(View v){
+        Intent intent = new Intent(ViewConditionListAsCareProviderActivity.this, ModifyAccountActivity.class);
+        intent.putExtra("accountType", "patient");
+        startActivity(intent);
+    }
 
 }

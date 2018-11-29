@@ -28,9 +28,9 @@
 
     <TextView
         android:id="@+id/userIDHeaderText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/userIDTitle"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +41,7 @@
         android:layout_width="335dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userIDHeaderText" />
@@ -90,17 +91,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneNumberText" />
 
-    <Button
-        android:id="@+id/button"
+    <Switch
+        android:id="@+id/editAccountSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:onClick="editingSetup"
         android:text="Edit"
-        app:layout_constraintBottom_toBottomOf="@+id/modifyAccountCancelButton"
-        app:layout_constraintEnd_toStartOf="@+id/modifyAccountCancelButton"
-        app:layout_constraintStart_toEndOf="@+id/modifyAccountConfirmButton"
-        app:layout_constraintTop_toTopOf="@+id/modifyAccountCancelButton" />
+        app:layout_constraintBottom_toBottomOf="@+id/userIDHeaderText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
