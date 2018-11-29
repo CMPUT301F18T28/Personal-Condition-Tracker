@@ -27,7 +27,7 @@
     <string name="viewCommentsButtonText">View Comments</string>
     <string name="showSlideShowButtonText">Show Slideshow</string>
     <string name="frontOfBodyButtonText">Front</string>
-    <string name="backOfBodyButtonText">Back</string>
+    <string name="backOfBodyButtonText">Backside</string>
     <string name="addAPatientText">Add a patient by UserID</string>
     <string name="assignedPatientsText">Assigned Patients</string>
     <string name="addAPatientButtonText">Add a New Patient</string>
@@ -60,6 +60,8 @@
         <item>Patient</item>
         <item>Care Provider</item>
     </string-array>
+    <string name="title_activity_select_body_location_male">selectBodyLocationMale</string>
+    <string name="select_a_location_on_the_body_below">Select a location on the body below</string>
 
 
 </resources>

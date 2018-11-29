@@ -137,4 +137,11 @@ public class ModifyRecordActivity extends AppCompatActivity {
         addRecordsTask.execute(newRecord);
     }
 
+    public void selectBodyLoc(View v) {
+        Toast.makeText(this,"This is working", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ModifyRecordActivity.this, SelectBodyLocationActivity.class);
+        startActivity(intent);
+
+    }
+
 }

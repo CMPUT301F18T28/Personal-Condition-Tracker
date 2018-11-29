@@ -53,7 +53,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 //TODO: For Project Part 5. Implement this activity.
 public class SelectBodyLocationActivity extends AppCompatActivity {
@@ -62,6 +66,20 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_body_location);
+        Log.d("WORKING!","Inside the SelectBodyLocationActivity class...");
+
+        SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)findViewById(R.id.imageView);
+        //imageView.setImage(ImageSource.resource(R.drawable.monkey));
+        // ... or ...
+//        imageView.setImage(ImageSource.asset("man.png"));
+
+    }
+
+    public void captureBodyLoc(View v){
+
+        Log.d("WORKING!","Inside the captureBodyLoc method...");
+
+
 
     }
 
