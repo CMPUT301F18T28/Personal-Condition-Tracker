@@ -85,8 +85,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(accountType.equals("patient")){
             // Make a new patient account.
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
-            Patient newUserAccount = new Patient(accountType, userID, emailAddress);
-            newUserAccount.setPhone_number(phoneNumber);
+            Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
             createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();
@@ -94,8 +93,7 @@ public class SignUpActivity extends AppCompatActivity {
         else if (accountType.equals("care provider")){
             // Make a new care provider account.
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
-            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress);
-            newUserAccount.setPhone_number(phoneNumber);
+            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
             createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
             this.finish();

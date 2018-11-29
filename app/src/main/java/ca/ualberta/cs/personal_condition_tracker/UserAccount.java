@@ -110,11 +110,11 @@ public class UserAccount {
      * @return Nothing
      */
 
-    UserAccount(String accountType, String userID, String email_address, String password) {
+    UserAccount(String accountType, String userID, String email_address, String phoneNumber) {
         this.accountType = accountType;
         this.userID = userID;
         this.email_address = email_address;
-        this.password = password;
+        this.phone_number = phoneNumber;
     }
 
     /**
