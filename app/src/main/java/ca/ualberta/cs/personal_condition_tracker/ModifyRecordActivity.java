@@ -23,8 +23,14 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -32,11 +38,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
+import static ca.ualberta.cs.personal_condition_tracker.PermissionRequest.verifyPermission;
+
 
 public class ModifyRecordActivity extends AppCompatActivity {
     public static Intent resultIntent;
+    public static final int PICK_IMAGE = 1;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private Uri imageFileUri;
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
@@ -99,6 +112,67 @@ public class ModifyRecordActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED);
         this.finish();
     }
+    public void addPhoto(View v) {
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        adb.setMessage("Would you like to take a photo or upload a previous photo?");
+        adb.setCancelable(true);
+
+        adb.setPositiveButton("Take photo", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download";
+                File folderF = new File(folder);
+                if (!folderF.exists()) {
+                    folderF.mkdir();
+                }
+
+                try {
+                    Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                    m.invoke(null);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                verifyPermission(ModifyRecordActivity.this);
+
+                String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + "jpg";
+
+                File imageFile = new File(folder,"imagetest.jpg");
+                imageFileUri = Uri.fromFile(imageFile);
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
+                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        adb.setNegativeButton("Upload from gallery", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                getIntent.setType("image/*");
+
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
+
+                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+                startActivityForResult(chooserIntent, PICK_IMAGE);
+            }
+        });
+
+        adb.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Do nothing, simply allow the dialog to close
+            }
+        });
+
+        adb.show();
+    }
 
     // Add a care provider to the server.
     public void createRecord(Record newRecord) {
@@ -135,6 +209,33 @@ public class ModifyRecordActivity extends AppCompatActivity {
         RecordListManager.AddRecordsTask addRecordsTask
                 = new RecordListManager.AddRecordsTask();
         addRecordsTask.execute(newRecord);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == PICK_IMAGE) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
+//                ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
+//                button.setImageDrawable(Drawable.createFromPath(imageFileUri.getPath()));
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(ModifyRecordActivity.this, "Photo canceled!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ModifyRecordActivity.this, "The photo could not be added", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
+//                ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
+//                button.setImageDrawable(Drawable.createFromPath(imageFileUri.getPath()));
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(ModifyRecordActivity.this, "Photo canceled!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ModifyRecordActivity.this, "The photo could not be added", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }

@@ -7,9 +7,13 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
+    <!--<uses-permission android:name="android.permission.CAMERA"/>-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="false" />
 
     <application
@@ -24,6 +28,16 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAPTURE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
@@ -46,7 +60,6 @@
             android:name=".ViewConditionListAsCareProviderActivity"
             android:label="@string/title_activity_view_condition_list_as_care_provider"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".SelectGeoLocationActivity"
             android:label="@string/title_activity_select_geo_location"
@@ -105,8 +118,8 @@
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
-        <uses-library android:name="android.test.runner"/>
+            android:required="false" />
+        <uses-library android:name="android.test.runner" />
 
     </application>
 
