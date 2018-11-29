@@ -68,9 +68,9 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_body_location);
         Log.d("WORKING!","Inside the SelectBodyLocationActivity class...");
 
-        SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)findViewById(R.id.imageView);
-        //imageView.setImage(ImageSource.resource(R.drawable.monkey));
-        // ... or ...
+//        SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)findViewById(R.id.imageView);
+//        //imageView.setImage(ImageSource.resource(R.drawable.monkey));
+//        // ... or ...
 //        imageView.setImage(ImageSource.asset("man.png"));
 
     }
