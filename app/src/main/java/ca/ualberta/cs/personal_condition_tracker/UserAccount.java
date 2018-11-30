@@ -107,7 +107,7 @@ public class UserAccount {
      * @param accountType String representing the type of user account, Care Provider or Patient.
      * @param userID String representing the name of the account holder; a username.
      * @param email_address Email address of the account holder.
-     * @param password   Password for the account
+     * @param phoneNumber   Password for the account
      * @return Nothing
      */
 

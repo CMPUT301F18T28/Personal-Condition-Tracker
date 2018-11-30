@@ -108,6 +108,7 @@ public class ConditionList{
             condition.setDate(date);
             condition.setDescription(description);
         }
+        notifyListeners();
     }
 
 
