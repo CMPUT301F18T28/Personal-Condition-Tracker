@@ -123,6 +123,9 @@
             android:required="false" />
         <uses-library android:name="android.test.runner" />
 
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
