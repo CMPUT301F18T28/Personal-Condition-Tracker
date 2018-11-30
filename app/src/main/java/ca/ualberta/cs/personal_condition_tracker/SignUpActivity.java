@@ -88,7 +88,6 @@ public class SignUpActivity extends AppCompatActivity {
             Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
             createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
-            this.finish();
         }
         else if (accountType.equals("care provider")){
             // Make a new care provider account.
@@ -96,7 +95,6 @@ public class SignUpActivity extends AppCompatActivity {
             CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
             createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
-            this.finish();
         }
 
         else {
@@ -130,6 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newPatient);
             Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            this.finish();
         }
         else {
             Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
@@ -157,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
             Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            this.finish();
         }
         else {
             Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();

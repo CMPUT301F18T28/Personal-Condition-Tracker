@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
     private UserAccountList userAccountList = userAccountListController.getUserAccountList();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,6 @@ public class ModifyAccountActivity extends AppCompatActivity {
         String userID = user.getUserID();
         String userEmailAddress= user.getEmail_address();
         String userPhoneNumber = user.getPhone_number();
-
 
         //Set the information for this activity
         TextView userIDView = findViewById(R.id.userIDText);
@@ -97,10 +98,24 @@ public class ModifyAccountActivity extends AppCompatActivity {
         String newPhoneNumber = phoneNumberView.getText().toString();
 
         if(userAccountList.activeUserIsCareProvider()){
+            UserAccount oldUserAccount = userAccountList.getActiveCareProvider();
+            UserAccount newUserAccount = new UserAccount();
+            newUserAccount.setAccountType(oldUserAccount.getAccountType());
+            newUserAccount.setUserID(oldUserAccount.getUserID());
+            newUserAccount.setEmail_address(newEmailAddress);
+            newUserAccount.setPhone_number(newPhoneNumber);
+            userAccountListController.editUserAccount(oldUserAccount, newUserAccount);
             userAccountList.getActiveCareProvider().setEmail_address(newEmailAddress);
             userAccountList.getActiveCareProvider().setPhone_number(newPhoneNumber);
         }
         else{
+            UserAccount oldUserAccount = userAccountList.getAccountOfInterest();
+            UserAccount newUserAccount = new UserAccount();
+            newUserAccount.setAccountType(oldUserAccount.getAccountType());
+            newUserAccount.setUserID(oldUserAccount.getUserID());
+            newUserAccount.setEmail_address(newEmailAddress);
+            newUserAccount.setPhone_number(newPhoneNumber);
+            userAccountListController.editUserAccount(oldUserAccount, newUserAccount);
             userAccountList.getAccountOfInterest().setEmail_address(newEmailAddress);
             userAccountList.getAccountOfInterest().setPhone_number(newPhoneNumber);
         }
@@ -110,6 +125,5 @@ public class ModifyAccountActivity extends AppCompatActivity {
     public void modifyAccountCancel(View v){
         this.finish();
     }
-
 
 }

@@ -84,7 +84,7 @@ public class UserAccount {
         this.accountType = "";
         this.userID = "";
         this.email_address = "";
-        this.password = "password";
+        this.phone_number = "";
     }
 
     /**
@@ -99,6 +99,7 @@ public class UserAccount {
         this.accountType = accountType;
         this.userID = userID;
         this.email_address = email_address;
+        this.phone_number = "";
     }
 
     /**
