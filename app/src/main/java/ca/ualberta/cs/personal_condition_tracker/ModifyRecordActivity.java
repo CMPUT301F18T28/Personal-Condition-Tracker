@@ -38,6 +38,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -236,6 +238,20 @@ public class ModifyRecordActivity extends AppCompatActivity {
                 Toast.makeText(ModifyRecordActivity.this, "The photo could not be added", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void modifyGeoLocation(View v) {
+        Intent intent = new Intent(ModifyRecordActivity.this, MapsActivity.class);
+        intent.putExtra("mapMode", "selection");
+        int recordIndex = intent.getIntExtra("recordIndex", 0);
+        Record record = conditionOfInterest.getRecordList().getRecord(recordIndex);
+        LatLng latlng = record.getGeo_location();
+        if (latlng != null) {
+            intent.putExtra("latitude", latlng.latitude);
+            intent.putExtra("longitude", latlng.longitude);
+        }
+        startActivity(intent);
+
     }
 
 }
