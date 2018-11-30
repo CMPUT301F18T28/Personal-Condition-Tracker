@@ -14,8 +14,11 @@
     <string name="recordTitleText">Title</string>
     <string name="recordDateText">Date</string>
     <string name="recordDescriptionText">Description</string>
+    <string name="viewGeoLocationButtonText">View Geo-Location</string>
     <string name="viewGeoLocationsButtonText">View Geo-Locations</string>
+    <string name="viewBodyLocationButtonText">View Body-Location</string>
     <string name="viewBodyLocationsButtonText">View Body-Locations</string>
+    <string name="modifyGeoLocationButtonText">View or change Geo-Location</string>
     <string name="recordPhotoText">Photos</string>
     <string name="title_activity_view_record_list">ViewRecordListActivity</string>
     <string name="viewRecordsForConditionText">Records</string>
