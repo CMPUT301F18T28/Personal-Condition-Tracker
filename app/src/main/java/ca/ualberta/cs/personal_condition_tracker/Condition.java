@@ -80,6 +80,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private RecordList recordList = new RecordList();
     private ArrayList<String> commentList;
     private String associatedUserID;
+    private String commentOfInterest;
     private static final Integer MAX_CHARACTERS = 100;
     @JestId
     private String id = null;
@@ -252,6 +253,23 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
         this.commentList = commentList;
     }
 
+    /**
+     * Serves as a way to manipulate the commentList without direct access
+     * @param comment Comment to be added
+     * @return Nothing
+     */
+    public void addComment(String comment){
+        commentList.add(comment);
+    }
+    /**
+     * Serves as a way to manipulate the commentList without direct access
+     * @param comment Comment to be removed
+     * @return Nothing
+     */
+    public void removeComment(String comment){
+        commentList.remove(comment);
+    }
+
 
     /**
      * Serves to concatenate the title, date and description of a particular condition.
@@ -262,5 +280,13 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     @Override
     public String toString(){
         return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
+    }
+
+    public String getCommentOfInterest() {
+        return commentOfInterest;
+    }
+
+    public void setCommentOfInterest(String commentOfInterest) {
+        this.commentOfInterest = commentOfInterest;
     }
 }

@@ -25,18 +25,51 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
 
 
 //TODO: For Project Part 5: Implement this activity.
 public class ModifyCommentActivity extends AppCompatActivity {
+    private UserAccountListController userAccountListController = new UserAccountListController();
+    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
+    private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_comment);
+        setup();
+    }
 
+    public void setup(){
+        Intent intent = new Intent();
+        EditText commentText = findViewById(R.id.modifyCommentText);
+        String oldComment = intent.getStringExtra("comment");
+        commentText.setText(oldComment);
+    }
+
+    public void modifyCommentConfirm(View v){
+        //Check to see if this is an old comment, or a new one.
+        Intent intent = new Intent();
+        EditText commentText = findViewById(R.id.modifyCommentText);
+        String oldComment = intent.getStringExtra("comment");
+        String newComment = commentText.getText().toString();
+        if(oldComment == null){
+            conditionOfInterest.addComment(newComment);
+        }
+        else{
+            conditionOfInterest.removeComment(oldComment);
+            conditionOfInterest.addComment(newComment);
+        }
+        this.finish();
+    }
+
+    public void modifyCommentCancel(View v){
+        this.finish();
     }
 
 }
