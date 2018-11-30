@@ -78,7 +78,8 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private Date date;
     private String description;
     private RecordList recordList = new RecordList();
-    private ArrayList<String> commentList;
+    private ArrayList<String> commentList = new ArrayList<>();
+    private transient ArrayList<Listener> listenerList = null;
     private String associatedUserID;
     private String commentOfInterest;
     private static final Integer MAX_CHARACTERS = 100;
@@ -260,6 +261,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
      */
     public void addComment(String comment){
         commentList.add(comment);
+        notifyListeners();
     }
     /**
      * Serves as a way to manipulate the commentList without direct access
@@ -268,6 +270,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
      */
     public void removeComment(String comment){
         commentList.remove(comment);
+        notifyListeners();
     }
 
 
@@ -288,5 +291,58 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
 
     public void setCommentOfInterest(String commentOfInterest) {
         this.commentOfInterest = commentOfInterest;
+    }
+
+    /**
+     * Appends a Listener object to the list thereof.
+     * <P>
+     * @param listener Listener object
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void addListener(Listener listener){
+        getListenerList().add(listener);
+    }
+
+
+    /**
+     * Removes a given Listener object from the list thereof.
+     * <P>
+     * @param listener Listener object
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+
+
+    /**
+     * Obtains the list of Listeners, that is, the listenerList attribute. If called for the first time
+     * this method serves to initialize the list.
+     * <P>
+     * @return ArrayList<Listener>
+     */
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    /**
+     * Serves to update all Listener objects contained in the list thereof.
+     * <P>
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
     }
 }
