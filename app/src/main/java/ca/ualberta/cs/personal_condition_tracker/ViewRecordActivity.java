@@ -84,7 +84,6 @@ public class ViewRecordActivity extends Activity {
         recordDescriptionView.setText(recordDescription);
     }
     public void viewGeoLocation(View v) {
-        Toast.makeText(this,"View geo location", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewRecordActivity.this, MapsActivity.class);
         intent.putExtra("mapMode", "view");
         startActivity(intent);
