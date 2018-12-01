@@ -27,6 +27,8 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -36,11 +38,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ModifyConditionActivity extends AppCompatActivity {
     public static Intent resultIntent;
@@ -48,6 +57,8 @@ public class ModifyConditionActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
+    private int year, month, day, hour, minute, second;
+    private Date new_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +75,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
 
         //Set the information for this activity
         EditText conditionTitleView = findViewById(R.id.conditionTitleView);
-        EditText conditionDateView = findViewById(R.id.conditionDateView);
+        TextView conditionDateView = findViewById(R.id.conditionDateView);
         EditText conditionDescriptionView = findViewById(R.id.conditionDescriptionView);
 
         conditionTitleView.setText(conditionTitle);
@@ -76,11 +87,11 @@ public class ModifyConditionActivity extends AppCompatActivity {
         //TODO fix dating, ensure working for edits
         Toast.makeText(this,"Confirming condition edit...", Toast.LENGTH_SHORT).show();
         EditText conditionTitleView = findViewById(R.id.conditionTitleView);
-        EditText conditionDateView = findViewById(R.id.conditionDateView);
+        TextView conditionDateView = findViewById(R.id.conditionDateView);
         EditText conditionDescriptionView = findViewById(R.id.conditionDescriptionView);
 
         String conditionTitle = conditionTitleView.getText().toString();
-        Date conditionDate = new Date();
+        Date conditionDate = new_date;
         String conditionDescription = conditionDescriptionView.getText().toString();
         Condition oldCondition;
         Condition newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
@@ -106,6 +117,45 @@ public class ModifyConditionActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED);
         this.finish();
     }
+
+    public void modifyConditionDate(View v) {
+        final Calendar c = Calendar.getInstance();
+        // Initialize values for year, month, day, hour, minute, and second.
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        hour = c.get(Calendar.HOUR_OF_DAY);
+        minute = c.get(Calendar.MINUTE);
+        // Set up a date picker dialog to let the user select the new day of the year.
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int selected_year, int month_of_year, int day_of_month) {
+                year = selected_year;
+                month = month_of_year;
+                day = day_of_month;
+                // After the day has been selected, set up a time picker dialog to let the user select the new time.
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ModifyConditionActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hour_of_day,
+                                          int selected_minute) {
+                        hour = hour_of_day;
+                        minute = selected_minute;
+                        GregorianCalendar new_gregorian_calendar = new GregorianCalendar(year, month, day, hour, minute, second);
+                        new_date = new_gregorian_calendar.getTime();
+                        // Update the emotion record and change the date shown to the user.
+                        TextView conditionDateView = findViewById(R.id.conditionDateView);
+                        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z"	);
+                        String conditionDate = df.format(new_date);
+                        conditionDateView.setText(conditionDate);
+
+                    }
+                }, hour, minute, false);
+                timePickerDialog.show();
+            }
+        }, year, month, day);
+        datePickerDialog.show();
+    }
+
 
     // Add a care provider to the server.
     public void createCondition(Condition newCondition) {
