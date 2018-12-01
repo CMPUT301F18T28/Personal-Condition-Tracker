@@ -48,8 +48,9 @@ import static ca.ualberta.cs.personal_condition_tracker.PermissionRequest.verify
 
 
 public class ModifyRecordActivity extends AppCompatActivity {
+
     public static Intent resultIntent;
-    public static final int PICK_IMAGE = 1;
+    private static final int PICK_IMAGE = 1;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private Uri imageFileUri;
     private Intent intent;
