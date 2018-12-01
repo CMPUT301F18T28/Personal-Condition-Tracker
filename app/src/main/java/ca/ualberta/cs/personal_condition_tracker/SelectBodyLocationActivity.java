@@ -95,8 +95,6 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
             x = extras.getString("previousX");
             y = extras.getString("previousY");
 
-            Toast.makeText(this, x, Toast.LENGTH_SHORT).show();
-
             float_x = Float.parseFloat(x);
             float_y = Float.parseFloat(y);
 
@@ -154,8 +152,6 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
 
 
         });
-
-
 
     }
 

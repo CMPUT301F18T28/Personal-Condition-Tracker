@@ -61,10 +61,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         if (extras != null) {
             pinX = extras.getString("pinX");
             pinY = extras.getString("pinY");
-            Toast.makeText(this, pinX, Toast.LENGTH_SHORT).show();
         }
-
-
 
 
         //Set the information for this activity
