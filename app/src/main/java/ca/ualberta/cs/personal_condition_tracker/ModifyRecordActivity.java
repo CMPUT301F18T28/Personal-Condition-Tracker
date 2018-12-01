@@ -52,6 +52,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private static final int PICK_IMAGE = 1;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int SELECTED_LOCATION_REQUEST_CODE = 200;
     private Uri imageFileUri;
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -239,19 +240,35 @@ public class ModifyRecordActivity extends AppCompatActivity {
                 Toast.makeText(ModifyRecordActivity.this, "The photo could not be added", Toast.LENGTH_SHORT).show();
             }
         }
+
+        if (requestCode == SELECTED_LOCATION_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Record record = getRecordFromIntent();
+                if (record != null) {
+                    record.setGeo_location(new LatLng(data.getDoubleExtra("latitude", 0.0),
+                            data.getDoubleExtra("longitude", 0.0)));
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(ModifyRecordActivity.this, "Map change canceled!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ModifyRecordActivity.this, "The geo-location could not be changed", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void modifyGeoLocation(View v) {
-        Intent intent = new Intent(ModifyRecordActivity.this, MapsActivity.class);
-        intent.putExtra("mapMode", "selection");
-        int recordIndex = intent.getIntExtra("recordIndex", 0);
-        Record record = conditionOfInterest.getRecordList().getRecord(recordIndex);
-        LatLng latlng = record.getGeo_location();
-        if (latlng != null) {
-            intent.putExtra("latitude", latlng.latitude);
-            intent.putExtra("longitude", latlng.longitude);
+        Intent mapIntent = new Intent(ModifyRecordActivity.this, MapsActivity.class);
+        mapIntent.putExtra("mapMode", "selection");
+        Record record = getRecordFromIntent();
+        if (record != null) {
+            LatLng latlng = record.getGeo_location();
+            if (latlng != null) {
+                mapIntent.putExtra("latitude", latlng.latitude);
+                mapIntent.putExtra("longitude", latlng.longitude);
+            }
         }
-        startActivity(intent);
+        startActivityForResult(mapIntent, SELECTED_LOCATION_REQUEST_CODE);
+    }
 
     /**
      * Get the RecordFromIntent
