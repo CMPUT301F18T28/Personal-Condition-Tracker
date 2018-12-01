@@ -38,7 +38,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 /**
  * SelectBodyLocationActivity displays a map of the human body and allows a patient to select the location
- * on the displayed body corresponding to the location of a taken photo.
+ * on it corresponding to the location of the condition.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @author    W. Nichols; wnichols@ualberta.ca
@@ -48,6 +48,7 @@ package ca.ualberta.cs.personal_condition_tracker;
  * @since     1.0
  */
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -69,64 +70,80 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
+public class SelectBodyLocationActivity extends AppCompatActivity {
 
-
-public class SelectBodyLocationActivity extends AppCompatActivity  {
+    private String x;
+    private String y;
+    private float float_x = 0;
+    private float float_y = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_body_location);
         final PinView imageView = findViewById(R.id.imageView);
-        //final ImageView image = findViewById(R.id.imageView);
 
-        //imageView.setImage(ImageSource.asset("man.jpg"));
+        Bundle extras = getIntent().getExtras();
 
+        if (extras != null) {
+
+            x = extras.getString("previousX");
+            y = extras.getString("previousY");
+
+            Toast.makeText(this, x, Toast.LENGTH_SHORT).show();
+
+            float_x = Float.parseFloat(x);
+            float_y = Float.parseFloat(y);
+
+        }
+
+        PointF sPin = new PointF(float_x,float_y);
+
+        imageView.setPin(sPin);
 
         final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
                 if (imageView.isReady()) {
                     PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                    Toast.makeText(getApplicationContext(), "Single tap: " + ((int)sCoord.x) + ", " + ((int)sCoord.y), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Single tap: " + ((int) sCoord.x) + ", " + ((int) sCoord.y), Toast.LENGTH_SHORT).show();
                     imageView.setPin(sCoord);
-                    //Bitmap man = BitmapFactory.decodeResource(getResources(),R.drawable.man);
-
+                    String source = sCoord.toString();
+                    ArrayList<String> sourceString = parseIntsAndFloats(source);
+                    setStrings_X_Y(sourceString);
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Single tap: Image not ready", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
+
             @Override
             public void onLongPress(MotionEvent e) {
                 if (imageView.isReady()) {
                     PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                    Toast.makeText(getApplicationContext(), "Long press: " + ((int)sCoord.x) + ", " + ((int)sCoord.y), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Long press: " + ((int) sCoord.x) + ", " + ((int) sCoord.y), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Long press: Image not ready", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public boolean onDoubleTap(MotionEvent e) {
                 if (imageView.isReady()) {
                     PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                    Toast.makeText(getApplicationContext(), "Double tap: " + ((int)sCoord.x) + ", " + ((int)sCoord.y), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Double tap: " + ((int) sCoord.x) + ", " + ((int) sCoord.y), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Double tap: Image not ready", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
         });
-
-//
-//        Resources resource = getResources();
-//        Drawable drawableMan = ResourcesCompat.getDrawable(resource, R.drawable.man, null);
-
-//        Bitmap man = BitmapFactory.decodeResource(getResources(),R.drawable.man);
-//        Canvas canvas = new Canvas(man);
 
 
         imageView.setOnTouchListener(new View.OnTouchListener() {
@@ -142,6 +159,39 @@ public class SelectBodyLocationActivity extends AppCompatActivity  {
 
     }
 
+
+    // Source: https://stackoverflow.com/questions/12234963/java-searching-float-number-in-string
+    private ArrayList<String> parseIntsAndFloats(String raw) {
+
+        ArrayList<String> listBuffer = new ArrayList<String>();
+
+        Pattern p = Pattern.compile("[0-9]*\\.?,?[0-9]+");
+
+        Matcher m = p.matcher(raw);
+
+        while (m.find()) {
+            listBuffer.add(m.group());
+        }
+
+        return listBuffer;
+    }
+
+    public void setStrings_X_Y(ArrayList<String> string){
+        x = string.get(0);
+        y = string.get(1);
+    }
+
+    public void confirmLocation(View v) {
+        Intent intent = new Intent(SelectBodyLocationActivity.this, ModifyRecordActivity.class);
+        intent.putExtra("pinX", x);
+        intent.putExtra("pinY", y);
+        startActivity(intent);
+    }
+
 }
+
+
+
+
 
 

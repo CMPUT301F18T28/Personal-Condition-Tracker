@@ -24,6 +24,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,6 +42,8 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
+    private String pinX;
+    private String pinY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,15 @@ public class ModifyRecordActivity extends AppCompatActivity {
         String recordTitle = intent.getStringExtra("recordTitle");
         String recordDate = intent.getStringExtra("recordDate");
         String recordDescription = intent.getStringExtra("recordDescription");
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            pinX = extras.getString("pinX");
+            pinY = extras.getString("pinY");
+            Toast.makeText(this, pinX, Toast.LENGTH_SHORT).show();
+        }
+
+
 
 
         //Set the information for this activity
@@ -140,6 +152,10 @@ public class ModifyRecordActivity extends AppCompatActivity {
     public void selectBodyLoc(View v) {
         Toast.makeText(this,"This is working", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ModifyRecordActivity.this, SelectBodyLocationActivity.class);
+        if (pinX != null){
+            intent.putExtra("previousX", pinX);
+            intent.putExtra("previousY", pinY);
+        }
         startActivity(intent);
 
     }
