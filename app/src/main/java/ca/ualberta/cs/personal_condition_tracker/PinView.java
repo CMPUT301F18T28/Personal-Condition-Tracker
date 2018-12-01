@@ -12,7 +12,7 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 
 
-public class PinView extends SubsamplingScaleImageView {
+public class PinView extends com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView {
 
         private final Paint paint = new Paint();
         private final PointF vPin = new PointF();

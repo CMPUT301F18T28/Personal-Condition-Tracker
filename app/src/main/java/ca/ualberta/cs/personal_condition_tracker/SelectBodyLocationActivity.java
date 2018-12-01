@@ -48,39 +48,100 @@ package ca.ualberta.cs.personal_condition_tracker;
  * @since     1.0
  */
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import android.graphics.PointF;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-//TODO: For Project Part 5. Implement this activity.
-public class SelectBodyLocationActivity extends AppCompatActivity {
+
+
+
+
+public class SelectBodyLocationActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_body_location);
-        Log.d("WORKING!","Inside the SelectBodyLocationActivity class...");
+        final PinView imageView = findViewById(R.id.imageView);
+        //final ImageView image = findViewById(R.id.imageView);
 
-//        SubsamplingScaleImageView imageView = (SubsamplingScaleImageView)findViewById(R.id.imageView);
-//        //imageView.setImage(ImageSource.resource(R.drawable.monkey));
-//        // ... or ...
-//        imageView.setImage(ImageSource.asset("man.png"));
+        //imageView.setImage(ImageSource.asset("man.jpg"));
 
-    }
 
-    public void captureBodyLoc(View v){
+        final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapConfirmed(MotionEvent e) {
+                if (imageView.isReady()) {
+                    PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                    Toast.makeText(getApplicationContext(), "Single tap: " + ((int)sCoord.x) + ", " + ((int)sCoord.y), Toast.LENGTH_SHORT).show();
+                    imageView.setPin(sCoord);
+                    //Bitmap man = BitmapFactory.decodeResource(getResources(),R.drawable.man);
 
-        Log.d("WORKING!","Inside the captureBodyLoc method...");
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Single tap: Image not ready", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+            @Override
+            public void onLongPress(MotionEvent e) {
+                if (imageView.isReady()) {
+                    PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                    Toast.makeText(getApplicationContext(), "Long press: " + ((int)sCoord.x) + ", " + ((int)sCoord.y), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Long press: Image not ready", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                if (imageView.isReady()) {
+                    PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
+                    Toast.makeText(getApplicationContext(), "Double tap: " + ((int)sCoord.x) + ", " + ((int)sCoord.y), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Double tap: Image not ready", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
+
+//
+//        Resources resource = getResources();
+//        Drawable drawableMan = ResourcesCompat.getDrawable(resource, R.drawable.man, null);
+
+//        Bitmap man = BitmapFactory.decodeResource(getResources(),R.drawable.man);
+//        Canvas canvas = new Canvas(man);
+
+
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return gestureDetector.onTouchEvent(motionEvent);
+            }
+
+
+        });
 
 
 
     }
 
 }
+
+
