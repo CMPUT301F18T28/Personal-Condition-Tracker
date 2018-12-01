@@ -100,9 +100,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapClick(LatLng latlng) {
-        location = new LatLng(latlng.latitude, latlng.longitude);
-        currentMarker.remove();
-        currentMarker = mMap.addMarker(new MarkerOptions().position(latlng).title("Record Location"));
+        if (mapMode.equals("selection")) { // Check if the map is in selection mode
+            /* Remove the currentMarker and add a new one at the tapped spot */
+            currentMarker.remove();
+            currentMarker = mMap.addMarker(new MarkerOptions().position(latlng).title("Record Location"));
+            /* Set the location variable to the coordinates of the tapped spot */
+            location = new LatLng(latlng.latitude, latlng.longitude);
+        }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
 
