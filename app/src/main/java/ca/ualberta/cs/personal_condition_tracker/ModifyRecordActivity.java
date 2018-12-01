@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -251,6 +252,19 @@ public class ModifyRecordActivity extends AppCompatActivity {
         }
         startActivity(intent);
 
+    /**
+     * Get the RecordFromIntent
+     * @return
+     */
+    @Nullable
+    private Record getRecordFromIntent() {
+        int recordIndex = getIntent().getIntExtra("recordIndex", -1);
+        if (recordIndex != -1) {
+            return conditionOfInterest.getRecordList().getRecord(recordIndex);
+        }
+        else {
+            return null;
+        }
     }
 
 }
