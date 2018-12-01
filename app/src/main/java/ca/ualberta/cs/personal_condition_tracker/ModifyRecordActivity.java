@@ -271,8 +271,10 @@ public class ModifyRecordActivity extends AppCompatActivity {
     }
 
     /**
-     * Get the RecordFromIntent
-     * @return
+     * Get the Record that is being modified from the current intent,
+     * using getIntent().
+     *
+     * @return the Record that is currently being modified.
      */
     @Nullable
     private Record getRecordFromIntent() {
