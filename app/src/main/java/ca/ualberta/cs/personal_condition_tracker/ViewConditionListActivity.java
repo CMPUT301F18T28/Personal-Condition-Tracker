@@ -78,8 +78,11 @@ public class ViewConditionListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list);
-
         loadConditions();
+        setUpListView();
+    }
+
+    public void setUpListView(){
 
         final Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
 
@@ -168,17 +171,37 @@ public class ViewConditionListActivity extends AppCompatActivity {
         });
     }
 
+    public void loadConditions() {
+        ConditionListManager.GetConditionsTask getConditionsTask =
+                new ConditionListManager.GetConditionsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
+        getConditionsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+    }
+
     public void addACondition(View v){
         Toast.makeText(this,"Adding a condition", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewConditionListActivity.this, ModifyConditionActivity.class);
         intent.putExtra("index", -1);
         startActivityForResult(intent,1);
     }
+
     public void viewMapOfRecords(View v){
         Toast.makeText(this,"Viewing map of records", Toast.LENGTH_SHORT).show();
     }
+
     public void searchConditionsOrRecords(View v){
         Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
+    }
+
+    public void showAccountInformation(View v){
+        Intent intent = new Intent(ViewConditionListActivity.this, ModifyAccountActivity.class);
+        intent.putExtra("accountType", "patient");
+        startActivity(intent);
     }
 
     // A result code of 1 here simply means that we did actually make a change, and that
@@ -192,19 +215,6 @@ public class ViewConditionListActivity extends AppCompatActivity {
             }
         }
     }
-
-    public void loadConditions() {
-        ConditionListManager.GetConditionsTask getConditionsTask =
-                new ConditionListManager.GetConditionsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
-        getConditionsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-    }
-
 }
 
 

@@ -65,26 +65,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        resultIntent = new Intent();
-
-        //Get information from the intent
-        Intent intent = getIntent();
-        String accountType = intent.getStringExtra("accountType");
-        String userID = intent.getStringExtra("userID");
-        String emailAddress = intent.getStringExtra("emailAddress");
-        String phoneNumber = intent.getStringExtra("phoneNumber");
-
-        //Set the information for this activity
-        Spinner accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
-        EditText userIDText = findViewById(R.id.userIDText);
-        EditText emailAddressText = findViewById(R.id.emailAddressText);
-        EditText phoneNumberText = findViewById(R.id.phoneNumberText);
-
-        //accountTypeSpinner.setText(accountType);
-        userIDText.setText(userID);
-        emailAddressText.setText(emailAddress);
-        phoneNumberText.setText(phoneNumber);
     }
+
     public void confirmSignUp(View v){
         //Get information from user inputs
         Toast.makeText(this,"Confirming account edit", Toast.LENGTH_SHORT).show();
@@ -103,20 +85,16 @@ public class SignUpActivity extends AppCompatActivity {
         if(accountType.equals("patient")){
             // Make a new patient account.
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
-            Patient newUserAccount = new Patient(accountType, userID, emailAddress);
-            newUserAccount.setPhone_number(phoneNumber);
+            Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
             createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
-            this.finish();
         }
         else if (accountType.equals("care provider")){
             // Make a new care provider account.
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
-            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress);
-            newUserAccount.setPhone_number(phoneNumber);
+            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
             createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
-            this.finish();
         }
 
         else {
@@ -150,11 +128,13 @@ public class SignUpActivity extends AppCompatActivity {
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newPatient);
             Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            this.finish();
         }
         else {
             Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
         }
     }
+
     // Add a care provider to the server.
     public void createCareProvider(CareProvider newCareProvider, String userID) {
         // Check if the user has already signed up
@@ -176,6 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
             Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
+            this.finish();
         }
         else {
             Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
@@ -195,6 +176,5 @@ public class SignUpActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
-
     }
 }

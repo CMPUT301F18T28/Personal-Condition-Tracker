@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         clearText();
+        clearAccounts();
     }
+
 
     /**
      * This method handles the onClick of the "Sign In" button.
@@ -82,14 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
-                    Patient newPatient = new Patient(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address());
+                    Patient newPatient = new Patient(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address(), userAccount.getPhone_number());
                     userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
                     intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
                     startActivity(intent);
                 }
 
                 else if(userAccount.getAccountType().toLowerCase().trim().equals("care provider")){
-                    CareProvider newCareProvider = new CareProvider(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address());
+                    CareProvider newCareProvider = new CareProvider(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmail_address(), userAccount.getPhone_number());
                     userAccountListController.getUserAccountList().setActiveCareProvider(newCareProvider);
                     intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
                     startActivity(intent);
@@ -116,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
     public void clearText(){
         EditText userIdEntry = findViewById(R.id.userIDEntry);
         userIdEntry.getText().clear();
+    }
+
+    private void clearAccounts() {
+        userAccountListController.getUserAccountList().setAccountOfInterest(null);
+        userAccountListController.getUserAccountList().setActiveCareProvider(null);
     }
 
 }

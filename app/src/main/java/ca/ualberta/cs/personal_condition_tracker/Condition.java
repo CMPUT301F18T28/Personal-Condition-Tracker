@@ -78,7 +78,8 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private Date date;
     private String description;
     private RecordList recordList = new RecordList();
-    private ArrayList<String> commentList;
+    private CommentRecordList commentRecordList = new CommentRecordList();
+    private transient ArrayList<Listener> listenerList = null;
     private String associatedUserID;
     private static final Integer MAX_CHARACTERS = 100;
     @JestId
@@ -95,12 +96,12 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     }
 
 
-    Condition(String title, Date date, String description, RecordList recordList, ArrayList<String> commentList) {
+    Condition(String title, Date date, String description, RecordList recordList, CommentRecordList commentList) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.recordList = recordList;
-        this.commentList = commentList;
+        this.commentRecordList = commentList;
     }
 
     Condition(String title, String description) {
@@ -238,20 +239,18 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
      * @see RecordList
      */
 
-    public ArrayList<String> getCommentList() {
-        return commentList;
+    public CommentRecordList getCommentRecordList() {
+        return commentRecordList;
     }
 
     /**
      * Serves to register a list of comments made by a Care Provider on the condition(s) of an assigned Patient.
-     * @param commentList List of comments made by a Care Provider in response to a Patients condition(s)
      * @return Nothing
      */
 
-    public void setCommentList(ArrayList<String> commentList) {
-        this.commentList = commentList;
+    public void setCommentRecordList(CommentRecordList commentRecordList) {
+        this.commentRecordList = commentRecordList;
     }
-
 
     /**
      * Serves to concatenate the title, date and description of a particular condition.
@@ -262,5 +261,58 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     @Override
     public String toString(){
         return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
+    }
+
+    /**
+     * Appends a Listener object to the list thereof.
+     * <P>
+     * @param listener Listener object
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void addListener(Listener listener){
+        getListenerList().add(listener);
+    }
+
+
+    /**
+     * Removes a given Listener object from the list thereof.
+     * <P>
+     * @param listener Listener object
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+
+
+    /**
+     * Obtains the list of Listeners, that is, the listenerList attribute. If called for the first time
+     * this method serves to initialize the list.
+     * <P>
+     * @return ArrayList<Listener>
+     */
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    /**
+     * Serves to update all Listener objects contained in the list thereof.
+     * <P>
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
     }
 }

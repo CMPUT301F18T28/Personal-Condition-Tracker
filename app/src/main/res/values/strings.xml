@@ -14,8 +14,11 @@
     <string name="recordTitleText">Title</string>
     <string name="recordDateText">Date</string>
     <string name="recordDescriptionText">Description</string>
+    <string name="viewGeoLocationButtonText">View Geo-Location</string>
     <string name="viewGeoLocationsButtonText">View Geo-Locations</string>
+    <string name="viewBodyLocationButtonText">View Body-Location</string>
     <string name="viewBodyLocationsButtonText">View Body-Locations</string>
+    <string name="modifyGeoLocationButtonText">View or change Geo-Location</string>
     <string name="recordPhotoText">Photos</string>
     <string name="title_activity_view_record_list">ViewRecordListActivity</string>
     <string name="viewRecordsForConditionText">Records</string>
@@ -37,6 +40,8 @@
     <string name="emailAddressText">Email Address</string>
     <string name="phoneNumberText">Phone Number</string>
     <string name="passwordHeaderText">Password</string>
+    <string name="addPhotoButtonText">Add Photo</string>
+    <string name="selectGeoLocationText">Select a Geo-Location on the map:</string>
 
     <string name="title_activity_view_condition_list">ViewConditionListActivity</string>
     <string name="title_activity_select_geo_location">SelectGeoLocationActivity</string>
@@ -60,8 +65,12 @@
         <item>Patient</item>
         <item>Care Provider</item>
     </string-array>
+
     <string name="title_activity_select_body_location_male">selectBodyLocationMale</string>
     <string name="select_a_location_on_the_body_below">Select a location on the body below</string>
+
+    <string name="title_activity_take_photo_with_camera">TakePhotoWithCameraActivity</string>
+
 
 
 </resources>
