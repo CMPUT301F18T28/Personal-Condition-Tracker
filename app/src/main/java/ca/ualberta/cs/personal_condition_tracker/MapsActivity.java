@@ -84,6 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         currentMarker = mMap.addMarker(new MarkerOptions().position(startingMarker).title("Record Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(startingMarker));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startingMarker, 11));
         mMap.setOnMapClickListener(this);
         mMap.setOnMarkerClickListener(this);
     }
