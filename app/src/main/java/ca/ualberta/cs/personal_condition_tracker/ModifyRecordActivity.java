@@ -23,6 +23,8 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -35,15 +37,24 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
+
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 import static ca.ualberta.cs.personal_condition_tracker.PermissionRequest.verifyPermission;
 
 
@@ -60,6 +71,9 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private LatLng location;
 
+    private int year, month, day, hour, minute, second;
+    private Date new_date = new Date();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +89,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
         //Set the information for this activity
         EditText recordTitleView = findViewById(R.id.recordTitleView);
-        EditText recordDateView = findViewById(R.id.recordDateView);
+        TextView recordDateView = findViewById(R.id.recordDateView);
         EditText recordDescriptionView = findViewById(R.id.recordDescriptionView);
 
         recordTitleView.setText(recordTitle);
@@ -87,11 +101,10 @@ public class ModifyRecordActivity extends AppCompatActivity {
         //TODO fix dating, ensure working for edits add in Geo/body locations
         Toast.makeText(this,"Confirming record edit...", Toast.LENGTH_SHORT).show();
         EditText recordTitleView = findViewById(R.id.recordTitleView);
-        EditText recordDateView = findViewById(R.id.recordDateView);
         EditText recordDescriptionView = findViewById(R.id.recordDescriptionView);
 
         String recordTitle = recordTitleView.getText().toString();
-        Date recordDate = new Date();
+        Date recordDate = new_date;
         String recordDescription = recordDescriptionView.getText().toString();
 
         Record  newRecord = new Record(recordTitle, recordDate, recordDescription, location, null);
@@ -117,6 +130,45 @@ public class ModifyRecordActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED);
         this.finish();
     }
+
+    public void modifyRecordDate(View v) {
+        final Calendar c = Calendar.getInstance();
+        // Initialize values for year, month, day, hour, minute, and second.
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        hour = c.get(Calendar.HOUR_OF_DAY);
+        minute = c.get(Calendar.MINUTE);
+        // Set up a date picker dialog to let the user select the new day of the year.
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int selected_year, int month_of_year, int day_of_month) {
+                year = selected_year;
+                month = month_of_year;
+                day = day_of_month;
+                // After the day has been selected, set up a time picker dialog to let the user select the new time.
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ModifyRecordActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hour_of_day,
+                                          int selected_minute) {
+                        hour = hour_of_day;
+                        minute = selected_minute;
+                        GregorianCalendar new_gregorian_calendar = new GregorianCalendar(year, month, day, hour, minute, second);
+                        new_date = new_gregorian_calendar.getTime();
+                        // Update the emotion record and change the date shown to the user.
+                        TextView recordDateView = findViewById(R.id.recordDateView);
+                        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z"	);
+                        String recordDate = df.format(new_date);
+                        recordDateView.setText(recordDate);
+
+                    }
+                }, hour, minute, false);
+                timePickerDialog.show();
+            }
+        }, year, month, day);
+        datePickerDialog.show();
+    }
+
     public void addPhoto(View v) {
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setMessage("Would you like to take a photo or upload a previous photo?");

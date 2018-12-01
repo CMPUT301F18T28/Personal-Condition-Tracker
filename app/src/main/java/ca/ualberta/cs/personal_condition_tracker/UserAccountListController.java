@@ -92,4 +92,14 @@ public class UserAccountListController {
      */
     public void addUserAccount(UserAccount userAccount){ getUserAccountList().addUserAccount(userAccount);}
 
+    public void editUserAccount(UserAccount oldUserAccount, UserAccount newUserAccount) {
+        newUserAccount.setId(oldUserAccount.getId());
+        UserAccountListManager.DeleteUserAccountsTask deleteUserAccountsTask =
+                new UserAccountListManager.DeleteUserAccountsTask();
+        deleteUserAccountsTask.execute(oldUserAccount);
+        UserAccountListManager.AddUserAccountsTask addUserAccountsTask
+                = new UserAccountListManager.AddUserAccountsTask();
+        addUserAccountsTask.execute(newUserAccount);
+    }
+
 }

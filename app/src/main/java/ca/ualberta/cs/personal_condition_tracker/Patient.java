@@ -54,6 +54,18 @@ public class Patient extends UserAccount{
     }
 
     /**
+     * Constructor with specified attributes: accountType, userID, and emailAddress.
+     * @param accountType String representing the type of user account, Care Provider or Patient.
+     * @param userID String representing the name of the account holder; a username.
+     * @param emailAddress Email address of the account holder.
+     * @param phoneNumber Phone number of the account holder.
+     * @see UserAccount
+     */
+    Patient(String accountType, String userID, String emailAddress, String phoneNumber) {
+        super(accountType, userID, emailAddress, phoneNumber);
+    }
+
+    /**
      * Provides the list of patient conditions.
      * @return ConditionList An ArrayList of Condition objects
      * @see ConditionList
