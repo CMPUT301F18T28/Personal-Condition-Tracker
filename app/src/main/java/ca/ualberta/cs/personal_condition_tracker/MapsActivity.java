@@ -33,15 +33,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
         mapMode = intent.getStringExtra("mapMode");
-        if (mapMode.equals("selection")) {
+        if (mapMode.equals("selection") || mapMode.equals("view")) {
             location = new LatLng(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude", 0));
 
             if (location.latitude == 0 && location.longitude == 0) {
                 location = null;
             }
-        } else if (mapMode.equals("view")) {
+        } else if (mapMode.equals("viewAll")) {
 
-            // TODO add code to view markers
+            // TODO add code to view all markers
         }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -110,6 +110,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             intent.putExtra("latitude", location.latitude);
             intent.putExtra("longitude", location.longitude);
             setResult(RESULT_OK, intent);
+        }
+        if (mapMode.equals("view")) {
+
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
