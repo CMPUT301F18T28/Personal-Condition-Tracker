@@ -66,7 +66,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
 
     private int year, month, day, hour, minute, second;
-    private Date new_date;
+    private Date new_date = new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

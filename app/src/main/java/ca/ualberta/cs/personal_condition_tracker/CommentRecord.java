@@ -16,6 +16,12 @@ public class CommentRecord {
     @JestId
     private String id;
 
+    CommentRecord() {
+        this.title = "";
+        this.date = new Date();
+        this.comment = "";
+    }
+
     /**
      * Gets title.
      *
@@ -105,4 +111,11 @@ public class CommentRecord {
     public void setConditionIDForComment(String conditionIDForComment) {
         this.conditionIDForComment = conditionIDForComment;
     }
+
+    @Override
+    public String toString(){
+        return getTitle() + "\n" + getDate().toString() + "\n" + getComment();
+    }
+
+
 }

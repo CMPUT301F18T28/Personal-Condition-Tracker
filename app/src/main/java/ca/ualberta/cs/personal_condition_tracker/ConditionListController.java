@@ -15,7 +15,6 @@ public class ConditionListController {
     }
     /**
      * Add an account to the user account list.
-     * @param userAccount the account to be added.
      */
     public void addCondition(Condition condition){ getConditionList().addCondition(condition);}
 

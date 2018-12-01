@@ -16,7 +16,7 @@ import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
-public class CommentRecordManager {
+public class CommentRecordListManager {
 
     private static JestDroidClient client;
 

@@ -57,6 +57,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -71,21 +72,22 @@ public class ViewCommentsActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
-    String selectedComment;
+    private CommentRecord commentOfInterest = conditionOfInterest.getCommentRecordList().getCommentOfInterest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_comments);
+        loadCommentRecords();
         setupListView();
     }
 
     public void setupListView(){
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.commentListView);
-        Collection<String> commentCollection = conditionOfInterest.getCommentList();
-        final ArrayList<String> comments = new ArrayList<> (commentCollection);
-        final ArrayAdapter<String> commentsArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, comments);
+        Collection<CommentRecord> commentCollection = conditionOfInterest.getCommentRecordList().getCommentRecords();
+        final ArrayList<CommentRecord> comments = new ArrayList<> (commentCollection);
+        final ArrayAdapter<CommentRecord> commentsArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, comments);
         listView.setAdapter(commentsArrayAdapter);
 
         // Added a change observer
@@ -93,7 +95,7 @@ public class ViewCommentsActivity extends AppCompatActivity {
             @Override
             public void update() {
                 comments.clear();
-                Collection<String> commentCollection = conditionOfInterest.getCommentList();
+                Collection<CommentRecord> commentCollection = conditionOfInterest.getCommentRecordList().getCommentRecords();
                 comments.addAll(commentCollection);
                 commentsArrayAdapter.notifyDataSetChanged();
             }
@@ -111,18 +113,14 @@ public class ViewCommentsActivity extends AppCompatActivity {
                 adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        selectedComment = comments.get(finalPosition);
-                        conditionOfInterest.removeComment(selectedComment);
+
                     }
                 });
 
                 adb.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        selectedComment = comments.get(finalPosition);
-                        Intent intent = new Intent(ViewCommentsActivity.this,
-                                ModifyCommentActivity.class);
-                        intent.putExtra("comment", selectedComment);
+
                     }
                 });
 
@@ -137,6 +135,18 @@ public class ViewCommentsActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void loadCommentRecords() {
+        CommentRecordListManager.GetCommentRecordsTask getCommentRecordsTask =
+                new CommentRecordListManager.GetCommentRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"conditionIDForComment\" : \""+ conditionOfInterest.getId() +"\" } } }";
+        getCommentRecordsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getCommentRecordList().setCommentRecords(getCommentRecordsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
     }
 
 }

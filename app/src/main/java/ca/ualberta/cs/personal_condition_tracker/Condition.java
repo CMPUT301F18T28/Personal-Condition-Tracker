@@ -78,10 +78,9 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private Date date;
     private String description;
     private RecordList recordList = new RecordList();
-    private ArrayList<String> commentList = new ArrayList<>();
+    private CommentRecordList commentRecordList = new CommentRecordList();
     private transient ArrayList<Listener> listenerList = null;
     private String associatedUserID;
-    private String commentOfInterest;
     private static final Integer MAX_CHARACTERS = 100;
     @JestId
     private String id = null;
@@ -97,12 +96,12 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     }
 
 
-    Condition(String title, Date date, String description, RecordList recordList, ArrayList<String> commentList) {
+    Condition(String title, Date date, String description, RecordList recordList, CommentRecordList commentList) {
         this.title = title;
         this.date = date;
         this.description = description;
         this.recordList = recordList;
-        this.commentList = commentList;
+        this.commentRecordList = commentList;
     }
 
     Condition(String title, String description) {
@@ -240,39 +239,18 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
      * @see RecordList
      */
 
-    public ArrayList<String> getCommentList() {
-        return commentList;
+    public CommentRecordList getCommentRecordList() {
+        return commentRecordList;
     }
 
     /**
      * Serves to register a list of comments made by a Care Provider on the condition(s) of an assigned Patient.
-     * @param commentList List of comments made by a Care Provider in response to a Patients condition(s)
      * @return Nothing
      */
 
-    public void setCommentList(ArrayList<String> commentList) {
-        this.commentList = commentList;
+    public void setCommentRecordList(CommentRecordList commentRecordList) {
+        this.commentRecordList = commentRecordList;
     }
-
-    /**
-     * Serves as a way to manipulate the commentList without direct access
-     * @param comment Comment to be added
-     * @return Nothing
-     */
-    public void addComment(String comment){
-        commentList.add(comment);
-        notifyListeners();
-    }
-    /**
-     * Serves as a way to manipulate the commentList without direct access
-     * @param comment Comment to be removed
-     * @return Nothing
-     */
-    public void removeComment(String comment){
-        commentList.remove(comment);
-        notifyListeners();
-    }
-
 
     /**
      * Serves to concatenate the title, date and description of a particular condition.
@@ -283,14 +261,6 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     @Override
     public String toString(){
         return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();
-    }
-
-    public String getCommentOfInterest() {
-        return commentOfInterest;
-    }
-
-    public void setCommentOfInterest(String commentOfInterest) {
-        this.commentOfInterest = commentOfInterest;
     }
 
     /**

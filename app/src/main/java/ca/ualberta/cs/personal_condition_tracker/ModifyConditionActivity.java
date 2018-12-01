@@ -58,7 +58,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
     private int year, month, day, hour, minute, second;
-    private Date new_date;
+    private Date new_date = new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
