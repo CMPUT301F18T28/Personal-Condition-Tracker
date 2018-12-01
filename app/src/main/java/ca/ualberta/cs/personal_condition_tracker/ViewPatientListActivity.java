@@ -62,6 +62,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -78,6 +79,10 @@ public class ViewPatientListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_patient_list);
+
+
+        TextView careProviderName = findViewById(R.id.careProviderNameTextView);
+        careProviderName.setText(activeCareProvider.getUserID());
 //        loadPatients();
         //Setup adapter for condition list, and display the list.
         activeCareProvider.getPatientList().setPatientIDs(loadPatients());
@@ -184,6 +189,12 @@ public class ViewPatientListActivity extends AppCompatActivity {
             }
         }
         return patientIDs;
+    }
+
+    public void showAccountInformation(View v){
+        Intent intent = new Intent(ViewPatientListActivity.this, ModifyAccountActivity.class);
+        intent.putExtra("accountType", "care provider");
+        startActivity(intent);
     }
 
 }

@@ -104,11 +104,13 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
     }
 
     public void addAComment(View v){
-        Toast.makeText(this,"Adding a Comment", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ViewRecordListAsCareProviderActivity.this, ModifyCommentActivity.class);
+        startActivity(intent);
     }
 
     public void viewComments(View v){
-        Toast.makeText(this,"Viewing comments", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ViewRecordListAsCareProviderActivity.this, ViewCommentsActivity.class);
+        startActivity(intent);
     }
 
     public void showSlideshow(View v){

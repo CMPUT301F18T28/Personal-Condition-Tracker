@@ -49,32 +49,104 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 //TODO: For Project Part 5. Implement this activity.
 public class ViewCommentsActivity extends AppCompatActivity {
+    private UserAccountListController userAccountListController = new UserAccountListController();
+    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
+    private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
+    private CommentRecord commentOfInterest = conditionOfInterest.getCommentRecordList().getCommentOfInterest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_comments);
+        loadCommentRecords();
+        setupListView();
+    }
 
-        Button add_comment = (Button) findViewById(R.id.addCommentButton);
-        add_comment.setOnClickListener(new View.OnClickListener() {
+    public void setupListView(){
+        //Setup adapter for condition list, and display the list.
+        ListView listView = findViewById(R.id.commentListView);
+        Collection<CommentRecord> commentCollection = conditionOfInterest.getCommentRecordList().getCommentRecords();
+        final ArrayList<CommentRecord> comments = new ArrayList<> (commentCollection);
+        final ArrayAdapter<CommentRecord> commentsArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, comments);
+        listView.setAdapter(commentsArrayAdapter);
+
+        // Added a change observer
+        conditionOfInterest.addListener(new Listener() {
             @Override
-            public void onClick(View arg0) {
-                setResult(RESULT_OK);
-                Intent intent = new Intent(ViewCommentsActivity.this, ModifyCommentActivity.class);
-                startActivity(intent);
+            public void update() {
+                comments.clear();
+                Collection<CommentRecord> commentCollection = conditionOfInterest.getCommentRecordList().getCommentRecords();
+                comments.addAll(commentCollection);
+                commentsArrayAdapter.notifyDataSetChanged();
             }
         });
 
+        //Ugly code of OnItemLongClickListener
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                AlertDialog.Builder adb = new AlertDialog.Builder(ViewCommentsActivity.this);
+                adb.setMessage("Would you like to edit or delete " + comments.get(position).toString() + " ?");
+                adb.setCancelable(true);
+                final int finalPosition = position;
+
+                adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                adb.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+                adb.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Do nothing, simply allow the dialog to close
+                    }
+                });
+
+                adb.show();
+                return true;
+            }
+        });
+    }
+
+    public void loadCommentRecords() {
+        CommentRecordListManager.GetCommentRecordsTask getCommentRecordsTask =
+                new CommentRecordListManager.GetCommentRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"conditionIDForComment\" : \""+ conditionOfInterest.getId() +"\" } } }";
+        getCommentRecordsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getCommentRecordList().setCommentRecords(getCommentRecordsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
     }
 
 }

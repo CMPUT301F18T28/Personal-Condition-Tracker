@@ -170,6 +170,8 @@ public class ViewRecordListActivity extends AppCompatActivity {
 
     public void viewComments(View v){
         Toast.makeText(this,"Viewing comments", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ViewRecordListActivity.this, ViewCommentsActivity.class);
+        startActivity(intent);
     }
 
     public void showSlideshow(View v){

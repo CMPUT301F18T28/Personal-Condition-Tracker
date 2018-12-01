@@ -84,7 +84,7 @@ public class UserAccount {
         this.accountType = "";
         this.userID = "";
         this.email_address = "";
-        this.password = "password";
+        this.phone_number = "";
     }
 
     /**
@@ -99,6 +99,7 @@ public class UserAccount {
         this.accountType = accountType;
         this.userID = userID;
         this.email_address = email_address;
+        this.phone_number = "";
     }
 
     /**
@@ -106,15 +107,15 @@ public class UserAccount {
      * @param accountType String representing the type of user account, Care Provider or Patient.
      * @param userID String representing the name of the account holder; a username.
      * @param email_address Email address of the account holder.
-     * @param password   Password for the account
+     * @param phoneNumber   Password for the account
      * @return Nothing
      */
 
-    UserAccount(String accountType, String userID, String email_address, String password) {
+    UserAccount(String accountType, String userID, String email_address, String phoneNumber) {
         this.accountType = accountType;
         this.userID = userID;
         this.email_address = email_address;
-        this.password = password;
+        this.phone_number = phoneNumber;
     }
 
     /**

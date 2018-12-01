@@ -108,6 +108,7 @@ public class ConditionList{
             condition.setDate(date);
             condition.setDescription(description);
         }
+        notifyListeners();
     }
 
 
@@ -127,7 +128,7 @@ public class ConditionList{
      */
 
     //Edit the whole shebang...
-    public void editCondition(Condition condition, String title, Date date, String description, RecordList recordList, ArrayList<String> commentList){
+    public void editCondition(Condition condition, String title, Date date, String description, RecordList recordList, CommentRecordList commentList){
 
         //First verify the condition exists...
         int index = condition_list.indexOf(condition);
@@ -141,7 +142,7 @@ public class ConditionList{
             condition.setDate(date);
             condition.setDescription(description);
             condition.setRecordList(recordList);
-            condition.setCommentList(commentList);
+            condition.setCommentRecordList(commentList);
         }
     }
 
