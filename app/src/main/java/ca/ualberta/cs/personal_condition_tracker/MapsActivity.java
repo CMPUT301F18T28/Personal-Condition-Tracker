@@ -106,6 +106,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             currentMarker = mMap.addMarker(new MarkerOptions().position(latlng).title("Record Location"));
             /* Set the location variable to the coordinates of the tapped spot */
             location = new LatLng(latlng.latitude, latlng.longitude);
+            Intent intent = new Intent(MapsActivity.this, ModifyRecordActivity.class);
+            intent.putExtra("latitude", location.latitude);
+            intent.putExtra("longitude", location.longitude);
+            setResult(RESULT_OK, intent);
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
