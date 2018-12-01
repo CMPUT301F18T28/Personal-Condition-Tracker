@@ -51,6 +51,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
@@ -82,8 +83,10 @@ public class ViewRecordActivity extends Activity {
         recordDateView.setText(recordDate);
         recordDescriptionView.setText(recordDescription);
     }
-    public void viewGeoLocations(View v){
-        Toast.makeText(this,"View geo locations", Toast.LENGTH_SHORT).show();
+    public void viewGeoLocation(View v) {
+        Intent intent = new Intent(ViewRecordActivity.this, MapsActivity.class);
+        intent.putExtra("mapMode", "view");
+        startActivity(intent);
     }
 
     public void viewBodyLocations(View v){

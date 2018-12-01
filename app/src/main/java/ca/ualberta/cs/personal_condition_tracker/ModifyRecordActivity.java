@@ -32,16 +32,19 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
+
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -56,9 +59,11 @@ import static ca.ualberta.cs.personal_condition_tracker.PermissionRequest.verify
 
 
 public class ModifyRecordActivity extends AppCompatActivity {
+
     public static Intent resultIntent;
-    public static final int PICK_IMAGE = 1;
+    private static final int PICK_IMAGE = 1;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+    private static final int SELECTED_LOCATION_REQUEST_CODE = 200;
     private Uri imageFileUri;
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -286,6 +291,49 @@ public class ModifyRecordActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(ModifyRecordActivity.this, "The photo could not be added", Toast.LENGTH_SHORT).show();
             }
+        }
+
+        if (requestCode == SELECTED_LOCATION_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Record record = getRecordFromIntent();
+                if (record != null) {
+                    record.setGeo_location(new LatLng(data.getDoubleExtra("latitude", 0.0),
+                            data.getDoubleExtra("longitude", 0.0)));
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(ModifyRecordActivity.this, "Map change canceled!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ModifyRecordActivity.this, "The geo-location could not be changed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void modifyGeoLocation(View v) {
+        Intent mapIntent = new Intent(ModifyRecordActivity.this, MapsActivity.class);
+        mapIntent.putExtra("mapMode", "selection");
+        Record record = getRecordFromIntent();
+        if (record != null) {
+            LatLng latlng = record.getGeo_location();
+            if (latlng != null) {
+                mapIntent.putExtra("latitude", latlng.latitude);
+                mapIntent.putExtra("longitude", latlng.longitude);
+            }
+        }
+        startActivityForResult(mapIntent, SELECTED_LOCATION_REQUEST_CODE);
+    }
+
+    /**
+     * Get the RecordFromIntent
+     * @return
+     */
+    @Nullable
+    private Record getRecordFromIntent() {
+        int recordIndex = getIntent().getIntExtra("recordIndex", -1);
+        if (recordIndex != -1) {
+            return conditionOfInterest.getRecordList().getRecord(recordIndex);
+        }
+        else {
+            return null;
         }
     }
 
