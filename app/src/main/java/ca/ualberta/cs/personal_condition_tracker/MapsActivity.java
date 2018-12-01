@@ -91,8 +91,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        marker.remove();
-        location = null;
+        if (mapMode.equals("selection")) { // Check if the map is in selection mode
+            marker.remove();
+            location = null;
+        }
         return false;
     }
 
