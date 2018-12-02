@@ -26,7 +26,7 @@
     <string name="addARecordButtonText">Add a Record</string>
     <string name="addAConditionButtonText">Add a Condition</string>
     <string name="viewMapOfRecordsButtonText">View map of records</string>
-    <string name="searchConditionsButtonText">Search conditions or records</string>
+    <string name="searchConditionsButtonText">Search conditions</string>
     <string name="viewCommentsButtonText">View Comments</string>
     <string name="showSlideShowButtonText">Show Slideshow</string>
     <string name="frontOfBodyButtonText">Front</string>
@@ -42,6 +42,12 @@
     <string name="passwordHeaderText">Password</string>
     <string name="addPhotoButtonText">Add Photo</string>
     <string name="selectGeoLocationText">Select a Geo-Location on the map:</string>
+    <string name="results">Results:</string>
+    <string name="searchByKeyword">Search By Keyword:</string>
+    <string name="searchByGeoLocation">Search By Geo-Location:</string>
+    <string name="searchByBodyLocation">Search By Body-Location:</string>
+    <string name="searchRecordsButtonText">Search Records</string>
+
 
     <string name="title_activity_view_condition_list">ViewConditionListActivity</string>
     <string name="title_activity_select_geo_location">SelectGeoLocationActivity</string>
@@ -66,6 +72,7 @@
         <item>Care Provider</item>
     </string-array>
     <string name="title_activity_take_photo_with_camera">TakePhotoWithCameraActivity</string>
+    <string name="title_activity_search_records">SearchRecordsActivity</string>
 
 
 </resources>

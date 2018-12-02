@@ -7,7 +7,7 @@
     tools:context=".ViewRecordListActivity">
 
     <Button
-        android:id="@+id/showSlideshowButton"
+        android:id="@+id/searchRecordsButton"
         android:layout_width="345dp"
         android:layout_height="52dp"
         android:layout_marginEnd="23dp"
@@ -78,7 +78,7 @@
         android:layout_marginTop="16dp"
         android:onClick="viewComments"
         android:text="@string/viewCommentsButtonText"
-        app:layout_constraintBottom_toTopOf="@+id/showSlideshowButton"
+        app:layout_constraintBottom_toTopOf="@+id/searchRecordsButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addACommentButton" />

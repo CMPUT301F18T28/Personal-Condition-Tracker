@@ -55,11 +55,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,21 +71,27 @@ import java.util.Collection;
 
 public class ViewRecordListActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private RecordListController recordListController = new RecordListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private Record selectedRecord;
+
+    private String keywords = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_record_list);
-
         loadRecords();
+//        ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest.getId());
+//        Toast.makeText(ViewRecordListActivity.this,Integer.toString(old_records.size()), Toast.LENGTH_SHORT).show();
+//
+//        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
 
         TextView conditionTitle = findViewById(R.id.conditionTextView);
         conditionTitle.setText(conditionOfInterest.getTitle());
 
-        //Setup adapter for condition list, and display the list.
+        //Setup adapter for record list, and display the list.
         ListView listView = findViewById(R.id.recordListView);
         Collection<Record> recordCollection = conditionOfInterest.getRecordList().getRecords();
         final ArrayList<Record> records = new ArrayList<> (recordCollection);
@@ -174,19 +182,30 @@ public class ViewRecordListActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void showSlideshow(View v){
-        Toast.makeText(this,"Showing slideshow", Toast.LENGTH_SHORT).show();
-    }
+    public void searchRecords(View v){
+        AlertDialog.Builder choose_search_type_adb = new AlertDialog.Builder(ViewRecordListActivity.this);
+        choose_search_type_adb.setTitle("Search by:");
+        CharSequence[] emotions = new CharSequence[] {"Keywords", "Geo-Location", "Body-Location"};
+        // Set up the dialog builder for the pop-up and instantiate a new emotion depending on which button is pressed.
+        // Update the emotion field and save the data after a new selection is made.
+        choose_search_type_adb.setSingleChoiceItems(emotions, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                   searchByKeywords();
+                }
+                else if (which == 1) {
 
-    // A result code of 1 here simply means that we did actually make a change, and that
-    // the listView should be updated
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == 1){
-            if(resultCode == Activity.RESULT_OK){
-                conditionOfInterest.getRecordList().notifyListeners();
+                }
+                else if (which == 2) {
+
+                }
+                dialog.dismiss();
             }
-        }
+        });
+        choose_search_type_adb.setCancelable(true);
+        AlertDialog choose_emotion_dialog = choose_search_type_adb.create();
+        choose_emotion_dialog.show();
     }
 
     public void loadRecords() {
@@ -199,5 +218,68 @@ public class ViewRecordListActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
+    }
+    public void searchByKeywords(){
+        AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
+        final EditText new_comment_input = new EditText(this);
+        new_comment_input.setInputType(InputType.TYPE_CLASS_TEXT);
+        new_comment_input.setText(keywords);
+        enter_keywords_adb.setTitle("Enter your keywords below:");
+        enter_keywords_adb.setView(new_comment_input);
+        enter_keywords_adb.setCancelable(true);
+        // When "OK" is pressed, change the emotion record's comment to the inputted text, display the
+        // new comment, and save the changes.
+        enter_keywords_adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String temp_text = new_comment_input.getText().toString();
+                keywords = temp_text;
+                ArrayList<Record> matched_records = new ArrayList<>();
+                matched_records = recordListController.searchByKeyword(keywords, conditionOfInterest.getId());
+                conditionOfInterest.getRecordList().setRecords(matched_records);
+                //Setup adapter for record list, and display the list.
+                ListView listView = findViewById(R.id.recordListView);
+                Collection<Record> recordCollection = conditionOfInterest.getRecordList().getRecords();
+                final ArrayList<Record> records = new ArrayList<> (recordCollection);
+                final ArrayAdapter<Record> recordArrayAdapter = new ArrayAdapter<>(ViewRecordListActivity.this, android.R.layout.simple_list_item_1, records);
+                listView.setAdapter(recordArrayAdapter);
+
+                // Added a change observer
+                conditionOfInterest.getRecordList().addListener(new Listener() {
+                    @Override
+                    public void update() {
+                        records.clear();
+                        Collection<Record> recordCollection = conditionOfInterest.getRecordList().getRecords();
+                        records.addAll(recordCollection);
+                        recordArrayAdapter.notifyDataSetChanged();
+                    }
+                });
+                Toast.makeText(ViewRecordListActivity.this,Integer.toString(conditionOfInterest.getRecordList().getRecords().size()), Toast.LENGTH_SHORT).show();
+            }
+
+        });
+        enter_keywords_adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        enter_keywords_adb.show();
+    }
+
+    // A result code of 1 here simply means that we did actually make a change, and that
+    // the listView should be updated
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if (requestCode == 1){
+            if(resultCode == Activity.RESULT_OK){
+                conditionOfInterest.getRecordList().notifyListeners();
+            }
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadRecords();
     }
 }
