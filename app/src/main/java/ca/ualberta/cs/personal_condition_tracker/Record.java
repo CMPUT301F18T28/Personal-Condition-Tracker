@@ -60,7 +60,6 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import io.searchbox.annotations.JestId;
@@ -69,8 +68,8 @@ public class Record {
     private String title;
     private Date date;
     private String description;
-    private LatLng geo_location;
-    private String body_location;
+    private LatLng geoLocation;
+    private String bodyLocation;
     private PhotographList photos;
     private String associatedConditionID;
     @JestId
@@ -82,25 +81,25 @@ public class Record {
         this.title = "Title";
         this.date = new Date();
         this.description = "";
-        this.geo_location = null;
-        this.body_location = "";
+        this.geoLocation = null;
+        this.bodyLocation = "";
         this.photos = new PhotographList();
     }
 
-    Record(String new_title, String new_description) {
-        this.title = new_title;
+    Record(String newTitle, String newDescription) {
+        this.title = newTitle;
         this.date = new Date();
-        this.description = new_description;
-        this.geo_location = null;
-        this.body_location = "";
+        this.description = newDescription;
+        this.geoLocation = null;
+        this.bodyLocation = "";
         this.photos = new PhotographList();
     }
-    Record(String new_title, Date new_date, String new_description, LatLng new_geo_location, String new_body_location) {
-        this.title = new_title;
-        this.date = new_date;
-        this.description = new_description;
-        this.geo_location = null;
-        this.body_location = "";
+    Record(String newTitle, Date newDate, String newDescription, LatLng newGeoLocation, String newBodyLocation) {
+        this.title = newTitle;
+        this.date = newDate;
+        this.description = newDescription;
+        this.geoLocation = null;
+        this.bodyLocation = "";
         this.photos = new PhotographList();
     }
 
@@ -171,19 +170,19 @@ public class Record {
      * @see Condition
      */
 
-    public LatLng getGeo_location() {
-        return geo_location;
+    public LatLng getGeoLocation() {
+        return geoLocation;
     }
 
     /**
      * Registers the geo-locational data of a Record; generally the location where the corresponding Condition arose.
-     * @param geo_location The latitude and longitude of the location (specific to a Condition)
+     * @param geoLocation The latitude and longitude of the location (specific to a Condition)
      * @see LatLng
      * @see Condition
      */
 
-    public void setGeo_location(LatLng geo_location) {
-        this.geo_location = geo_location;
+    public void setGeoLocation(LatLng geoLocation) {
+        this.geoLocation = geoLocation;
     }
 
     /**
@@ -193,19 +192,19 @@ public class Record {
      * @see Condition
      */
 
-    public String getBody_location() {
-        return body_location;
+    public String getBodyLocation() {
+        return bodyLocation;
     }
 
     /**
      * Registers the location on the body where the Condition resides.
-     * @param body_location Description of a location on the human body
+     * @param bodyLocation Description of a location on the human body
      * @return Nothing
      * @see Condition
      */
 
-    public void setBody_location(String body_location) {
-        this.body_location = body_location;
+    public void setBodyLocation(String bodyLocation) {
+        this.bodyLocation = bodyLocation;
     }
 
     /**
@@ -232,18 +231,6 @@ public class Record {
         this.photos = photos;
     }
 
-    /**
-     * Provides editing capability for the various attributes of a Record object.
-     * @param recordTitle Title for the Record
-     * @param recordDate  Date of the Record
-     * @param recordDescription Description of the Condition
-     * @param latLng Geo-locational data specifying the latitude and longitude
-     * @param body_location A description of the body location specific to the Condition
-     * @return LatLng The latitude and longitude of the location within the Record of a Condition
-     * @see Condition
-     * @see LatLng
-     * @see Date
-     */
 
 
     public String getAssociatedConditionID() {
@@ -262,13 +249,24 @@ public class Record {
         this.id = id;
     }
 
-
+    /**
+     * Provides editing capability for the various attributes of a Record object.
+     * @param recordTitle Title for the Record
+     * @param recordDate  Date of the Record
+     * @param recordDescription Description of the Condition
+     * @param latLng Geo-locational data specifying the latitude and longitude
+     * @param body_location A description of the body location specific to the Condition
+     * @return LatLng The latitude and longitude of the location within the Record of a Condition
+     * @see Condition
+     * @see LatLng
+     * @see Date
+     */
     public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, String body_location) {
         this.setTitle(recordTitle);
         this.setDate(recordDate);
         this.setDescription(recordDescription);
-        this.setGeo_location(latLng);
-        this.setBody_location(body_location);
+        this.setGeoLocation(latLng);
+        this.setBodyLocation(body_location);
     }
 
     /**
