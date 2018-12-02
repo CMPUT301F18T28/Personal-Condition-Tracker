@@ -69,10 +69,6 @@
             android:label="@string/title_activity_select_body_location"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewMapOfRecordsActivity"
-            android:label="@string/title_activity_view_map_of_records"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".ViewCommentsActivity"
             android:label="@string/title_activity_view_comments"
             android:theme="@style/AppTheme.NoActionBar" />

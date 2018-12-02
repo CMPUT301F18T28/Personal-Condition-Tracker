@@ -50,6 +50,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,14 +58,18 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -76,17 +81,16 @@ public class ViewRecordListActivity extends AppCompatActivity {
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private Record selectedRecord;
 
+    private static final int SELECTED_LOCATION_REQUEST_CODE = 200;
     private String keywords = "";
+    private LatLng selectedLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_record_list);
-        loadRecords();
-//        ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest.getId());
-//        Toast.makeText(ViewRecordListActivity.this,Integer.toString(old_records.size()), Toast.LENGTH_SHORT).show();
-//
-//        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
+        ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest);
+        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
 
         TextView conditionTitle = findViewById(R.id.conditionTextView);
         conditionTitle.setText(conditionOfInterest.getTitle());
@@ -122,9 +126,7 @@ public class ViewRecordListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         selectedRecord = records.get(finalPosition);
-                        RecordListManager.DeleteRecordsTask deleteRecordsTask =
-                                new RecordListManager.DeleteRecordsTask();
-                        deleteRecordsTask.execute(selectedRecord);
+                        recordListController.deleteRecord(selectedRecord);
                         conditionOfInterest.getRecordList().deleteRecord(selectedRecord);
                     }
                 });
@@ -192,10 +194,11 @@ public class ViewRecordListActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                   searchByKeywords();
+                    searchByKeywords();
                 }
                 else if (which == 1) {
-
+                    selectGeoLocation();
+                    searchByGeoLocation();
                 }
                 else if (which == 2) {
 
@@ -208,17 +211,6 @@ public class ViewRecordListActivity extends AppCompatActivity {
         choose_emotion_dialog.show();
     }
 
-    public void loadRecords() {
-        RecordListManager.GetRecordsTask getRecordsTask =
-                new RecordListManager.GetRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ conditionOfInterest.getId() +"\" } } }";
-        getRecordsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(getRecordsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-    }
     public void searchByKeywords(){
         AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
         final EditText new_comment_input = new EditText(this);
@@ -267,6 +259,75 @@ public class ViewRecordListActivity extends AppCompatActivity {
         enter_keywords_adb.show();
     }
 
+
+    public void searchByGeoLocation(){
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        LayoutInflater factory = LayoutInflater.from(this);
+
+//text_entry is an Layout XML file containing two text field to display in alert dialog
+        final EditText latitude = new EditText(this);
+        final EditText longitude = new EditText(this);
+        final EditText distance = new EditText(this);
+        latitude.setInputType(InputType.TYPE_CLASS_NUMBER);
+        longitude.setInputType(InputType.TYPE_CLASS_NUMBER);
+        distance.setInputType(InputType.TYPE_CLASS_NUMBER);
+//        layout.addView(latitude);
+//        layout.addView(longitude);
+        layout.addView(distance);
+
+        final AlertDialog.Builder enter_geo_location_adb = new AlertDialog.Builder(this);
+        enter_geo_location_adb.setTitle("Enter distance:").setView(layout).setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+//                        String latitudeString = latitude.getText().toString();
+//                        String longitudeString = longitude.getText().toString();
+                        String latitudeString = "";
+                        String longitudeString = "";
+                        if (selectedLocation != null) {
+                            latitudeString = Double.toString(selectedLocation.latitude);
+                            longitudeString = Double.toString(selectedLocation.longitude);
+                        }
+                        String distanceString = distance.getText().toString();
+                        ArrayList<Record> matched_records = new ArrayList<>();
+                        matched_records = recordListController.searchByGeoLocation(latitudeString, longitudeString, distanceString, conditionOfInterest.getId());
+                        conditionOfInterest.getRecordList().setRecords(matched_records);
+                        //Setup adapter for record list, and display the list.
+                        ListView listView = findViewById(R.id.recordListView);
+                        Collection<Record> recordCollection = conditionOfInterest.getRecordList().getRecords();
+                        final ArrayList<Record> records = new ArrayList<>(recordCollection);
+                        final ArrayAdapter<Record> recordArrayAdapter = new ArrayAdapter<>(ViewRecordListActivity.this, android.R.layout.simple_list_item_1, records);
+                        listView.setAdapter(recordArrayAdapter);
+
+                        // Added a change observer
+                        conditionOfInterest.getRecordList().addListener(new Listener() {
+                            @Override
+                            public void update() {
+                                records.clear();
+                                Collection<Record> recordCollection = conditionOfInterest.getRecordList().getRecords();
+                                records.addAll(recordCollection);
+                                recordArrayAdapter.notifyDataSetChanged();
+                            }
+                        });
+                        Toast.makeText(ViewRecordListActivity.this, Integer.toString(conditionOfInterest.getRecordList().getRecords().size()), Toast.LENGTH_SHORT).show();
+                    }}).setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int whichButton) {
+                        dialog.cancel();
+                    }
+                });
+        enter_geo_location_adb.show();
+
+    }
+
+    public void selectGeoLocation() {
+        Intent mapIntent = new Intent(this, MapsActivity.class);
+        mapIntent.putExtra("mapMode", "selection");
+        startActivityForResult(mapIntent, SELECTED_LOCATION_REQUEST_CODE);
+    }
+
     // A result code of 1 here simply means that we did actually make a change, and that
     // the listView should be updated
     @Override
@@ -276,10 +337,20 @@ public class ViewRecordListActivity extends AppCompatActivity {
                 conditionOfInterest.getRecordList().notifyListeners();
             }
         }
+        if (requestCode == SELECTED_LOCATION_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                selectedLocation = new LatLng(data.getDoubleExtra("latitude", 0.0),
+                        data.getDoubleExtra("longitude", 0.0));
+                Toast.makeText(ViewRecordListActivity.this, Double.toString(selectedLocation.longitude), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
     @Override
     public void onResume() {
         super.onResume();
-        loadRecords();
+//        loadRecords();
+        ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest);
+        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
+
     }
 }
