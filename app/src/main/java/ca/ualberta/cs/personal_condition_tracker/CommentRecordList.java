@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class CommentRecordList {
 
-    private ArrayList<CommentRecord> comment_record_list;
+    private ArrayList<CommentRecord> commentRecordList;
     private transient ArrayList<Listener> listenerList = null;
     private CommentRecord commentOfInterest = null;
 
@@ -15,17 +15,17 @@ public class CommentRecordList {
      * Instantiates a new Comment record list.
      */
     CommentRecordList() {
-        this.comment_record_list = new ArrayList<CommentRecord>();
+        this.commentRecordList = new ArrayList<>();
     }
 
     /**
      * Has comment record boolean.
      *
-     * @param new_record the new record
+     * @param commentRecord the new record
      * @return the boolean
      */
-    public boolean hasCommentRecord(CommentRecord new_record) {
-        return this.comment_record_list.contains(new_record);
+    public boolean hasCommentRecord(CommentRecord commentRecord) {
+        return this.commentRecordList.contains(commentRecord);
     }
 
     /**
@@ -35,26 +35,26 @@ public class CommentRecordList {
      * @return the comment record
      */
     public CommentRecord getCommentRecord(int index){
-        return this.comment_record_list.get(index);
+        return this.commentRecordList.get(index);
     }
 
     /**
      * Add comment record.
      *
-     * @param new_record the new record
+     * @param commentRecord the new record
      */
-    public void addCommentRecord(CommentRecord new_record) {
-        this.comment_record_list.add(new_record);
+    public void addCommentRecord(CommentRecord commentRecord) {
+        this.commentRecordList.add(commentRecord);
         notifyListeners();
     }
 
     /**
      * Delete comment record.
      *
-     * @param new_record the new record
+     * @param commentRecord the new record
      */
-    public void deleteCommentRecord(CommentRecord new_record) {
-        this.comment_record_list.remove(new_record);
+    public void deleteCommentRecord(CommentRecord commentRecord) {
+        this.commentRecordList.remove(commentRecord);
         notifyListeners();
     }
 
@@ -62,10 +62,10 @@ public class CommentRecordList {
      * Edit comment record.
      *
      * @param index      the index
-     * @param new_record the new record
+     * @param commentRecord the new record
      */
-    public void editCommentRecord(int index, CommentRecord new_record) {
-        this.comment_record_list.set(index, new_record);
+    public void editCommentRecord(int index, CommentRecord commentRecord) {
+        this.commentRecordList.set(index, commentRecord);
     }
 
     /**
@@ -83,7 +83,7 @@ public class CommentRecordList {
      * @param commentRecords the comment records
      */
     public void setCommentRecords(ArrayList<CommentRecord> commentRecords) {
-        this.comment_record_list = commentRecords;
+        this.commentRecordList = commentRecords;
     }
 
     /**
@@ -101,7 +101,7 @@ public class CommentRecordList {
      * @return the comment records
      */
     public ArrayList<CommentRecord> getCommentRecords() {
-        return comment_record_list;
+        return commentRecordList;
     }
 
     /**

@@ -27,12 +27,14 @@ public class PhotographListTest extends TestCase{
         photos.deletePhotograph(photo);
         assertFalse(photos.hasPhotograph(photo));
     }
+
     public void testGetRecord() {
         PhotographList photos = new PhotographList();
         Photograph photo = new Photograph();
         photos.addPhotograph(photo);
         assertTrue(photos.getPhotograph(0).equals(photo));
     }
+
     public void testEditRecord() {
         PhotographList photos = new PhotographList();
         Photograph photo = new Photograph();

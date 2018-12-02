@@ -67,21 +67,21 @@ import java.util.ArrayList;
  */
 
 public class RecordList {
-    private ArrayList<Record> record_list;
+    private ArrayList<Record> recordList;
     private transient ArrayList<Listener> listenerList = null;
     private Record recordOfInterest = null;
     /**
      * Constructor which initializes the arraylist of records.
      */
     RecordList() {
-        this.record_list = new ArrayList<Record>();
+        this.recordList = new ArrayList<Record>();
     }
     /**
      * Check if the record list has a specific record.
      * @return boolean
      */
-    public boolean hasRecord(Record new_record) {
-        return this.record_list.contains(new_record);
+    public boolean hasRecord(Record newRecord) {
+        return this.recordList.contains(newRecord);
     }
     /**
      * Get a record given an index from the list.
@@ -89,30 +89,30 @@ public class RecordList {
      * @return Record
      */
     public Record getRecord(int index){
-        return this.record_list.get(index);
+        return this.recordList.get(index);
     }
     /**
      * Add a record to the list.
      * @params Record
      */
-    public void addRecord(Record new_record) {
-        this.record_list.add(new_record);
+    public void addRecord(Record newRecord) {
+        this.recordList.add(newRecord);
         notifyListeners();
     }
     /**
      * Delete a record from the list
      * @params Record
      */
-    public void deleteRecord(Record new_record) {
-        this.record_list.remove(new_record);
+    public void deleteRecord(Record newRecord) {
+        this.recordList.remove(newRecord);
         notifyListeners();
     }
     /**
      * Modify a record in the list.
-     * @params index, new_record
+     * @params index, newRecord
      */
-    public void editRecord(int index, Record new_record) {
-        this.record_list.set(index, new_record);
+    public void editRecord(int index, Record newRecord) {
+        this.recordList.set(index, newRecord);
     }
     /**
      * Sort the list of records by date.
@@ -150,7 +150,7 @@ public class RecordList {
      * @return ArrayList<Record>
      */
     public ArrayList<Record> getRecords() {
-        return record_list;
+        return recordList;
     }
 
     /**
@@ -192,8 +192,8 @@ public class RecordList {
      */
     public int getRecordIndex(Record record) {
         int index = -1;
-        if(record_list.contains(record)) {
-            index = record_list.indexOf(record);
+        if(recordList.contains(record)) {
+            index = recordList.indexOf(record);
         }
         return index;
     }
@@ -213,6 +213,6 @@ public class RecordList {
         this.recordOfInterest = recordOfInterest;
     }
     public void setRecords(ArrayList<Record> records) {
-        this.record_list = records;
+        this.recordList = records;
     }
 }

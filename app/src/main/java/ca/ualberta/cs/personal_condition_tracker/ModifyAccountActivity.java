@@ -1,10 +1,8 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,8 +43,8 @@ public class ModifyAccountActivity extends AppCompatActivity {
         }
 
         String userID = user.getUserID();
-        String userEmailAddress= user.getEmail_address();
-        String userPhoneNumber = user.getPhone_number();
+        String userEmailAddress= user.getEmailAddress();
+        String userPhoneNumber = user.getPhoneNumber();
 
         //Set the information for this activity
         TextView userIDView = findViewById(R.id.userIDText);
@@ -102,22 +100,22 @@ public class ModifyAccountActivity extends AppCompatActivity {
             UserAccount newUserAccount = new UserAccount();
             newUserAccount.setAccountType(oldUserAccount.getAccountType());
             newUserAccount.setUserID(oldUserAccount.getUserID());
-            newUserAccount.setEmail_address(newEmailAddress);
-            newUserAccount.setPhone_number(newPhoneNumber);
+            newUserAccount.setEmailAddress(newEmailAddress);
+            newUserAccount.setPhoneNumber(newPhoneNumber);
             userAccountListController.editUserAccount(oldUserAccount, newUserAccount);
-            userAccountList.getActiveCareProvider().setEmail_address(newEmailAddress);
-            userAccountList.getActiveCareProvider().setPhone_number(newPhoneNumber);
+            userAccountList.getActiveCareProvider().setEmailAddress(newEmailAddress);
+            userAccountList.getActiveCareProvider().setPhoneNumber(newPhoneNumber);
         }
         else{
             UserAccount oldUserAccount = userAccountList.getAccountOfInterest();
             UserAccount newUserAccount = new UserAccount();
             newUserAccount.setAccountType(oldUserAccount.getAccountType());
             newUserAccount.setUserID(oldUserAccount.getUserID());
-            newUserAccount.setEmail_address(newEmailAddress);
-            newUserAccount.setPhone_number(newPhoneNumber);
+            newUserAccount.setEmailAddress(newEmailAddress);
+            newUserAccount.setPhoneNumber(newPhoneNumber);
             userAccountListController.editUserAccount(oldUserAccount, newUserAccount);
-            userAccountList.getAccountOfInterest().setEmail_address(newEmailAddress);
-            userAccountList.getAccountOfInterest().setPhone_number(newPhoneNumber);
+            userAccountList.getAccountOfInterest().setEmailAddress(newEmailAddress);
+            userAccountList.getAccountOfInterest().setPhoneNumber(newPhoneNumber);
         }
         this.finish();
     }

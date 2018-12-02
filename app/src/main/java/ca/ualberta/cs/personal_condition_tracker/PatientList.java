@@ -77,7 +77,6 @@ public class PatientList {
      * @param index Index of the patient's username with the list of patientIDs
      * @return  String Username of the patient in question
      */
-
     public String getPatientByIndex(int index) {
         return patientIDs.get(index);
     }
@@ -88,7 +87,6 @@ public class PatientList {
      * @return  Patient A Patient object representing the account details of a patient
      * @see Patient
      */
-
     public Patient getPatient(String patientID){
         //todo, use this for loading a patient account w/ elasticsearch
         return null;
@@ -98,7 +96,6 @@ public class PatientList {
      * Provides the list of patient usernames
      * @return  ArrayList<String> List of patient usernames
      */
-
     public ArrayList<String> getPatientIDs(){return patientIDs;}
 
     public void setPatientIDs(ArrayList<String> patientIDs) {this.patientIDs = patientIDs;}
@@ -110,7 +107,6 @@ public class PatientList {
      * @return  boolean True if the username of the patient is contained within the care provider's
      * list of patients, false otherwise.
      */
-
     public boolean hasPatient(String patientID) {
         return patientIDs.contains(patientID);
     }
@@ -120,7 +116,6 @@ public class PatientList {
      * @param patientID Username of the patient
      * @return  Nothing
      */
-
     public void addPatient(String patientID) {
         patientIDs.add(patientID);
         notifyListeners();
@@ -134,7 +129,6 @@ public class PatientList {
      * @return  Nothing
      * @see Listener
      */
-
     public void deletePatient(String patientID) {
         patientIDs.remove(patientID);
         notifyListeners();
@@ -146,7 +140,6 @@ public class PatientList {
      * @return  Nothing
      * @see Listener
      */
-
     public void addListener(Listener listener){
         getListenerList().add(listener);;
     }
@@ -157,7 +150,6 @@ public class PatientList {
      * @return  Nothing
      * @see Listener
      */
-
     public void removeListener(Listener listener) {
         getListenerList().remove(listener);
     }
@@ -171,7 +163,6 @@ public class PatientList {
      * @return  ArrayList<Listener> List of Listener objects
      * @see Listener
      */
-
     private ArrayList<Listener> getListenerList(){
         if(listenerList == null){
             listenerList = new ArrayList<>();
@@ -183,7 +174,6 @@ public class PatientList {
      * Serves to iterate through the list of Listener objects and to update them accordingly.
      * @return  Nothing
      */
-
     public void notifyListeners(){
         for(Listener listener: getListenerList()){
             listener.update();

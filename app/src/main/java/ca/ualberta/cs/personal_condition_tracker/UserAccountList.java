@@ -65,7 +65,7 @@ import java.util.ArrayList;
  */
 
 public class UserAccountList {
-    private ArrayList<UserAccount> user_accounts = new ArrayList<>();
+    private ArrayList<UserAccount> userAccounts = new ArrayList<>();
     private CareProvider activeCareProvider = null;
     private Patient accountOfInterest = null;
 
@@ -75,7 +75,7 @@ public class UserAccountList {
      * @see UserAccount
      */
     public void setUserAccounts(ArrayList<UserAccount> user_accounts) {
-        this.user_accounts = user_accounts;
+        this.userAccounts = user_accounts;
     }
 
     /**
@@ -83,7 +83,7 @@ public class UserAccountList {
      * @return Nothing
      */
     public ArrayList<UserAccount> getUserAccounts() {
-        return this.user_accounts;
+        return this.userAccounts;
     }
 
     /**
@@ -92,7 +92,7 @@ public class UserAccountList {
      * @return Nothing
      */
     public void addUserAccount(UserAccount account_to_add) {
-        this.user_accounts.add(account_to_add);
+        this.userAccounts.add(account_to_add);
     }
 
     /**
@@ -101,18 +101,18 @@ public class UserAccountList {
      * @return Nothing
      */
     public void deleteUserAccount(UserAccount account_to_delete) {
-        this.user_accounts.remove(account_to_delete);
+        this.userAccounts.remove(account_to_delete);
     }
 
     /**
      *
      *@return Nothing
      */
-    public void changeUserAccount(UserAccount account_to_change) {
-        if (this.user_accounts.contains(account_to_change)) {
-            this.user_accounts.remove(account_to_change);
+    public void changeUserAccount(UserAccount accountToChange) {
+        if (this.userAccounts.contains(accountToChange)) {
+            this.userAccounts.remove(accountToChange);
         }
-        this.user_accounts.add(account_to_change);
+        this.userAccounts.add(accountToChange);
     }
 
     /**
@@ -121,7 +121,7 @@ public class UserAccountList {
      */
 
     public int getNumberOfUsers() {
-        return user_accounts.size();
+        return userAccounts.size();
     }
     /**
      * Sets the current account in question.
@@ -152,7 +152,7 @@ public class UserAccountList {
      * @return UserAccount Returns the patient account of interest.
      */
     public UserAccount getPatientAccountByID(String patientID){
-        for(UserAccount userAccount : user_accounts){
+        for(UserAccount userAccount : userAccounts){
             if(userAccount.getUserID().equals(patientID)){
                 return userAccount;
             }

@@ -65,7 +65,7 @@ public class PhotographList {
     private ArrayList<Photograph> photos;
 
     PhotographList() {
-        this.photos = new ArrayList<Photograph>();
+        this.photos = new ArrayList<>();
     }
 
     /**
@@ -73,9 +73,8 @@ public class PhotographList {
      * @return boolean True if the Photograph is contained within the list, false otherwise
      * @see Photograph
      */
-
-    public boolean hasPhotograph(Photograph new_photo) {
-        return this.photos.contains(new_photo);
+    public boolean hasPhotograph(Photograph photograph) {
+        return this.photos.contains(photograph);
     }
 
     /**
@@ -84,48 +83,41 @@ public class PhotographList {
      * @return Photograph Photograph corresponding to the index specified
      * @see Photograph
      */
-
     public Photograph getPhotograph(int index){
         return this.photos.get(index);
     }
 
     /**
      * Appends a Photograph to the list thereof
-     * @param new_photo Photograph to append
+     * @param photograph Photograph to append
      * @return Nothing
      * @see Photograph
      */
-
-    public void addPhotograph(Photograph new_photo) {
-        this.photos.add(new_photo);
+    public void addPhotograph(Photograph photograph) {
+        this.photos.add(photograph);
     }
 
     /**
      * Removes a Photograph from the list thereof
-     * @param new_photo Photograph to remove
+     * @param photograph Photograph to remove
      * @return Nothing
      * @see Photograph
      */
-
-
-    public void deletePhotograph(Photograph new_photo) {
-        this.photos.remove(new_photo);
+    public void deletePhotograph(Photograph photograph) {
+        this.photos.remove(photograph);
     }
 
     /**
      * Swaps out an existing Photograph at the specified index with another.
      * @param index Index of the Photograph to replace
-     * @param new_photo Photograph to replace the one currently at the specified index location
+     * @param photograph Photograph to replace the one currently at the specified index location
      * @return Nothing
      * @see Photograph
      */
-
-
     //Note: This method should be refactored to something like 'swapPhoto'; editing implies making changes
     // existing photograph, not replacing it entirely.
-
-    public void editPhotograph(int index, Photograph new_photo) {
-        this.photos.set(index, new_photo);
+    public void editPhotograph(int index, Photograph photograph) {
+        this.photos.set(index, photograph);
     }
 
 

@@ -69,8 +69,16 @@ public class Record {
     private String title;
     private Date date;
     private String description;
-    private LatLng geo_location;
     private BodyLocationList bodyLocationList;
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
+    }
+
+    private GeoLocation geoLocation;
     private PhotographList photos;
     private String associatedConditionID;
     @JestId
@@ -82,7 +90,6 @@ public class Record {
         this.title = "Title";
         this.date = new Date();
         this.description = "";
-        this.geo_location = null;
         this.bodyLocationList = new BodyLocationList();
         this.photos = new PhotographList();
     }
@@ -91,7 +98,6 @@ public class Record {
         this.title = new_title;
         this.date = new Date();
         this.description = new_description;
-        this.geo_location = null;
         this.bodyLocationList = new BodyLocationList();
         this.photos = new PhotographList();
     }
@@ -99,7 +105,6 @@ public class Record {
         this.title = new_title;
         this.date = new_date;
         this.description = new_description;
-        this.geo_location = null;
         this.bodyLocationList = new BodyLocationList();
         this.photos = new PhotographList();
     }
@@ -171,28 +176,6 @@ public class Record {
      * @see Condition
      */
 
-    public LatLng getGeo_location() {
-        return geo_location;
-    }
-
-    /**
-     * Registers the geo-locational data of a Record; generally the location where the corresponding Condition arose.
-     * @param geo_location The latitude and longitude of the location (specific to a Condition)
-     * @see LatLng
-     * @see Condition
-     */
-
-    public void setGeo_location(LatLng geo_location) {
-        this.geo_location = geo_location;
-    }
-
-    /**
-     * Provides the list of body locations
-     * @return BodyLocationList a list of BodyLocation objects
-     * @see BodyLocationList
-     * @see BodyLocation
-     */
-
     public BodyLocationList getBodyLocList() {
         return bodyLocationList;
     }
@@ -231,6 +214,7 @@ public class Record {
     public void setPhotos(PhotographList photos) {
         this.photos = photos;
     }
+
 
     /**
      * Provides the associated ID relating it the record to a particular condition
@@ -288,8 +272,8 @@ public class Record {
         this.setTitle(recordTitle);
         this.setDate(recordDate);
         this.setDescription(recordDescription);
-        this.setGeo_location(latLng);
         this.setBodyLocationList(listOfBodyLocs);
+
     }
 
     /**

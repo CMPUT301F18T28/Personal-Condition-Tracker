@@ -37,6 +37,7 @@ public class MainActivityTest {
         Intents.release();
 
     }
+
     // Test to make sure signing in as a patient leads to the correct activity.
     @Test
     public void testSignInValidPatient() {
@@ -51,6 +52,7 @@ public class MainActivityTest {
         Intents.release();
 
     }
+
     // Test to make sure signing in as a care provider leads to the correct activity.
     @Test
     public void testSignInValidCareProvider() {
@@ -64,6 +66,7 @@ public class MainActivityTest {
         Intents.release();
 
     }
+
     // Test ot make sure signing up leads to the correct activity.
     @Test
     public void testSignUp() {

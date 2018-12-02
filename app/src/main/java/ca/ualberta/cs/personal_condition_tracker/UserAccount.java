@@ -46,7 +46,6 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 import io.searchbox.annotations.JestId;
@@ -69,53 +68,53 @@ import io.searchbox.annotations.JestId;
 public class UserAccount {
     private String accountType;
     private String userID;
-    private String email_address;
-    private String phone_number;
+    private String emailAddress;
+    private String phoneNumber;
     private String password;
     private String associatedId;
     @JestId
     private String id = null;
 
     /**
-     * Constructor serving to initialize the following attributes to empty Strings: accountType, userID, email_address and password.
+     * Constructor serving to initialize the following attributes to empty Strings: accountType, userID, emailAddress and password.
      * @return  Nothing
      */
     UserAccount() {
         this.accountType = "";
         this.userID = "";
-        this.email_address = "";
-        this.phone_number = "";
+        this.emailAddress = "";
+        this.phoneNumber = "";
     }
 
     /**
-     * Constructor serving to set the following attributes: accountType, userID, and email_address.
+     * Constructor serving to set the following attributes: accountType, userID, and emailAddress.
      * @param accountType String representing the type of user account, Care Provider or Patient.
      * @param userID String representing the name of the account holder; a username.
-     * @param email_address Email address of the account holder.
+     * @param emailAddress Email address of the account holder.
      * @return Nothing
      */
 
-    UserAccount(String accountType, String userID, String email_address) {
+    UserAccount(String accountType, String userID, String emailAddress) {
         this.accountType = accountType;
         this.userID = userID;
-        this.email_address = email_address;
-        this.phone_number = "";
+        this.emailAddress = emailAddress;
+        this.phoneNumber = "";
     }
 
     /**
-     * Constructor serving to set the following attributes: accountType, userID, email_address and password.
+     * Constructor serving to set the following attributes: accountType, userID, emailAddress and password.
      * @param accountType String representing the type of user account, Care Provider or Patient.
      * @param userID String representing the name of the account holder; a username.
-     * @param email_address Email address of the account holder.
+     * @param emailAddress Email address of the account holder.
      * @param phoneNumber   Password for the account
      * @return Nothing
      */
 
-    UserAccount(String accountType, String userID, String email_address, String phoneNumber) {
+    UserAccount(String accountType, String userID, String emailAddress, String phoneNumber) {
         this.accountType = accountType;
         this.userID = userID;
-        this.email_address = email_address;
-        this.phone_number = phoneNumber;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
     }
 
     /**
@@ -164,29 +163,29 @@ public class UserAccount {
      * Provides the phone number of the account holder.
      * @return String
      */
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
     /**
      * Sets the phone number of the account holder.
      * @return Nothing
      */
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     /**
      * Provides the email address of the account holder.
      * @return String
      */
-    public String getEmail_address() {
-        return email_address;
+    public String getEmailAddress() {
+        return emailAddress;
     }
     /**
      * Sets the email address of the account holder.
      * @return Nothing
      */
-    public void setEmail_address(String email_address) {
-        this.email_address = email_address;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
     /**
      * Provides the password of the account holder.

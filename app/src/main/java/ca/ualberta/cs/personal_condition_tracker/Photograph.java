@@ -46,6 +46,8 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker;
 
+import android.graphics.Bitmap;
+
 /**
  * The Photograph class is used to store the thumbnail for the image that is taken by the user.
  * @author   R. Voon; rcvoon@ualberta.ca
@@ -61,7 +63,7 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 public class Photograph {
     private String filename;
-    private byte[] thumbnail;
+    private Bitmap thumbnail;
 
     //Constructors:
 
@@ -73,7 +75,7 @@ public class Photograph {
         this.filename = filename;
         this.thumbnail = null;
     }
-    Photograph(String filename, byte[] thumbnail) {
+    Photograph(String filename, Bitmap thumbnail) {
         this.filename = filename;
         this.thumbnail = thumbnail;
     }
@@ -102,7 +104,7 @@ public class Photograph {
      * @return byte[] Binary array representing the image data of a photograph
      */
 
-    public byte[] getThumbnail() {
+    public Bitmap getThumbnail() {
         return this.thumbnail;
     }
 
@@ -113,7 +115,7 @@ public class Photograph {
      * @return Nothing
      */
 
-    public void setThumbnail(byte[] thumbnail) {
+    public void setThumbnail(Bitmap thumbnail) {
         this.thumbnail = thumbnail;
     }
 

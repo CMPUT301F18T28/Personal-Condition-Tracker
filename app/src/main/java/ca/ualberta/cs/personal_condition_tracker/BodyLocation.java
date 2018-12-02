@@ -49,18 +49,18 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 public class BodyLocation {
-    private String body_part;
-    private String body_x_coordinate;
-    private String body_y_coordinate;
-    private String associatedRecordID;
-    private String associatedPhotoID;
+    private String bodyPart;
+    private double photoXCoordinate;
+    private double photoYCoordinate;
+    private double bodyXCoordinate;
+    private double bodyYCoordinate;
 
     BodyLocation() {
-        this.body_part = "";
-        this.body_x_coordinate = "";
-        this.body_y_coordinate = "";
-        this.associatedRecordID = "";
-        this.associatedPhotoID = "";
+        this.bodyPart = "";
+        this.photoXCoordinate = 0;
+        this.photoYCoordinate = 0;
+        this.bodyXCoordinate = 0;
+        this.bodyYCoordinate = 0;
     }
 
     /**
@@ -68,30 +68,26 @@ public class BodyLocation {
      * @return String Name of the body part afflicted
      * @see Condition
      */
-
-    public String getBody_part() {
-        return body_part;
+    public String getBodyPart() {
+        return bodyPart;
     }
 
     /**
      * Registers a name for the part of the body afflicted by a condition
-     * @param body_part Name of the afflicted body part
+     * @param bodyPart Name of the afflicted body part
      * @return Nothing
      * @see Condition
      */
-
-    public void setBody_part(String body_part) {
-        this.body_part = body_part;
+    public void setBodyPart(String bodyPart) {
+        this.bodyPart = bodyPart;
     }
 
     /**
      * Provides the x-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
      * @return double x-coordinate of the location of the Condition within a photograph
      */
-
-
-    public String getBody_x_coordinate() {
-        return body_x_coordinate;
+    public double getPhotoXCoordinate() {
+        return photoXCoordinate;
     }
 
     /**
@@ -99,27 +95,24 @@ public class BodyLocation {
      * @return Nothing
      */
 
-    public void setBody_x_coordinate(String x_coordinate) {
-        this.body_x_coordinate = x_coordinate;
+    public void setPhotoXCoordinate(double photoXCoordinate) {
+        this.photoXCoordinate = photoXCoordinate;
     }
 
     /**
      * Provides the y-coordinate corresponding to the location of a condition with respect to a map of the human body
      * @return double y-coordinate of the Condition with respect to a map of the human body
      */
-
-
-    public String getBody_y_coordinate() {
-        return body_y_coordinate;
+    public double getPhotoYCoordinate() {
+        return photoYCoordinate;
     }
 
     /**
      * Registers the y-coordinate corresponding the location of a condition with respect to a map of the human body
      * @return Nothing
      */
-
-    public void setBody_y_coordinate(String y_coordinate) {
-        this.body_y_coordinate = y_coordinate;
+    public void setPhotoYCoordinate(double photoYCoordinate) {
+        this.photoYCoordinate = photoYCoordinate;
     }
 
     /**
@@ -127,26 +120,24 @@ public class BodyLocation {
      * @return Nothing
      */
 
-    public void setAssociatedRecordID(String AR_ID){
-        this.associatedRecordID = AR_ID;
+    public double getBodyXCoordinate() {
+        return bodyXCoordinate;
     }
 
     /**
      * Provides the ID corresponding to the associated record.
      * @return String associated record ID
      */
-
-    public String getAssociatedRecordID(){
-        return associatedRecordID;
+    public void setBodyXCoordinate(double bodyXCoordinate) {
+        this.bodyXCoordinate = bodyXCoordinate;
     }
 
     /**
      * Registers an ID corresponding to the associated photograph.
      * @return Nothing
      */
-
-    public void setAssociatedPhotoID(String AP_ID){
-        this.associatedPhotoID = AP_ID;
+    public double getBodyYCoordinate() {
+        return bodyYCoordinate;
     }
 
 
@@ -154,8 +145,8 @@ public class BodyLocation {
      * Returns an ID corresponding to the associated photograph.
      * @return String ID of the associated photograph
      */
-    public String getAssociatedPhotoID(){
-        return associatedPhotoID;
+    public void setBodyYCoordinate(double bodyYCoordinate) {
+        this.bodyYCoordinate = bodyYCoordinate;
     }
 
 

@@ -51,16 +51,12 @@ package ca.ualberta.cs.personal_condition_tracker;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -143,7 +139,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
                 userAccountListController.getUserAccountList().setUserAccounts(getUserAccounts());
                 accountOfInterest =
                         userAccountListController.getUserAccountList().getPatientAccountByID(selectedPatientID);
-                Patient newPatient = new Patient(accountOfInterest.getAccountType(), accountOfInterest.getUserID(), accountOfInterest.getEmail_address());
+                Patient newPatient = new Patient(accountOfInterest.getAccountType(), accountOfInterest.getUserID(), accountOfInterest.getEmailAddress());
                 userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
 
                 Intent intent = new Intent(ViewPatientListActivity.this,
