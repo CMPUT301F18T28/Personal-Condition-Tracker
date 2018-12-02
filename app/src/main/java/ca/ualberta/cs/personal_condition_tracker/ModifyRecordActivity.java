@@ -112,6 +112,9 @@ public class ModifyRecordActivity extends AppCompatActivity {
         Date recordDate = new_date;
         String recordDescription = recordDescriptionView.getText().toString();
 
+//        BodyLocation bodyLocInfo = new BodyLocation();
+//        bodyLocInfo.setBody_x_coordinate();
+
         Record oldRecord;
         Record newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
         newRecord.setAssociatedConditionID(conditionOfInterest.getId());
