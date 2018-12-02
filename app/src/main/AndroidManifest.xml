@@ -112,6 +112,8 @@
         <activity
             android:name=".ViewRecordActivity"
             android:label="@string/title_activity_view_record" />
+
+
         <activity android:name=".ModifyAccountActivity" />
 
         <uses-library

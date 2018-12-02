@@ -69,6 +69,7 @@ public class Record {
     private String title;
     private Date date;
     private String description;
+    private BodyLocationList bodyLocationList;
     public GeoLocation getGeoLocation() {
         return geoLocation;
     }
@@ -78,7 +79,6 @@ public class Record {
     }
 
     private GeoLocation geoLocation;
-    private String body_location;
     private PhotographList photos;
     private String associatedConditionID;
     @JestId
@@ -90,7 +90,7 @@ public class Record {
         this.title = "Title";
         this.date = new Date();
         this.description = "";
-        this.body_location = "";
+        this.bodyLocationList = new BodyLocationList();
         this.photos = new PhotographList();
     }
 
@@ -98,14 +98,14 @@ public class Record {
         this.title = new_title;
         this.date = new Date();
         this.description = new_description;
-        this.body_location = "";
+        this.bodyLocationList = new BodyLocationList();
         this.photos = new PhotographList();
     }
     Record(String new_title, Date new_date, String new_description, LatLng new_geo_location, String new_body_location) {
         this.title = new_title;
         this.date = new_date;
         this.description = new_description;
-        this.body_location = "";
+        this.bodyLocationList = new BodyLocationList();
         this.photos = new PhotographList();
     }
 
@@ -176,19 +176,19 @@ public class Record {
      * @see Condition
      */
 
-    public String getBody_location() {
-        return body_location;
+    public BodyLocationList getBodyLocList() {
+        return bodyLocationList;
     }
 
     /**
-     * Registers the location on the body where the Condition resides.
-     * @param body_location Description of a location on the human body
+     * Register the list of body locations
      * @return Nothing
-     * @see Condition
+     * @see BodyLocationList
+     * @see BodyLocation
      */
 
-    public void setBody_location(String body_location) {
-        this.body_location = body_location;
+    public void setBodyLocationList(BodyLocationList listOfBodyLocs) {
+        this.bodyLocationList = listOfBodyLocs;
     }
 
     /**
@@ -215,28 +215,65 @@ public class Record {
         this.photos = photos;
     }
 
+
+    /**
+     * Provides the associated ID relating it the record to a particular condition
+     * @return String associatedConditonID
+     * @see Condition
+     */
+
     public String getAssociatedConditionID() {
         return associatedConditionID;
     }
+
+    /**
+     * Provides the associated ID relating the record to a particular condition
+     * @return String associatedConditonID
+     * @see Condition
+     */
 
     public void setAssociatedConditionID(String associatedConditionID) {
         this.associatedConditionID = associatedConditionID;
     }
 
+    /**
+     * Provides the ID of the record
+     * @return String ID
+     */
+
     public String getId() {
         return id;
     }
+
+    /**
+     * Registers an ID for the record
+     * @return Nothing
+     */
 
     public void setId(String id) {
         this.id = id;
     }
 
 
-    public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, String body_location) {
+    /**
+     * Provides editing capability for the various attributes of a Record object.
+     * @param recordTitle Title for the Record
+     * @param recordDate  Date of the Record
+     * @param recordDescription Description of the Condition
+     * @param latLng Geo-locational data specifying the latitude and longitude
+     * @param listOfBodyLocs ArrayList of BodyLocation objects
+     * @return LatLng The latitude and longitude of the location within the Record of a Condition
+     * @see Condition
+     * @see LatLng
+     * @see Date
+     */
+
+    public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, BodyLocationList listOfBodyLocs) {
         this.setTitle(recordTitle);
         this.setDate(recordDate);
         this.setDescription(recordDescription);
-        this.setBody_location(body_location);
+        this.setBodyLocationList(listOfBodyLocs);
+
     }
 
     /**
