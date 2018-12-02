@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,13 +20,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     public static LatLng location;
     private Marker currentMarker;
     private String mapMode;
-
+    private UserAccountListController userAccountListController = new UserAccountListController();
+    private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
+    private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,15 +38,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Intent intent = getIntent();
         mapMode = intent.getStringExtra("mapMode");
-        if (mapMode.equals("selection")) {
+        if (mapMode.equals("selection") || mapMode.equals("view")) {
             location = new LatLng(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude", 0));
 
             if (location.latitude == 0 && location.longitude == 0) {
                 location = null;
             }
-        } else if (mapMode.equals("view")) {
-
-            // TODO add code to view markers
+        } else if (mapMode.equals("viewAll")) {
+            loadRecords();
+            // TODO add code to view all markers
         }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -82,11 +87,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             startingMarker = new LatLng(location.latitude, location.longitude);
 
         }
-        currentMarker = mMap.addMarker(new MarkerOptions().position(startingMarker).title("Record Location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(startingMarker));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startingMarker, 11));
-        mMap.setOnMapClickListener(this);
-        mMap.setOnMarkerClickListener(this);
+       if (mapMode.equals("selection") || mapMode.equals("view")) {
+           currentMarker = mMap.addMarker(new MarkerOptions().position(startingMarker).title("Record Location"));
+       } else if (mapMode.equals("viewAll")) {
+           ArrayList<Record> records = accountOfInterest.getConditionList().getConditionOfInterest().getRecordList().getRecords();
+           for (int i =0; i<records.size(); i++) {
+                Record record = records.get(i);
+                if (record.getGeoLocation() != null) {
+                    if (record.getGeoLocation().getLatitude() != null && record.getGeoLocation().getLongitude() != null) {
+                        Double latitude = record.getGeoLocation().getLatitude();
+                        Double longitude = record.getGeoLocation().getLongitude();
+                        startingMarker = new LatLng(latitude, longitude);
+                        mMap.addMarker(new MarkerOptions().position(startingMarker).title(record.getTitle()));
+                    }
+                }
+            }
+       }
+       mMap.moveCamera(CameraUpdateFactory.newLatLng(startingMarker));
+       mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startingMarker, 11));
+       if (mapMode.equals("selection")) {
+           mMap.setOnMapClickListener(this);
+           mMap.setOnMarkerClickListener(this);
+       }
     }
 
     @Override
@@ -110,6 +132,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             intent.putExtra("latitude", location.latitude);
             intent.putExtra("longitude", location.longitude);
             setResult(RESULT_OK, intent);
+        }
+        if (mapMode.equals("view")) {
+
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
@@ -140,4 +165,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         return new LatLng(current_location.getLatitude(), current_location.getLongitude());
     }
+
+    public void loadRecords() {
+        RecordListManager.GetRecordsTask getRecordsTask =
+                new RecordListManager.GetRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ conditionOfInterest.getId() +"\" } } }";
+        getRecordsTask.execute(query);
+        try {
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(getRecordsTask.get());
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+    }
+
 }

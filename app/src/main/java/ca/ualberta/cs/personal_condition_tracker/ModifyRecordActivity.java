@@ -69,6 +69,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
+    private LatLng location;
 
     private int year, month, day, hour, minute, second;
     private Date new_date = new Date();
@@ -106,9 +107,14 @@ public class ModifyRecordActivity extends AppCompatActivity {
         Date recordDate = new_date;
         String recordDescription = recordDescriptionView.getText().toString();
 
-        Record oldRecord;
-        Record  newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
+        Record  newRecord = new Record(recordTitle, recordDate, recordDescription, location, null);
         newRecord.setAssociatedConditionID(conditionOfInterest.getId());
+        if (location != null) {
+            newRecord.setGeoLocation(new GeoLocation(location.latitude, location.longitude));
+        }
+
+
+        Record oldRecord;
         //TODO change these nulls
         if (intent.getIntExtra("recordIndex", -1) == -1){
             createRecord(newRecord);
@@ -118,7 +124,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
             int recordIndex = intent.getIntExtra("recordIndex", 0);
             oldRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
             editRecord(oldRecord, newRecord);
-            oldRecord.editRecord(recordTitle, recordDate, recordDescription, null, null);
+            oldRecord.editRecord(recordTitle, recordDate, recordDescription, location, null);
         }
         setResult(Activity.RESULT_OK);
         this.finish();
@@ -295,11 +301,8 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
         if (requestCode == SELECTED_LOCATION_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Record record = getRecordFromIntent();
-                if (record != null) {
-                    record.setGeo_location(new LatLng(data.getDoubleExtra("latitude", 0.0),
-                            data.getDoubleExtra("longitude", 0.0)));
-                }
+                location = new LatLng(data.getDoubleExtra("latitude", 0.0),
+                        data.getDoubleExtra("longitude", 0.0));
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(ModifyRecordActivity.this, "Map change canceled!", Toast.LENGTH_SHORT).show();
             } else {
@@ -313,18 +316,23 @@ public class ModifyRecordActivity extends AppCompatActivity {
         mapIntent.putExtra("mapMode", "selection");
         Record record = getRecordFromIntent();
         if (record != null) {
-            LatLng latlng = record.getGeo_location();
-            if (latlng != null) {
-                mapIntent.putExtra("latitude", latlng.latitude);
-                mapIntent.putExtra("longitude", latlng.longitude);
+            if (record.getGeoLocation() != null) {
+                Double latitude = record.getGeoLocation().getLatitude();
+                Double longitude = record.getGeoLocation().getLongitude();
+                if (latitude != null && longitude != null) {
+                    mapIntent.putExtra("latitude", latitude);
+                    mapIntent.putExtra("longitude", longitude);
+                }
             }
         }
         startActivityForResult(mapIntent, SELECTED_LOCATION_REQUEST_CODE);
     }
 
     /**
-     * Get the RecordFromIntent
-     * @return
+     * Get the Record that is being modified from the current intent,
+     * using getIntent().
+     *
+     * @return the Record that is currently being modified.
      */
     @Nullable
     private Record getRecordFromIntent() {

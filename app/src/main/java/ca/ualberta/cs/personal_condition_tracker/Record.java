@@ -69,7 +69,15 @@ public class Record {
     private String title;
     private Date date;
     private String description;
-    private LatLng geo_location;
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
+    }
+
+    private GeoLocation geoLocation;
     private String body_location;
     private PhotographList photos;
     private String associatedConditionID;
@@ -82,7 +90,6 @@ public class Record {
         this.title = "Title";
         this.date = new Date();
         this.description = "";
-        this.geo_location = null;
         this.body_location = "";
         this.photos = new PhotographList();
     }
@@ -91,7 +98,6 @@ public class Record {
         this.title = new_title;
         this.date = new Date();
         this.description = new_description;
-        this.geo_location = null;
         this.body_location = "";
         this.photos = new PhotographList();
     }
@@ -99,7 +105,6 @@ public class Record {
         this.title = new_title;
         this.date = new_date;
         this.description = new_description;
-        this.geo_location = null;
         this.body_location = "";
         this.photos = new PhotographList();
     }
@@ -171,28 +176,6 @@ public class Record {
      * @see Condition
      */
 
-    public LatLng getGeo_location() {
-        return geo_location;
-    }
-
-    /**
-     * Registers the geo-locational data of a Record; generally the location where the corresponding Condition arose.
-     * @param geo_location The latitude and longitude of the location (specific to a Condition)
-     * @see LatLng
-     * @see Condition
-     */
-
-    public void setGeo_location(LatLng geo_location) {
-        this.geo_location = geo_location;
-    }
-
-    /**
-     * Provides the geo-locational data of a Record; generally the location where the corresponding Condition arose.
-     * @return LatLng The latitude and longitude of the location within the Record of a Condition
-     * @see LatLng
-     * @see Condition
-     */
-
     public String getBody_location() {
         return body_location;
     }
@@ -232,20 +215,6 @@ public class Record {
         this.photos = photos;
     }
 
-    /**
-     * Provides editing capability for the various attributes of a Record object.
-     * @param recordTitle Title for the Record
-     * @param recordDate  Date of the Record
-     * @param recordDescription Description of the Condition
-     * @param latLng Geo-locational data specifying the latitude and longitude
-     * @param body_location A description of the body location specific to the Condition
-     * @return LatLng The latitude and longitude of the location within the Record of a Condition
-     * @see Condition
-     * @see LatLng
-     * @see Date
-     */
-
-
     public String getAssociatedConditionID() {
         return associatedConditionID;
     }
@@ -267,7 +236,6 @@ public class Record {
         this.setTitle(recordTitle);
         this.setDate(recordDate);
         this.setDescription(recordDescription);
-        this.setGeo_location(latLng);
         this.setBody_location(body_location);
     }
 
