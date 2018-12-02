@@ -274,7 +274,6 @@ public class Record {
      * @return String A concatenation of the title, date and description of this Record
      * @see Class
      */
-
     @Override
     public String toString(){
         return getTitle() + "\n" + getDate().toString() + "\n" + getDescription();

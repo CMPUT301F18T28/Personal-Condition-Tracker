@@ -12,42 +12,45 @@ public class RecordListTest extends TestCase {
 
 
     public void testHasRecord(){
-        RecordList new_record_list = new RecordList();
-        Record new_record = new Record("Title",  "I am a record.");
-        new_record_list.addRecord(new_record);
-        assertTrue(new_record_list.hasRecord(new_record));
+        RecordList recordList = new RecordList();
+        Record record = new Record("Title",  "I am a record.");
+        recordList.addRecord(record);
+        assertTrue(recordList.hasRecord(record));
     }
 
     public void testAddRecord() {
-        Record new_record = new Record("Title",  "I am a record.");
-        RecordList new_record_list = new RecordList();
-        new_record_list.addRecord(new_record);
-        assertTrue(new_record_list.hasRecord(new_record));
+        Record record = new Record("Title",  "I am a record.");
+        RecordList recordList = new RecordList();
+        recordList.addRecord(record);
+        assertTrue(recordList.hasRecord(record));
     }
 
     public void testDeleteRecord() {
-        RecordList new_record_list = new RecordList();
-        Record new_record = new Record("Title", "I am a record.");
-        new_record_list.addRecord(new_record);
-        new_record_list.deleteRecord(new_record);
-        assertFalse(new_record_list.hasRecord(new_record));
+        RecordList recordList = new RecordList();
+        Record record = new Record("Title", "I am a record.");
+        recordList.addRecord(record);
+        recordList.deleteRecord(record);
+        assertFalse(recordList.hasRecord(record));
     }
+
     public void testGetRecord() {
-        Record new_record = new Record("Title",  "I am a record.");
-        RecordList new_record_list = new RecordList();
-        new_record_list.addRecord(new_record);
-        assertTrue(new_record_list.getRecord(0).equals(new_record));
+        Record record = new Record("Title",  "I am a record.");
+        RecordList recordList = new RecordList();
+        recordList.addRecord(record);
+        assertTrue(recordList.getRecord(0).equals(record));
     }
+
     public void testEditRecord() {
-        Record new_record = new Record("Title", "I am a record.");
-        RecordList new_record_list = new RecordList();
-        new_record_list.addRecord(new_record);
-        Record newer_record = new Record("Title",  "I am still a record.");
-        new_record_list.editRecord(0, newer_record);
-        assertTrue(new_record_list.getRecord(0).equals(newer_record));
+        Record record = new Record("Title", "I am a record.");
+        RecordList recordList = new RecordList();
+        recordList.addRecord(record);
+        Record newerRecord = new Record("Title",  "I am still a record.");
+        recordList.editRecord(0, newerRecord);
+        assertTrue(recordList.getRecord(0).equals(newerRecord));
     }
+
     public void testSortByDate() {
-        RecordList new_record_list = new RecordList();
+        RecordList recordList = new RecordList();
         Record record1 = new Record("Title", "I am the first record");
         record1.setDate(new Date(20000));
         Record record2 = new Record("Title", "I am the second record");
@@ -56,49 +59,52 @@ public class RecordListTest extends TestCase {
         Record record3 = new Record("Title", "I am the third record");
         record3.setDate(new Date(30000));
 
-        new_record_list.addRecord(record1);
-        new_record_list.addRecord(record2);
-        new_record_list.addRecord(record3);
-        ArrayList<Record> sorted_records = new_record_list.sortByDate();
+        recordList.addRecord(record1);
+        recordList.addRecord(record2);
+        recordList.addRecord(record3);
+        ArrayList<Record> sorted_records = recordList.sortByDate();
         assertEquals(sorted_records, new ArrayList<Record>(Arrays.asList(record2, record1, record3)));
     }
+
     public void testQueryByKeyword() {
-        RecordList new_record_list = new RecordList();
+        RecordList recordList = new RecordList();
         Record record1 = new Record("Title", "I am the first record");
         Record record2 = new Record("Title",  "I am the second record");
         Record record3 = new Record("Title", "I am the third record");
-        new_record_list.addRecord(record1);
-        new_record_list.addRecord(record2);
-        new_record_list.addRecord(record3);
-        ArrayList<Record> queried_records = new_record_list.queryByKeyword("first");
+        recordList.addRecord(record1);
+        recordList.addRecord(record2);
+        recordList.addRecord(record3);
+        ArrayList<Record> queried_records = recordList.queryByKeyword("first");
         assertTrue(queried_records.contains(record2));
     }
+
     public void testQueryByGeoLocation() {
-        RecordList new_record_list = new RecordList();
+        RecordList recordList = new RecordList();
         Record record1 = new Record("Title",  "I am the first record");
-        record1.setGeo_location(new LatLng(56.7264, 111.3803));
+        record1.setGeoLocation(new LatLng(56.7264, 111.3803));
         Record record2 = new Record("Title",  "I am the second record");
-        record2.setGeo_location(new LatLng(49.8951, 97.1384));
+        record2.setGeoLocation(new LatLng(49.8951, 97.1384));
         Record record3 = new Record("Title",  "I am the third record");
-        record3.setGeo_location(new LatLng(53.5444, 113.4909));
-        new_record_list.addRecord(record1);
-        new_record_list.addRecord(record2);
-        new_record_list.addRecord(record3);
-        ArrayList<Record> queried_records = new_record_list.queryByGeoLocation(new LatLng(53.5444, 113.4909));
+        record3.setGeoLocation(new LatLng(53.5444, 113.4909));
+        recordList.addRecord(record1);
+        recordList.addRecord(record2);
+        recordList.addRecord(record3);
+        ArrayList<Record> queried_records = recordList.queryByGeoLocation(new LatLng(53.5444, 113.4909));
         assertTrue(queried_records.contains(record3));
     }
+
     public void testQueryByBodyLocation() {
-        RecordList new_record_list = new RecordList();
+        RecordList recordList = new RecordList();
         Record record1 = new Record("Title",  "I am the first record");
-        record1.setBody_location("Right Hand");
+        record1.setBodyLocation("Right Hand");
         Record record2 = new Record("Title",  "I am the second record");
-        record2.setBody_location("Left Elbow");
+        record2.setBodyLocation("Left Elbow");
         Record record3 = new Record("Title",  "I am the third record");
-        record3.setBody_location("Chin");
-        new_record_list.addRecord(record1);
-        new_record_list.addRecord(record2);
-        new_record_list.addRecord(record3);
-        ArrayList<Record> queried_records = new_record_list.queryByBodyLocation("Right Hand");
+        record3.setBodyLocation("Chin");
+        recordList.addRecord(record1);
+        recordList.addRecord(record2);
+        recordList.addRecord(record3);
+        ArrayList<Record> queried_records = recordList.queryByBodyLocation("Right Hand");
         assertTrue(queried_records.contains(record1));
     }
 

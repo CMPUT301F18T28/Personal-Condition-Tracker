@@ -72,7 +72,7 @@ public class AddPatientActivity extends AppCompatActivity {
         if (checkIfPatientExists(newPatientID) == true) {
             Toast.makeText(this,"Adding new patient!", Toast.LENGTH_SHORT).show();
             UserAccount oldUser = getPatient(newPatientID);
-            UserAccount newUser = new UserAccount(oldUser.getAccountType(), oldUser.getUserID(), oldUser.getEmail_address(), oldUser.getPassword());
+            UserAccount newUser = new UserAccount(oldUser.getAccountType(), oldUser.getUserID(), oldUser.getEmailAddress(), oldUser.getPassword());
             newUser.setAssociatedId(activeCareProvider.getUserID());
             editUserAccount(oldUser, newUser);
             activeCareProvider.getPatientList().addPatient(newPatientID);
@@ -94,13 +94,13 @@ public class AddPatientActivity extends AppCompatActivity {
                 new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
         getUserAccountsTask.execute(query);
-        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+        ArrayList<? extends UserAccount> storedUsers = new ArrayList<>();
         try {
-            stored_users = getUserAccountsTask.get();
+            storedUsers = getUserAccountsTask.get();
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
-        if (stored_users.size() != 0) {
+        if (storedUsers.size() != 0) {
             doesExist = true;
         }
         return doesExist;
@@ -113,13 +113,13 @@ public class AddPatientActivity extends AppCompatActivity {
                 new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
         getUserAccountsTask.execute(query);
-        ArrayList<UserAccount> stored_users = new ArrayList<UserAccount>();
+        ArrayList<UserAccount> storedUsers = new ArrayList<UserAccount>();
         try {
-            stored_users = getUserAccountsTask.get();
+            storedUsers = getUserAccountsTask.get();
         } catch (Exception e) {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
-        return stored_users.get(0);
+        return storedUsers.get(0);
     }
 
 

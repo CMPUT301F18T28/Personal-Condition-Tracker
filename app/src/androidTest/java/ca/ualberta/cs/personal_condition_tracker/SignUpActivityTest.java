@@ -39,6 +39,7 @@ public class SignUpActivityTest {
         Intents.release();
 
     }
+
     // Try adding a new care provider to the app.
     // NOTE: Since deleting care providers has not been implemented, this will pass the first time the test case is run, then fail the next time.
     @Test
@@ -80,5 +81,4 @@ public class SignUpActivityTest {
         intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
     }
-
 }

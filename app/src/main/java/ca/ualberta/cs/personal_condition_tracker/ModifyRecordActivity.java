@@ -273,6 +273,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
+
 //                ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
 //                button.setImageDrawable(Drawable.createFromPath(imageFileUri.getPath()));
             } else if (resultCode == RESULT_CANCELED) {
@@ -297,7 +298,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Record record = getRecordFromIntent();
                 if (record != null) {
-                    record.setGeo_location(new LatLng(data.getDoubleExtra("latitude", 0.0),
+                    record.setGeoLocation(new LatLng(data.getDoubleExtra("latitude", 0.0),
                             data.getDoubleExtra("longitude", 0.0)));
                 }
             } else if (resultCode == RESULT_CANCELED) {
@@ -313,7 +314,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         mapIntent.putExtra("mapMode", "selection");
         Record record = getRecordFromIntent();
         if (record != null) {
-            LatLng latlng = record.getGeo_location();
+            LatLng latlng = record.getGeoLocation();
             if (latlng != null) {
                 mapIntent.putExtra("latitude", latlng.latitude);
                 mapIntent.putExtra("longitude", latlng.longitude);

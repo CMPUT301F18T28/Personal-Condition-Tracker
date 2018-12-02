@@ -62,7 +62,6 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_body_location);
-
     }
 
 }

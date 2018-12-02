@@ -49,18 +49,18 @@ package ca.ualberta.cs.personal_condition_tracker;
  */
 
 public class BodyLocation {
-    private String body_part;
-    private double photo_x_coordinate;
-    private double photo_y_coordinate;
-    private double body_x_coordinate;
-    private double body_y_coordinate;
+    private String bodyPart;
+    private double photoXCoordinate;
+    private double photoYCoordinate;
+    private double bodyXCoordinate;
+    private double bodyYCoordinate;
 
     BodyLocation() {
-        this.body_part = "";
-        this.photo_x_coordinate = 0;
-        this.photo_y_coordinate = 0;
-        this.body_x_coordinate = 0;
-        this.body_y_coordinate = 0;
+        this.bodyPart = "";
+        this.photoXCoordinate = 0;
+        this.photoYCoordinate = 0;
+        this.bodyXCoordinate = 0;
+        this.bodyYCoordinate = 0;
     }
 
     /**
@@ -68,93 +68,82 @@ public class BodyLocation {
      * @return String Name of the body part afflicted
      * @see Condition
      */
-
-    public String getBody_part() {
-        return body_part;
+    public String getBodyPart() {
+        return bodyPart;
     }
 
     /**
      * Registers a name for the part of the body afflicted by a condition
-     * @param body_part Name of the afflicted body part
+     * @param bodyPart Name of the afflicted body part
      * @return Nothing
      * @see Condition
      */
-
-    public void setBody_part(String body_part) {
-        this.body_part = body_part;
+    public void setBodyPart(String bodyPart) {
+        this.bodyPart = bodyPart;
     }
 
     /**
      * Provides the x-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
      * @return double x-coordinate of the location of the Condition within a photograph
      */
-
-    public double getPhoto_x_coordinate() {
-        return photo_x_coordinate;
+    public double getPhotoXCoordinate() {
+        return photoXCoordinate;
     }
 
     /**
      * Registers the x-coordinate corresponding the location of a condition within a photograph of the afflicted body part
      * @return Nothing
      */
-
-    public void setPhoto_x_coordinate(double photo_x_coordinate) {
-        this.photo_x_coordinate = photo_x_coordinate;
+    public void setPhotoXCoordinate(double photoXCoordinate) {
+        this.photoXCoordinate = photoXCoordinate;
     }
 
     /**
      * Provides the y-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
      * @return double y-coordinate of location of the Condition within a photograph
      */
-
-    public double getPhoto_y_coordinate() {
-        return photo_y_coordinate;
+    public double getPhotoYCoordinate() {
+        return photoYCoordinate;
     }
 
     /**
      * Registers the y-coordinate corresponding the location of the condition within a photograph of the afflicted body part
      * @return Nothing
      */
-
-    public void setPhoto_y_coordinate(double photo_y_coordinate) {
-        this.photo_y_coordinate = photo_y_coordinate;
+    public void setPhotoYCoordinate(double photoYCoordinate) {
+        this.photoYCoordinate = photoYCoordinate;
     }
 
     /**
      * Provides the x-coordinate corresponding to the location of a condition with respect to a map of the human body
      * @return double x-coordinate of the Condition with respect to a map of the human body
      */
-
-    public double getBody_x_coordinate() {
-        return body_x_coordinate;
+    public double getBodyXCoordinate() {
+        return bodyXCoordinate;
     }
 
     /**
      * Registers the x-coordinate corresponding the location of a condition with respect to a map of the human body
      * @return Nothing
      */
-
-    public void setBody_x_coordinate(double body_x_coordinate) {
-        this.body_x_coordinate = body_x_coordinate;
+    public void setBodyXCoordinate(double bodyXCoordinate) {
+        this.bodyXCoordinate = bodyXCoordinate;
     }
 
     /**
      * Provides the y-coordinate corresponding to the location of a condition with respect to a map of the human body
      * @return double y-coordinate of the Condition with respect to a map of the human body
      */
-
-
-    public double getBody_y_coordinate() {
-        return body_y_coordinate;
+    public double getBodyYCoordinate() {
+        return bodyYCoordinate;
     }
 
     /**
      * Registers the y-coordinate corresponding the location of a condition with respect to a map of the human body
      * @return Nothing
      */
-
-    public void setBody_y_coordinate(double body_y_coordinate) {
-        this.body_y_coordinate = body_y_coordinate;
+    public void setBodyYCoordinate(double bodyYCoordinate) {
+        this.bodyYCoordinate = bodyYCoordinate;
     }
 
 }

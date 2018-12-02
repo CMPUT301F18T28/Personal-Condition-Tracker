@@ -37,15 +37,15 @@ public class UserAccountTest {
     @Test
     public void getEmail_address() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setEmail_address("Yang@gmail.com");
-        assertEquals(testUserAccount.getEmail_address(),"Yang@gmail.com");
+        testUserAccount.setEmailAddress("Yang@gmail.com");
+        assertEquals(testUserAccount.getEmailAddress(),"Yang@gmail.com");
     }
 
     @Test
     public void setEmail_address() {
         UserAccount testUserAccount = new UserAccount();
-        testUserAccount.setEmail_address("Yang@gmail.com");
-        assertEquals(testUserAccount.getEmail_address(),"Yang@gmail.com");
+        testUserAccount.setEmailAddress("Yang@gmail.com");
+        assertEquals(testUserAccount.getEmailAddress(),"Yang@gmail.com");
     }
 
     @Test
@@ -53,7 +53,6 @@ public class UserAccountTest {
         UserAccount testUserAccount = new UserAccount();
         testUserAccount.setPassword("Yang'sPassword");
         assertEquals(testUserAccount.getPassword(),"Yang'sPassword");
-
     }
 
     @Test
@@ -83,12 +82,11 @@ public class UserAccountTest {
         UserAccount testUserAccount = new UserAccount();
         testUserAccount.setAccountType("Yang");
         testUserAccount.setUserID("Yang");
-        testUserAccount.setEmail_address("Yang@gmail.com");
-        testUserAccount.setPassword("Yang'sPassword");
+        testUserAccount.setEmailAddress("Yang@gmail.com");
         // Test that a user with a correct password can get in.
-        assertTrue(testUserAccount.authenticate("Yang","Yang'sPassword"));
+        assertTrue(testUserAccount.authenticate("Yang"));
         // Test that a user with an incorrect password cannot get in.
-        assertFalse(testUserAccount.authenticate("Yang","IncorrectPassword"));
+        assertFalse(testUserAccount.authenticate("Yang2"));
     }
 
     @Test
