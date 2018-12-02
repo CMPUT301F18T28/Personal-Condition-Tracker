@@ -181,7 +181,8 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
         Intent intent = new Intent(SelectBodyLocationActivity.this, ModifyRecordActivity.class);
         intent.putExtra("pinX", x);
         intent.putExtra("pinY", y);
-        startActivity(intent);
+        this.finish();
+//        startActivity(intent);
     }
 
 }

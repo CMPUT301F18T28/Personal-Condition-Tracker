@@ -69,6 +69,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private String pinX;
     private String pinY;
+    //private BodyLocation;
 
     private int year, month, day, hour, minute, second;
     private Date new_date = new Date();
@@ -89,6 +90,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         if (extras != null) {
             pinX = extras.getString("pinX");
             pinY = extras.getString("pinY");
+            Toast.makeText(this, pinX,  Toast.LENGTH_SHORT).show();
         }
 
 
@@ -118,6 +120,9 @@ public class ModifyRecordActivity extends AppCompatActivity {
         Record oldRecord;
         Record newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
         newRecord.setAssociatedConditionID(conditionOfInterest.getId());
+
+//        newRecord.getBodyLocList().addBodyLocation();
+
         //TODO change these nulls
         if (intent.getIntExtra("recordIndex", -1) == -1) {
             createRecord(newRecord);

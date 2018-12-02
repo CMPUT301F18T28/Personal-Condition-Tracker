@@ -165,6 +165,9 @@ public class ViewRecordListActivity extends AppCompatActivity {
         Toast.makeText(this,"Adding a Record", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewRecordListActivity.this, ModifyRecordActivity.class);
         intent.putExtra("recordIndex", -1);
+
+        //intent.putExtra("COI", );
+
         startActivityForResult(intent,1);
     }
 
