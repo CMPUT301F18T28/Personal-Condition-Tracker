@@ -70,6 +70,8 @@ public class Record {
     private Date date;
     private String description;
     private LatLng geo_location;
+    private Double geo_location_latitude;
+    private Double geo_location_longitude;
     private String body_location;
     private PhotographList photos;
     private String associatedConditionID;
@@ -252,6 +254,22 @@ public class Record {
 
     public void setAssociatedConditionID(String associatedConditionID) {
         this.associatedConditionID = associatedConditionID;
+    }
+
+    public Double getGeoLocationLatitude() {
+        return geo_location_latitude;
+    }
+
+    public void setGeoLocationLatitude(Double geo_location_latitude) {
+        this.geo_location_latitude = geo_location_latitude;
+    }
+
+    public Double getGeoLocationLongitude() {
+        return geo_location_longitude;
+    }
+
+    public void setGeoLocationLongitude(Double geo_location_longitude) {
+        this.geo_location_longitude = geo_location_longitude;
     }
 
     public String getId() {

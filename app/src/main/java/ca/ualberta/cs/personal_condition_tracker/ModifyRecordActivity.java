@@ -109,6 +109,12 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
         Record  newRecord = new Record(recordTitle, recordDate, recordDescription, location, null);
         newRecord.setAssociatedConditionID(conditionOfInterest.getId());
+        if (location != null) {
+            newRecord.setGeoLocationLatitude(location.latitude);
+            newRecord.setGeoLocationLongitude(location.longitude);
+        }
+
+
         Record oldRecord;
         //TODO change these nulls
         if (intent.getIntExtra("recordIndex", -1) == -1){
@@ -311,10 +317,11 @@ public class ModifyRecordActivity extends AppCompatActivity {
         mapIntent.putExtra("mapMode", "selection");
         Record record = getRecordFromIntent();
         if (record != null) {
-            LatLng latlng = record.getGeo_location();
-            if (latlng != null) {
-                mapIntent.putExtra("latitude", latlng.latitude);
-                mapIntent.putExtra("longitude", latlng.longitude);
+            Double latitude = record.getGeoLocationLatitude();
+            Double longitude = record.getGeoLocationLongitude();
+            if (latitude != null && longitude != null) {
+                mapIntent.putExtra("latitude", latitude);
+                mapIntent.putExtra("longitude", longitude);
             }
         }
         startActivityForResult(mapIntent, SELECTED_LOCATION_REQUEST_CODE);

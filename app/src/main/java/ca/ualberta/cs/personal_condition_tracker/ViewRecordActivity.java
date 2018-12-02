@@ -86,9 +86,9 @@ public class ViewRecordActivity extends Activity {
     public void viewGeoLocation(View v) {
         Intent intent = new Intent(ViewRecordActivity.this, MapsActivity.class);
         intent.putExtra("mapMode", "view");
-        if (recordOfInterest.getGeo_location() != null) {
-            intent.putExtra("latitude", recordOfInterest.getGeo_location().latitude);
-            intent.putExtra("longitude", recordOfInterest.getGeo_location().longitude);
+        if (recordOfInterest.getGeoLocationLatitude() != null && recordOfInterest.getGeoLocationLongitude() != null) {
+            intent.putExtra("latitude", recordOfInterest.getGeoLocationLatitude());
+            intent.putExtra("longitude", recordOfInterest.getGeoLocationLongitude());
         }
         startActivity(intent);
     }
