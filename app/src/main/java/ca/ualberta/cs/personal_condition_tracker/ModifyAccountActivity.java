@@ -33,8 +33,10 @@ public class ModifyAccountActivity extends AppCompatActivity {
             user = userAccountList.getAccountOfInterest();
             if(userAccountList.activeUserIsCareProvider()){
                 Switch editAccountSwitch = findViewById(R.id.editAccountSwitch);
+                TextView generateLoginCode = findViewById(R.id.generateLoginCode);
                 editAccountSwitch.setVisibility(View.GONE);
                 editAccountSwitch.setClickable(false);
+                generateLoginCode.setVisibility(View.INVISIBLE);
             }
         }
 
@@ -70,22 +72,37 @@ public class ModifyAccountActivity extends AppCompatActivity {
         Switch editAccountSwitch = findViewById(R.id.editAccountSwitch);
         EditText emailAddressView = findViewById(R.id.emailAddressText);
         EditText phoneNumberView = findViewById(R.id.phoneNumberText);
-        Button modifyAccountCancel = findViewById(R.id.modifyAccountCancelButton);
         Button modifyAccountConfirm = findViewById(R.id.modifyAccountConfirmButton);
+        TextView generateLoginCode = findViewById(R.id.generateLoginCode);
 
         if(editAccountSwitch.isChecked()){
             emailAddressView.setEnabled(true);
             phoneNumberView.setEnabled(true);
             modifyAccountConfirm.setVisibility(View.VISIBLE);
             modifyAccountConfirm.setClickable(true);
+            //generateLoginCode.setVisibility(View.INVISIBLE);
         }
+
         else{
             emailAddressView.setEnabled(false);
             phoneNumberView.setEnabled(false);
             modifyAccountConfirm.setVisibility(View.GONE);
             modifyAccountConfirm.setClickable(false);
+            generateLoginCode.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    public void getLoginCode(View v){
+        TextView loginCodeTextView = findViewById(R.id.loginCodeTextView);
+        String loginCode;
+        if(userAccountList.activeUserIsCareProvider()){
+            loginCode = userAccountList.getActiveCareProvider().getShortCode();
+        }
+        else{
+            loginCode = userAccountList.getAccountOfInterest().getShortCode();
+        }
+        loginCodeTextView.setText(loginCode);
     }
 
     public void modifyAccountConfirm(View v){

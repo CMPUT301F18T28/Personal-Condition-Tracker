@@ -72,6 +72,7 @@ public class UserAccount {
     private String phoneNumber;
     private String password;
     private String associatedId;
+    private String shortCode ="N/A";
     @JestId
     private String id = null;
 
@@ -259,5 +260,13 @@ public class UserAccount {
     public int hashCode() {
 
         return Objects.hash(userID);
+    }
+
+    public String getShortCode() {
+        return shortCode;
+    }
+
+    public void setShortCode(String shortCode) {
+        this.shortCode = shortCode;
     }
 }

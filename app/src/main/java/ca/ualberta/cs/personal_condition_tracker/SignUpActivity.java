@@ -56,6 +56,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class SignUpActivity extends AppCompatActivity {
     public static Intent resultIntent;
@@ -80,12 +81,14 @@ public class SignUpActivity extends AppCompatActivity {
         String userID = userIDText.getText().toString();
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
+        Integer numberOfAccounts = userAccountListController.getUserAccountList().size();
 
         //TODO fix this. maybe w/ dropdown
         if(accountType.equals("patient")){
             // Make a new patient account.
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
             Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
+            newUserAccount.setShortCode(numberOfAccounts.toString());
             createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
         }
@@ -93,6 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
             // Make a new care provider account.
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
             CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
+            newUserAccount.setShortCode(numberOfAccounts.toString());
             createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
         }
@@ -103,7 +107,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void cancelSignUp(View v){
-        Toast.makeText(this,"Cancelling edit...", Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_CANCELED, resultIntent);
         this.finish();
     }
@@ -116,6 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
         getUserAccountsTask.execute(query);
         ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+
         try {
             stored_users = getUserAccountsTask.get();
         } catch (Exception e) {
@@ -140,6 +144,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Check if the user has already signed up
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
                 new UserAccountListManager.GetUserAccountsTask();
+
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
         getUserAccountsTask.execute(query);
         ArrayList<? extends UserAccount> stored_users = new ArrayList<>();

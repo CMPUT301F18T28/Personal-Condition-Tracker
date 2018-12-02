@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 //Check account type, direct to proper activity.
                 if(userAccount.getAccountType().toLowerCase().trim().equals("patient")){
                     Patient newPatient = new Patient(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmailAddress(), userAccount.getPhoneNumber());
+                    newPatient.setShortCode(userAccount.getShortCode());
                     userAccountListController.getUserAccountList().setAccountOfInterest(newPatient);
                     intent = new Intent(MainActivity.this, ViewConditionListActivity.class);
                     startActivity(intent);
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                 else if(userAccount.getAccountType().toLowerCase().trim().equals("care provider")){
                     CareProvider newCareProvider = new CareProvider(userAccount.getAccountType(), userAccount.getUserID(), userAccount.getEmailAddress(), userAccount.getPhoneNumber());
+                    newCareProvider.setShortCode(userAccount.getShortCode());
                     userAccountListController.getUserAccountList().setActiveCareProvider(newCareProvider);
                     intent = new Intent(MainActivity.this, ViewPatientListActivity.class);
                     startActivity(intent);

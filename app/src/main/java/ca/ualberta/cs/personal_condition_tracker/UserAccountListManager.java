@@ -71,6 +71,8 @@ import io.searchbox.core.SearchResult;
 
 public class UserAccountListManager {
     private static JestDroidClient client;
+
+
     /**
      * Add user accounts to the server
      * @param userAccounts the accounts to be added.

@@ -167,4 +167,7 @@ public class UserAccountList {
     public boolean activeUserIsCareProvider(){
         return (activeCareProvider != null);
     }
+    public Integer size(){
+        return getUserAccounts().size();
+    }
 }
