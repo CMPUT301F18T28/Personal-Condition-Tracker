@@ -196,6 +196,10 @@ public class ViewConditionListActivity extends AppCompatActivity {
 
     public void viewMapOfRecords(View v){
         Toast.makeText(this,"Viewing map of records", Toast.LENGTH_SHORT).show();
+        Intent mapIntent = new Intent(ViewConditionListActivity.this, MapsActivity.class);
+        mapIntent.putExtra("mapMode", "viewAll");
+        startActivityForResult(mapIntent, 1);
+
     }
 
     public void searchConditionsOrRecords(View v){
