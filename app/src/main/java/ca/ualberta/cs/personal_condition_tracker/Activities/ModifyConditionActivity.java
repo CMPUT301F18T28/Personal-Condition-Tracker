@@ -101,20 +101,23 @@ public class ModifyConditionActivity extends AppCompatActivity {
         Condition newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
         newCondition.setAssociatedUserID(accountOfInterest.getUserID());
         int index = intent.getIntExtra("index", -1);
-        Toast.makeText(this,Integer.toString(index), Toast.LENGTH_SHORT).show();
-        if (index == -1){
-            conditionListController.createCondition(newCondition);
-            accountOfInterest.getConditionList().addCondition(newCondition);
-        }
-        else{
+        if (conditionTitle.length() < Condition.getMaxTitleLength() && conditionDescription.length() < Condition.getMaxDescriptionLength()) {
+            if (index == -1) {
+                conditionListController.createCondition(newCondition);
+                accountOfInterest.getConditionList().addCondition(newCondition);
+            } else {
 //            int index = intent.getIntExtra("index", 0);
-            oldCondition = accountOfInterest.getConditionList().getByIndex(index);
-            conditionListController.editCondition(oldCondition, newCondition);
-            accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
-                    conditionDate, conditionDescription);
+                oldCondition = accountOfInterest.getConditionList().getByIndex(index);
+                conditionListController.editCondition(oldCondition, newCondition);
+                accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
+                        conditionDate, conditionDescription);
+            }
+            setResult(Activity.RESULT_OK);
+            this.finish();
         }
-        setResult(Activity.RESULT_OK);
-        this.finish();
+        else {
+            Toast.makeText(this,"Description or title is too long!", Toast.LENGTH_SHORT).show();
+        }
     }
     // Cancel adding or editing a condition.
     public void modifyConditionCancel(View v){

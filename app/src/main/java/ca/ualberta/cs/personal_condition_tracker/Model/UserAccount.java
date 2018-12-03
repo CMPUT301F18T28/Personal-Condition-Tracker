@@ -73,6 +73,7 @@ public class UserAccount {
     private String password;
     private String associatedId;
     private String shortCode ="N/A";
+    private static final int MIN_USERID_CHARS = 8;
     @JestId
     private String id = null;
 
@@ -290,4 +291,10 @@ public class UserAccount {
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
     }
+
+    public static int getMinUseridChars() {
+        return MIN_USERID_CHARS;
+    }
+
+
 }

@@ -88,32 +88,34 @@ public class SignUpActivity extends AppCompatActivity {
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
         Integer numberOfAccounts = userAccountListController.getUserAccountList().size();
-
-        //TODO fix this. maybe w/ dropdown
-        if(accountType.equals("patient")){
-            // Make a new patient account.
-            Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
-            Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
-            newUserAccount.setShortCode(numberOfAccounts.toString());
-            userAccountListController.createPatient(newUserAccount, userID);
-            userAccountListController.addUserAccount(newUserAccount);
-            this.finish();
-
+        if (userID.length() > UserAccount.getMinUseridChars()) {
+            //TODO fix this. maybe w/ dropdown
+            if(accountType.equals("patient")){
+                // Make a new patient account.
+                Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
+                Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
+                newUserAccount.setShortCode(numberOfAccounts.toString());
+                userAccountListController.createPatient(newUserAccount, userID);
+                userAccountListController.addUserAccount(newUserAccount);
+                this.finish();
+            }
+            else if (accountType.equals("care provider")){
+                // Make a new care provider account.
+                Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
+                CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
+                newUserAccount.setShortCode(numberOfAccounts.toString());
+                userAccountListController.createCareProvider(newUserAccount, userID);
+                userAccountListController.addUserAccount(newUserAccount);
+                this.finish();
+            }
+            else {
+                Toast.makeText(this, "Invalid account type", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if (accountType.equals("care provider")){
-            // Make a new care provider account.
-            Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
-            CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
-            newUserAccount.setShortCode(numberOfAccounts.toString());
-            userAccountListController.createCareProvider(newUserAccount, userID);
-            userAccountListController.addUserAccount(newUserAccount);
-            this.finish();
-
-        }
-
         else {
-            Toast.makeText(this, "Invalid account type", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "UserID is too short!", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     public void cancelSignUp(View v){

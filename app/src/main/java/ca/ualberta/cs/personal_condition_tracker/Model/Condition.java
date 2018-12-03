@@ -80,7 +80,9 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
     private CommentRecordList commentRecordList = new CommentRecordList();
     private transient ArrayList<Listener> listenerList = null;
     private String associatedUserID;
-    private static final Integer MAX_CHARACTERS = 100;
+    private static final int MAX_TITLE_LENGTH = 30;
+    private static final int MAX_DESCRIPTION_LENGTH = 300;
+
     @JestId
     private String id = null;
 
@@ -314,4 +316,13 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
             listener.update();
         }
     }
+
+    public static int getMaxTitleLength() {
+        return MAX_TITLE_LENGTH;
+    }
+
+    public static int getMaxDescriptionLength() {
+        return MAX_DESCRIPTION_LENGTH;
+    }
+
 }

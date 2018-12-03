@@ -276,8 +276,8 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
     private File createImageFile() throws IOException {
         File directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        String timesStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File image = File.createTempFile("tracker_" + timesStamp,".jpg", directory);
+        String currentTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File image = File.createTempFile("tracker_" + currentTime,".jpg", directory);
         return image;
     }
 
@@ -287,8 +287,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
-//                ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
-//                button.setImageDrawable(Drawable.createFromPath(imageFileUri.getPath()));
+
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(ModifyRecordActivity.this, "Photo canceled!", Toast.LENGTH_SHORT).show();
             } else {
@@ -297,7 +296,6 @@ public class ModifyRecordActivity extends AppCompatActivity {
         }
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
                 File mImageFile = new File(new_image);
                 Bitmap bitmap = BitmapFactory.decodeFile(new_image);
                 Photograph photo = new Photograph();

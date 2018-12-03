@@ -35,15 +35,15 @@ public class BodyLocationTest extends TestCase {
 
     public void testGetBodyCoordinates() {
         BodyLocation bodyLocation = new BodyLocation();
-        bodyLocation.setBodyXCoordinate(2);
-        bodyLocation.setBodyYCoordinate(1);
-        assertTrue((bodyLocation.getBodyXCoordinate() == 2) && (bodyLocation.getBodyYCoordinate() == 1));
+        bodyLocation.setBodyXCoordinate("2");
+        bodyLocation.setBodyYCoordinate("1");
+        assertTrue((bodyLocation.getBodyXCoordinate().equals("2") && (bodyLocation.getBodyYCoordinate().equals("1"))));
     }
 
     public void testSetBodyCoordinates() {
         BodyLocation bodyLocation = new BodyLocation();
-        bodyLocation.setBodyXCoordinate(2);
-        bodyLocation.setBodyYCoordinate(1);
-        assertTrue((bodyLocation.getBodyXCoordinate() == 2) && (bodyLocation.getBodyYCoordinate() == 1));
+        bodyLocation.setBodyXCoordinate("2");
+        bodyLocation.setBodyYCoordinate("1");
+        assertTrue((bodyLocation.getBodyXCoordinate().equals("2") && (bodyLocation.getBodyYCoordinate().equals("1"))));
     }
 }

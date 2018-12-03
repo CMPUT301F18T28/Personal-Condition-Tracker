@@ -6,6 +6,9 @@ import junit.framework.TestCase;
 
 import java.util.Date;
 
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocationList;
+import ca.ualberta.cs.personal_condition_tracker.Model.GeoLocation;
 import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
 import ca.ualberta.cs.personal_condition_tracker.Model.PhotographList;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
@@ -51,34 +54,40 @@ public class RecordTest extends TestCase {
         assertTrue(new_record.getDescription().equals("I am still a record."));
     }
 
-//    public void testGetGeoLocation() {
-//        Record new_record = new Record("Title",  "I am a record.");
-//        new_record.setGeoLocation(new LatLng(53.5444, 113.4909));
-//        assertEquals(new_record.getGeoLocation(), new LatLng(53.5444, 113.4909));
-//    }
-//
-//    public void testSetGeoLocation() {
-//        Record new_record = new Record("Title",  "I am a record.");
-//        new_record.setGeoLocation(new LatLng(53.5444, 113.4909));
-//        assertEquals(new_record.getGeoLocation(), new LatLng(53.5444, 113.4909));
-//    }
-//
-//    public void testGetBodyLocation() {
-//        Record new_record = new Record("Title",  "I am a record.");
-//        new_record.setBodyLocation("Right Hand");
-//        assertEquals(new_record.getBodyLocation(), "Right Hand");
-//    }
-//
-//    public void testSetBodyLocation() {
-//        Record new_record = new Record("Title",  "I am a record.");
-//        new_record.setBodyLocation("Right Hand");
-//        assertEquals(new_record.getBodyLocation(), "Right Hand");
-//    }
+    public void testGetGeoLocation() {
+        Record new_record = new Record("Title",  "I am a record.");
+        GeoLocation geoLocation = new GeoLocation(53.5444, 113.4909);
+        new_record.setGeoLocation(geoLocation);
+        assertEquals(new_record.getGeoLocation(), geoLocation);
+    }
+
+    public void testSetGeoLocation() {
+        Record new_record = new Record("Title",  "I am a record.");
+        GeoLocation geoLocation = new GeoLocation(53.5444, 113.4909);
+        new_record.setGeoLocation(geoLocation);
+        assertEquals(new_record.getGeoLocation(), geoLocation);
+    }
+
+    public void testGetBodyLocation() {
+        Record new_record = new Record("Title",  "I am a record.");
+        BodyLocationList bodyLocations = new BodyLocationList();
+        bodyLocations.addBodyLocation(new BodyLocation());
+        new_record.setBodyLocationList(bodyLocations);
+        assertEquals(new_record.getBodyLocationList(), bodyLocations);
+    }
+
+    public void testSetBodyLocation() {
+        Record new_record = new Record("Title",  "I am a record.");
+        BodyLocationList bodyLocations = new BodyLocationList();
+        bodyLocations.addBodyLocation(new BodyLocation());
+        new_record.setBodyLocationList(bodyLocations);
+        assertEquals(new_record.getBodyLocationList(), bodyLocations);
+    }
 
     public void testGetPhotographs(){
         Record new_record = new Record("Title",  "I am a record.");
         PhotographList photo_list = new PhotographList();
-        photo_list.addPhotograph(new Photograph("I am a photograph"));
+        photo_list.addPhotograph(new Photograph());
         new_record.setPhotos(photo_list);
         assertTrue(new_record.getPhotos().equals(photo_list));
     }
@@ -86,7 +95,7 @@ public class RecordTest extends TestCase {
     public void testSetPhotographs(){
         Record new_record = new Record("Title",  "I am a record.");
         PhotographList photo_list = new PhotographList();
-        photo_list.addPhotograph(new Photograph("I am a photograph"));
+        photo_list.addPhotograph(new Photograph());
         new_record.setPhotos(photo_list);
         assertTrue(new_record.getPhotos().equals(photo_list));
     }
