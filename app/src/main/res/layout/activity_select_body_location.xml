@@ -4,65 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectBodyLocationActivity">
+    tools:context=".Activities.SelectBodyLocationActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Select a location on the body below"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ssiv="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linearLayout"
+        android:layout_width="227dp"
+        android:layout_height="519dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        ssiv:layout_constraintBottom_toBottomOf="parent"
+        ssiv:layout_constraintEnd_toEndOf="parent"
+        ssiv:layout_constraintHorizontal_bias="0.529"
+        ssiv:layout_constraintStart_toStartOf="parent"
+        ssiv:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/frontOfBodyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="69dp"
-        android:layout_marginTop="193dp"
-        android:text="@string/frontOfBodyButtonText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <ca.ualberta.cs.personal_condition_tracker.PinView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            ssiv:assetName="man.png"
+            ssiv:src="@drawable/man" />
 
-    <Button
-        android:id="@+id/backOfBodyButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="79dp"
-        android:text="@string/backOfBodyButtonText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="267dp"
-        android:text="@string/recordPhotoText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="163dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/confirmButtonText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/cancelButtonText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

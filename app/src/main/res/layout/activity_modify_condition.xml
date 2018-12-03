@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyConditionActivity">
+    tools:context=".Activities.ModifyConditionActivity">
 
     <TextView
         android:id="@+id/patientNameTextView"
@@ -37,12 +37,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conditionTitleView" />
 
-    <EditText
+    <TextView
         android:id="@+id/conditionDateView"
         android:layout_width="338dp"
         android:layout_height="39dp"
         android:layout_marginStart="16dp"
         android:inputType="datetime|date"
+        android:onClick="modifyConditionDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conditionDateTextView" />
 
@@ -59,7 +60,7 @@
     <EditText
         android:id="@+id/conditionDescriptionView"
         android:layout_width="340dp"
-        android:layout_height="134dp"
+        android:layout_height="61dp"
         android:layout_marginStart="16dp"
         android:inputType="textAutoCorrect|textAutoComplete"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,10 +68,10 @@
 
     <Button
         android:id="@+id/modifyConditionConfirmButton"
-        android:layout_width="167dp"
-        android:layout_height="73dp"
+        android:layout_width="136dp"
+        android:layout_height="43dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="200dp"
         android:onClick="modifyConditionConfirm"
         android:text="@string/confirmButtonText"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,11 +79,11 @@
 
     <Button
         android:id="@+id/modifyConditionCancelButton"
-        android:layout_width="167dp"
-        android:layout_height="74dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="136dp"
+        android:layout_height="43dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="16dp"
         android:onClick="modifyConditionCancel"
         android:text="@string/cancelButtonText"
         app:layout_constraintEnd_toEndOf="parent"

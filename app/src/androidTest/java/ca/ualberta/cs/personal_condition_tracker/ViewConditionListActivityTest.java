@@ -9,6 +9,10 @@ import org.junit.runner.RunWith;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import ca.ualberta.cs.personal_condition_tracker.Activities.ModifyConditionActivity;
+import ca.ualberta.cs.personal_condition_tracker.Activities.ViewConditionListActivity;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -35,7 +39,5 @@ public class ViewConditionListActivityTest {
         intended(hasComponent(ModifyConditionActivity.class.getName()));
         Intents.release();
     }
-
-    //TODO: Test on long click methods
 
 }

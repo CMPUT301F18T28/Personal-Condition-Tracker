@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
             android:id="@+id/leftSpacer"
@@ -46,6 +50,7 @@
                             android:id="@+id/loginTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
                             android:text="@string/loginTitle"
                             android:textAlignment="center"
@@ -68,9 +73,11 @@
                             android:id="@+id/userIDTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:paddingTop="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginEnd="15dp"
                             android:paddingEnd="5dp"
+                            android:paddingTop="10dp"
                             android:text="@string/userIDTitle"
                             android:textAlignment="viewEnd"
                             android:textSize="18sp" />
@@ -103,16 +110,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.4">
 
-                        <TextView
-                            android:id="@+id/passwordIDTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="5dp"
-                            android:text="@string/passwordTitle"
-                            android:textAlignment="viewEnd"
-                            android:textSize="18sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -120,13 +117,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.6">
 
-                        <EditText
-                            android:id="@+id/passwordEntry"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="@string/passwordText"
-                            android:inputType="textPersonName" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -146,8 +136,8 @@
                             android:id="@+id/signInButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_centerInParent="false"
                             android:onClick="signIn"
                             android:text="@string/signInButtonText" />
                     </RelativeLayout>
@@ -169,6 +159,51 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="196dp"
+                android:layout_height="146dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="13dp"
+                app:srcCompat="@drawable/man_and_woman" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="188dp"
+                android:layout_height="29dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="false"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="111dp"
+                android:text=" - DOCUMENT THE FACTS -"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="271dp"
+                android:layout_height="33dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="68dp"
+                android:text="  GET THE TREATMENT YOU DESERVE! "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/alternateSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="alternateLogin"
+                android:text="Login via code instead" />
 
         </RelativeLayout>
 

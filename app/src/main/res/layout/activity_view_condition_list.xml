@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewConditionListActivity">
+    tools:context=".Activities.ViewConditionListActivity">
 
     <Button
         android:id="@+id/searchButton"
@@ -50,6 +50,7 @@
         android:layout_height="37dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:onClick="showAccountInformation"
         android:text="Patient Name"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"

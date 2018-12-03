@@ -1,48 +1,49 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
 import junit.framework.TestCase;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocationList;
 
 public class BodyLocationListTest extends TestCase{
 
 
     public void testHasBodyLocation() {
-        BodyLocationList body_locations = new BodyLocationList();
-        BodyLocation body_location = new BodyLocation();
-        body_locations.addBodyLocation(body_location);
-        assertTrue(body_locations.hasBodyLocation(body_location));
+        BodyLocationList bodyLocationList = new BodyLocationList();
+        BodyLocation bodyLocation = new BodyLocation();
+        bodyLocationList.addBodyLocation(bodyLocation);
+        assertTrue(bodyLocationList.hasBodyLocation(bodyLocation));
     }
 
     public void testGetBodyLocation() {
-        BodyLocationList body_locations = new BodyLocationList();
-        BodyLocation body_location = new BodyLocation();
-        body_locations.addBodyLocation(body_location);
-        assertTrue(body_locations.getBodyLocation(0).equals(body_location));
+        BodyLocationList bodyLocationList = new BodyLocationList();
+        BodyLocation bodyLocation = new BodyLocation();
+        bodyLocationList.addBodyLocation(bodyLocation);
+        assertTrue(bodyLocationList.getBodyLocation(0).equals(bodyLocation));
     }
 
     public void testAddBodyLocation() {
-        BodyLocationList body_locations = new BodyLocationList();
-        BodyLocation body_location = new BodyLocation();
-        body_locations.addBodyLocation(body_location);
-        assertTrue(body_locations.hasBodyLocation(body_location));
+        BodyLocationList bodyLocationList = new BodyLocationList();
+        BodyLocation bodyLocation = new BodyLocation();
+        bodyLocationList.addBodyLocation(bodyLocation);
+        assertTrue(bodyLocationList.hasBodyLocation(bodyLocation));
     }
 
     public void testDeleteBodyLocation() {
-        BodyLocationList body_locations = new BodyLocationList();
-        BodyLocation body_location = new BodyLocation();
-        body_locations.addBodyLocation(body_location);
-        assertTrue(body_locations.hasBodyLocation(body_location));
-        body_locations.deleteBodyLocation(body_location);
-        assertFalse(body_locations.hasBodyLocation(body_location));
+        BodyLocationList bodyLocationList = new BodyLocationList();
+        BodyLocation bodyLocation = new BodyLocation();
+        bodyLocationList.addBodyLocation(bodyLocation);
+        assertTrue(bodyLocationList.hasBodyLocation(bodyLocation));
+        bodyLocationList.deleteBodyLocation(bodyLocation);
+        assertFalse(bodyLocationList.hasBodyLocation(bodyLocation));
     }
 
     public void testEditBodyLocation() {
-        BodyLocationList body_locations = new BodyLocationList();
-        BodyLocation body_location = new BodyLocation();
-        body_locations.addBodyLocation(body_location);
-        BodyLocation new_body_location = new BodyLocation();
-        body_locations.editBodyLocation(0, new_body_location);
-        assertTrue(body_locations.getBodyLocation(0).equals(new_body_location));
+        BodyLocationList bodyLocationList = new BodyLocationList();
+        BodyLocation bodyLocation = new BodyLocation();
+        bodyLocationList.addBodyLocation(bodyLocation);
+        BodyLocation newBodyLocation = new BodyLocation();
+        bodyLocationList.editBodyLocation(0, newBodyLocation);
+        assertTrue(bodyLocationList.getBodyLocation(0).equals(newBodyLocation));
     }
 }

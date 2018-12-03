@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModifyRecordActivity"
+    tools:context=".Activities.ModifyRecordActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <Button
         android:id="@+id/modifyRecordCancelButton"
         android:layout_width="136dp"
         android:layout_height="41dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
         android:onClick="modifyRecordCancel"
         android:text="@string/cancelButtonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPhotos"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/addPhotoButton" />
 
     <Button
         android:id="@+id/viewBodyLocationsButton"
         android:layout_width="335dp"
         android:layout_height="52dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:onClick="selectBodyLoc"
         android:text="@string/viewBodyLocationsButtonText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -67,14 +67,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recordTitleView" />
 
-    <EditText
+    <TextView
         android:id="@+id/recordDateView"
         android:layout_width="330dp"
         android:layout_height="45dp"
-        android:layout_marginEnd="14dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
         android:inputType="datetime|date"
+        android:onClick="modifyRecordDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,10 +108,11 @@
         android:id="@+id/viewGeoLocationsButton"
         android:layout_width="333dp"
         android:layout_height="43dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="17dp"
         android:layout_marginTop="16dp"
-        android:text="@string/viewGeoLocationsButtonText"
+        android:layout_marginEnd="16dp"
+        android:onClick="modifyGeoLocation"
+        android:text="@string/modifyGeoLocationButtonText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,31 +128,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewBodyLocationsButton" />
 
-    <ScrollView
-        android:id="@+id/viewPhotos"
-        android:layout_width="339dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPhotosTextView">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
-
     <Button
         android:id="@+id/modifyRecordConfirmButton"
         android:layout_width="138dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="24dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:onClick="modifyRecordConfirm"
         android:text="@string/confirmButtonText"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPhotos"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/showSlideshowButton" />
+
+    <Button
+        android:id="@+id/addPhotoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="addPhoto"
+        android:text="@string/addPhotoButtonText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewBodyLocationsButton" />
+
+    <Button
+        android:id="@+id/showSlideshowButton"
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:onClick="showSlideshowActivity"
+        android:text="@string/showSlideShowButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPhotosTextView"
+        tools:text="@string/showSlideShowButtonText" />
 </android.support.constraint.ConstraintLayout>

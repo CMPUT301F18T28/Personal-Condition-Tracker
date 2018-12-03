@@ -1,36 +1,37 @@
 package ca.ualberta.cs.personal_condition_tracker;
 import junit.framework.TestCase;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.Model.PatientList;
 
 public class PatientListTest extends TestCase {
  
   public void testHasPatient() {
-        PatientList new_patient_list = new PatientList();
-        Patient new_patient = new Patient();
-        new_patient_list.addPatient(new_patient.getUserID());
-        assertTrue(new_patient_list.hasPatient(new_patient.getUserID()));
+        PatientList patientList = new PatientList();
+        Patient patient = new Patient();
+        patientList.addPatient(patient.getUserID());
+        assertTrue(patientList.hasPatient(patient.getUserID()));
   }
   
   public void testAddPatient() {
-      PatientList new_patient_list = new PatientList();
-      Patient new_patient = new Patient();
-      new_patient_list.addPatient(new_patient.getUserID());
-      assertTrue(new_patient_list.hasPatient(new_patient.getUserID()));
+      PatientList patientList = new PatientList();
+      Patient patient = new Patient();
+      patientList.addPatient(patient.getUserID());
+      assertTrue(patientList.hasPatient(patient.getUserID()));
   }
   
   public void testDeletePatient() {
-      PatientList new_patient_list = new PatientList();
-      Patient new_patient = new Patient();
-      new_patient_list.addPatient(new_patient.getUserID());
-      new_patient_list.deletePatient(new_patient.getUserID());
-      assertFalse(new_patient_list.hasPatient(new_patient.getUserID()));
+      PatientList patientList = new PatientList();
+      Patient patient = new Patient();
+      patientList.addPatient(patient.getUserID());
+      patientList.deletePatient(patient.getUserID());
+      assertFalse(patientList.hasPatient(patient.getUserID()));
   }
   
   public void testEditPatient() {
-        Patient new_patient = new Patient();
-        PatientList new_patient_list = new PatientList();
-        new_patient_list.addPatient(new_patient.getUserID());
+        Patient patient = new Patient();
+        PatientList patientList = new PatientList();
+        patientList.addPatient(patient.getUserID());
         //Patient newer_patient = new Patient();
         //new_patient_list.editPatient();
         //assertTrue(new_patient_list.getPatient(0).equals(newer_patient));

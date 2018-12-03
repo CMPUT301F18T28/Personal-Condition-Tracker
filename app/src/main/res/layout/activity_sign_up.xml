@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SignUpActivity">
+
+
+    <TextView
+        android:id="@+id/phoneNumberHeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/phoneNumberText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddressText" />
+
+    <EditText
+        android:id="@+id/phoneNumberText"
+        android:layout_width="335dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:inputType="text|phone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberHeaderText" />
+
+    <TextView
+        android:id="@+id/accountTypeHeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/createAccountText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userIDHeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/userIDTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeSpinner" />
+
+    <EditText
+        android:id="@+id/userIDText"
+        android:layout_width="335dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userIDHeaderText" />
+
+    <TextView
+        android:id="@+id/emailAddressHeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/emailAddressText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userIDText" />
+
+    <EditText
+        android:id="@+id/emailAddressText"
+        android:layout_width="335dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddressHeaderText" />
+
+    <Button
+        android:id="@+id/signUpConfirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="205dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="confirmSignUp"
+        android:text="@string/confirmButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberText" />
+
+    <Button
+        android:id="@+id/signUpCancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="205dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="cancelSignUp"
+        android:text="@string/cancelButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumberText" />
+
+    <Spinner
+        android:id="@+id/accountTypeSpinner"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/account_types_array"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeHeaderText" />
+
+</android.support.constraint.ConstraintLayout>

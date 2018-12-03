@@ -4,43 +4,44 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.Model.PatientList;
 
 public class CareProviderTest extends TestCase {
 
     @Test
     public void testHasPatient() {
-        PatientList new_patient_list = new PatientList();
-        Patient new_patient = new Patient();
-        new_patient_list.addPatient(new_patient.getUserID());
-        assertTrue(new_patient_list.hasPatient(new_patient.getUserID()));
-
+        PatientList patientList = new PatientList();
+        Patient patient = new Patient();
+        patientList.addPatient(patient.getUserID());
+        assertTrue(patientList.hasPatient(patient.getUserID()));
     }
 
     @Test
     public void testGetPatients() {
-        PatientList new_patient_list = new PatientList();
-        String new_patient = "testPatient";
-        new_patient_list.addPatient(new_patient);
-        ArrayList<String> patientIDs = new_patient_list.getPatientIDs();
-        assertTrue(patientIDs.get(0).equals(new_patient));
+        PatientList patientList = new PatientList();
+        String patient = "testPatient";
+        patientList.addPatient(patient);
+        ArrayList<String> patientIDs = patientList.getPatientIDs();
+        assertTrue(patientIDs.get(0).equals(patient));
     }
 
     @Test
     public void testAddPatient() {
-        PatientList new_patient_list = new PatientList();
-        String new_patient = "testPatient";
-        new_patient_list.addPatient(new_patient);
-        assertTrue(new_patient_list.hasPatient(new_patient));
+        PatientList patientList = new PatientList();
+        String testPatient = "testPatient";
+        patientList.addPatient(testPatient);
+        assertTrue(patientList.hasPatient(testPatient));
     }
 
     @Test
     public void testRemovePatient() {
-        PatientList new_patient_list = new PatientList();
-        String new_patient = "testPatient";
-        new_patient_list.addPatient(new_patient);
-        new_patient_list.deletePatient(new_patient);
-        assertFalse(new_patient_list.hasPatient(new_patient));
+        PatientList patientList = new PatientList();
+        String testPatient = "testPatient";
+        patientList.addPatient(testPatient);
+        patientList.deletePatient(testPatient);
+        assertFalse(patientList.hasPatient(testPatient));
     }
   
 }

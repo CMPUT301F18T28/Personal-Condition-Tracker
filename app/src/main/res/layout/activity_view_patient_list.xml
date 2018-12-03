@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewPatientListActivity">
+    tools:context=".Activities.ViewPatientListActivity">
 
     <ListView
         android:id="@+id/patientListView"
@@ -25,11 +25,11 @@
         android:layout_width="314dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="@string/assignedPatientsText"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/careProviderNameTextView" />
 
     <Button
         android:id="@+id/addPatientButton"
@@ -46,5 +46,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/patientListView"
         app:layout_constraintVertical_bias="0.539" />
+
+    <TextView
+        android:id="@+id/careProviderNameTextView"
+        android:layout_width="218dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="showAccountInformation"
+        android:text="Care Provider"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

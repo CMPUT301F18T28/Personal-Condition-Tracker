@@ -7,9 +7,14 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
+    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
 
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera2.full"
         android:required="false" />
 
     <application
@@ -19,70 +24,89 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="ca.ualberta.cs.personal_condition_tracker"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAPTURE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".ModifyRecordActivity"
+            android:name=".Activities.ModifyRecordActivity"
             android:label="@string/title_activity_view_record"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewRecordListActivity"
+            android:name=".Activities.ViewRecordListActivity"
             android:label="@string/title_activity_view_record_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewRecordListAsCareProviderActivity"
+            android:name=".Activities.ViewRecordListAsCareProviderActivity"
             android:label="@string/title_activity_view_record_list_as_care_provider"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewConditionListActivity"
+            android:name=".Activities.ViewConditionListActivity"
             android:label="@string/title_activity_view_condition_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewConditionListAsCareProviderActivity"
+            android:name=".Activities.ViewConditionListAsCareProviderActivity"
             android:label="@string/title_activity_view_condition_list_as_care_provider"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
-            android:name=".SelectGeoLocationActivity"
-            android:label="@string/title_activity_select_geo_location"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SelectBodyLocationActivity"
+            android:name=".Activities.SelectBodyLocationActivity"
             android:label="@string/title_activity_select_body_location"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewMapOfRecordsActivity"
-            android:label="@string/title_activity_view_map_of_records"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".ViewCommentsActivity"
+            android:name=".Activities.ViewCommentsActivity"
             android:label="@string/title_activity_view_comments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModifyConditionActivity"
+            android:name=".Activities.ModifyConditionActivity"
             android:label="@string/title_activity_modify_condition"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewPatientListActivity"
+            android:name=".Activities.ViewPatientListActivity"
             android:label="@string/title_activity_view_patient_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddPatientActivity"
+            android:name=".Activities.AddPatientActivity"
             android:label="@string/title_activity_add_patient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModifyCommentActivity"
+            android:name=".Activities.ModifyCommentActivity"
             android:label="@string/title_activity_add_comment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModifyUserAccountActivity"
+            android:name=".Activities.SignUpActivity"
             android:label="@string/title_activity_modify_user_account"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activities.ViewBodyLocationListActivity"
+            android:label="ViewBodyLocationListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -96,16 +120,29 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".ViewRecordActivity"
+            android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_record" />
+
+
+        <activity android:name=".Activities.ModifyAccountActivity" />
+
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
-        <uses-library android:name="android.test.runner"/>
+            android:required="false" />
+        <uses-library android:name="android.test.runner" />
 
+        <activity
+            android:name=".Activities.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".Activities.ShortCodeSignInActivity" />
+            android:name=".ViewBodyLocationListActivity"
+            android:label="@string/title_activity_view_body_location_list" />
+        <activity
+            android:name=".Activities.ModifyBodyLocationActivity"
+            android:label="@string/title_activity_modify_body_location" />
+        <activity
+            android:name=".Activities.SlideshowActivity"
+            android:label="@string/title_activity_slideshow"></activity>
     </application>
 
 </manifest>

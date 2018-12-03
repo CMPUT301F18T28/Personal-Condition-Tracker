@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ModifyBodyLocationActivity">
+
+    <TextView
+        android:id="@+id/frontOrBackView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/frontOrBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/frontOrBackSpinner"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/front_or_back_array"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frontOrBackView" />
+
+    <TextView
+        android:id="@+id/bodyPartTypeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/bodyPartType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frontOrBackSpinner" />
+
+
+    <Spinner
+        android:id="@+id/bodyPartTypeSpinner"
+        android:layout_width="213dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/body_part_type_array"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bodyPartTypeView" />
+
+    <Button
+        android:id="@+id/selectBodyLocationButton"
+        android:layout_width="335dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="selectBodyLocation"
+        android:text="@string/selectBodyLocationButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bodyPartTypeSpinner" />
+
+    <Button
+        android:id="@+id/modifyBodyLocationConfirmButton"
+        android:layout_width="138dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="304dp"
+        android:onClick="modifyBodyLocationConfirm"
+        android:text="@string/confirmButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectBodyLocationButton" />
+
+    <Button
+        android:id="@+id/modifyBodyLocationCancelButton"
+        android:layout_width="138dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="304dp"
+        android:onClick="modifyBodyLocationCancel"
+        android:text="@string/cancelButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectBodyLocationButton" />
+
+</android.support.constraint.ConstraintLayout>
