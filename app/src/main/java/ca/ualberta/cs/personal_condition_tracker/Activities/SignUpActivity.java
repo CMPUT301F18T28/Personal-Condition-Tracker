@@ -95,16 +95,20 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
             Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
             newUserAccount.setShortCode(numberOfAccounts.toString());
-            createPatient(newUserAccount, userID);
+            userAccountListController.createPatient(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
+            this.finish();
+
         }
         else if (accountType.equals("care provider")){
             // Make a new care provider account.
             Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
             CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
             newUserAccount.setShortCode(numberOfAccounts.toString());
-            createCareProvider(newUserAccount, userID);
+            userAccountListController.createCareProvider(newUserAccount, userID);
             userAccountListController.addUserAccount(newUserAccount);
+            this.finish();
+
         }
 
         else {
@@ -117,75 +121,11 @@ public class SignUpActivity extends AppCompatActivity {
         this.finish();
     }
 
-    // Add a patient to the server.
-    public void createPatient(Patient newPatient, String userID) {
-        // Check if the user has already signed up
-        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
-        getUserAccountsTask.execute(query);
-        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
-
-        try {
-            stored_users = getUserAccountsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-
-        // Add the user to the database.
-        if (stored_users.size() == 0) {
-            UserAccountListManager.AddUserAccountsTask addUserAccountsTask
-                    = new UserAccountListManager.AddUserAccountsTask();
-            addUserAccountsTask.execute(newPatient);
-            Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
-            this.finish();
-        }
-        else {
-            Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // Add a care provider to the server.
-    public void createCareProvider(CareProvider newCareProvider, String userID) {
-        // Check if the user has already signed up
-        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-
-        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
-        getUserAccountsTask.execute(query);
-        ArrayList<? extends UserAccount> stored_users = new ArrayList<>();
-        try {
-            stored_users = getUserAccountsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-
-        // Add the user to the database.
-        if (stored_users.size() == 0) {
-//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
-            UserAccountListManager.AddUserAccountsTask addUserAccountsTask
-                    = new UserAccountListManager.AddUserAccountsTask();
-            addUserAccountsTask.execute(newCareProvider);
-            Toast.makeText(SignUpActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
-            this.finish();
-        }
-        else {
-            Toast.makeText(SignUpActivity.this, "This userID already exists!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
         super.onStart();
-        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-        getUserAccountsTask.execute("");
-        try {
-            userAccountListController.getUserAccountList().setUserAccounts(getUserAccountsTask.get());
-            Toast.makeText(this,Integer.toString(UserAccountListController.getUserAccountList().getUserAccounts().size()), Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
+        ArrayList<UserAccount> users = userAccountListController.loadUserAccounts();
+        userAccountListController.getUserAccountList().setUserAccounts(users);
     }
 }

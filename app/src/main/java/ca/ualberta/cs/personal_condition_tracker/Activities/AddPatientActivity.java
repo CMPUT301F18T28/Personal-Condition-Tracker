@@ -75,12 +75,12 @@ public class AddPatientActivity extends AppCompatActivity {
     public void addPatientConfirm(View v){
         EditText patientIDText = findViewById(R.id.addPatientText);
         String newPatientID = patientIDText.getText().toString();
-        if (checkIfPatientExists(newPatientID) == true) {
+        if (userAccountListController.checkIfPatientExists(newPatientID) == true) {
             Toast.makeText(this,"Adding new patient!", Toast.LENGTH_SHORT).show();
-            UserAccount oldUser = getPatient(newPatientID);
+            UserAccount oldUser = userAccountListController.getPatient(newPatientID);
             UserAccount newUser = new UserAccount(oldUser.getAccountType(), oldUser.getUserID(), oldUser.getEmailAddress(), oldUser.getPassword());
             newUser.setAssociatedId(activeCareProvider.getUserID());
-            editUserAccount(oldUser, newUser);
+            userAccountListController.editUserAccount(oldUser, newUser);
             activeCareProvider.getPatientList().addPatient(newPatientID);
             this.finish();
         }
@@ -93,52 +93,5 @@ public class AddPatientActivity extends AppCompatActivity {
         Toast.makeText(this,"Cancelling patient add", Toast.LENGTH_SHORT).show();
         this.finish();
     }
-    // Check if a patient exists in the server
-    public boolean checkIfPatientExists(String patientID) {
-        boolean doesExist = false;
-        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-        String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
-        getUserAccountsTask.execute(query);
-        ArrayList<? extends UserAccount> storedUsers = new ArrayList<>();
-        try {
-            storedUsers = getUserAccountsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-        if (storedUsers.size() != 0) {
-            doesExist = true;
-        }
-        return doesExist;
-    }
-
-    // Check if a patient exists in the server
-    public UserAccount getPatient(String patientID) {
-        boolean doesExist = false;
-        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-        String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
-        getUserAccountsTask.execute(query);
-        ArrayList<UserAccount> storedUsers = new ArrayList<UserAccount>();
-        try {
-            storedUsers = getUserAccountsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-        return storedUsers.get(0);
-    }
-
-
-    public void editUserAccount(UserAccount oldUserAccount, UserAccount newUserAccount) {
-        newUserAccount.setId(oldUserAccount.getId());
-        UserAccountListManager.DeleteUserAccountsTask deleteUserAccountsTask =
-                new UserAccountListManager.DeleteUserAccountsTask();
-        deleteUserAccountsTask.execute(oldUserAccount);
-        UserAccountListManager.AddUserAccountsTask addUserAccountsTask
-                = new UserAccountListManager.AddUserAccountsTask();
-        addUserAccountsTask.execute(newUserAccount);
-    }
-
-
 
 }

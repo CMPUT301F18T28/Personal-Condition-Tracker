@@ -88,7 +88,10 @@ public class ViewConditionListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list);
-        loadConditions();
+        ArrayList<Condition> conditions = conditionListController.loadConditions(accountOfInterest);
+        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(conditions);
+
+
         setUpListView();
     }
 
@@ -181,17 +184,6 @@ public class ViewConditionListActivity extends AppCompatActivity {
         });
     }
 
-    public void loadConditions() {
-        ConditionListManager.GetConditionsTask getConditionsTask =
-                new ConditionListManager.GetConditionsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
-        getConditionsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-    }
 
     public void addACondition(View v){
         Toast.makeText(this,"Adding a condition", Toast.LENGTH_SHORT).show();
@@ -303,7 +295,8 @@ public class ViewConditionListActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        loadConditions();
+        ArrayList<Condition> conditions = conditionListController.loadConditions(accountOfInterest);
+        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(conditions);
     }
 }
 

@@ -47,6 +47,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import ca.ualberta.cs.personal_condition_tracker.Controllers.ConditionListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Managers.ConditionListManager;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
@@ -57,6 +58,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private ConditionListController conditionListController = new ConditionListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
     private int year, month, day, hour, minute, second;
@@ -100,13 +102,13 @@ public class ModifyConditionActivity extends AppCompatActivity {
         newCondition.setAssociatedUserID(accountOfInterest.getUserID());
 
         if (intent.getIntExtra("index", -1) == -1){
-            createCondition(newCondition);
+            conditionListController.createCondition(newCondition);
             accountOfInterest.getConditionList().addCondition(newCondition);
         }
         else{
             int index = intent.getIntExtra("index", 0);
             oldCondition = accountOfInterest.getConditionList().getByIndex(index);
-            editCondition(oldCondition, newCondition);
+            conditionListController.editCondition(oldCondition, newCondition);
             accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
                     conditionDate, conditionDescription);
         }
@@ -156,44 +158,6 @@ public class ModifyConditionActivity extends AppCompatActivity {
             }
         }, year, month, day);
         datePickerDialog.show();
-    }
-
-
-    // Add a care provider to the server.
-    public void createCondition(Condition newCondition) {
-        // Check if the user has already signed up
-        ConditionListManager.GetConditionsTask getConditionsTask =
-                new ConditionListManager.GetConditionsTask();
-        String query = "{ \"query\": {\"match\": { \"id\" : \""+ newCondition.getId() +"\" } } }";
-        getConditionsTask.execute(query);
-        ArrayList<Condition> conditions = new ArrayList<>();
-        try {
-            conditions = getConditionsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-
-        // Add the user to the database.
-        if (conditions.size() == 0) {
-//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
-            ConditionListManager.AddConditionsTask addConditionsTask
-                    = new ConditionListManager.AddConditionsTask();
-            addConditionsTask.execute(newCondition);
-            Toast.makeText(ModifyConditionActivity.this,"Sign up successful!", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(ModifyConditionActivity.this, "This condition already exists!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void editCondition(Condition oldCondition, Condition newCondition) {
-        newCondition.setId(oldCondition.getId());
-        ConditionListManager.DeleteConditionsTask deleteConditionsTask =
-                new ConditionListManager.DeleteConditionsTask();
-        deleteConditionsTask.execute(oldCondition);
-        ConditionListManager.AddConditionsTask addConditionsTask
-                = new ConditionListManager.AddConditionsTask();
-        addConditionsTask.execute(newCondition);
     }
 
 }

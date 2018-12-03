@@ -45,6 +45,14 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker.Controllers;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import ca.ualberta.cs.personal_condition_tracker.Activities.SignUpActivity;
+import ca.ualberta.cs.personal_condition_tracker.Model.CareProvider;
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
 import ca.ualberta.cs.personal_condition_tracker.Model.UserAccountList;
 import ca.ualberta.cs.personal_condition_tracker.Managers.UserAccountListManager;
@@ -81,6 +89,122 @@ public class UserAccountListController {
      * @param userAccount the account to be added.
      */
     public void addUserAccount(UserAccount userAccount){ getUserAccountList().addUserAccount(userAccount);}
+
+    public ArrayList<UserAccount> loadUserAccounts() {
+        ArrayList<UserAccount> users = new ArrayList<>();
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        getUserAccountsTask.execute("");
+        try {
+            users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        return users;
+    }
+
+    public ArrayList<String> loadPatients(CareProvider careProvider) {
+        UserAccountListManager.GetUserAccountsTask getPatientsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"associatedId\" : \""+ careProvider.getUserID() +"\" } } }";
+        getPatientsTask.execute(query);
+        ArrayList<UserAccount> patients = new ArrayList<>();
+        ArrayList<String> patientIDs = new ArrayList<>();
+        try {
+            patients = getPatientsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        for (UserAccount patient : patients) {
+            if (patient != null) {
+                patientIDs.add(patient.getUserID());
+            }
+        }
+        return patientIDs;
+    }
+
+    // Add a patient to the server.
+    public void createPatient(Patient newPatient, String userID) {
+        // Check if the user has already signed up
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<? extends UserAccount> stored_users = new ArrayList<UserAccount>();
+
+        try {
+            stored_users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+        // Add the user to the database.
+        if (stored_users.size() == 0) {
+            UserAccountListManager.AddUserAccountsTask addUserAccountsTask
+                    = new UserAccountListManager.AddUserAccountsTask();
+            addUserAccountsTask.execute(newPatient);
+        }
+    }
+
+    // Add a care provider to the server.
+    public void createCareProvider(CareProvider newCareProvider, String userID) {
+        // Check if the user has already signed up
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+
+        String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<? extends UserAccount> stored_users = new ArrayList<>();
+        try {
+            stored_users = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+        // Add the user to the database.
+        if (stored_users.size() == 0) {
+//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
+            UserAccountListManager.AddUserAccountsTask addUserAccountsTask
+                    = new UserAccountListManager.AddUserAccountsTask();
+            addUserAccountsTask.execute(newCareProvider);
+        }
+    }
+
+    // Check if a patient exists in the server
+    public boolean checkIfPatientExists(String patientID) {
+        boolean doesExist = false;
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<? extends UserAccount> storedUsers = new ArrayList<>();
+        try {
+            storedUsers = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        if (storedUsers.size() != 0) {
+            doesExist = true;
+        }
+        return doesExist;
+    }
+
+    // Check if a patient exists in the server
+    public UserAccount getPatient(String patientID) {
+        boolean doesExist = false;
+        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
+                new UserAccountListManager.GetUserAccountsTask();
+        String query = "{ \"query\": {\"match\": { \"userID\" : \"" + patientID + "\" } } }";
+        getUserAccountsTask.execute(query);
+        ArrayList<UserAccount> storedUsers = new ArrayList<UserAccount>();
+        try {
+            storedUsers = getUserAccountsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        return storedUsers.get(0);
+    }
+
 
     public void editUserAccount(UserAccount oldUserAccount, UserAccount newUserAccount) {
         newUserAccount.setId(oldUserAccount.getId());

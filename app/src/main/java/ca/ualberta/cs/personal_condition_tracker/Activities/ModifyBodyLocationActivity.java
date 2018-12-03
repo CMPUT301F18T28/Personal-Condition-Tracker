@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.BodyLocationListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
@@ -17,7 +15,6 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
 import ca.ualberta.cs.personal_condition_tracker.R;
 
-import java.util.Date;
 
 public class ModifyBodyLocationActivity extends Activity {
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -35,9 +32,7 @@ public class ModifyBodyLocationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_body_location);
-//
-//        String frontOrBack = intent.getStringExtra("frontOrBack");
-//        String recordDate = intent.getStringExtra("recordDate");
+
     }
 
     public void selectBodyLocation(View v) {
@@ -66,15 +61,7 @@ public class ModifyBodyLocationActivity extends Activity {
         newBodyLocation.setAssociatedRecordID(recordOfInterest.getId());
         bodyLocationListController.createBodyLocation(newBodyLocation);
         recordOfInterest.getBodyLocationList().addBodyLocation(newBodyLocation);
-        //TODO change these nulls
-//        if (intent.getIntExtra("bodyLocationIndex", -1) == -1) {
-//
-//        } else {
-////            int recordIndex = intent.getIntExtra("bodyLocationIndex", 0);
-////            oldRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
-////            recordListController.editRecord(oldRecord, newRecord);
-////            oldRecord.editRecord(recordTitle, recordDate, recordDescription, location, null);
-//        }
+
         setResult(Activity.RESULT_OK);
         this.finish();
     }

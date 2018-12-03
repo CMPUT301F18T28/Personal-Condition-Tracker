@@ -62,6 +62,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import ca.ualberta.cs.personal_condition_tracker.Controllers.CommentRecordListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.CommentRecord;
 import ca.ualberta.cs.personal_condition_tracker.Managers.CommentRecordListManager;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
@@ -73,6 +74,7 @@ import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListCont
 //TODO: For Project Part 5. Implement this activity.
 public class ViewCommentsActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private CommentRecordListController commentRecordListController = new CommentRecordListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     private CommentRecord commentOfInterest = conditionOfInterest.getCommentRecordList().getCommentOfInterest();
@@ -81,7 +83,9 @@ public class ViewCommentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_comments);
-        loadCommentRecords();
+        ArrayList<CommentRecord> commentRecords = commentRecordListController.loadCommentRecords(conditionOfInterest);
+        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getCommentRecordList().setCommentRecords(commentRecords);
+
         setupListView();
     }
 
@@ -116,14 +120,12 @@ public class ViewCommentsActivity extends AppCompatActivity {
                 adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
 
                 adb.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
 
@@ -133,23 +135,10 @@ public class ViewCommentsActivity extends AppCompatActivity {
                         //Do nothing, simply allow the dialog to close
                     }
                 });
-
                 adb.show();
                 return true;
             }
         });
-    }
-
-    public void loadCommentRecords() {
-        CommentRecordListManager.GetCommentRecordsTask getCommentRecordsTask =
-                new CommentRecordListManager.GetCommentRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"conditionIDForComment\" : \""+ conditionOfInterest.getId() +"\" } } }";
-        getCommentRecordsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getCommentRecordList().setCommentRecords(getCommentRecordsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
     }
 
 }

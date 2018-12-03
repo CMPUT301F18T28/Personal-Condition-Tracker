@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import ca.ualberta.cs.personal_condition_tracker.Controllers.RecordListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
@@ -36,6 +37,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker currentMarker;
     private String mapMode;
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private RecordListController recordListController = new RecordListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
     @Override
@@ -52,8 +54,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 location = null;
             }
         } else if (mapMode.equals("viewAll")) {
-            loadRecords();
-            // TODO add code to view all markers
+            ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest);
+            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
         }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -95,7 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         }
        if (mapMode.equals("selection") || mapMode.equals("view")) {
-           currentMarker = mMap.addMarker(new MarkerOptions().position(startingMarker).title("Record Location"));
+           currentMarker = mMap.addMarker(new MarkerOptions().position(startingMarker).title("Selected record location"));
        } else if (mapMode.equals("viewAll")) {
            ArrayList<Record> records = accountOfInterest.getConditionList().getConditionOfInterest().getRecordList().getRecords();
            for (int i =0; i<records.size(); i++) {
@@ -170,18 +172,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return new LatLng(0, 0);
         }
         return new LatLng(current_location.getLatitude(), current_location.getLongitude());
-    }
-
-    public void loadRecords() {
-        RecordListManager.GetRecordsTask getRecordsTask =
-                new RecordListManager.GetRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ conditionOfInterest.getId() +"\" } } }";
-        getRecordsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(getRecordsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
     }
 
 }

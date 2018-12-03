@@ -36,6 +36,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ca.ualberta.cs.personal_condition_tracker.Controllers.CommentRecordListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.CommentRecord;
 import ca.ualberta.cs.personal_condition_tracker.Managers.CommentRecordListManager;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
@@ -47,6 +48,7 @@ import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListCont
 //TODO: For Project Part 5: Implement this activity.
 public class ModifyCommentActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private CommentRecordListController commentRecordListController = new CommentRecordListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
 
@@ -74,14 +76,7 @@ public class ModifyCommentActivity extends AppCompatActivity {
         newCommentRecord.setTitle("Comment");
         newCommentRecord.setComment(newComment);
         newCommentRecord.setConditionIDForComment(conditionOfInterest.getId());
-        createCommentRecord(newCommentRecord);
-//        if(oldComment == null){
-//            conditionOfInterest.addComment(newComment);
-//        }
-//        else{
-//            conditionOfInterest.removeComment(oldComment);
-//            conditionOfInterest.addComment(newComment);
-//        }
+        commentRecordListController.createCommentRecord(newCommentRecord);
         setResult(Activity.RESULT_OK);
         this.finish();
     }
@@ -90,31 +85,5 @@ public class ModifyCommentActivity extends AppCompatActivity {
         this.finish();
     }
 
-    // Add a care provider to the server.
-    public void createCommentRecord(CommentRecord newCommentRecord) {
-        // Check if the user has already signed up
-        CommentRecordListManager.GetCommentRecordsTask getCommentRecordsTask =
-                new CommentRecordListManager.GetCommentRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"id\" : \""+ newCommentRecord.getId() +"\" } } }";
-        getCommentRecordsTask.execute(query);
-        ArrayList<CommentRecord> records = new ArrayList<>();
-        try {
-            records = getCommentRecordsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-
-        // Add the user to the database.
-        if (records.size() == 0) {
-//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
-            CommentRecordListManager.AddCommentRecordsTask addCommentRecordsTask
-                    = new CommentRecordListManager.AddCommentRecordsTask();
-            addCommentRecordsTask.execute(newCommentRecord);
-            Toast.makeText(ModifyCommentActivity.this,"Added comment successfully!", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(ModifyCommentActivity.this, "This comment already exists!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
 }

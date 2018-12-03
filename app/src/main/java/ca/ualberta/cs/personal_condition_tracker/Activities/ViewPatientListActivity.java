@@ -89,7 +89,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
         careProviderName.setText(activeCareProvider.getUserID());
 //        loadPatients();
         //Setup adapter for condition list, and display the list.
-        activeCareProvider.getPatientList().setPatientIDs(loadPatients());
+        activeCareProvider.getPatientList().setPatientIDs(userAccountListController.loadPatients(activeCareProvider));
         ListView listView = findViewById(R.id.patientListView);
         Collection<String> patientIDCollection = activeCareProvider.getPatientList().getPatientIDs();
         final ArrayList<String> patientIDs = new ArrayList<> (patientIDCollection);
@@ -144,7 +144,7 @@ public class ViewPatientListActivity extends AppCompatActivity {
                 final int finalPosition = position;
                 selectedPatientID = patientIDs.get(finalPosition);
                 Toast.makeText(ViewPatientListActivity.this,selectedPatientID, Toast.LENGTH_SHORT).show();
-                userAccountListController.getUserAccountList().setUserAccounts(getUserAccounts());
+                userAccountListController.getUserAccountList().setUserAccounts(userAccountListController.loadUserAccounts());
                 accountOfInterest =
                         userAccountListController.getUserAccountList().getPatientAccountByID(selectedPatientID);
                 Patient newPatient = new Patient(accountOfInterest.getAccountType(), accountOfInterest.getUserID(), accountOfInterest.getEmailAddress());
@@ -160,39 +160,6 @@ public class ViewPatientListActivity extends AppCompatActivity {
     public void addPatient(View v){
         Intent intent = new Intent(ViewPatientListActivity.this, AddPatientActivity.class);
         startActivity(intent);
-    }
-
-    public ArrayList<UserAccount> getUserAccounts() {
-        UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-        getUserAccountsTask.execute("");
-        ArrayList<UserAccount> stored_users = new ArrayList<>();
-        try {
-            stored_users = getUserAccountsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-        return stored_users;
-    }
-
-    public ArrayList<String> loadPatients() {
-        UserAccountListManager.GetUserAccountsTask getPatientsTask =
-                new UserAccountListManager.GetUserAccountsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedId\" : \""+ activeCareProvider.getUserID() +"\" } } }";
-        getPatientsTask.execute(query);
-        ArrayList<UserAccount> patients = new ArrayList<>();
-        ArrayList<String> patientIDs = new ArrayList<>();
-        try {
-            patients = getPatientsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-        for (UserAccount patient : patients) {
-            if (patient != null) {
-                patientIDs.add(patient.getUserID());
-            }
-        }
-        return patientIDs;
     }
 
     public void showAccountInformation(View v){

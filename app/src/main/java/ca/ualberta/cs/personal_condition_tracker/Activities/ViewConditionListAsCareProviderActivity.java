@@ -62,6 +62,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import ca.ualberta.cs.personal_condition_tracker.Controllers.ConditionListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Managers.ConditionListManager;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
@@ -70,6 +71,7 @@ import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListCont
 
 public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private ConditionListController conditionListController = new ConditionListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
 
@@ -78,7 +80,8 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_condition_list_as_care_provider);
 
-        loadConditions();
+        ArrayList<Condition> old_conditions = conditionListController.loadConditions(accountOfInterest);
+        userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(old_conditions);
 
         final Patient accountOfInterest = UserAccountListController.getUserAccountList().getAccountOfInterest();
         TextView patientName = findViewById(R.id.patientNameTextView);
@@ -116,17 +119,6 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
         Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
     }
 
-    public void loadConditions() {
-        ConditionListManager.GetConditionsTask getConditionsTask =
-                new ConditionListManager.GetConditionsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedUserID\" : \""+ accountOfInterest.getUserID() +"\" } } }";
-        getConditionsTask.execute(query);
-        try {
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(getConditionsTask.get());
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-    }
     public void showAccountInformation(View v){
         Intent intent = new Intent(ViewConditionListAsCareProviderActivity.this, ModifyAccountActivity.class);
         intent.putExtra("accountType", "patient");
