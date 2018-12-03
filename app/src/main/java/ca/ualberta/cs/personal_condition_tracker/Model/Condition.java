@@ -88,7 +88,7 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
 
     //Constructors
 
-    Condition() {}
+    public Condition() {}
 
     public Condition(String title, Date date, String description){
         this.title = title;

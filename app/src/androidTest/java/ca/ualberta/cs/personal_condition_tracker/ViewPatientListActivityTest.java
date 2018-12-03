@@ -40,6 +40,4 @@ public class ViewPatientListActivityTest {
         Intents.release();
     }
 
-    //TODO: Test on long click methods
-
 }

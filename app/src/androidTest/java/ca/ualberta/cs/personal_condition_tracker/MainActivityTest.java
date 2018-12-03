@@ -46,37 +46,6 @@ public class MainActivityTest {
 
     }
 
-    // Test to make sure signing in as a patient leads to the correct activity.
-//    @Test
-//    public void testSignInValidPatient() {
-//        UALC.getUserAccountList().addUserAccount(
-//                new UserAccount("patient","testPatient","test"));
-//        Intents.init();
-//        MainActivityRule.launchActivity(new Intent());
-//
-//        onView(withId(R.id.userIDEntry)).perform(typeText("testPatient")).perform(closeSoftKeyboard());
-//
-//        onView(withId(R.id.signInButton)).perform(click());
-//
-//        intended(hasComponent(ViewConditionListActivity.class.getName()));
-//        Intents.release();
-//
-//    }
-
-    // Test to make sure signing in as a care provider leads to the correct activity.
-//    @Test
-//    public void testSignInValidCareProvider() {
-//        Intents.init();
-//        MainActivityRule.launchActivity(new Intent());
-//        onView(withId(R.id.userIDEntry)).perform(typeText("testCareProvider")).perform(closeSoftKeyboard());
-//
-//        onView(withId(R.id.signInButton)).perform(click());
-//
-//        intended(hasComponent(ViewPatientListActivity.class.getName()));
-//        Intents.release();
-//
-//    }
-
     // Test ot make sure signing up leads to the correct activity.
     @Test
     public void testSignUp() {

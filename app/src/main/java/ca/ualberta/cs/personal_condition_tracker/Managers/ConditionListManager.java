@@ -172,7 +172,7 @@ public class ConditionListManager {
      */
     public static void verifySettings() {
         if (client == null) {
-            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://es2.softwareprocess.ca:8080/");
+            DroidClientConfig.Builder builder = new DroidClientConfig.Builder("http://cmput301.softwareprocess.es:8080/");
             DroidClientConfig config = builder.build();
 
             JestClientFactory factory = new JestClientFactory();
