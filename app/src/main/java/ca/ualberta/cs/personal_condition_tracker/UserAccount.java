@@ -128,12 +128,13 @@ public class UserAccount {
     public String getAccountType() {
         return accountType;
     }
+
+
     /**
      * Serves to set the type of user account; valid entries are restricted to one of 'Patient
      * or 'Care Provider'.
      * @param accountType 'Patient' or 'Care Provider'; all other entries will result in an exception.
      * @return Nothing
-     * @throws invalidAccountTypeException
      * @see Patient
      * @see CareProvider
      */
@@ -141,10 +142,14 @@ public class UserAccount {
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
+
+
     /**
      * Provides the ID of the user (userID); a username.
      * @return String
      */
+
+
     public String getUserID() {
         return userID;
     }

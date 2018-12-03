@@ -4,31 +4,31 @@ import io.searchbox.annotations.JestId;
 
 public class GeoLocation {
 
-    private Double latitude;
-    private Double longitude;
+    private double lat;
+    private double lon;
     private String recordIDForGeoLocation;
     @JestId
     private String id;
 
-    GeoLocation(Double new_latitude, Double new_longitude) {
-        this.latitude = new_latitude;
-        this.longitude = new_longitude;
+    GeoLocation(double new_latitude, double new_longitude) {
+        this.lat = new_latitude;
+        this.lon = new_longitude;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public double getLatitude() {
+        return lat;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setLatitude(double latitude) {
+        this.lat = latitude;
     }
 
-    public Double getLongitude() {
-        return longitude;
+    public double getLongitude() {
+        return lon;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setLongitude(double longitude) {
+        this.lon = longitude;
     }
 
     public String getRecordIDForGeoLocation() {

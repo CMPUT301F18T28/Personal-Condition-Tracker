@@ -94,12 +94,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
            for (int i =0; i<records.size(); i++) {
                 Record record = records.get(i);
                 if (record.getGeoLocation() != null) {
-                    if (record.getGeoLocation().getLatitude() != null && record.getGeoLocation().getLongitude() != null) {
-                        Double latitude = record.getGeoLocation().getLatitude();
-                        Double longitude = record.getGeoLocation().getLongitude();
-                        startingMarker = new LatLng(latitude, longitude);
-                        mMap.addMarker(new MarkerOptions().position(startingMarker).title(record.getTitle()));
-                    }
+                    Double latitude = record.getGeoLocation().getLatitude();
+                    Double longitude = record.getGeoLocation().getLongitude();
+                    startingMarker = new LatLng(latitude, longitude);
+                    mMap.addMarker(new MarkerOptions().position(startingMarker).title(record.getTitle()));
+
                 }
             }
        }

@@ -91,23 +91,24 @@ public class BodyLocation {
     }
 
     /**
-     * Registers the x-coordinate corresponding the location of a condition within a photograph of the afflicted body part
+     * Registers the x-coordinate corresponding the location of a condition with respect to a map of the human body
      * @return Nothing
      */
+
     public void setPhotoXCoordinate(double photoXCoordinate) {
         this.photoXCoordinate = photoXCoordinate;
     }
 
     /**
-     * Provides the y-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
-     * @return double y-coordinate of location of the Condition within a photograph
+     * Provides the y-coordinate corresponding to the location of a condition with respect to a map of the human body
+     * @return double y-coordinate of the Condition with respect to a map of the human body
      */
     public double getPhotoYCoordinate() {
         return photoYCoordinate;
     }
 
     /**
-     * Registers the y-coordinate corresponding the location of the condition within a photograph of the afflicted body part
+     * Registers the y-coordinate corresponding the location of a condition with respect to a map of the human body
      * @return Nothing
      */
     public void setPhotoYCoordinate(double photoYCoordinate) {
@@ -115,35 +116,38 @@ public class BodyLocation {
     }
 
     /**
-     * Provides the x-coordinate corresponding to the location of a condition with respect to a map of the human body
-     * @return double x-coordinate of the Condition with respect to a map of the human body
+     * Registers an ID corresponding to the associated record.
+     * @return Nothing
      */
+
     public double getBodyXCoordinate() {
         return bodyXCoordinate;
     }
 
     /**
-     * Registers the x-coordinate corresponding the location of a condition with respect to a map of the human body
-     * @return Nothing
+     * Provides the ID corresponding to the associated record.
+     * @return String associated record ID
      */
     public void setBodyXCoordinate(double bodyXCoordinate) {
         this.bodyXCoordinate = bodyXCoordinate;
     }
 
     /**
-     * Provides the y-coordinate corresponding to the location of a condition with respect to a map of the human body
-     * @return double y-coordinate of the Condition with respect to a map of the human body
+     * Registers an ID corresponding to the associated photograph.
+     * @return Nothing
      */
     public double getBodyYCoordinate() {
         return bodyYCoordinate;
     }
 
+
     /**
-     * Registers the y-coordinate corresponding the location of a condition with respect to a map of the human body
-     * @return Nothing
+     * Returns an ID corresponding to the associated photograph.
+     * @return String ID of the associated photograph
      */
     public void setBodyYCoordinate(double bodyYCoordinate) {
         this.bodyYCoordinate = bodyYCoordinate;
     }
+
 
 }

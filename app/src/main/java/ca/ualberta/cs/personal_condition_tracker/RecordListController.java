@@ -22,19 +22,25 @@ public class RecordListController {
      */
     public void addRecord(Record record){ getRecordList().addRecord(record);}
 
-    public ArrayList<Record> loadRecords(String conditionID) {
+    public ArrayList<Record> loadRecords(Condition condition) {
         ArrayList<Record>  records = new ArrayList<>();
-        Log.e("Error", conditionID);
         RecordListManager.GetRecordsTask getRecordsTask =
                 new RecordListManager.GetRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ conditionID +"\" } } }";
-        getRecordsTask.execute(query);
+        String query = "{ \"query\": {\"match\": { \"associatedConditionID\" : \""+ condition.getId() +"\" } } }";
+        Log.e("Error", condition.getId());
         try {
             records = getRecordsTask.execute(query).get();
         } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
+            Log.e("Error", "Failed to get the records out of the async object.");
         }
+        Log.e("Error", Integer.toString(records.size()));
         return records;
+    }
+
+    public void deleteRecord(Record selectedRecord) {
+        RecordListManager.DeleteRecordsTask deleteRecordsTask =
+                new RecordListManager.DeleteRecordsTask();
+        deleteRecordsTask.execute(selectedRecord);
     }
 
     public ArrayList<Record> searchByKeyword(String keywords, String condition_id) {
@@ -57,41 +63,37 @@ public class RecordListController {
         }
         return records;
     }
-//
-//    public ArrayList<Record> searchByGeoLocation(String latitude, String longitude, String distance, String condition_id) {
-//        ArrayList<Record>  records = new ArrayList<>();
-//        RecordListManager.GetRecordsTask getRecordsTask =
-//                new RecordListManager.GetRecordsTask();
-//        String search_query = "{" +
-//                "  \"query\": {" +
-//                "    \"bool\" : {" +
-//                "      \"must\" : {" +
-//                "        \"match\" : {\"problemUUID\" : \"%record_problem_uuid%\"}" +
-//                "      }" +
-//                "    }" +
-//                "  }," +
-//                "  \"filter\" : {" +
-//                "    \"geo_distance\" : {" +
-//                "      \"distance\" : \"%kms_away% km\"," +
-//                "      \"location\" : {" +
-//                "        \"lat\" : \"%search_lat%\"," +
-//                "        \"lon\" : \"%search_lon%\"" +
-//                "      }" +
-//                "    }" +
-//                "  }" +
-//                "}";
-//
-//        search_query = search_query.replace("%search_lat%", Integer.toString(lat));
-//        search_query = search_query.replace("%search_lon%", Integer.toString(lon));
-//        search_query = search_query.replace("%kms_away%", Integer.toString(distance));
-//        search_query = search_query.replace("%record_problem_uuid%", problem_uuid);
-//        try {
-//            records = getRecordsTask.execute(query).get();
-//        } catch (Exception e) {
-//            Log.e("Error", "Failed to get the tweets out of the async object.");
-//        }
-//        return records;
-//    }
+
+    public ArrayList<Record> searchByGeoLocation(String latitude, String longitude, String distance, String condition_id) {
+        ArrayList<Record>  records = new ArrayList<>();
+        RecordListManager.GetRecordsTask getRecordsTask =
+                new RecordListManager.GetRecordsTask();
+        String query = "{" +
+                "  \"query\": {" +
+                "    \"bool\" : {" +
+                "      \"must\" : {" +
+                "        \"match\" : {\"associatedConditionID\" : \""+condition_id +"\"}" +
+                "      }" +
+                "    }" +
+                "  }," +
+                "  \"filter\" : {" +
+                "    \"geo_distance\" : {" +
+                "      \"distance\" : \"" + distance + " km" + "\"," +
+                "      \"location\" : {" +
+                "        \"lat\" : \""+ latitude + "\"," +
+                "        \"lon\" : \"" + longitude + "\"" +
+                "      }" +
+                "    }" +
+                "  }" +
+                "}";
+
+        try {
+            records = getRecordsTask.execute(query).get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+        return records;
+    }
 
 
 }

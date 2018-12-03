@@ -18,6 +18,7 @@ package ca.ualberta.cs.personal_condition_tracker;
  * added or editted.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
  * @version   1.1, 11-18-18
  * @since     1.0
  */
@@ -38,14 +39,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
-
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.File;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
@@ -69,6 +67,9 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
+    private String pinX;
+    private String pinY;
+    //private BodyLocation;
     private LatLng location;
 
     private int year, month, day, hour, minute, second;
@@ -86,6 +87,13 @@ public class ModifyRecordActivity extends AppCompatActivity {
         String recordDate = intent.getStringExtra("recordDate");
         String recordDescription = intent.getStringExtra("recordDescription");
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            pinX = extras.getString("pinX");
+            pinY = extras.getString("pinY");
+            Toast.makeText(this, pinX,  Toast.LENGTH_SHORT).show();
+        }
+
 
         //Set the information for this activity
         EditText recordTitleView = findViewById(R.id.recordTitleView);
@@ -97,15 +105,19 @@ public class ModifyRecordActivity extends AppCompatActivity {
         recordDescriptionView.setText(recordDescription);
     }
 
-    public void modifyRecordConfirm(View v){
+    public void modifyRecordConfirm(View v) {
         //TODO fix dating, ensure working for edits add in Geo/body locations
-        Toast.makeText(this,"Confirming record edit...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Confirming record edit...", Toast.LENGTH_SHORT).show();
         EditText recordTitleView = findViewById(R.id.recordTitleView);
         EditText recordDescriptionView = findViewById(R.id.recordDescriptionView);
 
         String recordTitle = recordTitleView.getText().toString();
         Date recordDate = new_date;
         String recordDescription = recordDescriptionView.getText().toString();
+
+        Record oldRecord;
+        Record newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
+        newRecord.setAssociatedConditionID(conditionOfInterest.getId());
 
         Record  newRecord = new Record(recordTitle, recordDate, recordDescription, location, null);
         newRecord.setAssociatedConditionID(conditionOfInterest.getId());
@@ -116,11 +128,10 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
         Record oldRecord;
         //TODO change these nulls
-        if (intent.getIntExtra("recordIndex", -1) == -1){
+        if (intent.getIntExtra("recordIndex", -1) == -1) {
             createRecord(newRecord);
             conditionOfInterest.getRecordList().addRecord(newRecord);
-        }
-        else{
+        } else {
             int recordIndex = intent.getIntExtra("recordIndex", 0);
             oldRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
             editRecord(oldRecord, newRecord);
@@ -129,9 +140,10 @@ public class ModifyRecordActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK);
         this.finish();
     }
+
     // Cancel adding or editting a record.
-    public void modifyRecordCancel(View v){
-        Toast.makeText(this,"Cancelling record edit...", Toast.LENGTH_SHORT).show();
+    public void modifyRecordCancel(View v) {
+        Toast.makeText(this, "Cancelling record edit...", Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_CANCELED);
         this.finish();
     }
@@ -162,7 +174,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
                         new_date = new_gregorian_calendar.getTime();
                         // Update the emotion record and change the date shown to the user.
                         TextView recordDateView = findViewById(R.id.recordDateView);
-                        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z"	);
+                        DateFormat df = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
                         String recordDate = df.format(new_date);
                         recordDateView.setText(recordDate);
 
@@ -202,7 +214,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
                 String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + "jpg";
 
-                File imageFile = new File(folder,"imagetest.jpg");
+                File imageFile = new File(folder, "imagetest.jpg");
                 imageFileUri = Uri.fromFile(imageFile);
 
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
@@ -220,7 +232,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
                 pickIntent.setType("image/*");
 
                 Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
                 startActivityForResult(chooserIntent, PICK_IMAGE);
             }
@@ -241,7 +253,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         // Check if the user has already signed up
         RecordListManager.GetRecordsTask getRecordsTask =
                 new RecordListManager.GetRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"id\" : \""+ newRecord.getId() +"\" } } }";
+        String query = "{ \"query\": {\"match\": { \"id\" : \"" + newRecord.getId() + "\" } } }";
         getRecordsTask.execute(query);
         ArrayList<Record> records = new ArrayList<>();
         try {
@@ -256,9 +268,8 @@ public class ModifyRecordActivity extends AppCompatActivity {
             RecordListManager.AddRecordsTask addRecordsTask
                     = new RecordListManager.AddRecordsTask();
             addRecordsTask.execute(newRecord);
-            Toast.makeText(ModifyRecordActivity.this,"Added record successfully!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+            Toast.makeText(ModifyRecordActivity.this, "Added record successfully!", Toast.LENGTH_SHORT).show();
+        } else {
             Toast.makeText(ModifyRecordActivity.this, "This record already exists!", Toast.LENGTH_SHORT).show();
         }
     }
@@ -272,6 +283,18 @@ public class ModifyRecordActivity extends AppCompatActivity {
                 = new RecordListManager.AddRecordsTask();
         addRecordsTask.execute(newRecord);
     }
+
+
+    public void selectBodyLoc(View v) {
+        Toast.makeText(this, "This is working", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ModifyRecordActivity.this, SelectBodyLocationActivity.class);
+        if (pinX != null) {
+            intent.putExtra("previousX", pinX);
+            intent.putExtra("previousY", pinY);
+        }
+        startActivity(intent);
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -334,6 +357,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
      *
      * @return the Record that is currently being modified.
      */
+
     @Nullable
     private Record getRecordFromIntent() {
         int recordIndex = getIntent().getIntExtra("recordIndex", -1);
@@ -343,6 +367,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         else {
             return null;
         }
+
     }
 
 }
