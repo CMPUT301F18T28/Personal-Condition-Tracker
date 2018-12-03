@@ -170,31 +170,6 @@
                 app:srcCompat="@drawable/man_and_woman" />
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="188dp"
-                android:layout_height="29dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="false"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="111dp"
-                android:text=" - DOCUMENT THE FACTS -"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="271dp"
-                android:layout_height="33dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="68dp"
-                android:text="  GET THE TREATMENT YOU DESERVE! "
-                android:textStyle="bold" />
-
-            <TextView
                 android:id="@+id/alternateSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
