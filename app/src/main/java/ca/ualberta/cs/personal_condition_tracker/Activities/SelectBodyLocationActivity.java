@@ -122,16 +122,6 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
                 }
             }
 
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                if (imageView.isReady()) {
-                    PointF sCoord = imageView.viewToSourceCoord(e.getX(), e.getY());
-                    Toast.makeText(getApplicationContext(), "Double tap: " + ((int) sCoord.x) + ", " + ((int) sCoord.y), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Double tap: Image not ready", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
         });
 
 

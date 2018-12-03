@@ -164,11 +164,13 @@ public class Record {
     public GeoLocation getGeoLocation() {
         return geoLocation;
     }
+
     /**
      * Registers the geo-locational data of a Record; generally the location where the corresponding Condition arose.
-     * @param GeoLocation An object with the latitude and longitude of the location within the Record of a Condition
+     * @param geoLocation An object with the latitude and longitude of the location within the Record of a Condition
      * @see GeoLocation
      * @see Condition
+
      */
     public void setGeoLocation(GeoLocation geoLocation) {
         this.geoLocation = geoLocation;
