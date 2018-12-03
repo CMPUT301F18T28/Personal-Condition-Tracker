@@ -57,13 +57,15 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
  * @version 1.1, 11-18-18
  * @since   1.0
  */
-
 import java.util.ArrayList;
 
 public class PhotographList {
 
     private ArrayList<Photograph> photos;
 
+    /**
+     * Instantiates a PhotographList type object.
+     */
     public PhotographList() {
         this.photos = new ArrayList<>();
     }

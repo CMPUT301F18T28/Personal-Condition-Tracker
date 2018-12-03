@@ -33,23 +33,12 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
-
 package ca.ualberta.cs.personal_condition_tracker.Activities;
-
-/**
- * ModifyUserAccountActivity allows a user to fill in contact information and account details when
- * they are signing up for the app, or when they wish to change the contact information of their account.
- * @author    R. Voon; rcvoon@ualberta.ca
- * @author    D. Buksa; draydon@ualberta.ca
- * @version   1.1, 11-18-18
- * @since     1.0
- */
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -62,8 +51,15 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-import ca.ualberta.cs.personal_condition_tracker.Managers.UserAccountListManager;
 
+/**
+ * SignUpActivity allows a user to fill in contact information and account details when
+ * they are signing up for the app.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class SignUpActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private UserAccountListController userAccountListController = new UserAccountListController();
@@ -88,8 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
         Integer numberOfAccounts = userAccountListController.getUserAccountList().size();
-        if (userID.length() > UserAccount.getMinUseridChars()) {
-            //TODO fix this. maybe w/ dropdown
+        if (userID.length() >= UserAccount.getMinUseridChars()) {
             if(accountType.equals("patient")){
                 // Make a new patient account.
                 Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();

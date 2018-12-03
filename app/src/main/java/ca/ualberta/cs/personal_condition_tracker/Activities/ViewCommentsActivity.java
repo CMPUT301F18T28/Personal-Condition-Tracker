@@ -49,13 +49,8 @@ package ca.ualberta.cs.personal_condition_tracker.Activities;
  */
 
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -64,14 +59,21 @@ import java.util.Collection;
 
 import ca.ualberta.cs.personal_condition_tracker.Controllers.CommentRecordListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.CommentRecord;
-import ca.ualberta.cs.personal_condition_tracker.Managers.CommentRecordListManager;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Model.Listener;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-
-//TODO: For Project Part 5. Implement this activity.
+/**
+ * ViewCommentsActivity lets a user view all the comments for a given condition.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class ViewCommentsActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private CommentRecordListController commentRecordListController = new CommentRecordListController();

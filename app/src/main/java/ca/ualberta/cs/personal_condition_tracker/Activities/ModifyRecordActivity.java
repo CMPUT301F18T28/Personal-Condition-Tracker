@@ -10,18 +10,7 @@
  D. Douziech; douziech@ualberta.ca
  C. Neureuter; neureute@ualberta.ca
 */
-
 package ca.ualberta.cs.personal_condition_tracker.Activities;
-
-/**
- * ModifyRecordActivity allows a patient to input the fields for a record when a record is to be
- * added or editted.
- * @author    R. Voon; rcvoon@ualberta.ca
- * @author    D. Buksa; draydon@ualberta.ca
- * @author    D. Douziech; douziech@ualberta.ca
- * @version   1.1, 11-18-18
- * @since     1.0
- */
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -39,8 +28,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -49,13 +36,11 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -65,17 +50,22 @@ import ca.ualberta.cs.personal_condition_tracker.Model.GeoLocation;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
-import ca.ualberta.cs.personal_condition_tracker.Managers.RecordListManager;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.RecordListController;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.PhotographListController;
-import ca.ualberta.cs.personal_condition_tracker.Activities.SlideshowActivity;
 
 import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
 
 import static ca.ualberta.cs.personal_condition_tracker.PermissionRequest.verifyPermission;
-
-
+/**
+ * ModifyRecordActivity allows a patient to input the fields for a record when a record is to be
+ * added or editted.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class ModifyRecordActivity extends AppCompatActivity {
 
     public static Intent resultIntent;

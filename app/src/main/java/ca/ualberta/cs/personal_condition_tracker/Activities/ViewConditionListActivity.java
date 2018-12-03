@@ -55,7 +55,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -74,7 +73,16 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Listener;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-
+/**
+ * ViewConditionListActivity lets a patient view all of their conditions.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class ViewConditionListActivity extends AppCompatActivity {
 
     private UserAccountListController userAccountListController = new UserAccountListController();

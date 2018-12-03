@@ -49,18 +49,14 @@ package ca.ualberta.cs.personal_condition_tracker.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import ca.ualberta.cs.personal_condition_tracker.Model.CareProvider;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-import ca.ualberta.cs.personal_condition_tracker.Managers.UserAccountListManager;
 
 public class AddPatientActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();

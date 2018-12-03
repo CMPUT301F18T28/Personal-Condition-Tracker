@@ -61,13 +61,15 @@ import java.util.ArrayList;
  * @version 1.1, 11-18-18
  * @since   1.0
  */
-
-
 public class PatientList {
 
     private ArrayList<String> patientIDs;
     private transient ArrayList<Listener> listenerList = null;
 
+
+    /*
+     * Instantiates a PatientList type object.
+     */
     public PatientList(){
         this.patientIDs = new ArrayList<>();
     }
@@ -98,6 +100,10 @@ public class PatientList {
      */
     public ArrayList<String> getPatientIDs(){return patientIDs;}
 
+    /**
+     *  Set the patient IDs of the list to that of a given list of patientIDs
+     *  @param patientIDs
+     */
     public void setPatientIDs(ArrayList<String> patientIDs) {this.patientIDs = patientIDs;}
 
 
@@ -120,7 +126,6 @@ public class PatientList {
         patientIDs.add(patientID);
         notifyListeners();
     }
-
 
     /**
      * In practice, this method serves to remove a patient from a Care Providers list of patients
@@ -153,7 +158,6 @@ public class PatientList {
     public void removeListener(Listener listener) {
         getListenerList().remove(listener);
     }
-
 
     /**
      * Provides the list of Listener objects used for monitoring changes to the list of patient IDs.

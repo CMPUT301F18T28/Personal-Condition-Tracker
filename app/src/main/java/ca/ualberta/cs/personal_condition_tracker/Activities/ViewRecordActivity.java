@@ -63,7 +63,16 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-
+/**
+ * ViewRecordActivity lets a user view the details of a given record.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class ViewRecordActivity extends Activity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();

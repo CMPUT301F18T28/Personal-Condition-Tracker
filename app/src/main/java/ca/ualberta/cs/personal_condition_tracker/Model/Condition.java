@@ -96,7 +96,6 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
         this.description = description;
     }
 
-
     public Condition(String title, Date date, String description, RecordList recordList, CommentRecordList commentList) {
         this.title = title;
         this.date = date;
@@ -192,18 +191,35 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
         this.description = description;
     }
 
+
+    /**
+     * Get the user ID the condition is related to.
+     * @return String userID
+     */
     public String getAssociatedUserID() {
         return associatedUserID;
     }
 
+    /**
+     * Set the user ID that the condition is related to.
+     * @param associatedUserID
+     */
     public void setAssociatedUserID(String associatedUserID) {
         this.associatedUserID = associatedUserID;
     }
 
+    /**
+     * Get id.
+     * @return String id
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * Set id.
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
@@ -215,7 +231,6 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
      * @see Record
      * @see RecordList
      */
-
 
     public RecordList getRecordList() {
         return recordList;
@@ -317,10 +332,19 @@ public class Condition implements Comparator<Condition>, Comparable<Condition> {
         }
     }
 
+
+    /**
+     * Get the maximum length of a title for a condition
+     * @return int MAX_TITLE_LENGTH
+     */
     public static int getMaxTitleLength() {
         return MAX_TITLE_LENGTH;
     }
 
+    /**
+     * Get the maximum length of a description for a condition
+     * @return int MAX_DESCRIPTION_LENGTH
+     */
     public static int getMaxDescriptionLength() {
         return MAX_DESCRIPTION_LENGTH;
     }

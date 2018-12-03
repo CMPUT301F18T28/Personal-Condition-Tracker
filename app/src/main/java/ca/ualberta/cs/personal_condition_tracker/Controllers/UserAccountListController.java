@@ -46,11 +46,9 @@ POSSIBILITY OF SUCH DAMAGE.
 package ca.ualberta.cs.personal_condition_tracker.Controllers;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import ca.ualberta.cs.personal_condition_tracker.Activities.SignUpActivity;
 import ca.ualberta.cs.personal_condition_tracker.Model.CareProvider;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
@@ -58,12 +56,7 @@ import ca.ualberta.cs.personal_condition_tracker.Model.UserAccountList;
 import ca.ualberta.cs.personal_condition_tracker.Managers.UserAccountListManager;
 
 /**
- * UserAccountList serves to contain an arrayList of objects, inheriting from UserAccount, that represents
- * the entire set of users for the application.
- * <P>
- * Note that there are two subsets of users, Patients and Care Providers.
- * Care Providers have a list of patients, so this class provides a means of setting a patient account to gain access thereto.
- *</P>
+ * UserAccountListController performs operations on a list of user accounts.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @author    W. Nichols; wnichols@ualberta.ca
@@ -90,6 +83,10 @@ public class UserAccountListController {
      */
     public void addUserAccount(UserAccount userAccount){ getUserAccountList().addUserAccount(userAccount);}
 
+    /**
+     * Load all available user accounts from the server.
+     * @return users
+     */
     public ArrayList<UserAccount> loadUserAccounts() {
         ArrayList<UserAccount> users = new ArrayList<>();
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
@@ -103,6 +100,11 @@ public class UserAccountListController {
         return users;
     }
 
+    /**
+     * Load all patients associated with a care provider from the server
+     * @param careProvider
+     * @return patientIDs
+     */
     public ArrayList<String> loadPatients(CareProvider careProvider) {
         UserAccountListManager.GetUserAccountsTask getPatientsTask =
                 new UserAccountListManager.GetUserAccountsTask();
@@ -125,7 +127,7 @@ public class UserAccountListController {
 
     // Add a patient to the server.
     public void createPatient(Patient newPatient, String userID) {
-        // Check if the user has already signed up
+        // Check if the patient has already signed up
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
                 new UserAccountListManager.GetUserAccountsTask();
         String query = "{ \"query\": {\"match\": { \"userID\" : \""+ userID +"\" } } }";
@@ -138,7 +140,7 @@ public class UserAccountListController {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
 
-        // Add the user to the database.
+        // Add the patient to the database.
         if (stored_users.size() == 0) {
             UserAccountListManager.AddUserAccountsTask addUserAccountsTask
                     = new UserAccountListManager.AddUserAccountsTask();
@@ -148,7 +150,7 @@ public class UserAccountListController {
 
     // Add a care provider to the server.
     public void createCareProvider(CareProvider newCareProvider, String userID) {
-        // Check if the user has already signed up
+        // Check if the care provider has already signed up
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
                 new UserAccountListManager.GetUserAccountsTask();
 
@@ -161,16 +163,17 @@ public class UserAccountListController {
             Log.e("Error", "Failed to get the tweets out of the async object.");
         }
 
-        // Add the user to the database.
+        // Add the care provider to the database.
         if (stored_users.size() == 0) {
-//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
             UserAccountListManager.AddUserAccountsTask addUserAccountsTask
                     = new UserAccountListManager.AddUserAccountsTask();
             addUserAccountsTask.execute(newCareProvider);
         }
     }
 
-    // Check if a patient exists in the server
+    /**
+     * Check if a patient exists in the server
+     */
     public boolean checkIfPatientExists(String patientID) {
         boolean doesExist = false;
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
@@ -189,7 +192,11 @@ public class UserAccountListController {
         return doesExist;
     }
 
-    // Check if a patient exists in the server
+    /**
+     * Get a specific patient from the server.
+     * @param patientID
+     * @return
+     */
     public UserAccount getPatient(String patientID) {
         boolean doesExist = false;
         UserAccountListManager.GetUserAccountsTask getUserAccountsTask =
@@ -206,6 +213,11 @@ public class UserAccountListController {
     }
 
 
+    /**
+     * Edit a user in the server.
+     * @param oldUserAccount
+     * @param newUserAccount
+     */
     public void editUserAccount(UserAccount oldUserAccount, UserAccount newUserAccount) {
         newUserAccount.setId(oldUserAccount.getId());
         UserAccountListManager.DeleteUserAccountsTask deleteUserAccountsTask =

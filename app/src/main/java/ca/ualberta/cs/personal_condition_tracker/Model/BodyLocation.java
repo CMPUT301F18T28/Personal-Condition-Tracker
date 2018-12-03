@@ -61,6 +61,9 @@ public class BodyLocation {
     @JestId
     private String id;
 
+    /**
+     * Constructor for instantiating a body location type object.
+     */
     public BodyLocation() {
         this.bodyPart = "";
         this.photoXCoordinate = 0;
@@ -69,10 +72,18 @@ public class BodyLocation {
         this.bodyYCoordinate = "";
     }
 
+    /**
+     * Get a string corresponding to the side of body.
+     * @return String
+     */
     public String getFrontOrBack() {
         return frontOrBack;
     }
 
+    /**
+     * Set a string which indicates which side of the body the body location corresponds to.
+     * @param frontOrBack
+     */
     public void setFrontOrBack(String frontOrBack) {
         this.frontOrBack = frontOrBack;
     }
@@ -105,50 +116,47 @@ public class BodyLocation {
     }
 
     /**
-     * Registers the x-coordinate corresponding the location of a condition with respect to a map of the human body
-     * @return Nothing
+     * Register the x-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
+     * @param double photoXcoordinate of the location of the Condition within a photograph
      */
-
     public void setPhotoXCoordinate(double photoXCoordinate) {
         this.photoXCoordinate = photoXCoordinate;
     }
 
     /**
-     * Provides the y-coordinate corresponding to the location of a condition with respect to a map of the human body
-     * @return double y-coordinate of the Condition with respect to a map of the human body
+     * Provides the x-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
+     * @return double x-coordinate of the location of the Condition within a photograph
      */
     public double getPhotoYCoordinate() {
         return photoYCoordinate;
     }
 
     /**
-     * Registers the y-coordinate corresponding the location of a condition with respect to a map of the human body
-     * @return Nothing
+     * Register the yx-coordinate  corresponding to the location of a condition within a photograph of the afflicted body part
+     * @param double photoXcoordinate of the location of the Condition within a photograph
      */
     public void setPhotoYCoordinate(double photoYCoordinate) {
         this.photoYCoordinate = photoYCoordinate;
     }
 
     /**
-     * Registers an ID corresponding to the associated record.
-     * @return Nothing
+     * Provides the x-coordinate  corresponding to the location of a condition with respect to a map of the human body
      */
-
     public String getBodyXCoordinate() {
         return bodyXCoordinate;
     }
 
     /**
-     * Provides the ID corresponding to the associated record.
-     * @return String associated record ID
+     * Registers the x-coordinate corresponding the location of a condition with respect to a map of the human body
+     * @return Nothing
      */
     public void setBodyXCoordinate(String bodyXCoordinate) {
         this.bodyXCoordinate = bodyXCoordinate;
     }
 
     /**
-     * Registers an ID corresponding to the associated photograph.
-     * @return Nothing
+     * Provides the y-coordinate corresponding to the location of a condition with respect to a map of the human body
+     * @return String y-coordinate of the Condition with respect to a map of the human body
      */
     public String getBodyYCoordinate() {
         return bodyYCoordinate;
@@ -156,8 +164,8 @@ public class BodyLocation {
 
 
     /**
-     * Returns an ID corresponding to the associated photograph.
-     * @return String ID of the associated photograph
+     * Registers the y-coordinate corresponding the location of a condition with respect to a map of the human body
+     * @return Nothing
      */
     public void setBodyYCoordinate(String bodyYCoordinate) {
         this.bodyYCoordinate = bodyYCoordinate;
@@ -202,6 +210,10 @@ public class BodyLocation {
         this.id = id;
     }
 
+    /**
+     * Override toString to properly display a BodyLocation in a listview.
+     * @return String
+     */
     @Override
     public String toString(){
         return getFrontOrBack() + "\n" + getBodyPart();

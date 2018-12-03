@@ -63,7 +63,7 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
 /**
- * UserAccountListManager uses elasticsearch to grab user accounts from the server.
+ * ConditionListManager uses elasticsearch to store, retrieve, and remove conditions from the server.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @version   1.1, 11-18-18
@@ -73,8 +73,10 @@ import io.searchbox.core.SearchResult;
 public class ConditionListManager {
     private static JestDroidClient client;
 
+    /**
+     * Add conditions to the server.
+     */
     public static class AddConditionsTask extends AsyncTask<Condition, Void, Void> {
-
         @Override
         protected Void doInBackground(Condition... conditions) {
             verifySettings();
@@ -103,7 +105,9 @@ public class ConditionListManager {
         }
     }
 
-
+    /**
+     * Get conditions from the server.
+     */
     public static class GetConditionsTask extends AsyncTask<String, Void, ArrayList<Condition>> {
         @Override
         protected ArrayList<Condition> doInBackground(String... search_parameters) {
@@ -135,7 +139,7 @@ public class ConditionListManager {
         }
     }
     /**
-     * Get user accounts from the server.
+     * Remove conditions from the server.
      */
     public static class DeleteConditionsTask extends AsyncTask<Condition, Void, Void> {
         @Override

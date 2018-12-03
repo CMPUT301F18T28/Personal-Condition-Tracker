@@ -7,7 +7,14 @@ import java.util.Comparator;
 import ca.ualberta.cs.personal_condition_tracker.ChronologicalComparator;
 
 /**
- * The type Comment record list.
+ * CommentRecordList class contains objects of type CommentRecord and performs various operations on them.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
  */
 public class CommentRecordList {
 
@@ -24,7 +31,6 @@ public class CommentRecordList {
 
     /**
      * Has comment record boolean.
-     *
      * @param commentRecord the new record
      * @return the boolean
      */
@@ -34,7 +40,6 @@ public class CommentRecordList {
 
     /**
      * Get comment record comment record.
-     *
      * @param index the index
      * @return the comment record
      */
@@ -44,7 +49,6 @@ public class CommentRecordList {
 
     /**
      * Add comment record.
-     *
      * @param commentRecord the new record
      */
     public void addCommentRecord(CommentRecord commentRecord) {
@@ -54,7 +58,6 @@ public class CommentRecordList {
 
     /**
      * Delete comment record.
-     *
      * @param commentRecord the new record
      */
     public void deleteCommentRecord(CommentRecord commentRecord) {
@@ -64,7 +67,6 @@ public class CommentRecordList {
 
     /**
      * Edit comment record.
-     *
      * @param index      the index
      * @param commentRecord the new record
      */
@@ -74,7 +76,6 @@ public class CommentRecordList {
 
     /**
      * Gets comment of interest.
-     *
      * @return the comment of interest
      */
     public CommentRecord getCommentOfInterest() {
@@ -83,7 +84,6 @@ public class CommentRecordList {
 
     /**
      * Sets comment records.
-     *
      * @param commentRecords the comment records
      */
     public void setCommentRecords(ArrayList<CommentRecord> commentRecords) {
@@ -92,7 +92,6 @@ public class CommentRecordList {
 
     /**
      * Sets comment of interest.
-     *
      * @param commentOfInterest the comment of interest
      */
     public void setCommentOfInterest(CommentRecord commentOfInterest) {
@@ -101,7 +100,6 @@ public class CommentRecordList {
 
     /**
      * Gets comment records.
-     *
      * @return the comment records
      */
     public ArrayList<CommentRecord> getCommentRecords() {
@@ -110,7 +108,6 @@ public class CommentRecordList {
 
     /**
      * Add listener.
-     *
      * @param listener the listener
      */
     public void addListener(Listener listener){
@@ -119,7 +116,6 @@ public class CommentRecordList {
 
     /**
      * Remove a listener object.
-     *
      * @param listener the listener
      * @params Listener
      */
@@ -146,6 +142,10 @@ public class CommentRecordList {
         }
     }
 
+    /*
+     * Sort the comment record list by date.
+     * return ArrayList<CommentRecord> corresponding to the sorted list.
+     */
     public ArrayList<CommentRecord> sortByDate() {
         Collections.sort(this.commentRecordList, new Comparator<CommentRecord>() {
             @Override

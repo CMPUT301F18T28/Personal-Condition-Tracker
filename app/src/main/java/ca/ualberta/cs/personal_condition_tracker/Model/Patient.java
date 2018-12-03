@@ -29,14 +29,12 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
  */
 
 public class Patient extends UserAccount{
-
     private ConditionList conditionList = new ConditionList();
 
     /**
      * Constructor
      * @see UserAccount
      */
-
     public Patient() {
         super();
     }
@@ -48,7 +46,6 @@ public class Patient extends UserAccount{
      * @param emailAddress Email address of the account holder.
      * @see UserAccount
      */
-
     public Patient(String accountType, String userID, String emailAddress) {
         super(accountType,userID,emailAddress);
     }
@@ -71,7 +68,6 @@ public class Patient extends UserAccount{
      * @see ConditionList
      * @see Condition
      */
-
     public ConditionList getConditionList() {
         return conditionList;
     }
@@ -83,7 +79,6 @@ public class Patient extends UserAccount{
      * @see ConditionList
      * @see Condition
      */
-
     public void setConditionList(ConditionList conditionList) {
         this.conditionList = conditionList;
     }

@@ -63,7 +63,7 @@ import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
 
 /**
- * UserAccountListManager uses elasticsearch to grab user accounts from the server.
+ * RecordListManager uses elasticsearch to store, retrive, and remove records from the server.
  * @author    R. Voon; rcvoon@ualberta.ca
  * @author    D. Buksa; draydon@ualberta.ca
  * @version   1.1, 11-18-18
@@ -72,7 +72,9 @@ import io.searchbox.core.SearchResult;
 
 public class RecordListManager {
     private static JestDroidClient client;
-
+    /**
+     * Add records to the server.
+     */
     public static class AddRecordsTask extends AsyncTask<Record, Void, Void> {
 
         @Override
@@ -102,7 +104,9 @@ public class RecordListManager {
             return null;
         }
     }
-
+    /**
+     * Get records from the server.
+     */
     public static class GetRecordsTask extends AsyncTask<String, Void, ArrayList<Record>> {
         @Override
         protected ArrayList<Record> doInBackground(String... search_parameters) {
@@ -134,7 +138,7 @@ public class RecordListManager {
         }
     }
     /**
-     * Get user accounts from the server.
+     * Remove records from the server.
      */
     public static class DeleteRecordsTask extends AsyncTask<Record, Void, Void> {
         @Override

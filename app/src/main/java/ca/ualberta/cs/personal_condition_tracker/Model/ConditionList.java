@@ -32,14 +32,15 @@ import java.util.Date;
  * @since   1.0
  */
 
-
 public class ConditionList{
 
     private ArrayList<Condition> conditionList;
     private transient ArrayList<Listener> listenerList = null;
     private Condition conditionOfInterest = null;
 
-
+    /*
+     * Instantiates a ConditionList type object
+     */
     public ConditionList(){
         this.conditionList = new ArrayList<>();
     }
@@ -57,7 +58,6 @@ public class ConditionList{
         notifyListeners();
     }
 
-
     /**
      * Removes a specified condition from the list thereof.
      *
@@ -66,8 +66,6 @@ public class ConditionList{
      * @return boolean True if the condition has been removed or false otherwise.  An error message
      * logged if the specified condition does not exist.
      */
-
-
     public boolean deleteCondition(Condition condition) {
         boolean boolResult = conditionList.remove(condition);
         notifyListeners();
@@ -79,7 +77,6 @@ public class ConditionList{
         }
         return boolResult;
     }
-
 
     /**
      * Provides the ability to edit three of the attributes of a Condition object: title, date and description .
@@ -110,8 +107,6 @@ public class ConditionList{
         }
         notifyListeners();
     }
-
-
 
     /**
      * Provides the ability to edit all of the attributes of a Condition object except for the constant that is used to restrict the input length of String parameters.
@@ -175,14 +170,11 @@ public class ConditionList{
         return foundCondition;
     }
 
-
     /**
      * Provides the number of conditions currently recorded for a specific patient.
      * <P>
      * @return int size of the list of conditions.
      */
-
-
     public int sizeOfList(){
         return this.conditionList.size();
     }
@@ -194,8 +186,6 @@ public class ConditionList{
      * @return Nothing
      * @see java.util.Date
      */
-
-
     public void sortByDate(){
 
         Collections.sort(conditionList, new Condition());
@@ -207,8 +197,6 @@ public class ConditionList{
      * <P>
      * @return Nothing
      */
-
-
     public void printListByDate(){
         for(Condition condition : conditionList)
             // System.out.println("Date: " + condition.getDate());
@@ -333,6 +321,10 @@ public class ConditionList{
         this.conditionOfInterest = conditionOfInterest;
     }
 
+    /**
+     * Sets the conditions in the conditionlist to a provided list of a conditions
+     * @param conditions
+     */
     public void setConditions(ArrayList<Condition> conditions) {
         this.conditionList = conditions;
     }

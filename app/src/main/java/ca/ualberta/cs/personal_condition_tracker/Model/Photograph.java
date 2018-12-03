@@ -79,32 +79,56 @@ public class Photograph {
         this.base64EncodedString = "";
     }
 
+    /**
+     * Get the bitmap image of the photograph from the encoded base64 string representation.
+     * @return Bitmap
+     */
     public Bitmap getPhotographImage() {
         byte[] decodedBase64 = Base64.decode(base64EncodedString, Base64.DEFAULT);
         Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBase64,0, decodedBase64.length);
         return bitmap;
     }
 
+    /**
+     * Create a base 64 encoded string and save this encoded string.
+     * @param bitmap
+     */
     public void setBase64EncodedString(Bitmap bitmap) {
-        bitmap = Bitmap.createScaledBitmap(bitmap,60,140,true);
+        bitmap = Bitmap.createScaledBitmap(bitmap,200,350,true);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] b = baos.toByteArray();
         this.base64EncodedString = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
+    /**
+     * Get the recordID of the associated record for a photograph
+     * @return String recordID
+     */
     public String getRecordIDForPhotograph() {
         return recordIDForPhotograph;
     }
 
+    /**
+     * Set the recordID of the associated record for a photograph
+     * @param String recordIDForPhotograph
+     */
     public void setRecordIDForPhotograph(String recordIDForPhotograph) {
         this.recordIDForPhotograph = recordIDForPhotograph;
     }
 
+    /**
+     * Get id
+     * @return String id
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Set id
+     * @param String id
+     */
     public void setId(String id) {
         this.id = id;
     }

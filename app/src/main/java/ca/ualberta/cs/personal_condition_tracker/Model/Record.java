@@ -57,7 +57,6 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
  * @version    1.1, 11-18-18
  * @since      1.0
  */
-
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -158,18 +157,29 @@ public class Record {
 
     /**
      * Provides the geo-locational data of a Record; generally the location where the corresponding Condition arose.
-     * @return LatLng The latitude and longitude of the location within the Record of a Condition
-     * @see LatLng
+     * @return GeoLocation An object with the latitude and longitude of the location within the Record of a Condition
+     * @see GeoLocation
      * @see Condition
      */
     public GeoLocation getGeoLocation() {
         return geoLocation;
     }
-
+    /**
+     * Registers the geo-locational data of a Record; generally the location where the corresponding Condition arose.
+     * @param GeoLocation An object with the latitude and longitude of the location within the Record of a Condition
+     * @see GeoLocation
+     * @see Condition
+     */
     public void setGeoLocation(GeoLocation geoLocation) {
         this.geoLocation = geoLocation;
     }
 
+    /**
+     * Provides the list of body locations
+     * @return BodyLocationList
+     * @see BodyLocationList
+     * @see BodyLocation
+     */
     public BodyLocationList getBodyLocationList() {
         return bodyLocationList;
     }

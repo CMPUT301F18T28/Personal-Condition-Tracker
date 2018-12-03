@@ -61,17 +61,27 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
 public class CareProvider extends UserAccount{
 
     private PatientList patientList = new PatientList();
-
+    /**
+     * Constructor for instantiating a basic care provider type object.
+     */
     CareProvider() {
         super();
     }
 
+
+    /**
+     * Constructor with specified attributes: accountType, userID, and emailAddress.
+     * @param accountType String representing the type of user account, Care Provider or Patient.
+     * @param userID String representing the name of the account holder; a username.
+     * @param emailAddress Email address of the account holder.
+     * @see UserAccount
+     */
     CareProvider(String accountType, String userID, String emailAddress) {
         super(accountType,userID,emailAddress);
     }
 
     /**
-     * Constructor with specified attributes: accountType, userID, and emailAddress.
+     * Constructor with specified attributes: accountType, userID, emailAddress, and phoneNumber.
      * @param accountType String representing the type of user account, Care Provider or Patient.
      * @param userID String representing the name of the account holder; a username.
      * @param emailAddress Email address of the account holder.

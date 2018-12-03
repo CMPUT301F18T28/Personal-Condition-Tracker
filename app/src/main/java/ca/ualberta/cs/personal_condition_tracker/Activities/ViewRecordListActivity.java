@@ -78,7 +78,16 @@ import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.RecordListController;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-
+/**
+ * ViewRecordListActivity lets a patient view all the records for one of their conditions
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class ViewRecordListActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private RecordListController recordListController = new RecordListController();

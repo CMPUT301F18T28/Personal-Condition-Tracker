@@ -10,9 +10,33 @@
  D. Douziech; douziech@ualberta.ca
  C. Neureuter; neureute@ualberta.ca
 */
-
 package ca.ualberta.cs.personal_condition_tracker.Activities;
 
+
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import ca.ualberta.cs.personal_condition_tracker.Controllers.ConditionListController;
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.R;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
 /**
  * ModifyConditionActivity allows a patient to specify the fields for a condition when
  * a condition is to be added or editted.
@@ -24,36 +48,6 @@ package ca.ualberta.cs.personal_condition_tracker.Activities;
  * @version   1.1, 11-18-18
  * @since     1.0
  */
-
-
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
-import ca.ualberta.cs.personal_condition_tracker.Controllers.ConditionListController;
-import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
-import ca.ualberta.cs.personal_condition_tracker.Managers.ConditionListManager;
-import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
-import ca.ualberta.cs.personal_condition_tracker.R;
-import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-
 public class ModifyConditionActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private Intent intent;

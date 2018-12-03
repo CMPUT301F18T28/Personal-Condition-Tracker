@@ -218,6 +218,11 @@ public class RecordList {
     public void setRecordOfInterest(Record recordOfInterest) {
         this.recordOfInterest = recordOfInterest;
     }
+
+    /**
+     * Replace the list of records with the records in a provided list.
+     * @param records
+     */
     public void setRecords(ArrayList<Record> records) {
         this.recordList = records;
     }

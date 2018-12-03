@@ -53,7 +53,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -70,7 +69,6 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-import ca.ualberta.cs.personal_condition_tracker.Managers.UserAccountListManager;
 
 public class ViewPatientListActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();

@@ -33,20 +33,7 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
-
 package ca.ualberta.cs.personal_condition_tracker.Activities;
-
-/**
- * SelectBodyLocationActivity displays a map of the human body and allows a patient to select the location
- * on it corresponding to the location of the condition.
- * @author    R. Voon; rcvoon@ualberta.ca
- * @author    D. Buksa; draydon@ualberta.ca
- * @author    W. Nichols; wnichols@ualberta.ca
- * @author    D. Douziech; douziech@ualberta.ca
- * @author    C. Neureuter; neureute@ualberta.ca
- * @version   1.1, 11-18-18
- * @since     1.0
- */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,7 +51,17 @@ import java.util.regex.Pattern;
 import ca.ualberta.cs.personal_condition_tracker.PinView;
 import ca.ualberta.cs.personal_condition_tracker.R;
 
-
+/**
+ * SelectBodyLocationActivity displays a map of the human body and allows a patient to select the location
+ * on it corresponding to the location of the condition.
+ * @author    R. Voon; rcvoon@ualberta.ca
+ * @author    D. Buksa; draydon@ualberta.ca
+ * @author    W. Nichols; wnichols@ualberta.ca
+ * @author    D. Douziech; douziech@ualberta.ca
+ * @author    C. Neureuter; neureute@ualberta.ca
+ * @version   1.1, 11-18-18
+ * @since     1.0
+ */
 public class SelectBodyLocationActivity extends AppCompatActivity {
 
     private String x;

@@ -118,17 +118,35 @@ public class BodyLocationList {
         notifyListeners();
     }
 
+    /**
+     * Get the current list of body locations for a record
+     * @return bodyLocations An arraylist of BodyLocation objects.
+     */
     public ArrayList<BodyLocation> getBodyLocations() {
         return this.bodyLocations;
     }
+
+    /**
+     * Set the current list of body locations for a record to a new list of body locations
+     * @param bodyLocations
+     */
     public void setBodyLocations(ArrayList<BodyLocation> bodyLocations) {
         this.bodyLocations = bodyLocations;
     }
 
+    /**
+     * Get the body location that is currently in use.
+     * @return BodyLocation
+     */
     public BodyLocation getBodyLocationOfInterest() {
         return bodyLocationOfInterest;
     }
 
+
+    /**
+     * Set a body location to be the current active body location.
+     * @param bodyLocationOfInterest
+     */
     public void setBodyLocationOfInterest(BodyLocation bodyLocationOfInterest) {
         this.bodyLocationOfInterest = bodyLocationOfInterest;
     }
@@ -171,6 +189,12 @@ public class BodyLocationList {
         }
     }
 
+
+    /**
+     * Get the index of a body location from the list of body locations.
+     * @param bodyLocation
+     * @return
+     */
     public int getIndex(BodyLocation bodyLocation){
         int index = -1;
         for (int i = 0; i < bodyLocations.size(); i++) {

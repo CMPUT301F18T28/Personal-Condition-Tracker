@@ -167,6 +167,11 @@ public class UserAccountList {
     public boolean activeUserIsCareProvider(){
         return (activeCareProvider != null);
     }
+
+    /**
+     * Returns the number of users in the set of user accounts.
+     * @return size
+     */
     public Integer size(){
         return getUserAccounts().size();
     }

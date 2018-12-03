@@ -54,7 +54,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -68,7 +67,6 @@ import java.util.Collection;
 
 import ca.ualberta.cs.personal_condition_tracker.Controllers.ConditionListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
-import ca.ualberta.cs.personal_condition_tracker.Managers.ConditionListManager;
 import ca.ualberta.cs.personal_condition_tracker.Model.Listener;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;

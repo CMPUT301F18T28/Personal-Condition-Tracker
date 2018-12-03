@@ -248,11 +248,18 @@ public class UserAccount {
     }
 
 
-
+    /**
+     * Set the userAccount that this user account is associated with.
+     * @param userID
+     */
     public void setAssociatedId(String userID) {
         this.associatedId = userID;
     }
 
+    /**
+     * Get the userAccount that this user account is associated with
+     * @return userID
+     */
     public String getAssociatedId() {
         return this.associatedId;
     }
@@ -284,14 +291,26 @@ public class UserAccount {
         return Objects.hash(userID);
     }
 
+    /**
+     * Get a short code representation of a userID
+     * @return shortCode
+     */
     public String getShortCode() {
         return shortCode;
     }
 
+    /**
+     * Set the short code representation of a userID
+     * @param shortCode
+     */
     public void setShortCode(String shortCode) {
         this.shortCode = shortCode;
     }
 
+    /**
+     * Get the minimum number of characters necessary for a new user ID
+     * @return MIN_USERID_CHARS
+     */
     public static int getMinUseridChars() {
         return MIN_USERID_CHARS;
     }

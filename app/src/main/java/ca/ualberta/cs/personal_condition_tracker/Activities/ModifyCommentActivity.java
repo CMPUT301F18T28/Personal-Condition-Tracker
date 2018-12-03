@@ -13,6 +13,21 @@
 
 package ca.ualberta.cs.personal_condition_tracker.Activities;
 
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+
+import ca.ualberta.cs.personal_condition_tracker.Controllers.CommentRecordListController;
+import ca.ualberta.cs.personal_condition_tracker.Model.CommentRecord;
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.R;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
+
 /**
  * Allows a care provider to add or edit a comment to a patient's record.
  * @author    R. Voon; rcvoon@ualberta.ca
@@ -24,28 +39,6 @@ package ca.ualberta.cs.personal_condition_tracker.Activities;
  * @since     1.0
  */
 
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
-import ca.ualberta.cs.personal_condition_tracker.Controllers.CommentRecordListController;
-import ca.ualberta.cs.personal_condition_tracker.Model.CommentRecord;
-import ca.ualberta.cs.personal_condition_tracker.Managers.CommentRecordListManager;
-import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
-import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
-import ca.ualberta.cs.personal_condition_tracker.R;
-import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
-
-
-//TODO: For Project Part 5: Implement this activity.
 public class ModifyCommentActivity extends AppCompatActivity {
     private UserAccountListController userAccountListController = new UserAccountListController();
     private CommentRecordListController commentRecordListController = new CommentRecordListController();
