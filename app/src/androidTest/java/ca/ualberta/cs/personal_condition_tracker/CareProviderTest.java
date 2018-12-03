@@ -16,7 +16,6 @@ public class CareProviderTest extends TestCase {
         Patient patient = new Patient();
         patientList.addPatient(patient.getUserID());
         assertTrue(patientList.hasPatient(patient.getUserID()));
-
     }
 
     @Test

@@ -22,6 +22,13 @@ public class CommentRecord {
         this.comment = "";
     }
 
+
+    public CommentRecord(String title, Date date, String comment) {
+        this.title = title;
+        this.date = date;
+        this.comment = comment;
+    }
+
     /**
      * Gets title.
      *

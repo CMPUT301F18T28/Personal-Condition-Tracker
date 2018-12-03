@@ -18,6 +18,9 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 import junit.framework.TestCase;
+
+import org.junit.Test;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -26,8 +29,8 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Model.ConditionList;
 
 public class ConditionListTest extends TestCase {
-
-    public void testAddSearchCondition() {
+    @Test
+    public void testAddCondition() {
         ConditionList conditionList = new ConditionList();
         Condition condition = new Condition("ShoulderPain", "Pain in shoulder.");
 
@@ -35,6 +38,7 @@ public class ConditionListTest extends TestCase {
         assertTrue(conditionList.searchConditions(condition) == condition);
     }
 
+    @Test
     public void testDeleteCondition() {
         ConditionList conditionList = new ConditionList();
         Condition condition = new Condition("ShoulderPain", "Pain in shoulder.");
@@ -44,6 +48,7 @@ public class ConditionListTest extends TestCase {
         assertTrue(conditionList.sizeOfList() == 0);
     }
 
+    @Test
     public void testEditCondition() {
         ConditionList conditionList = new ConditionList();
         Condition condition = new Condition("ShoulderPain", "Pain in shoulder");
@@ -57,6 +62,7 @@ public class ConditionListTest extends TestCase {
 
     }
 
+    @Test
     public void testSortByDate()throws ParseException{
         ConditionList conditionList = new ConditionList();
         Condition condition1 = new Condition("RightShoulderPain", new SimpleDateFormat("dd-MM-yyyy").parse("02-02-2020"), "Pain in my right shoulder");
