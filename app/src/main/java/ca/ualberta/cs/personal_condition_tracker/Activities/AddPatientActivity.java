@@ -72,13 +72,18 @@ public class AddPatientActivity extends AppCompatActivity {
         EditText patientIDText = findViewById(R.id.addPatientText);
         String newPatientID = patientIDText.getText().toString();
         if (userAccountListController.checkIfPatientExists(newPatientID) == true) {
-            Toast.makeText(this,"Adding new patient!", Toast.LENGTH_SHORT).show();
-            UserAccount oldUser = userAccountListController.getPatient(newPatientID);
-            UserAccount newUser = new UserAccount(oldUser.getAccountType(), oldUser.getUserID(), oldUser.getEmailAddress(), oldUser.getPassword());
-            newUser.setAssociatedId(activeCareProvider.getUserID());
-            userAccountListController.editUserAccount(oldUser, newUser);
-            activeCareProvider.getPatientList().addPatient(newPatientID);
-            this.finish();
+            if(activeCareProvider.getPatientList().hasPatient(newPatientID)){
+                Toast.makeText(this,"You already have this patient!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Adding new patient!", Toast.LENGTH_SHORT).show();
+                UserAccount oldUser = userAccountListController.getPatient(newPatientID);
+                UserAccount newUser = new UserAccount(oldUser.getAccountType(), oldUser.getUserID(), oldUser.getEmailAddress(), oldUser.getPassword());
+                newUser.setAssociatedId(activeCareProvider.getUserID());
+                userAccountListController.editUserAccount(oldUser, newUser);
+                activeCareProvider.getPatientList().addPatient(newPatientID);
+                this.finish();
+            }
         }
         else {
             Toast.makeText(this,"Unknown patient ID", Toast.LENGTH_SHORT).show();
