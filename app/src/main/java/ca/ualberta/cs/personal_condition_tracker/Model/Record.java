@@ -166,9 +166,24 @@ public class Record {
         return geoLocation;
     }
 
+    /**
+     * Sets the geo-locational data of a Record; generally the location where the corresponding Condition arose.
+     * @param geoLocation latitude and longitude; a Geolocation object
+     * @return Nothing
+     * @see LatLng
+     * @see Condition
+     */
+
     public void setGeoLocation(GeoLocation geoLocation) {
         this.geoLocation = geoLocation;
     }
+
+    /**
+     * Obtains the list of body locations
+     * @return BodyLocationList a list of Body Location Objects
+     * @see BodyLocation
+     */
+
 
     public BodyLocationList getBodyLocationList() {
         return bodyLocationList;
@@ -176,8 +191,8 @@ public class Record {
 
     /**
      * Register the list of body locations
+     * @param listOfBodyLocs A list of Body Location objects
      * @return Nothing
-     * @see BodyLocationList
      * @see BodyLocation
      */
     public void setBodyLocationList(BodyLocationList listOfBodyLocs) {
