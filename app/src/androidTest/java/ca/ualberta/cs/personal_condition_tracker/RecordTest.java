@@ -26,7 +26,7 @@ public class RecordTest extends TestCase {
 
     public void testGetDate() {
         Date new_date = new Date();
-        Record new_record = new Record("Title", "I am a record.");
+        Record new_record = new Record("Title", new_date, "I am a record.", null, null);
         assertTrue(new_record.getDate().equals(new_date));
     }
 
