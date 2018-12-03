@@ -1,4 +1,4 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Activities;
 
 import android.app.Activity;
 

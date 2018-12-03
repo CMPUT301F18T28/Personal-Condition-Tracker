@@ -125,7 +125,7 @@
             android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".SearchRecordsActivity"
+            android:name=".Activities.SearchRecordsActivity"
             android:label="@string/title_activity_search_records"></activity>
         <activity android:name=".Activities.ShortCodeSignInActivity" />
     </application>
