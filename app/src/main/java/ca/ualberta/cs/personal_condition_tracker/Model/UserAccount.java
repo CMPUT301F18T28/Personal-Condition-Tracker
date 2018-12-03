@@ -95,7 +95,7 @@ public class UserAccount {
      * @return Nothing
      */
 
-    UserAccount(String accountType, String userID, String emailAddress) {
+    public UserAccount(String accountType, String userID, String emailAddress) {
         this.accountType = accountType;
         this.userID = userID;
         this.emailAddress = emailAddress;

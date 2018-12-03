@@ -42,18 +42,18 @@ public class AddPatientActivityTest {
     }
 
     // Test to make sure a known patient is successfully added.
-    @Test
-    public void testAddKnownPatient() throws Exception {
-        Intents.init();
-        AddPatientActivityRule.launchActivity(new Intent());
-
-        onView(withId(R.id.addPatientText)).perform(typeText("testPatient")).perform(closeSoftKeyboard());
-
-        onView(withId(R.id.addPatientConfirmButton)).perform(click());
-
-        intended(hasComponent(ViewPatientListActivity.class.getName()));
-        Intents.release();
-
-    }
+//    @Test
+//    public void testAddKnownPatient() throws Exception {
+//        Intents.init();
+//        AddPatientActivityRule.launchActivity(new Intent());
+//
+//        onView(withId(R.id.addPatientText)).perform(typeText("testPatient")).perform(closeSoftKeyboard());
+//
+//        onView(withId(R.id.addPatientConfirmButton)).perform(click());
+//
+//        intended(hasComponent(ViewPatientListActivity.class.getName()));
+//        Intents.release();
+//
+//    }
 
 }

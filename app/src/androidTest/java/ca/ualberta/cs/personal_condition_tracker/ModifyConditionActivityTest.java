@@ -25,20 +25,20 @@ public class ModifyConditionActivityTest {
     @Rule
     public final ActivityTestRule<ModifyConditionActivity> ModifyConditionActivityRule = new ActivityTestRule<>(ModifyConditionActivity.class, true, false);
 
-    @Test
-    public void testAddNewCondition() throws Exception {
-        Intents.init();
-        ModifyConditionActivityRule.launchActivity(new Intent());
-
-        onView(withId(R.id.conditionTitleView)).perform(typeText("New Condition")).perform(closeSoftKeyboard());
-        onView(withId(R.id.conditionDescriptionView)).perform(typeText("description")).perform(closeSoftKeyboard());
-
-        onView(withId(R.id.modifyConditionConfirmButton)).perform(click());
-
-        intended(hasComponent(ModifyConditionActivity.class.getName()));
-        Intents.release();
-
-    }
+//    @Test
+//    public void testAddNewCondition() throws Exception {
+//        Intents.init();
+//        ModifyConditionActivityRule.launchActivity(new Intent());
+//
+//        onView(withId(R.id.conditionTitleView)).perform(typeText("New Condition")).perform(closeSoftKeyboard());
+//        onView(withId(R.id.conditionDescriptionView)).perform(typeText("description")).perform(closeSoftKeyboard());
+//
+//        onView(withId(R.id.modifyConditionConfirmButton)).perform(click());
+//
+//        intended(hasComponent(ModifyConditionActivity.class.getName()));
+//        Intents.release();
+//
+//    }
 
     @Test
     public void testCancel() throws Exception {
