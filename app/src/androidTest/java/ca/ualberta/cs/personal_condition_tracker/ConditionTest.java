@@ -63,18 +63,4 @@ public class ConditionTest extends TestCase {
         condition.setRecordList(recordList2);
         assertTrue(condition.getRecordList().equals(recordList2));
     }
-
-    //TODO
-//    public void testGetCommentList() {
-//        ArrayList<String> commentList = new ArrayList<>();
-//        Condition condition = new Condition("Title", null, "I am a Condition.", null, commentList);
-//        assertTrue(condition.getCommentRecordList().equals(commentList));
-//    }
-//    public void testSetCommentList() {
-//        ArrayList<String> commentList = new ArrayList<>();
-//        Condition condition = new Condition("Title", null, "I am a Condition.", null, commentList);
-//        ArrayList<String> commentList2 = new ArrayList<>();
-//        condition.setCommentList(commentList2);
-//        assertTrue(condition.getCommentList().equals(commentList2));
-//    }
 }
