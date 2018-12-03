@@ -185,20 +185,20 @@ public class ViewRecordListActivity extends AppCompatActivity {
             }
         });
     }
-
+    // Go to modify record activity.
     public void addARecord(View v){
         Toast.makeText(this,"Adding a Record", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewRecordListActivity.this, ModifyRecordActivity.class);
         intent.putExtra("recordIndex", -1);
         startActivityForResult(intent,1);
     }
-
+    // View all comments for a condition.
     public void viewComments(View v){
         Toast.makeText(this,"Viewing comments", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewRecordListActivity.this, ViewCommentsActivity.class);
         startActivity(intent);
     }
-
+    // Repopulate the list of records with the records that match the search criteria.
     public void searchRecords(View v){
         AlertDialog.Builder choose_search_type_adb = new AlertDialog.Builder(ViewRecordListActivity.this);
         choose_search_type_adb.setTitle("Search by:");
@@ -225,7 +225,7 @@ public class ViewRecordListActivity extends AppCompatActivity {
         AlertDialog choose_search_type_dialog = choose_search_type_adb.create();
         choose_search_type_dialog.show();
     }
-
+    // Get records from the server that match the provided keywords.
     public void searchByKeywords(){
         AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
         final EditText new_comment_input = new EditText(this);
@@ -274,7 +274,7 @@ public class ViewRecordListActivity extends AppCompatActivity {
         enter_keywords_adb.show();
     }
 
-
+    // Search for geo locations within a given distance from a selected location on a map.
     public void searchByGeoLocation(){
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -336,7 +336,7 @@ public class ViewRecordListActivity extends AppCompatActivity {
         enter_geo_location_adb.show();
 
     }
-
+    // Select geo location from Google maps.
     public void selectGeoLocation() {
         Intent mapIntent = new Intent(this, MapsActivity.class);
         mapIntent.putExtra("mapMode", "selection");

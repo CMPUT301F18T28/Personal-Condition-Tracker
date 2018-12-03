@@ -75,7 +75,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
         intent = getIntent();
         viewingSetup();
     }
-
+    // Activity display in viewing mode.
     public void viewingSetup(){
         UserAccount user = new UserAccount();
         String accountType = intent.getStringExtra("accountType");
@@ -118,6 +118,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
         modifyAccountConfirm.setClickable(false);
     }
 
+    // Activity display in editing mode.
     public void editingSetup(View v){
         Switch editAccountSwitch = findViewById(R.id.editAccountSwitch);
         EditText emailAddressView = findViewById(R.id.emailAddressText);
@@ -142,7 +143,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
         }
 
     }
-
+    // Display the short code for a user account.
     public void getLoginCode(View v){
         TextView loginCodeTextView = findViewById(R.id.loginCodeTextView);
         String loginCode;
@@ -155,6 +156,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
         loginCodeTextView.setText(loginCode);
     }
 
+    // Make changes to the user account.
     public void modifyAccountConfirm(View v){
         Toast.makeText(this,"Editing account...", Toast.LENGTH_SHORT).show();
         EditText emailAddressView = findViewById(R.id.emailAddressText);
@@ -187,6 +189,7 @@ public class ModifyAccountActivity extends AppCompatActivity {
         this.finish();
     }
 
+    // Exit activity if cancel.
     public void modifyAccountCancel(View v){
         this.finish();
     }

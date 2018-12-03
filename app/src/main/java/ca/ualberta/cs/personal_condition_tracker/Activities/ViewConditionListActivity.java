@@ -100,7 +100,7 @@ public class ViewConditionListActivity extends AppCompatActivity {
         userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(conditions);
         setUpListView();
     }
-
+    // Display all conditions for a patient
     public void setUpListView(){
 
         final Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
@@ -190,21 +190,21 @@ public class ViewConditionListActivity extends AppCompatActivity {
         });
     }
 
-
+    // Go to modify condition activity
     public void addACondition(View v){
         Toast.makeText(this,"Adding a condition", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewConditionListActivity.this, ModifyConditionActivity.class);
         intent.putExtra("index", -1);
         startActivityForResult(intent,1);
     }
-
+    // View all records with geolocations on a map.
     public void viewMapOfRecords(View v){
         Intent mapIntent = new Intent(ViewConditionListActivity.this, MapsActivity.class);
         mapIntent.putExtra("mapMode", "viewAll");
         startActivityForResult(mapIntent, 1);
 
     }
-
+    // Get conditions from server based off search criteria.
     public void searchConditionsOrRecords(View v){
         AlertDialog.Builder choose_search_type_adb = new AlertDialog.Builder(ViewConditionListActivity.this);
         choose_search_type_adb.setTitle("Search by:");
@@ -231,13 +231,13 @@ public class ViewConditionListActivity extends AppCompatActivity {
         choose_search_type_dialog.show();
 
     }
-
+    // Display account information.
     public void showAccountInformation(View v){
         Intent intent = new Intent(ViewConditionListActivity.this, ModifyAccountActivity.class);
         intent.putExtra("accountType", "patient");
         startActivity(intent);
     }
-
+    // Repopulate the condition list with all conditions for a patient that have the inputted keywords.
     public void searchByKeywords(){
         AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
         final EditText new_comment_input = new EditText(this);

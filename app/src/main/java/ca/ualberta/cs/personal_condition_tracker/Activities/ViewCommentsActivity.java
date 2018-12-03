@@ -90,7 +90,7 @@ public class ViewCommentsActivity extends AppCompatActivity {
 
         setupListView();
     }
-
+    // Display all comment records.
     public void setupListView(){
         //Setup adapter for condition list, and display the list.
         ListView listView = findViewById(R.id.commentListView);
@@ -109,38 +109,6 @@ public class ViewCommentsActivity extends AppCompatActivity {
                 commentsArrayAdapter.notifyDataSetChanged();
             }
         });
-
-//        //Ugly code of OnItemLongClickListener
-//        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                AlertDialog.Builder adb = new AlertDialog.Builder(ViewCommentsActivity.this);
-//                adb.setMessage("Would you like to edit or delete " + comments.get(position).toString() + " ?");
-//                adb.setCancelable(true);
-//                final int finalPosition = position;
-//
-//                adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//
-//                adb.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//
-//                adb.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        //Do nothing, simply allow the dialog to close
-//                    }
-//                });
-//                adb.show();
-//                return true;
-//            }
-//        });
     }
 
 }

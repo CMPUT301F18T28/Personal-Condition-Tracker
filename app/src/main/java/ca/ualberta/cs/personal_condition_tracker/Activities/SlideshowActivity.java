@@ -71,8 +71,8 @@ public class SlideshowActivity extends Activity {
         setContentView(R.layout.activity_slideshow);
 
         ArrayList<Photograph> photos = photographListController.loadPhotographs(recordOfInterest);
-        Toast.makeText(this, Integer.toString(photos.size()), Toast.LENGTH_SHORT).show();
 
+        // Display photos using viewpager.
         PhotographPagerAdapter mCustomPagerAdapter = new PhotographPagerAdapter(this, photos);
 
         ViewPager viewPager = findViewById(R.id.photographSlideshowViewpager);

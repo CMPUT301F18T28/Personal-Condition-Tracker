@@ -154,12 +154,12 @@ public class ViewPatientListActivity extends AppCompatActivity {
             }
         });
     }
-
+    // Add a patient to the patient list.
     public void addPatient(View v){
         Intent intent = new Intent(ViewPatientListActivity.this, AddPatientActivity.class);
         startActivity(intent);
     }
-
+    // Show the user account details and contact information.
     public void showAccountInformation(View v){
         Intent intent = new Intent(ViewPatientListActivity.this, ModifyAccountActivity.class);
         intent.putExtra("accountType", "care provider");

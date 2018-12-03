@@ -68,7 +68,7 @@ public class ShortCodeSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_code_sign_in);
     }
-
+    // Get short code and check to make sure that it matches a real user account.
     public void acceptShortCodeSignIn(View v){
         //Get Sign in form data
         EditText shortCodeEditText = findViewById(R.id.signInCodeEditText);
@@ -115,7 +115,7 @@ public class ShortCodeSignInActivity extends AppCompatActivity {
         }
 
     }
-
+    // Do nothing if canceled.
     public void cancelShortCodeSignIn(View v){
         this.finish();
     }

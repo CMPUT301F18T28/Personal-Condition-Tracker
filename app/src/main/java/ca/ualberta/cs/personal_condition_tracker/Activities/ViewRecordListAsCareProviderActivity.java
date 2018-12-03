@@ -130,17 +130,17 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
         });
 
     }
-
+    // Add a comment to the given condition.
     public void addAComment(View v){
         Intent intent = new Intent(ViewRecordListAsCareProviderActivity.this, ModifyCommentActivity.class);
         startActivity(intent);
     }
-
+    // View all the comments for a condition.
     public void viewComments(View v){
         Intent intent = new Intent(ViewRecordListAsCareProviderActivity.this, ViewCommentsActivity.class);
         startActivity(intent);
     }
-
+    // Repopulate the list of records with records that match the given search criteria.
     public void searchRecords(View v){
         AlertDialog.Builder choose_search_type_adb = new AlertDialog.Builder(ViewRecordListAsCareProviderActivity.this);
         choose_search_type_adb.setTitle("Search by:");
@@ -167,7 +167,7 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
         AlertDialog choose_search_type_dialog = choose_search_type_adb.create();
         choose_search_type_dialog.show();
     }
-
+    // Get records from the server that match the specified keywords.
     public void searchByKeywords(){
         AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
         final EditText new_comment_input = new EditText(this);
@@ -216,7 +216,7 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
         enter_keywords_adb.show();
     }
 
-
+    // Get the records within a given distance from a selected point on a map.
     public void searchByGeoLocation(){
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -277,7 +277,7 @@ public class ViewRecordListAsCareProviderActivity extends AppCompatActivity {
         enter_geo_location_adb.show();
 
     }
-
+    // Go to maps activity to select a geo location.
     public void selectGeoLocation() {
         Intent mapIntent = new Intent(this, MapsActivity.class);
         mapIntent.putExtra("mapMode", "selection");

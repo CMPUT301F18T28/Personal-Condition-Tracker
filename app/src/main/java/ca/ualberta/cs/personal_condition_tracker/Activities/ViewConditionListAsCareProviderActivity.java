@@ -115,14 +115,14 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
             }
         });
     }
-
+    // View all records with geolocations on a map.
     public void viewMapOfRecords(View v){
         Toast.makeText(this,"Viewing map of records", Toast.LENGTH_SHORT).show();
         Intent mapIntent = new Intent(ViewConditionListAsCareProviderActivity.this, MapsActivity.class);
         mapIntent.putExtra("mapMode", "viewAll");
         startActivityForResult(mapIntent, 1);
     }
-
+    // Repopulate the list of conditions with conditions that meet the search criteria.
     public void searchConditionsOrRecords(View v){
         AlertDialog.Builder choose_search_type_adb = new AlertDialog.Builder(ViewConditionListAsCareProviderActivity.this);
         choose_search_type_adb.setTitle("Search by:");
@@ -149,13 +149,13 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
         choose_search_type_dialog.show();
 
     }
-
+    // Display account details and contact information.
     public void showAccountInformation(View v){
         Intent intent = new Intent(ViewConditionListAsCareProviderActivity.this, ModifyAccountActivity.class);
         intent.putExtra("accountType", "patient");
         startActivity(intent);
     }
-
+    // Get conditions from the server that have the inputted keywords.
     public void searchByKeywords(){
         AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
         final EditText new_comment_input = new EditText(this);

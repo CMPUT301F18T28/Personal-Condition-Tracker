@@ -87,8 +87,6 @@ public class ViewBodyLocationListActivity extends Activity {
         ArrayList<BodyLocation> old_body_locations = bodyLocationListController.loadBodyLocations(recordOfInterest);
         userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().getRecordOfInterest().getBodyLocationList().setBodyLocations(old_body_locations);
 
-        Toast.makeText(this,recordOfInterest.getTitle(), Toast.LENGTH_SHORT).show();
-
         ListView listView = findViewById(R.id.bodyLocationListView);
         Collection<BodyLocation> bodyLocationCollection = recordOfInterest.getBodyLocationList().getBodyLocations();
         final ArrayList<BodyLocation> bodyLocations = new ArrayList<> (bodyLocationCollection);
@@ -158,6 +156,7 @@ public class ViewBodyLocationListActivity extends Activity {
         });
 
     }
+    // Add body location to the list.
     public void addBodyLocation(View v) {
         Intent intent = new Intent(ViewBodyLocationListActivity.this, ModifyBodyLocationActivity.class);
         intent.putExtra("index", -1);

@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         userIdEntry.getText().clear();
     }
 
+    // Clear active accounts when return to login screen.
     private void clearAccounts() {
         userAccountListController.getUserAccountList().setAccountOfInterest(null);
         userAccountListController.getUserAccountList().setActiveCareProvider(null);

@@ -51,7 +51,7 @@ public class ModifyCommentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_modify_comment);
         setup();
     }
-
+    // Setup the comment field.
     public void setup(){
         Intent intent = new Intent();
         EditText commentText = findViewById(R.id.modifyCommentText);
@@ -59,6 +59,7 @@ public class ModifyCommentActivity extends AppCompatActivity {
         commentText.setText(oldComment);
     }
 
+    // Commit changes to comment record.
     public void modifyCommentConfirm(View v){
         //Check to see if this is an old comment, or a new one.
         Intent intent = new Intent();

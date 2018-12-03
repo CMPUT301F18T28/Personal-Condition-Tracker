@@ -107,13 +107,13 @@ public class ViewRecordActivity extends Activity {
         }
         startActivity(intent);
     }
-
+    // View the list of body locations for a record.
     public void viewBodyLocations(View v){
         Intent intent = new Intent(ViewRecordActivity.this,
                 ViewBodyLocationListActivity.class);
         startActivity(intent);
     }
-
+    // Show all the photos for a record as a slideshow.
     public void showSlideshow(View v) {
         Intent intent = new Intent(ViewRecordActivity.this, SlideshowActivity.class);
         startActivity(intent);

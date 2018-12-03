@@ -106,7 +106,7 @@ public class ModifyBodyLocationActivity extends Activity {
         bodyPartTypeSpinner.setSelection(selection);
 
     }
-
+    // Select a body location, set pin location to previous pin location.
     public void selectBodyLocation(View v) {
         Intent intent = new Intent(ModifyBodyLocationActivity.this, SelectBodyLocationActivity.class);
         if (pinX != null) {
@@ -115,7 +115,7 @@ public class ModifyBodyLocationActivity extends Activity {
         }
         startActivityForResult(intent, SELECTED_BODY_LOCATION_REQUEST_CODE);
     }
-
+    // Commit changes to body location.
     public void modifyBodyLocationConfirm(View v) {
         Spinner frontOrBackSpinner = findViewById(R.id.frontOrBackSpinner);
         Spinner bodyPartTypeSpinner = findViewById(R.id.bodyPartTypeSpinner);

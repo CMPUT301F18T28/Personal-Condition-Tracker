@@ -108,7 +108,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         recordDateView.setText(recordDate);
         recordDescriptionView.setText(recordDescription);
     }
-
+    // Commit changes to record.
     public void modifyRecordConfirm(View v) {
         //TODO fix dating, ensure working for edits add in Geo/body locations
         Toast.makeText(this, "Confirming record edit...", Toast.LENGTH_SHORT).show();
@@ -146,7 +146,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         setResult(Activity.RESULT_CANCELED);
         this.finish();
     }
-
+    // Modify record date using date and time pickers.
     public void modifyRecordDate(View v) {
         final Calendar c = Calendar.getInstance();
         // Initialize values for year, month, day, hour, minute, and second.
@@ -184,7 +184,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
         }, year, month, day);
         datePickerDialog.show();
     }
-
+    // Add a photo to the server.
     public void addPhoto(View v) {
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setMessage("Would you like to take a photo or upload a previous photo?");
@@ -252,7 +252,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
 
         adb.show();
     }
-
+    // View all body locations for a record.
     public void selectBodyLoc(View v) {
         if (conditionOfInterest.getRecordList().getRecordOfInterest() != null) {
             Intent intent = new Intent(ModifyRecordActivity.this,
@@ -260,14 +260,14 @@ public class ModifyRecordActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
-
+    // Show all photos for a record in a slideshow.
     public void showSlideshowActivity(View v) {
         if (conditionOfInterest.getRecordList().getRecordOfInterest() != null) {
             Intent intent = new Intent(ModifyRecordActivity.this, SlideshowActivity.class);
             startActivity(intent);
         }
     }
-
+    // Create a unique file for an image.
     private File createImageFile() throws IOException {
         File directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         String currentTime = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -278,17 +278,12 @@ public class ModifyRecordActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
-        if (requestCode == PICK_IMAGE) {
+        if (requestCode == PICK_IMAGE) { // result from gallery
             if (resultCode == RESULT_OK) {
-                Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
 
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(ModifyRecordActivity.this, "Photo canceled!", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(ModifyRecordActivity.this, "The photo could not be added", Toast.LENGTH_SHORT).show();
             }
         }
-        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) { // result from camera
             if (resultCode == RESULT_OK) {
                 File mImageFile = new File(new_image);
                 Bitmap bitmap = BitmapFactory.decodeFile(new_image);
@@ -307,7 +302,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
             }
         }
 
-        if (requestCode == SELECTED_LOCATION_REQUEST_CODE) {
+        if (requestCode == SELECTED_LOCATION_REQUEST_CODE) { // result from select geo location
             if (resultCode == RESULT_OK) {
                 location = new LatLng(data.getDoubleExtra("latitude", 0.0),
                         data.getDoubleExtra("longitude", 0.0));
@@ -318,7 +313,7 @@ public class ModifyRecordActivity extends AppCompatActivity {
             }
         }
     }
-
+    // Go to maps activity to select geo location.
     public void modifyGeoLocation(View v) {
         Intent mapIntent = new Intent(ModifyRecordActivity.this, MapsActivity.class);
         mapIntent.putExtra("mapMode", "selection");

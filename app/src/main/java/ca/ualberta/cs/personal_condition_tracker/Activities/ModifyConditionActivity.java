@@ -81,6 +81,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
         conditionDescriptionView.setText(conditionDescription);
     }
 
+    // Commit changes to condition.
     public void modifyConditionConfirm(View v){
         //TODO fix dating, ensure working for edits
         Toast.makeText(this,"Confirming condition edit...", Toast.LENGTH_SHORT).show();
@@ -120,6 +121,7 @@ public class ModifyConditionActivity extends AppCompatActivity {
         this.finish();
     }
 
+    // Modify condition date use date and time pickers.
     public void modifyConditionDate(View v) {
         final Calendar c = Calendar.getInstance();
         // Initialize values for year, month, day, hour, minute, and second.
