@@ -132,7 +132,7 @@ public class ViewBodyLocationListActivity extends Activity {
                 return true;
             }
         });
-        //Ugly code of OnItemClickListener
+        //OnItemClickListener
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
