@@ -227,6 +227,22 @@ public class UserAccount {
         }
     }
 
+    /**
+     * Serves to verify the account holder by way of a username (userID) and a password.
+     * @param userID Username of the account holder
+     * @return boolean True if both the user ID and the password match those stored for the account, false otherwise.
+     */
+    public boolean authenticateByShortCode(String shortCode) {
+        if (this.shortCode.equals(shortCode)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+
     public void setAssociatedId(String userID) {
         this.associatedId = userID;
     }

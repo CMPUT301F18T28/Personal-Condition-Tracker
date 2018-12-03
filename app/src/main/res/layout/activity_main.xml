@@ -171,20 +171,32 @@
                 android:id="@+id/textView5"
                 android:layout_width="225dp"
                 android:layout_height="29dp"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="91dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="41dp"
+                android:layout_marginBottom="89dp"
                 android:text=" - DOCUMENT THE FACTS -" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="33dp"
-                android:layout_alignParentEnd="true"
                 android:layout_below="@+id/textView5"
-                android:layout_marginEnd="0dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="-91dp"
+                android:layout_marginEnd="0dp"
                 android:text="  GET THE TREATEMENT YOU DESERVE! " />
+
+            <TextView
+                android:id="@+id/alternateSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="alternateLogin"
+                android:text="Login via code instead" />
 
         </RelativeLayout>
 

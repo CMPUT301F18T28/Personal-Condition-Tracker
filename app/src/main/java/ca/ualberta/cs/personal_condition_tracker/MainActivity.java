@@ -116,6 +116,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void alternateLogin(View v){
+        Intent intent = new Intent(MainActivity.this, ShortCodeSignInActivity.class);
+        startActivity(intent);
+    }
+
     // Clear the text from the username field.
     public void clearText(){
         EditText userIdEntry = findViewById(R.id.userIDEntry);

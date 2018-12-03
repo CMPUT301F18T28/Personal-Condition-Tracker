@@ -129,6 +129,7 @@
         <activity
             android:name=".SearchRecordsActivity"
             android:label="@string/title_activity_search_records"></activity>
+        <activity android:name=".ShortCodeSignInActivity" />
     </application>
 
 </manifest>
