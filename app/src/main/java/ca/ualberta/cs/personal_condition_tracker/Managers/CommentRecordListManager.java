@@ -76,7 +76,7 @@ public class CommentRecordListManager {
             verifySettings();
 
             for (CommentRecord commentRecord : commentRecords) {
-                Index index = new Index.Builder(commentRecord).index("cmput301f18t28test").type("commentRecord").build();
+                Index index = new Index.Builder(commentRecord).index("cmput301f18t28").type("commentRecord").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -111,7 +111,7 @@ public class CommentRecordListManager {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("cmput301f18t28test")
+                    .addIndex("cmput301f18t28")
                     .addType("commentRecord")
                     .build();
 
@@ -142,7 +142,7 @@ public class CommentRecordListManager {
 
             CommentRecord commentRecord = commentRecords[0];
             String jestID = commentRecord.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("record").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28").type("record").build();
 
             try {
                 DocumentResult result = client.execute(delete);

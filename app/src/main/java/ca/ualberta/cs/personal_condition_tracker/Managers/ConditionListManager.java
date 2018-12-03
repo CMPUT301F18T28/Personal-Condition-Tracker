@@ -82,7 +82,7 @@ public class ConditionListManager {
             verifySettings();
 
             for (Condition condition : conditions) {
-                Index index = new Index.Builder(condition).index("cmput301f18t28test").type("condition").build();
+                Index index = new Index.Builder(condition).index("cmput301f18t28").type("condition").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -117,7 +117,7 @@ public class ConditionListManager {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("cmput301f18t28test")
+                    .addIndex("cmput301f18t28")
                     .addType("condition")
                     .build();
 
@@ -148,7 +148,7 @@ public class ConditionListManager {
 
             Condition condition = conditions[0];
             String jestID = condition.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("condition").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28").type("condition").build();
 
             try {
                 DocumentResult result = client.execute(delete);

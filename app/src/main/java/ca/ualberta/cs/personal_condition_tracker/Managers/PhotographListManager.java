@@ -77,7 +77,7 @@ public class PhotographListManager {
             verifySettings();
 
             for (Photograph photograph : photographs) {
-                Index index = new Index.Builder(photograph).index("cmput301f18t28test").type("photograph").build();
+                Index index = new Index.Builder(photograph).index("cmput301f18t28").type("photograph").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -112,7 +112,7 @@ public class PhotographListManager {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("cmput301f18t28test")
+                    .addIndex("cmput301f18t28")
                     .addType("photograph")
                     .build();
 
@@ -143,7 +143,7 @@ public class PhotographListManager {
 
             Photograph photograph = photographs[0];
             String jestID = photograph.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("photograph").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28").type("photograph").build();
 
             try {
                 DocumentResult result = client.execute(delete);

@@ -80,7 +80,7 @@ public class UserAccountListManager {
             verifySettings();
 
             for (UserAccount userAccount : userAccounts) {
-                Index index = new Index.Builder(userAccount).index("cmput301f18t28test").type("userAccount").build();
+                Index index = new Index.Builder(userAccount).index("cmput301f18t28").type("userAccount").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -111,7 +111,7 @@ public class UserAccountListManager {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("cmput301f18t28test")
+                    .addIndex("cmput301f18t28")
                     .addType("userAccount")
                     .build();
 
@@ -142,7 +142,7 @@ public class UserAccountListManager {
 
             UserAccount userAccount = userAccounts[0];
             String jestID = userAccount.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("userAccount").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28").type("userAccount").build();
 
             try {
                 DocumentResult result = client.execute(delete);

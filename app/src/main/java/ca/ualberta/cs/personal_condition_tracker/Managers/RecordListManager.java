@@ -82,7 +82,7 @@ public class RecordListManager {
             verifySettings();
 
             for (Record record : records) {
-                Index index = new Index.Builder(record).index("cmput301f18t28test").type("record").build();
+                Index index = new Index.Builder(record).index("cmput301f18t28").type("record").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -116,7 +116,7 @@ public class RecordListManager {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("cmput301f18t28test")
+                    .addIndex("cmput301f18t28")
                     .addType("record")
                     .build();
 
@@ -147,7 +147,7 @@ public class RecordListManager {
 
             Record record = records[0];
             String jestID = record.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("record").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28").type("record").build();
 
             try {
                 DocumentResult result = client.execute(delete);

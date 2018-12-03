@@ -77,7 +77,7 @@ public class BodyLocationListManager {
             verifySettings();
 
             for (BodyLocation bodyLocation : bodyLocations) {
-                Index index = new Index.Builder(bodyLocation).index("cmput301f18t28test").type("bodyLocation").build();
+                Index index = new Index.Builder(bodyLocation).index("cmput301f18t28").type("bodyLocation").build();
 
                 try {
                     DocumentResult result = client.execute(index);
@@ -113,7 +113,7 @@ public class BodyLocationListManager {
 
             Search search = new Search.Builder( search_parameters[0])
                     //Search search = new Search.Builder( search_parameters[0] )
-                    .addIndex("cmput301f18t28test")
+                    .addIndex("cmput301f18t28")
                     .addType("bodyLocation")
                     .build();
 
@@ -144,7 +144,7 @@ public class BodyLocationListManager {
 
             BodyLocation bodyLocation = bodyLocations[0];
             String jestID = bodyLocation.getId();
-            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28test").type("bodyLocation").build();
+            Delete delete = new Delete.Builder(jestID).index("cmput301f18t28").type("bodyLocation").build();
 
             try {
                 DocumentResult result = client.execute(delete);
