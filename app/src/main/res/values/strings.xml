@@ -47,6 +47,8 @@
     <string name="searchByGeoLocation">Search By Geo-Location:</string>
     <string name="searchByBodyLocation">Search By Body-Location:</string>
     <string name="searchRecordsButtonText">Search Records</string>
+    <string name="viewBodyLocationsText">Body Locations:</string>
+    <string name="addABodyLocationButtonText">Add a Body Location</string>
 
 
     <string name="title_activity_view_condition_list">ViewConditionListActivity</string>
@@ -72,12 +74,31 @@
         <item>Care Provider</item>
     </string-array>
 
+    <string-array name="front_or_back_array">
+        <item>Front</item>
+        <item>Back</item>
+    </string-array>
+    <string name="frontOrBack">Select body side:</string>
+
+    <string-array name="body_part_type_array">
+        <item>Head</item>
+        <item>Chest</item>
+        <item>Left Arm</item>
+        <item>Right Arm</item>
+        <item>Left Leg</item>
+        <item>Right Leg</item>
+    </string-array>
+    <string name="bodyPartType">Select a body part type:</string>
+    <string name="selectBodyLocationButtonText">Select a Body-Location</string>
+
     <string name="title_activity_select_body_location_male">selectBodyLocationMale</string>
     <string name="select_a_location_on_the_body_below">Select a location on the body below</string>
 
     <string name="title_activity_take_photo_with_camera">TakePhotoWithCameraActivity</string>
     <string name="title_activity_search_records">SearchRecordsActivity</string>
-
+    <string name="title_activity_view_body_location_list">ViewBodyLocationListActivity</string>
+    <string name="title_activity_modify_body_location">ModifyBodyLocationActivity</string>
+    <string name="title_activity_slideshow">SlideshowActivity</string>
 
 
 </resources>

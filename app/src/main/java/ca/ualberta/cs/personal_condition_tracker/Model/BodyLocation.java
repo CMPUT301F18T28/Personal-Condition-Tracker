@@ -36,6 +36,8 @@ POSSIBILITY OF SUCH DAMAGE.
 
 package ca.ualberta.cs.personal_condition_tracker.Model;
 
+import io.searchbox.annotations.JestId;
+
 /**
  * BodyLocation class provides functionality for the user to indicate the location of a particular condition within both a map of
  * human body and a photograph.
@@ -49,18 +51,30 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
  */
 
 public class BodyLocation {
+    private String frontOrBack;
     private String bodyPart;
     private double photoXCoordinate;
     private double photoYCoordinate;
-    private double bodyXCoordinate;
-    private double bodyYCoordinate;
+    private String bodyXCoordinate;
+    private String bodyYCoordinate;
+    private String associatedRecordID;
+    @JestId
+    private String id;
 
     public BodyLocation() {
         this.bodyPart = "";
         this.photoXCoordinate = 0;
         this.photoYCoordinate = 0;
-        this.bodyXCoordinate = 0;
-        this.bodyYCoordinate = 0;
+        this.bodyXCoordinate = "";
+        this.bodyYCoordinate = "";
+    }
+
+    public String getFrontOrBack() {
+        return frontOrBack;
+    }
+
+    public void setFrontOrBack(String frontOrBack) {
+        this.frontOrBack = frontOrBack;
     }
 
     /**
@@ -120,7 +134,7 @@ public class BodyLocation {
      * @return Nothing
      */
 
-    public double getBodyXCoordinate() {
+    public String getBodyXCoordinate() {
         return bodyXCoordinate;
     }
 
@@ -128,7 +142,7 @@ public class BodyLocation {
      * Provides the ID corresponding to the associated record.
      * @return String associated record ID
      */
-    public void setBodyXCoordinate(double bodyXCoordinate) {
+    public void setBodyXCoordinate(String bodyXCoordinate) {
         this.bodyXCoordinate = bodyXCoordinate;
     }
 
@@ -136,7 +150,7 @@ public class BodyLocation {
      * Registers an ID corresponding to the associated photograph.
      * @return Nothing
      */
-    public double getBodyYCoordinate() {
+    public String getBodyYCoordinate() {
         return bodyYCoordinate;
     }
 
@@ -145,9 +159,51 @@ public class BodyLocation {
      * Returns an ID corresponding to the associated photograph.
      * @return String ID of the associated photograph
      */
-    public void setBodyYCoordinate(double bodyYCoordinate) {
+    public void setBodyYCoordinate(String bodyYCoordinate) {
         this.bodyYCoordinate = bodyYCoordinate;
     }
 
+    /**
+     * Provides the associated ID relating it the record to a particular condition
+     * @return String associatedRecordID
+     * @see Record
+     */
 
+    public String getAssociatedRecordID() {
+        return associatedRecordID;
+    }
+
+    /**
+     * Provides the associated ID relating the body location to a particular record
+     * @return String associatedRecordID
+     * @see Record
+     */
+
+    public void setAssociatedRecordID(String associatedRecordID) {
+        this.associatedRecordID = associatedRecordID;
+    }
+
+
+    /**
+     * Provides the ID of the record
+     * @return String ID
+     */
+
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Registers an ID for the record
+     * @return Nothing
+     */
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString(){
+        return getFrontOrBack() + "\n" + getBodyPart();
+    }
 }

@@ -47,6 +47,12 @@ POSSIBILITY OF SUCH DAMAGE.
 package ca.ualberta.cs.personal_condition_tracker.Model;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
+
+import io.searchbox.annotations.JestId;
 
 /**
  * The Photograph class is used to store the thumbnail for the image that is taken by the user.
@@ -62,61 +68,45 @@ import android.graphics.Bitmap;
 //import java.util.Base64;
 
 public class Photograph {
-    private String filename;
-    private Bitmap thumbnail;
+    private String base64EncodedString;
+    private String recordIDForPhotograph;
+    @JestId
+    private String id;
 
     //Constructors:
 
-    public Photograph() {
-        this.filename = "";
-        this.thumbnail = null;
-    }
-    public Photograph(String filename) {
-        this.filename = filename;
-        this.thumbnail = null;
-    }
-    Photograph(String filename, Bitmap thumbnail) {
-        this.filename = filename;
-        this.thumbnail = thumbnail;
+    Photograph() {
+        this.base64EncodedString = "";
     }
 
-    /**
-     * Provides the filename of a Photograph
-     * @return String Filename associated with a Photograph
-     */
-
-    public String getFilename() {
-        return this.filename;
+    public Bitmap getPhotographImage() {
+        byte[] decodedBase64 = Base64.decode(base64EncodedString, Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBase64,0, decodedBase64.length);
+        return bitmap;
     }
 
-    /**
-     * Registers a filename with a Photograph
-     * @param filename Filename to be associated with the Photograph
-     *@return Nothing
-     */
-
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setBase64EncodedString(Bitmap bitmap) {
+        bitmap = Bitmap.createScaledBitmap(bitmap,60,140,true);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        this.base64EncodedString = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
-    /**
-     * Provides the thumbnail of an image associated with the Photograph
-     * @return byte[] Binary array representing the image data of a photograph
-     */
-
-    public Bitmap getThumbnail() {
-        return this.thumbnail;
+    public String getRecordIDForPhotograph() {
+        return recordIDForPhotograph;
     }
 
+    public void setRecordIDForPhotograph(String recordIDForPhotograph) {
+        this.recordIDForPhotograph = recordIDForPhotograph;
+    }
 
-    /**
-     * Registers the thumbnail of an image associated with the Photograph
-     * @param thumbnail Binary array representing the image data of a photograph
-     * @return Nothing
-     */
+    public String getId() {
+        return id;
+    }
 
-    public void setThumbnail(Bitmap thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

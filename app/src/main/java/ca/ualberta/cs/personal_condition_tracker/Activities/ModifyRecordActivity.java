@@ -28,14 +28,18 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -44,7 +48,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -70,15 +77,17 @@ public class ModifyRecordActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     private static final int SELECTED_LOCATION_REQUEST_CODE = 200;
+
     private Uri imageFileUri;
     private Intent intent;
     private UserAccountListController userAccountListController = new UserAccountListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition conditionOfInterest = accountOfInterest.getConditionList().getConditionOfInterest();
-    private String pinX;
-    private String pinY;
-    //private BodyLocation;
+    private RecordListController recordListController = new RecordListController();
+    private PhotographListController photographListController = new PhotographListController();
+
     private LatLng location;
+    private String new_image = "";
 
     private int year, month, day, hour, minute, second;
     private Date new_date = new Date();
@@ -94,14 +103,6 @@ public class ModifyRecordActivity extends AppCompatActivity {
         String recordTitle = intent.getStringExtra("recordTitle");
         String recordDate = intent.getStringExtra("recordDate");
         String recordDescription = intent.getStringExtra("recordDescription");
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            pinX = extras.getString("pinX");
-            pinY = extras.getString("pinY");
-            Toast.makeText(this, pinX,  Toast.LENGTH_SHORT).show();
-        }
-
 
         //Set the information for this activity
         EditText recordTitleView = findViewById(R.id.recordTitleView);
@@ -123,22 +124,21 @@ public class ModifyRecordActivity extends AppCompatActivity {
         Date recordDate = new_date;
         String recordDescription = recordDescriptionView.getText().toString();
 
-        Record  newRecord = new Record(recordTitle, recordDate, recordDescription, location, null);
+        Record oldRecord;
+        Record newRecord = new Record(recordTitle, recordDate, recordDescription, null, null);
         newRecord.setAssociatedConditionID(conditionOfInterest.getId());
         if (location != null) {
             newRecord.setGeoLocation(new GeoLocation(location.latitude, location.longitude));
         }
 
-
-        Record oldRecord;
         //TODO change these nulls
         if (intent.getIntExtra("recordIndex", -1) == -1) {
-            createRecord(newRecord);
+            recordListController.createRecord(newRecord);
             conditionOfInterest.getRecordList().addRecord(newRecord);
         } else {
             int recordIndex = intent.getIntExtra("recordIndex", 0);
             oldRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
-            editRecord(oldRecord, newRecord);
+            recordListController.editRecord(oldRecord, newRecord);
             oldRecord.editRecord(recordTitle, recordDate, recordDescription, location, null);
         }
         setResult(Activity.RESULT_OK);
@@ -198,31 +198,37 @@ public class ModifyRecordActivity extends AppCompatActivity {
         adb.setPositiveButton("Take photo", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download";
-                File folderF = new File(folder);
-                if (!folderF.exists()) {
-                    folderF.mkdir();
-                }
-
+                File image = null;
                 try {
-                    Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
-                    m.invoke(null);
-
-                } catch (Exception e) {
+                    image = createImageFile();
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 verifyPermission(ModifyRecordActivity.this);
 
-                String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + "jpg";
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    if (image != null) {
+                        String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download";
+                        File folderF = new File(folder);
+                        if (!folderF.exists()) {
+                            folderF.mkdir();
+                        }
+                        try {
+                            Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                            m.invoke(null);
 
-                File imageFile = new File(folder, "imagetest.jpg");
-                imageFileUri = Uri.fromFile(imageFile);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                        Uri photoURI = FileProvider.getUriForFile(ModifyRecordActivity.this,
+                                "ca.ualberta.cs.personal_condition_tracker",image);
+                        new_image = image.getAbsolutePath();
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                        startActivityForResult(takePictureIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+                    }
+                }
             }
         });
 
@@ -252,56 +258,26 @@ public class ModifyRecordActivity extends AppCompatActivity {
         adb.show();
     }
 
-    // Add a care provider to the server.
-    public void createRecord(Record newRecord) {
-        // Check if the user has already signed up
-        RecordListManager.GetRecordsTask getRecordsTask =
-                new RecordListManager.GetRecordsTask();
-        String query = "{ \"query\": {\"match\": { \"id\" : \"" + newRecord.getId() + "\" } } }";
-        getRecordsTask.execute(query);
-        ArrayList<Record> records = new ArrayList<>();
-        try {
-            records = getRecordsTask.get();
-        } catch (Exception e) {
-            Log.e("Error", "Failed to get the tweets out of the async object.");
-        }
-
-        // Add the user to the database.
-        if (records.size() == 0) {
-//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
-            RecordListManager.AddRecordsTask addRecordsTask
-                    = new RecordListManager.AddRecordsTask();
-            addRecordsTask.execute(newRecord);
-            Toast.makeText(ModifyRecordActivity.this, "Added record successfully!", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(ModifyRecordActivity.this, "This record already exists!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void editRecord(Record oldRecord, Record newRecord) {
-        newRecord.setId(oldRecord.getId());
-        RecordListManager.DeleteRecordsTask deleteRecordsTask =
-                new RecordListManager.DeleteRecordsTask();
-        deleteRecordsTask.execute(oldRecord);
-        RecordListManager.AddRecordsTask addRecordsTask
-                = new RecordListManager.AddRecordsTask();
-        addRecordsTask.execute(newRecord);
-    }
-
-
     public void selectBodyLoc(View v) {
-        Toast.makeText(this, "This is working", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(ModifyRecordActivity.this, SelectBodyLocationActivity.class);
-        if (pinX != null) {
-            intent.putExtra("previousX", pinX);
-            intent.putExtra("previousY", pinY);
-        }
+        Intent intent = new Intent(ModifyRecordActivity.this,
+                ViewBodyLocationListActivity.class);
         startActivity(intent);
     }
 
+    public void showSlideshowActivity(View v) {
+        Intent intent = new Intent(ModifyRecordActivity.this, SlideshowActivity.class);
+        startActivity(intent);
+    }
+
+    private File createImageFile() throws IOException {
+        File directory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        String timesStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File image = File.createTempFile("tracker_" + timesStamp,".jpg", directory);
+        return image;
+    }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
     {
         if (requestCode == PICK_IMAGE) {
             if (resultCode == RESULT_OK) {
@@ -317,8 +293,16 @@ public class ModifyRecordActivity extends AppCompatActivity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(ModifyRecordActivity.this, "Photo added!", Toast.LENGTH_SHORT).show();
-//                ImageButton button = (ImageButton) findViewById(R.id.TakeAPhoto);
-//                button.setImageDrawable(Drawable.createFromPath(imageFileUri.getPath()));
+                File mImageFile = new File(new_image);
+                Bitmap bitmap = BitmapFactory.decodeFile(new_image);
+                Photograph photo = new Photograph();
+                photo.setBase64EncodedString(bitmap);
+                photo.setRecordIDForPhotograph(conditionOfInterest.getRecordList().getRecordOfInterest().getId());
+                photographListController.createPhotograph(photo);
+
+
+                Uri imageUri = Uri.fromFile(mImageFile);
+
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(ModifyRecordActivity.this, "Photo canceled!", Toast.LENGTH_SHORT).show();
             } else {

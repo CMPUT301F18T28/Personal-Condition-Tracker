@@ -71,6 +71,7 @@ public class Record {
     private BodyLocationList bodyLocationList;
     private GeoLocation geoLocation;
     private PhotographList photos;
+    private transient ArrayList<Listener> listenerList = null;
     private String associatedConditionID;
     @JestId
     private String id = null;
@@ -168,7 +169,7 @@ public class Record {
         this.geoLocation = geoLocation;
     }
 
-    public BodyLocationList getBodyLocList() {
+    public BodyLocationList getBodyLocationList() {
         return bodyLocationList;
     }
 
@@ -181,6 +182,15 @@ public class Record {
     public void setBodyLocationList(BodyLocationList listOfBodyLocs) {
         this.bodyLocationList = listOfBodyLocs;
     }
+
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
+    }
+
 
     /**
      * Provides the list of Photograph objects corresponding to the Record of a Condition.
@@ -257,6 +267,59 @@ public class Record {
         this.setDate(recordDate);
         this.setDescription(recordDescription);
         this.setBodyLocationList(listOfBodyLocs);
+    }
+
+    /**
+     * Appends a Listener object to the list thereof.
+     * <P>
+     * @param listener Listener object
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void addListener(Listener listener){
+        getListenerList().add(listener);
+    }
+
+
+    /**
+     * Removes a given Listener object from the list thereof.
+     * <P>
+     * @param listener Listener object
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+
+
+    /**
+     * Obtains the list of Listeners, that is, the listenerList attribute. If called for the first time
+     * this method serves to initialize the list.
+     * <P>
+     * @return ArrayList<Listener>
+     */
+
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    /**
+     * Serves to update all Listener objects contained in the list thereof.
+     * <P>
+     * @return Nothing
+     * @see Listener
+     */
+
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
     }
 
     /**

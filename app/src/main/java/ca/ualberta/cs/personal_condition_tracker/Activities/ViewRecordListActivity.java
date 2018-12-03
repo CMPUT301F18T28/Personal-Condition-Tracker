@@ -126,7 +126,8 @@ public class ViewRecordListActivity extends AppCompatActivity {
                 adb.setMessage("Would you like to edit or delete " + records.get(position).toString() + " record?");
                 adb.setCancelable(true);
                 final int finalPosition = position;
-
+                selectedRecord = records.get(finalPosition);
+                conditionOfInterest.getRecordList().setRecordOfInterest(selectedRecord);
                 adb.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

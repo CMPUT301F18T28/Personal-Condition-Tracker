@@ -104,6 +104,10 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
                     String source = sCoord.toString();
                     ArrayList<String> sourceString = parseIntsAndFloats(source);
                     setStrings_X_Y(sourceString);
+                    Intent intent = new Intent(SelectBodyLocationActivity.this, ModifyBodyLocationActivity.class);
+                    intent.putExtra("pinX", x);
+                    intent.putExtra("pinY", y);
+                    setResult(RESULT_OK, intent);
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Single tap: Image not ready", Toast.LENGTH_SHORT).show();
@@ -168,7 +172,7 @@ public class SelectBodyLocationActivity extends AppCompatActivity {
     }
 
     public void confirmLocation(View v) {
-        Intent intent = new Intent(SelectBodyLocationActivity.this, ModifyRecordActivity.class);
+        Intent intent = new Intent(SelectBodyLocationActivity.this, ModifyBodyLocationActivity.class);
         intent.putExtra("pinX", x);
         intent.putExtra("pinY", y);
         this.finish();
