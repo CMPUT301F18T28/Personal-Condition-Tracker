@@ -182,8 +182,6 @@ public class ViewRecordListActivity extends AppCompatActivity {
         Intent intent = new Intent(ViewRecordListActivity.this, ModifyRecordActivity.class);
         intent.putExtra("recordIndex", -1);
 
-        //intent.putExtra("COI", );
-
         startActivityForResult(intent,1);
     }
 

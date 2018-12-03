@@ -196,8 +196,10 @@ public class RecordList {
      */
     public int getRecordIndex(Record record) {
         int index = -1;
-        if(recordList.contains(record)) {
-            index = recordList.indexOf(record);
+        for (int i = 0; i < recordList.size(); i++) {
+            if (record.getId().equals(recordList.get(i).getId())) {
+                index = i;
+            }
         }
         return index;
     }

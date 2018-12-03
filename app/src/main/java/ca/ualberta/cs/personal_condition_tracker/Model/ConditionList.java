@@ -223,8 +223,10 @@ public class ConditionList{
 
     public int getIndex(Condition condition){
         int index = -1;
-        if(conditionList.contains(condition)) {
-            index = conditionList.indexOf(condition);
+        for (int i = 0; i < conditionList.size(); i++) {
+            if (condition.getId().equals(conditionList.get(i).getId())) {
+                index = i;
+            }
         }
         return index;
     }

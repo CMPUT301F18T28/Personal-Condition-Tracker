@@ -90,8 +90,6 @@ public class ViewConditionListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_condition_list);
         ArrayList<Condition> conditions = conditionListController.loadConditions(accountOfInterest);
         userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().setConditions(conditions);
-
-
         setUpListView();
     }
 
@@ -193,7 +191,6 @@ public class ViewConditionListActivity extends AppCompatActivity {
     }
 
     public void viewMapOfRecords(View v){
-        Toast.makeText(this,"Viewing map of records", Toast.LENGTH_SHORT).show();
         Intent mapIntent = new Intent(ViewConditionListActivity.this, MapsActivity.class);
         mapIntent.putExtra("mapMode", "viewAll");
         startActivityForResult(mapIntent, 1);

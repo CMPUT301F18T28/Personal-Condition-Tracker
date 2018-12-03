@@ -100,22 +100,16 @@ public class ModifyConditionActivity extends AppCompatActivity {
         Condition oldCondition;
         Condition newCondition = new Condition(conditionTitle, conditionDate, conditionDescription);
         newCondition.setAssociatedUserID(accountOfInterest.getUserID());
-
-        if (intent.getIntExtra("index", -1) == -1){
+        int index = intent.getIntExtra("index", -1);
+        Toast.makeText(this,Integer.toString(index), Toast.LENGTH_SHORT).show();
+        if (index == -1){
             conditionListController.createCondition(newCondition);
             accountOfInterest.getConditionList().addCondition(newCondition);
         }
         else{
-            int index = intent.getIntExtra("index", 0);
+//            int index = intent.getIntExtra("index", 0);
             oldCondition = accountOfInterest.getConditionList().getByIndex(index);
-            newCondition.setId(oldCondition.getId());
-            ConditionListManager.DeleteConditionsTask deleteConditionsTask =
-                    new ConditionListManager.DeleteConditionsTask();
-            deleteConditionsTask.execute(oldCondition);
-            ConditionListManager.AddConditionsTask addConditionsTask
-                    = new ConditionListManager.AddConditionsTask();
-            addConditionsTask.execute(newCondition);
-//            conditionListController.editCondition(oldCondition, newCondition);
+            conditionListController.editCondition(oldCondition, newCondition);
             accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
                     conditionDate, conditionDescription);
         }
