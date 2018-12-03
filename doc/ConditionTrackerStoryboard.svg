@@ -564,9 +564,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.35"
-     inkscape:cx="342.70025"
-     inkscape:cy="924.74632"
+     inkscape:zoom="1.1555632"
+     inkscape:cx="321.95653"
+     inkscape:cy="668.15692"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -587,7 +587,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -661,18 +661,6 @@
          x="48.337791"
          y="102.52929"
          style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">User ID:</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="44.424294"
-       y="110.65731"
-       id="text2993"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         id="tspan2995"
-         x="44.424294"
-         y="110.65731"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Password:</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot2997"
@@ -694,13 +682,6 @@
        height="4.9728227"
        x="76.373177"
        y="85.47644" />
-    <rect
-       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:0.10536338px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       id="rect3007"
-       width="41.204144"
-       height="5.2345505"
-       x="76.719414"
-       y="92.80481" />
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3013"
@@ -799,42 +780,6 @@
        height="7.328371"
        x="177.74701"
        y="105.5938" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="154.5361"
-       y="144.03152"
-       id="text3145"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         id="tspan3147"
-         x="154.5361"
-         y="144.03152"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Password (min. 8 characters):</tspan><tspan
-         sodipodi:role="line"
-         x="154.5361"
-         y="149.2997"
-         id="tspan3149"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338"> </tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="154.5361"
-       y="159.38449"
-       id="text3151"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         id="tspan3153"
-         x="154.5361"
-         y="159.38449"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Confirm Password:</tspan></text>
-    <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
-       id="rect3111-9"
-       width="58.170559"
-       height="7.328371"
-       x="178.09328"
-       y="126.79372" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3162"
@@ -864,13 +809,6 @@
            style="font-family:sans-serif" /></flowRegion><flowPara
          id="flowPara3176"
          style="font-size:40px;line-height:1.25;font-family:sans-serif"> </flowPara></flowRoot>    <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
-       id="rect3111-3"
-       width="58.170559"
-       height="7.328371"
-       x="178.43951"
-       y="140.66528" />
-    <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3185"
        width="37.395355"
@@ -1777,25 +1715,6 @@
        height="7.328371"
        x="412.6557"
        y="424.40393" />
-    <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
-       id="rect3111-0-3"
-       width="58.170559"
-       height="7.328371"
-       x="177.40074"
-       y="113.70735" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="156.94444"
-       y="136.50558"
-       id="text3817"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         id="tspan3819"
-         x="156.94444"
-         y="136.50558"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Select sex               V</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3788-7"
@@ -3222,43 +3141,36 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="523.289"
-       y="786.48163"
+       x="511.25101"
+       y="785.98395"
        id="text3091-1"
        transform="scale(1.1501971,0.8694162)"><tspan
          sodipodi:role="line"
-         x="523.289"
-         y="786.48163"
+         x="511.25101"
+         y="785.98395"
          id="tspan3095-9"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Contact Information:</tspan></text>
-    <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
-       id="rect3111-5"
-       width="58.170559"
-       height="7.328371"
-       x="601.53925"
-       y="694.51086" />
+         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">User ID</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3111-7-8"
        width="58.170559"
        height="7.328371"
-       x="601.19299"
-       y="703.40955" />
+       x="588.03943"
+       y="692.84973" />
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3111-0-7"
        width="58.170559"
        height="7.328371"
-       x="600.84668"
-       y="712.56995" />
+       x="588.03943"
+       y="700.1781" />
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3215-0"
        width="52.630497"
        height="6.2814603"
-       x="601.8855"
-       y="686.13562" />
+       x="588.03943"
+       y="686.5683" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
@@ -3295,65 +3207,29 @@
          x="508.23709"
          y="775.64447"
          style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Link from User ID if it is not current user:</tspan></text>
-    <rect
-       style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
-       id="rect3111-0-3-8"
-       width="58.170559"
-       height="7.328371"
-       x="601.19299"
-       y="720.94519" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="524.49316"
-       y="834.64777"
-       id="text3817-3"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         id="tspan3819-8"
-         x="524.49316"
-         y="834.64777"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Selected Sex</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="524.19214"
-       y="804.84491"
-       id="text3097-9"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         id="tspan3099-1"
-         x="524.19214"
-         y="804.84491"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">User ID</tspan><tspan
-         sodipodi:role="line"
-         x="524.19214"
-         y="810.1131"
-         id="tspan3101-4"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338"> </tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="524.19214"
-       y="815.08026"
+       x="520.80646"
+       y="802.63831"
        id="text3103-9"
        transform="scale(1.1501971,0.8694162)"><tspan
          sodipodi:role="line"
          id="tspan3105-1"
-         x="524.19214"
-         y="815.08026"
+         x="520.80646"
+         y="802.63831"
          style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Email Address</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="524.49316"
-       y="825.01471"
+       x="513.35834"
+       y="810.76166"
        id="text3107-0"
        transform="scale(1.1501971,0.8694162)"><tspan
          sodipodi:role="line"
          id="tspan3109-7"
-         x="524.49316"
-         y="825.01471"
+         x="513.35834"
+         y="810.76166"
          style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Phone number</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
@@ -3642,18 +3518,6 @@
        height="98.147827"
        x="583.98486"
        y="788.86353" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
-       x="522.47681"
-       y="914.12177"
-       id="text3091-1-8"
-       transform="scale(1.1501971,0.8694162)"><tspan
-         sodipodi:role="line"
-         x="522.47681"
-         y="914.12177"
-         id="tspan3095-9-8"
-         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Edit Contact Information:</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.10536338"
        id="rect3111-7-8-6"
@@ -4470,5 +4334,39 @@
          x="37.037033"
          y="47.547375"
          id="tspan8049" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
+       x="67.41188"
+       y="175.12305"
+       id="text2985-7"
+       transform="scale(1.1501971,0.8694162)"><tspan
+         sodipodi:role="line"
+         id="tspan2987-8"
+         x="67.41188"
+         y="175.12305"
+         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Login via code instead</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="153.22968"
+       y="124.83359"
+       id="text5341"><tspan
+         sodipodi:role="line"
+         id="tspan5339"
+         x="153.22968"
+         y="132.13223" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:1.26436055px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10536338"
+       x="574.40881"
+       y="914.19879"
+       id="text3097-9-7-0"
+       transform="scale(1.1501971,0.8694162)"><tspan
+         sodipodi:role="line"
+         x="574.40881"
+         y="914.19879"
+         id="tspan3101-4-8-4"
+         style="font-size:4.21453524px;line-height:1.25;font-family:sans-serif;stroke-width:0.10536338">Edit </tspan></text>
   </g>
 </svg>

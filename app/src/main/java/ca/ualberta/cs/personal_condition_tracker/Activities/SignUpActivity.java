@@ -63,6 +63,7 @@ import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListCont
 public class SignUpActivity extends AppCompatActivity {
     public static Intent resultIntent;
     private UserAccountListController userAccountListController = new UserAccountListController();
+    private final Integer TEMPORARY_OFFSET = 2543;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,12 +85,13 @@ public class SignUpActivity extends AppCompatActivity {
         String emailAddress = emailAddressText.getText().toString();
         String phoneNumber = phoneNumberText.getText().toString();
         Integer numberOfAccounts = userAccountListController.getUserAccountList().size();
+        Integer shortCode = numberOfAccounts + TEMPORARY_OFFSET ;
         if (userID.length() >= UserAccount.getMinUseridChars()) {
             if(accountType.equals("patient")){
                 // Make a new patient account.
                 Toast.makeText(this,"Making Patient", Toast.LENGTH_SHORT).show();
                 Patient newUserAccount = new Patient(accountType, userID, emailAddress, phoneNumber);
-                newUserAccount.setShortCode(numberOfAccounts.toString());
+                newUserAccount.setShortCode(shortCode.toString());
                 userAccountListController.createPatient(newUserAccount, userID);
                 userAccountListController.addUserAccount(newUserAccount);
                 this.finish();
@@ -98,7 +100,7 @@ public class SignUpActivity extends AppCompatActivity {
                 // Make a new care provider account.
                 Toast.makeText(this,"Making Care Provider", Toast.LENGTH_SHORT).show();
                 CareProvider newUserAccount = new CareProvider(accountType, userID, emailAddress, phoneNumber);
-                newUserAccount.setShortCode(numberOfAccounts.toString());
+                newUserAccount.setShortCode(shortCode.toString());
                 userAccountListController.createCareProvider(newUserAccount, userID);
                 userAccountListController.addUserAccount(newUserAccount);
                 this.finish();
