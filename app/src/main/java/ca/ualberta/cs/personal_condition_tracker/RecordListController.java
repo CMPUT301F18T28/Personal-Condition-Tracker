@@ -1,6 +1,7 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,11 +38,46 @@ public class RecordListController {
         return records;
     }
 
+    // Add a care provider to the server.
+    public void createRecord(Record newRecord) {
+        // Check if the user has already signed up
+        RecordListManager.GetRecordsTask getRecordsTask =
+                new RecordListManager.GetRecordsTask();
+        String query = "{ \"query\": {\"match\": { \"id\" : \"" + newRecord.getId() + "\" } } }";
+        getRecordsTask.execute(query);
+        ArrayList<Record> records = new ArrayList<>();
+        try {
+            records = getRecordsTask.get();
+        } catch (Exception e) {
+            Log.e("Error", "Failed to get the tweets out of the async object.");
+        }
+
+        // Add the user to the database.
+        if (records.size() == 0) {
+//            UserAccountListController.getUserAccountList().addUserAccount(newCareProvider);
+            RecordListManager.AddRecordsTask addRecordsTask
+                    = new RecordListManager.AddRecordsTask();
+            addRecordsTask.execute(newRecord);
+        } else {
+        }
+    }
+
     public void deleteRecord(Record selectedRecord) {
         RecordListManager.DeleteRecordsTask deleteRecordsTask =
                 new RecordListManager.DeleteRecordsTask();
         deleteRecordsTask.execute(selectedRecord);
     }
+
+    public void editRecord(Record oldRecord, Record newRecord) {
+        newRecord.setId(oldRecord.getId());
+        RecordListManager.DeleteRecordsTask deleteRecordsTask =
+                new RecordListManager.DeleteRecordsTask();
+        deleteRecordsTask.execute(oldRecord);
+        RecordListManager.AddRecordsTask addRecordsTask
+                = new RecordListManager.AddRecordsTask();
+        addRecordsTask.execute(newRecord);
+    }
+
 
     public ArrayList<Record> searchByKeyword(String keywords, String condition_id) {
         ArrayList<Record>  records = new ArrayList<>();

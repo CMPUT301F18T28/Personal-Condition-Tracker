@@ -11,9 +11,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
 
     <uses-feature
-        android:name="android.hardware.camera"
+        android:name="android.hardware.camera2.full"
         android:required="false" />
 
     <application
@@ -23,6 +24,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="ca.ualberta.cs.personal_condition_tracker"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -112,8 +123,6 @@
         <activity
             android:name=".ViewRecordActivity"
             android:label="@string/title_activity_view_record" />
-
-
         <activity android:name=".ModifyAccountActivity" />
 
         <uses-library
@@ -125,8 +134,14 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".SearchRecordsActivity"
-            android:label="@string/title_activity_search_records"></activity>
+            android:name=".ViewBodyLocationListActivity"
+            android:label="@string/title_activity_view_body_location_list" />
+        <activity
+            android:name=".ModifyBodyLocationActivity"
+            android:label="@string/title_activity_modify_body_location" />
+        <activity
+            android:name=".SlideshowActivity"
+            android:label="@string/title_activity_slideshow"></activity>
     </application>
 
 </manifest>

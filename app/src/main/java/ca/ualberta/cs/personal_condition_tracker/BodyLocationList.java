@@ -54,7 +54,8 @@ import java.util.ArrayList;
 public class BodyLocationList {
 
     private ArrayList<BodyLocation> bodyLocations;
-
+    private BodyLocation bodyLocationOfInterest = null;
+    private transient ArrayList<Listener> listenerList = null;
     BodyLocationList() {
         this.bodyLocations = new ArrayList<BodyLocation>();
     }
@@ -112,6 +113,59 @@ public class BodyLocationList {
      */
     public void editBodyLocation(int index, BodyLocation bodyLocation) {
         this.bodyLocations.set(index, bodyLocation);
+    }
+
+    public ArrayList<BodyLocation> getBodyLocations() {
+        return this.bodyLocations;
+    }
+    public void setBodyLocations(ArrayList<BodyLocation> bodyLocations) {
+        this.bodyLocations = bodyLocations;
+    }
+
+    public BodyLocation getBodyLocationOfInterest() {
+        return bodyLocationOfInterest;
+    }
+
+    public void setBodyLocationOfInterest(BodyLocation bodyLocationOfInterest) {
+        this.bodyLocationOfInterest = bodyLocationOfInterest;
+    }
+
+    /**
+     * Add listener.
+     *
+     * @param listener the listener
+     */
+    public void addListener(Listener listener){
+        getListenerList().add(listener);;
+    }
+
+    /**
+     * Remove a listener object.
+     *
+     * @param listener the listener
+     * @params Listener
+     */
+    public void removeListener(Listener listener) {
+        getListenerList().remove(listener);
+    }
+    /**
+     * Get all the listeners.
+     * @return ArrayList<Listener>
+     */
+    private ArrayList<Listener> getListenerList(){
+        if(listenerList == null){
+            listenerList = new ArrayList<>();
+        }
+        return listenerList;
+    }
+
+    /**
+     * Tell listeners to update.
+     */
+    public void notifyListeners(){
+        for(Listener listener: getListenerList()){
+            listener.update();
+        }
     }
 
 }
