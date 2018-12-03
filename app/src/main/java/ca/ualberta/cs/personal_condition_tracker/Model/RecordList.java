@@ -48,6 +48,9 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import ca.ualberta.cs.personal_condition_tracker.ChronologicalComparator;
 
 
 /**
@@ -119,7 +122,8 @@ public class RecordList {
      * @return ArrayList<Record>
      */
     public ArrayList<Record> sortByDate() {
-        return new ArrayList<Record>();
+        Collections.sort(this.recordList, new ChronologicalComparator());
+        return recordList;
     }
     /**
      * Get a list of records with a specified keyword.

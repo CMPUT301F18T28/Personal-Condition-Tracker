@@ -69,14 +69,6 @@ public class Record {
     private Date date;
     private String description;
     private BodyLocationList bodyLocationList;
-    public GeoLocation getGeoLocation() {
-        return geoLocation;
-    }
-
-    public void setGeoLocation(GeoLocation geoLocation) {
-        this.geoLocation = geoLocation;
-    }
-
     private GeoLocation geoLocation;
     private PhotographList photos;
     private String associatedConditionID;
@@ -112,7 +104,6 @@ public class Record {
      * Provides the title of the Record
      * @return String Title of this Record object
      */
-
     public String getTitle() {
         return title;
     }
@@ -121,7 +112,6 @@ public class Record {
      * Registers the title for a Record
      * @return Nothing
      */
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -131,7 +121,6 @@ public class Record {
      * @return Date Date assigned to a record
      * @see Date
      */
-
     public Date getDate() {
         return date;
     }
@@ -142,7 +131,6 @@ public class Record {
      * @return Nothing
      * @see Date
      */
-
     public void setDate(Date date) {
         this.date = date;
     }
@@ -153,7 +141,6 @@ public class Record {
      * @see Condition
      *
      */
-
     public String getDescription() {
         return description;
     }
@@ -163,7 +150,6 @@ public class Record {
      * @return Nothing
      * @see Condition
      */
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -174,6 +160,13 @@ public class Record {
      * @see LatLng
      * @see Condition
      */
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
+    }
 
     public BodyLocationList getBodyLocList() {
         return bodyLocationList;
@@ -185,7 +178,6 @@ public class Record {
      * @see BodyLocationList
      * @see BodyLocation
      */
-
     public void setBodyLocationList(BodyLocationList listOfBodyLocs) {
         this.bodyLocationList = listOfBodyLocs;
     }
@@ -197,7 +189,6 @@ public class Record {
      * @see PhotographList
      * @see Condition
      */
-
     public PhotographList getPhotos() {
         return photos;
     }
@@ -209,7 +200,6 @@ public class Record {
      * @see Photograph
      * @see PhotographList
      */
-
     public void setPhotos(PhotographList photos) {
         this.photos = photos;
     }
@@ -220,7 +210,6 @@ public class Record {
      * @return String associatedConditonID
      * @see Condition
      */
-
     public String getAssociatedConditionID() {
         return associatedConditionID;
     }
@@ -230,7 +219,6 @@ public class Record {
      * @return String associatedConditonID
      * @see Condition
      */
-
     public void setAssociatedConditionID(String associatedConditionID) {
         this.associatedConditionID = associatedConditionID;
     }
@@ -239,7 +227,6 @@ public class Record {
      * Provides the ID of the record
      * @return String ID
      */
-
     public String getId() {
         return id;
     }
@@ -248,7 +235,6 @@ public class Record {
      * Registers an ID for the record
      * @return Nothing
      */
-
     public void setId(String id) {
         this.id = id;
     }
@@ -266,13 +252,11 @@ public class Record {
      * @see LatLng
      * @see Date
      */
-
     public void editRecord(String recordTitle, Date recordDate, String recordDescription, LatLng latLng, BodyLocationList listOfBodyLocs) {
         this.setTitle(recordTitle);
         this.setDate(recordDate);
         this.setDescription(recordDescription);
         this.setBodyLocationList(listOfBodyLocs);
-
     }
 
     /**

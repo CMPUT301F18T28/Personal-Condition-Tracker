@@ -66,20 +66,20 @@ public class RecordListTest extends TestCase {
         recordList.addRecord(record2);
         recordList.addRecord(record3);
         ArrayList<Record> sorted_records = recordList.sortByDate();
-        assertEquals(sorted_records, new ArrayList<Record>(Arrays.asList(record2, record1, record3)));
+        assertEquals(sorted_records, new ArrayList<Record>(Arrays.asList(record3, record1, record2)));
     }
 
-    public void testQueryByKeyword() {
-        RecordList recordList = new RecordList();
-        Record record1 = new Record("Title", "I am the first record");
-        Record record2 = new Record("Title",  "I am the second record");
-        Record record3 = new Record("Title", "I am the third record");
-        recordList.addRecord(record1);
-        recordList.addRecord(record2);
-        recordList.addRecord(record3);
-        ArrayList<Record> queried_records = recordList.queryByKeyword("first");
-        assertTrue(queried_records.contains(record2));
-    }
+//    public void testQueryByKeyword() {
+//        RecordList recordList = new RecordList();
+//        Record record1 = new Record("Title", "I am the first record");
+//        Record record2 = new Record("Title",  "I am the second record");
+//        Record record3 = new Record("Title", "I am the third record");
+//        recordList.addRecord(record1);
+//        recordList.addRecord(record2);
+//        recordList.addRecord(record3);
+//        ArrayList<Record> queried_records = recordList.queryByKeyword("first");
+//        assertTrue(queried_records.contains(record2));
+//    }
 //
 //    public void testQueryByGeoLocation() {
 //        RecordList recordList = new RecordList();
