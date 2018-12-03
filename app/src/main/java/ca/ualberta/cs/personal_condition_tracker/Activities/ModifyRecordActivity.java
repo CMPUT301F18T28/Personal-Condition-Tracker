@@ -67,6 +67,11 @@ import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
 import ca.ualberta.cs.personal_condition_tracker.Managers.RecordListManager;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.RecordListController;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.PhotographListController;
+import ca.ualberta.cs.personal_condition_tracker.Activities.SlideshowActivity;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
 
 import static ca.ualberta.cs.personal_condition_tracker.PermissionRequest.verifyPermission;
 

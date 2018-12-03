@@ -56,7 +56,7 @@ public class BodyLocationList {
     private ArrayList<BodyLocation> bodyLocations;
     private BodyLocation bodyLocationOfInterest = null;
     private transient ArrayList<Listener> listenerList = null;
-    BodyLocationList() {
+    public BodyLocationList() {
         this.bodyLocations = new ArrayList<BodyLocation>();
     }
 

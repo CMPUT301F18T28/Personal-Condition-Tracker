@@ -1,8 +1,14 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Controllers;
 
 import android.util.Log;
 
 import java.util.ArrayList;
+import ca.ualberta.cs.personal_condition_tracker.Model.PhotographList;
+import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
+import ca.ualberta.cs.personal_condition_tracker.Model.Record;
+import ca.ualberta.cs.personal_condition_tracker.Managers.PhotographListManager;
+
+
 
 public class PhotographListController {
 

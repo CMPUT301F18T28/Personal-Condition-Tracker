@@ -60,6 +60,7 @@ package ca.ualberta.cs.personal_condition_tracker.Model;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import io.searchbox.annotations.JestId;
@@ -182,15 +183,6 @@ public class Record {
     public void setBodyLocationList(BodyLocationList listOfBodyLocs) {
         this.bodyLocationList = listOfBodyLocs;
     }
-
-    public GeoLocation getGeoLocation() {
-        return geoLocation;
-    }
-
-    public void setGeoLocation(GeoLocation geoLocation) {
-        this.geoLocation = geoLocation;
-    }
-
 
     /**
      * Provides the list of Photograph objects corresponding to the Record of a Condition.

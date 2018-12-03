@@ -1,8 +1,13 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Controllers;
 
 import android.util.Log;
 
 import java.util.ArrayList;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocationList;
+import ca.ualberta.cs.personal_condition_tracker.Model.Record;
+import ca.ualberta.cs.personal_condition_tracker.Managers.BodyLocationListManager;
+
 
 public class BodyLocationListController {
     private static BodyLocationList bodyLocationList = null;

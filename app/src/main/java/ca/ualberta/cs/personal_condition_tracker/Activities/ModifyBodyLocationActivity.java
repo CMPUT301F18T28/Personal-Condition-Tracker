@@ -1,4 +1,4 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,13 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.BodyLocationListController;
+import ca.ualberta.cs.personal_condition_tracker.Model.Record;
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+import ca.ualberta.cs.personal_condition_tracker.R;
 
 import java.util.Date;
 

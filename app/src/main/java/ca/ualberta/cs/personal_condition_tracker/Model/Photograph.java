@@ -75,7 +75,7 @@ public class Photograph {
 
     //Constructors:
 
-    Photograph() {
+    public Photograph() {
         this.base64EncodedString = "";
     }
 

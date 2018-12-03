@@ -142,10 +142,10 @@
             android:name=".ViewBodyLocationListActivity"
             android:label="@string/title_activity_view_body_location_list" />
         <activity
-            android:name=".ModifyBodyLocationActivity"
+            android:name=".Activities.ModifyBodyLocationActivity"
             android:label="@string/title_activity_modify_body_location" />
         <activity
-            android:name=".SlideshowActivity"
+            android:name=".Activities.SlideshowActivity"
             android:label="@string/title_activity_slideshow"></activity>
     </application>
 

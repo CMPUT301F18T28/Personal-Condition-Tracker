@@ -1,4 +1,4 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Activities;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -6,6 +6,14 @@ import android.support.v4.view.ViewPager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.PhotographListController;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.Record;
+import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
+import ca.ualberta.cs.personal_condition_tracker.PhotographPagerAdapter;
+import ca.ualberta.cs.personal_condition_tracker.R;
 
 public class SlideshowActivity extends Activity {
 

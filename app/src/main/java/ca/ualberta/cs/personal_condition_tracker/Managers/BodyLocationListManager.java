@@ -1,4 +1,4 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Managers;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,6 +15,9 @@ import io.searchbox.core.DocumentResult;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
 import io.searchbox.core.SearchResult;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocationList;
+
 
 public class BodyLocationListManager {
 

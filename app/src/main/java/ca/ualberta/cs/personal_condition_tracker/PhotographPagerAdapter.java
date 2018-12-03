@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
 
 public class PhotographPagerAdapter extends PagerAdapter {
     Context mContext;

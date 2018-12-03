@@ -1,4 +1,4 @@
-package ca.ualberta.cs.personal_condition_tracker;
+package ca.ualberta.cs.personal_condition_tracker.Activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +13,18 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
+import ca.ualberta.cs.personal_condition_tracker.Controllers.BodyLocationListController;
+import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.Record;
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+import ca.ualberta.cs.personal_condition_tracker.Model.Listener;
+
+import ca.ualberta.cs.personal_condition_tracker.R;
+
 
 public class ViewBodyLocationListActivity extends Activity {
     private UserAccountListController userAccountListController = new UserAccountListController();
