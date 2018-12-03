@@ -143,7 +143,14 @@ public class ModifyRecordActivity extends AppCompatActivity {
         } else {
             int recordIndex = intent.getIntExtra("recordIndex", 0);
             oldRecord = conditionOfInterest.getRecordList().getRecord(recordIndex);
-            recordListController.editRecord(oldRecord, newRecord);
+            newRecord.setId(oldRecord.getId());
+            RecordListManager.DeleteRecordsTask deleteRecordsTask =
+                    new RecordListManager.DeleteRecordsTask();
+            deleteRecordsTask.execute(oldRecord);
+            RecordListManager.AddRecordsTask addRecordsTask
+                    = new RecordListManager.AddRecordsTask();
+            addRecordsTask.execute(newRecord);
+//            recordListController.editRecord(oldRecord, newRecord);
             oldRecord.editRecord(recordTitle, recordDate, recordDescription, location, null);
         }
         setResult(Activity.RESULT_OK);

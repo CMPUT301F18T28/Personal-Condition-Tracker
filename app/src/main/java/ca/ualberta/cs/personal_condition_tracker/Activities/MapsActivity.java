@@ -54,8 +54,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 location = null;
             }
         } else if (mapMode.equals("viewAll")) {
-            ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest);
-            userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
+            if (conditionOfInterest != null) {
+                ArrayList<Record> old_records = recordListController.loadRecords(conditionOfInterest);
+                userAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().getConditionOfInterest().getRecordList().setRecords(old_records);
+            }
         }
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -99,17 +101,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        if (mapMode.equals("selection") || mapMode.equals("view")) {
            currentMarker = mMap.addMarker(new MarkerOptions().position(startingMarker).title("Selected record location"));
        } else if (mapMode.equals("viewAll")) {
-           ArrayList<Record> records = accountOfInterest.getConditionList().getConditionOfInterest().getRecordList().getRecords();
-           for (int i =0; i<records.size(); i++) {
-                Record record = records.get(i);
-                if (record.getGeoLocation() != null) {
-                    Double latitude = record.getGeoLocation().getLatitude();
-                    Double longitude = record.getGeoLocation().getLongitude();
-                    startingMarker = new LatLng(latitude, longitude);
-                    mMap.addMarker(new MarkerOptions().position(startingMarker).title(record.getTitle()));
+            if (conditionOfInterest != null ) {
+                ArrayList<Record> records = accountOfInterest.getConditionList().getConditionOfInterest().getRecordList().getRecords();
+                for (int i =0; i<records.size(); i++) {
+                    Record record = records.get(i);
+                    if (record.getGeoLocation() != null) {
+                        Double latitude = record.getGeoLocation().getLatitude();
+                        Double longitude = record.getGeoLocation().getLongitude();
+                        startingMarker = new LatLng(latitude, longitude);
+                        mMap.addMarker(new MarkerOptions().position(startingMarker).title(record.getTitle()));
 
+                    }
                 }
             }
+
        }
        mMap.moveCamera(CameraUpdateFactory.newLatLng(startingMarker));
        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startingMarker, 11));

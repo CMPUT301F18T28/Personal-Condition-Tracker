@@ -222,8 +222,8 @@ public class ViewConditionListActivity extends AppCompatActivity {
             }
         });
         choose_search_type_adb.setCancelable(true);
-        AlertDialog choose_emotion_dialog = choose_search_type_adb.create();
-        choose_emotion_dialog.show();
+        AlertDialog choose_search_type_dialog = choose_search_type_adb.create();
+        choose_search_type_dialog.show();
 
     }
 

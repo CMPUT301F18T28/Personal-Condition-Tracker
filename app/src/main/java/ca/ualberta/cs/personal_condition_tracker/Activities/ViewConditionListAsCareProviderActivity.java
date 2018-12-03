@@ -48,13 +48,17 @@ package ca.ualberta.cs.personal_condition_tracker.Activities;
  * @since     1.0
  */
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +69,7 @@ import java.util.Collection;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.ConditionListController;
 import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Managers.ConditionListManager;
+import ca.ualberta.cs.personal_condition_tracker.Model.Listener;
 import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
 import ca.ualberta.cs.personal_condition_tracker.R;
 import ca.ualberta.cs.personal_condition_tracker.Controllers.UserAccountListController;
@@ -74,6 +79,8 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
     private ConditionListController conditionListController = new ConditionListController();
     private Patient accountOfInterest = userAccountListController.getUserAccountList().getAccountOfInterest();
     private Condition selectedCondition;
+
+    private String keywords = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,16 +120,89 @@ public class ViewConditionListAsCareProviderActivity extends AppCompatActivity {
 
     public void viewMapOfRecords(View v){
         Toast.makeText(this,"Viewing map of records", Toast.LENGTH_SHORT).show();
+        Intent mapIntent = new Intent(ViewConditionListAsCareProviderActivity.this, MapsActivity.class);
+        mapIntent.putExtra("mapMode", "viewAll");
+        startActivityForResult(mapIntent, 1);
     }
 
     public void searchConditionsOrRecords(View v){
-        Toast.makeText(this,"Searching conditions", Toast.LENGTH_SHORT).show();
+        AlertDialog.Builder choose_search_type_adb = new AlertDialog.Builder(ViewConditionListAsCareProviderActivity.this);
+        choose_search_type_adb.setTitle("Search by:");
+        CharSequence[] emotions = new CharSequence[] {"Keywords", "Geo-Location", "Body-Location"};
+        // Set up the dialog builder for the pop-up and instantiate a new emotion depending on which button is pressed.
+        // Update the emotion field and save the data after a new selection is made.
+        choose_search_type_adb.setSingleChoiceItems(emotions, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    searchByKeywords();
+                }
+                else if (which == 1) {
+
+                }
+                else if (which == 2) {
+
+                }
+                dialog.dismiss();
+            }
+        });
+        choose_search_type_adb.setCancelable(true);
+        AlertDialog choose_search_type_dialog = choose_search_type_adb.create();
+        choose_search_type_dialog.show();
+
     }
 
     public void showAccountInformation(View v){
         Intent intent = new Intent(ViewConditionListAsCareProviderActivity.this, ModifyAccountActivity.class);
         intent.putExtra("accountType", "patient");
         startActivity(intent);
+    }
+
+    public void searchByKeywords(){
+        AlertDialog.Builder enter_keywords_adb = new AlertDialog.Builder(this);
+        final EditText new_comment_input = new EditText(this);
+        new_comment_input.setInputType(InputType.TYPE_CLASS_TEXT);
+        new_comment_input.setText(keywords);
+        enter_keywords_adb.setTitle("Enter your keywords below:");
+        enter_keywords_adb.setView(new_comment_input);
+        enter_keywords_adb.setCancelable(true);
+        // When "OK" is pressed, change the emotion record's comment to the inputted text, display the
+        // new comment, and save the changes.
+        enter_keywords_adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String temp_text = new_comment_input.getText().toString();
+                keywords = temp_text;
+                ArrayList<Condition> matched_conditions = new ArrayList<>();
+                matched_conditions = conditionListController.searchByKeyword(keywords, accountOfInterest.getUserID());
+                accountOfInterest.getConditionList().setConditions(matched_conditions);
+                //Setup adapter for condition list, and display the list.
+                ListView listView = findViewById(R.id.conditionListView);
+                Collection<Condition> conditionCollection = accountOfInterest.getConditionList().getConditions();
+                final ArrayList<Condition> conditions = new ArrayList<> (conditionCollection);
+                final ArrayAdapter<Condition> conditionArrayAdapter = new ArrayAdapter<>(ViewConditionListAsCareProviderActivity.this, android.R.layout.simple_list_item_1, conditions);
+                listView.setAdapter(conditionArrayAdapter);
+
+                // Added a change observer
+                UserAccountListController.getUserAccountList().getAccountOfInterest().getConditionList().addListener(new Listener() {
+                    @Override
+                    public void update() {
+                        conditions.clear();
+                        Collection<Condition> conditionCollection = accountOfInterest.getConditionList().getConditions();
+                        conditions.addAll(conditionCollection);
+                        conditionArrayAdapter.notifyDataSetChanged();
+                    }
+                });
+            }
+
+        });
+        enter_keywords_adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        enter_keywords_adb.show();
     }
 
 }

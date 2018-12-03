@@ -67,6 +67,12 @@ public class ConditionListController {
         }
     }
 
+    public void deleteCondition(Condition selectedCondition) {
+        ConditionListManager.DeleteConditionsTask deleteConditionsTask =
+                new ConditionListManager.DeleteConditionsTask();
+        deleteConditionsTask.execute(selectedCondition);
+    }
+
     public void editCondition(Condition oldCondition, Condition newCondition) {
         newCondition.setId(oldCondition.getId());
         ConditionListManager.DeleteConditionsTask deleteConditionsTask =

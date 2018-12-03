@@ -108,7 +108,14 @@ public class ModifyConditionActivity extends AppCompatActivity {
         else{
             int index = intent.getIntExtra("index", 0);
             oldCondition = accountOfInterest.getConditionList().getByIndex(index);
-            conditionListController.editCondition(oldCondition, newCondition);
+            newCondition.setId(oldCondition.getId());
+            ConditionListManager.DeleteConditionsTask deleteConditionsTask =
+                    new ConditionListManager.DeleteConditionsTask();
+            deleteConditionsTask.execute(oldCondition);
+            ConditionListManager.AddConditionsTask addConditionsTask
+                    = new ConditionListManager.AddConditionsTask();
+            addConditionsTask.execute(newCondition);
+//            conditionListController.editCondition(oldCondition, newCondition);
             accountOfInterest.getConditionList().editCondition(oldCondition, conditionTitle,
                     conditionDate, conditionDescription);
         }
