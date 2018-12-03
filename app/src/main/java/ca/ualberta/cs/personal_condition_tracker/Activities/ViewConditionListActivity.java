@@ -273,7 +273,6 @@ public class ViewConditionListActivity extends AppCompatActivity {
                         conditionArrayAdapter.notifyDataSetChanged();
                     }
                 });
-                Toast.makeText(ViewConditionListActivity.this,Integer.toString(accountOfInterest.getConditionList().getConditions().size()), Toast.LENGTH_SHORT).show();
             }
 
         });

@@ -254,14 +254,18 @@ public class ModifyRecordActivity extends AppCompatActivity {
     }
 
     public void selectBodyLoc(View v) {
-        Intent intent = new Intent(ModifyRecordActivity.this,
-                ViewBodyLocationListActivity.class);
-        startActivity(intent);
+        if (conditionOfInterest.getRecordList().getRecordOfInterest() != null) {
+            Intent intent = new Intent(ModifyRecordActivity.this,
+                    ViewBodyLocationListActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void showSlideshowActivity(View v) {
-        Intent intent = new Intent(ModifyRecordActivity.this, SlideshowActivity.class);
-        startActivity(intent);
+        if (conditionOfInterest.getRecordList().getRecordOfInterest() != null) {
+            Intent intent = new Intent(ModifyRecordActivity.this, SlideshowActivity.class);
+            startActivity(intent);
+        }
     }
 
     private File createImageFile() throws IOException {
