@@ -1,6 +1,10 @@
 package ca.ualberta.cs.personal_condition_tracker.Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import ca.ualberta.cs.personal_condition_tracker.ChronologicalComparator;
 
 /**
  * The type Comment record list.
@@ -14,7 +18,7 @@ public class CommentRecordList {
     /**
      * Instantiates a new Comment record list.
      */
-    CommentRecordList() {
+    public CommentRecordList() {
         this.commentRecordList = new ArrayList<>();
     }
 
@@ -34,7 +38,7 @@ public class CommentRecordList {
      * @param index the index
      * @return the comment record
      */
-    public CommentRecord getCommentRecord(int index){
+    public CommentRecord getCommentRecordByIndex(int index){
         return this.commentRecordList.get(index);
     }
 
@@ -140,5 +144,15 @@ public class CommentRecordList {
         for(Listener listener: getListenerList()){
             listener.update();
         }
+    }
+
+    public ArrayList<CommentRecord> sortByDate() {
+        Collections.sort(this.commentRecordList, new Comparator<CommentRecord>() {
+            @Override
+            public int compare(CommentRecord o1, CommentRecord o2) {
+                return o2.getDate().compareTo(o1.getDate());
+            }
+        });
+        return this.commentRecordList;
     }
 }
