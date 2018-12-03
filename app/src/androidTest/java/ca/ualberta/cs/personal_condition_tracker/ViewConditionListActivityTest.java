@@ -40,6 +40,4 @@ public class ViewConditionListActivityTest {
         Intents.release();
     }
 
-    //TODO: Test on long click methods
-
 }
