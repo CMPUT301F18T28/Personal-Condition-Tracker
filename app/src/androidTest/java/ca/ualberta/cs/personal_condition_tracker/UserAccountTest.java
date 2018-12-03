@@ -2,6 +2,8 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import org.junit.Test;
 
+import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
+
 import static org.junit.Assert.*;
 
 public class UserAccountTest {

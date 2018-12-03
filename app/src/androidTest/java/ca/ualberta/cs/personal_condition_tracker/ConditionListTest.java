@@ -22,6 +22,9 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.ConditionList;
+
 public class ConditionListTest extends TestCase {
 
     public void testAddSearchCondition() {

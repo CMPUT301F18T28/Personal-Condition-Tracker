@@ -9,6 +9,10 @@ import org.junit.runner.RunWith;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import ca.ualberta.cs.personal_condition_tracker.Activities.MainActivity;
+import ca.ualberta.cs.personal_condition_tracker.Activities.SignUpActivity;
+import ca.ualberta.cs.personal_condition_tracker.Activities.ViewConditionListActivity;
+import ca.ualberta.cs.personal_condition_tracker.Activities.ViewPatientListActivity;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;

@@ -1,7 +1,9 @@
 package ca.ualberta.cs.personal_condition_tracker;
 
-import static org.junit.Assert.*;
 import junit.framework.TestCase;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Photograph;
+import ca.ualberta.cs.personal_condition_tracker.Model.PhotographList;
 
 public class PhotographListTest extends TestCase{
 

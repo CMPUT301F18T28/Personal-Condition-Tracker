@@ -2,6 +2,8 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import junit.framework.TestCase;
 
+import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
+
 public class BodyLocationTest extends TestCase {
 
     public void testGetBodyPart() {

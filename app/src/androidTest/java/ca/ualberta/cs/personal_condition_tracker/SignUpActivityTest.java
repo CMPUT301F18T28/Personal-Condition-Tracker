@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import androidx.test.espresso.intent.Intents;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import ca.ualberta.cs.personal_condition_tracker.Activities.SignUpActivity;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -37,7 +38,6 @@ public class SignUpActivityTest {
 
         intended(hasComponent(SignUpActivity.class.getName()));
         Intents.release();
-
     }
 
     // Try adding a new care provider to the app.

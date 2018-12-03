@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,55 +41,55 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ModifyRecordActivity"
+            android:name=".Activities.ModifyRecordActivity"
             android:label="@string/title_activity_view_record"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewRecordListActivity"
+            android:name=".Activities.ViewRecordListActivity"
             android:label="@string/title_activity_view_record_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewRecordListAsCareProviderActivity"
+            android:name=".Activities.ViewRecordListAsCareProviderActivity"
             android:label="@string/title_activity_view_record_list_as_care_provider"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewConditionListActivity"
+            android:name=".Activities.ViewConditionListActivity"
             android:label="@string/title_activity_view_condition_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewConditionListAsCareProviderActivity"
+            android:name=".Activities.ViewConditionListAsCareProviderActivity"
             android:label="@string/title_activity_view_condition_list_as_care_provider"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SelectGeoLocationActivity"
+            android:name=".Activities.SelectGeoLocationActivity"
             android:label="@string/title_activity_select_geo_location"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SelectBodyLocationActivity"
+            android:name=".Activities.SelectBodyLocationActivity"
             android:label="@string/title_activity_select_body_location"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewCommentsActivity"
+            android:name=".Activities.ViewCommentsActivity"
             android:label="@string/title_activity_view_comments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModifyConditionActivity"
+            android:name=".Activities.ModifyConditionActivity"
             android:label="@string/title_activity_modify_condition"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewPatientListActivity"
+            android:name=".Activities.ViewPatientListActivity"
             android:label="@string/title_activity_view_patient_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddPatientActivity"
+            android:name=".Activities.AddPatientActivity"
             android:label="@string/title_activity_add_patient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ModifyCommentActivity"
+            android:name=".Activities.ModifyCommentActivity"
             android:label="@string/title_activity_add_comment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Activities.SignUpActivity"
             android:label="@string/title_activity_modify_user_account"
             android:theme="@style/AppTheme.NoActionBar" />
 
@@ -110,11 +110,11 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ViewRecordActivity"
+            android:name=".Activities.ViewRecordActivity"
             android:label="@string/title_activity_view_record" />
 
 
-        <activity android:name=".ModifyAccountActivity" />
+        <activity android:name=".Activities.ModifyAccountActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -122,12 +122,12 @@
         <uses-library android:name="android.test.runner" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".SearchRecordsActivity"
             android:label="@string/title_activity_search_records"></activity>
-        <activity android:name=".ShortCodeSignInActivity" />
+        <activity android:name=".Activities.ShortCodeSignInActivity" />
     </application>
 
 </manifest>

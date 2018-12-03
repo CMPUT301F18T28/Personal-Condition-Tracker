@@ -3,8 +3,10 @@ package ca.ualberta.cs.personal_condition_tracker;
 
 import junit.framework.TestCase;
 
-import java.util.ArrayList;
 import java.util.Date;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
+import ca.ualberta.cs.personal_condition_tracker.Model.RecordList;
 
 
 public class ConditionTest extends TestCase {

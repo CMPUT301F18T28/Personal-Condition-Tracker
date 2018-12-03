@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import ca.ualberta.cs.personal_condition_tracker.Model.UserAccount;
+import ca.ualberta.cs.personal_condition_tracker.Model.UserAccountList;
+
 import static org.junit.Assert.*;
 
 public class UserAccountListTest {

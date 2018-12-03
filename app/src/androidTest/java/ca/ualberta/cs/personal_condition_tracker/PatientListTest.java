@@ -1,7 +1,8 @@
 package ca.ualberta.cs.personal_condition_tracker;
 import junit.framework.TestCase;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import ca.ualberta.cs.personal_condition_tracker.Model.Patient;
+import ca.ualberta.cs.personal_condition_tracker.Model.PatientList;
 
 public class PatientListTest extends TestCase {
  
