@@ -22,7 +22,6 @@ import ca.ualberta.cs.personal_condition_tracker.Model.Condition;
 import ca.ualberta.cs.personal_condition_tracker.Model.Record;
 import ca.ualberta.cs.personal_condition_tracker.Model.BodyLocation;
 import ca.ualberta.cs.personal_condition_tracker.Model.Listener;
-
 import ca.ualberta.cs.personal_condition_tracker.R;
 
 
@@ -53,7 +52,7 @@ public class ViewBodyLocationListActivity extends Activity {
         listView.setAdapter(bodyLocationsArrayAdapter);
 
         // Added a change observer
-        recordOfInterest.addListener(new Listener() {
+        recordOfInterest.getBodyLocationList().addListener(new Listener() {
             @Override
             public void update() {
                 bodyLocations.clear();
@@ -68,7 +67,7 @@ public class ViewBodyLocationListActivity extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder adb = new AlertDialog.Builder(ViewBodyLocationListActivity.this);
-                adb.setMessage("Would you like to edit or delete " + bodyLocations.get(position).toString() + " ?");
+                adb.setMessage("Would you like to delete " + bodyLocations.get(position).toString() + " ?");
                 adb.setCancelable(true);
                 final int finalPosition = position;
 
@@ -80,14 +79,6 @@ public class ViewBodyLocationListActivity extends Activity {
                         recordOfInterest.getBodyLocationList().deleteBodyLocation(selectedBodyLocation);
                     }
                 });
-
-                adb.setNegativeButton("Edit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
                 adb.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -97,6 +88,28 @@ public class ViewBodyLocationListActivity extends Activity {
 
                 adb.show();
                 return true;
+            }
+        });
+        //Ugly code of OnItemClickListener
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final int finalPosition = position;
+                selectedBodyLocation = bodyLocations.get(finalPosition);
+                recordOfInterest.getBodyLocationList().setBodyLocationOfInterest(selectedBodyLocation);
+                Intent intent = new Intent(ViewBodyLocationListActivity.this,
+                        ModifyBodyLocationActivity.class);
+
+                intent.putExtra("bodyLocationIndex",
+                        recordOfInterest.getBodyLocationList().getIndex(selectedBodyLocation));
+                intent.putExtra("mode", "view");
+                intent.putExtra("frontOrBack",
+                        selectedBodyLocation.getFrontOrBack());
+                intent.putExtra("bodyPartType",
+                        selectedBodyLocation.getBodyPart());
+                intent.putExtra("X", selectedBodyLocation.getBodyXCoordinate());
+                intent.putExtra("Y", selectedBodyLocation.getBodyYCoordinate());
+                startActivity(intent);
             }
         });
 

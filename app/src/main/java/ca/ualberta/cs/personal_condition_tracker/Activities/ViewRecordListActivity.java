@@ -181,7 +181,6 @@ public class ViewRecordListActivity extends AppCompatActivity {
         Toast.makeText(this,"Adding a Record", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ViewRecordListActivity.this, ModifyRecordActivity.class);
         intent.putExtra("recordIndex", -1);
-
         startActivityForResult(intent,1);
     }
 
@@ -214,8 +213,8 @@ public class ViewRecordListActivity extends AppCompatActivity {
             }
         });
         choose_search_type_adb.setCancelable(true);
-        AlertDialog choose_emotion_dialog = choose_search_type_adb.create();
-        choose_emotion_dialog.show();
+        AlertDialog choose_search_type_dialog = choose_search_type_adb.create();
+        choose_search_type_dialog.show();
     }
 
     public void searchByKeywords(){
@@ -335,11 +334,6 @@ public class ViewRecordListActivity extends AppCompatActivity {
         startActivityForResult(mapIntent, SELECTED_LOCATION_REQUEST_CODE);
     }
 
-    //TODO:Implement slideshow
-    public void showSlideshow(View v){
-
-    }
-
     // A result code of 1 here simply means that we did actually make a change, and that
     // the listView should be updated
     @Override
@@ -366,6 +360,4 @@ public class ViewRecordListActivity extends AppCompatActivity {
 
     }
 
-    public void addAComment(View view) {
-    }
 }

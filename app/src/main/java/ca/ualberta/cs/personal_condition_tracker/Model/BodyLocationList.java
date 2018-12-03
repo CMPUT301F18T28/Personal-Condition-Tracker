@@ -90,6 +90,7 @@ public class BodyLocationList {
      */
     public void addBodyLocation(BodyLocation bodyLocation) {
         this.bodyLocations.add(bodyLocation);
+        notifyListeners();
     }
 
     /**
@@ -101,6 +102,7 @@ public class BodyLocationList {
      */
     public void deleteBodyLocation(BodyLocation bodyLocation) {
         this.bodyLocations.remove(bodyLocation);
+        notifyListeners();
     }
 
     /**
@@ -113,6 +115,7 @@ public class BodyLocationList {
      */
     public void editBodyLocation(int index, BodyLocation bodyLocation) {
         this.bodyLocations.set(index, bodyLocation);
+        notifyListeners();
     }
 
     public ArrayList<BodyLocation> getBodyLocations() {
@@ -166,6 +169,16 @@ public class BodyLocationList {
         for(Listener listener: getListenerList()){
             listener.update();
         }
+    }
+
+    public int getIndex(BodyLocation bodyLocation){
+        int index = -1;
+        for (int i = 0; i < bodyLocations.size(); i++) {
+            if (bodyLocation.getId().equals(bodyLocations.get(i).getId())) {
+                index = i;
+            }
+        }
+        return index;
     }
 
 }

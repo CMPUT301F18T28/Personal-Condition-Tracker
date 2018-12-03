@@ -100,7 +100,13 @@ public class ViewRecordActivity extends Activity {
     }
 
     public void viewBodyLocations(View v){
-        Toast.makeText(this,"View body locations", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ViewRecordActivity.this,
+                ViewBodyLocationListActivity.class);
+        startActivity(intent);
     }
 
+    public void showSlideshow(View v) {
+        Intent intent = new Intent(ViewRecordActivity.this, SlideshowActivity.class);
+        startActivity(intent);
+    }
 }

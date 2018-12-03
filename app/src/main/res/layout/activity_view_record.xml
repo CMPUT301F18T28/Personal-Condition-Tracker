@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ViewRecordActivity">
 
-    <ScrollView
-        android:id="@+id/viewPhotos"
-        android:layout_width="339dp"
-        android:layout_height="59dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewPhotosTextView2"
-        app:layout_constraintVertical_bias="0.0">
-
-    </ScrollView>
-
     <TextView
         android:id="@+id/viewPhotosTextView2"
         android:layout_width="wrap_content"
@@ -126,4 +112,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conditionRecordTitle_textView" />
+
+    <Button
+        android:id="@+id/showSlideShowButton"
+        android:layout_width="335dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="showSlideshow"
+        android:text="@string/showSlideShowButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPhotosTextView2"
+        tools:text="@string/showSlideShowButtonText" />
 </android.support.constraint.ConstraintLayout>

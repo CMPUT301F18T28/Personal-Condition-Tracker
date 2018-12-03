@@ -154,10 +154,10 @@
         android:id="@+id/showSlideshowButton"
         android:layout_width="222dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         android:onClick="showSlideshowActivity"
-        android:text="Button"
+        android:text="@string/showSlideShowButtonText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPhotosTextView"
         tools:text="@string/showSlideShowButtonText" />
